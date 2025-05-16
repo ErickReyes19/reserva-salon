@@ -154,7 +154,36 @@ exports.Prisma.UsuarioScalarFieldEnum = {
   updateAt: 'updateAt',
   activo: 'activo',
   rolId: 'rolId',
-  DebeCambiar: 'DebeCambiar'
+  debeCambiar: 'debeCambiar'
+};
+
+exports.Prisma.FotografoScalarFieldEnum = {
+  id: 'id',
+  usuarioId: 'usuarioId',
+  telefono: 'telefono',
+  bio: 'bio'
+};
+
+exports.Prisma.DisponibilidadScalarFieldEnum = {
+  id: 'id',
+  diaSemana: 'diaSemana',
+  horaInicio: 'horaInicio',
+  horaFin: 'horaFin',
+  activo: 'activo'
+};
+
+exports.Prisma.ReservaScalarFieldEnum = {
+  id: 'id',
+  fecha: 'fecha',
+  horaInicio: 'horaInicio',
+  horaFin: 'horaFin',
+  nombreCliente: 'nombreCliente',
+  emailCliente: 'emailCliente',
+  clienteId: 'clienteId',
+  fotografoId: 'fotografoId',
+  pixelpayOrder: 'pixelpayOrder',
+  estado: 'estado',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -188,12 +217,46 @@ exports.Prisma.UsuarioOrderByRelevanceFieldEnum = {
   rolId: 'rolId'
 };
 
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+
+exports.Prisma.FotografoOrderByRelevanceFieldEnum = {
+  id: 'id',
+  usuarioId: 'usuarioId',
+  telefono: 'telefono',
+  bio: 'bio'
+};
+
+exports.Prisma.DisponibilidadOrderByRelevanceFieldEnum = {
+  id: 'id',
+  horaInicio: 'horaInicio',
+  horaFin: 'horaFin'
+};
+
+exports.Prisma.ReservaOrderByRelevanceFieldEnum = {
+  id: 'id',
+  nombreCliente: 'nombreCliente',
+  emailCliente: 'emailCliente',
+  clienteId: 'clienteId',
+  fotografoId: 'fotografoId',
+  pixelpayOrder: 'pixelpayOrder'
+};
+exports.EstadoReserva = exports.$Enums.EstadoReserva = {
+  PENDIENTE: 'PENDIENTE',
+  CONFIRMADA: 'CONFIRMADA',
+  CANCELADA: 'CANCELADA'
+};
 
 exports.Prisma.ModelName = {
   Rol: 'Rol',
   Permiso: 'Permiso',
   RolPermiso: 'RolPermiso',
-  Usuario: 'Usuario'
+  Usuario: 'Usuario',
+  Fotografo: 'Fotografo',
+  Disponibilidad: 'Disponibilidad',
+  Reserva: 'Reserva'
 };
 
 /**

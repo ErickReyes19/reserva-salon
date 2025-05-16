@@ -1,28 +1,15 @@
-// app/(public)/page.js  — sigue siendo Server Component
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
-import { Suspense } from 'react'
-import Login from "./components/formLogin"
+// app/(public)/page.tsx
+import { getReservasEvent } from "./actions";
+import CalendarioReservas from "./components/calendar";
 
-export default function LoginPage() {
+export default async function PublicPage() {
+  const reservas = await getReservasEvent();
+  console.log("🚀 ~ PublicPage ~ reservas:", reservas)
+
   return (
-    <Card className="w-full max-w-md mx-auto bg-gray-800 text-white border-gray-700 shadow-lg">
-      <CardHeader className="space-y-1">
-        <CardTitle className="text-2xl font-bold text-center">Bienvenido</CardTitle>
-        <CardDescription className="text-center text-gray-400">
-          Ingrese sus credenciales para iniciar sesión
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <Suspense fallback={<div className="text-center text-gray-400">Cargando…</div>}>
-          <Login />
-        </Suspense>
-      </CardContent>
-    </Card>
-  )
+    <main className="p-4">
+      <h1 className="text-xl font-bold mb-4">Calendario de Reservas</h1>
+      <CalendarioReservas eventos={reservas} />
+    </main>
+  );
 }
