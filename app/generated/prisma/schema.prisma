@@ -55,7 +55,6 @@ model Usuario {
   debeCambiar Boolean
 
   rol       Rol        @relation(fields: [rolId], references: [id])
-  reservas  Reserva[]  @relation("ReservasCliente")
   fotografo Fotografo? @relation("FotografoUsuario")
 
   @@index([rolId], map: "Usuario_rolId_fkey")
@@ -70,32 +69,30 @@ model Fotografo {
   reservas  Reserva[] @relation("ReservasFotografo")
 }
 
-model Disponibilidad {
-  id         String  @id @default(uuid())
-  diaSemana  Int // 0 = Domingo, 6 = Sábado
-  horaInicio String // "08:00"
-  horaFin    String // "17:00"
-  activo     Boolean @default(true)
+model Cliente {
+  id       String    @id @default(uuid())
+  nombre   String
+  email    String    @unique
+  telefono String
+  createAt DateTime  @default(now())
+  updateAt DateTime  @updatedAt
+  reservas Reserva[] @relation("ReservasCliente")
 }
 
 model Reserva {
-  id            String        @id @default(uuid())
+  id            String   @id @default(uuid())
   fecha         DateTime // fecha y hora de inicio
+  horaInicio    DateTime
   horaFin       DateTime
-  nombreCliente String
-  emailCliente  String
-  clienteId     String
   fotografoId   String
-  pixelpayOrder String        @unique
-  estado        EstadoReserva @default(PENDIENTE)
-  createdAt     DateTime      @default(now())
+  pixelpayOrder String   @unique
+  estado        Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  clienteId     String
 
-  cliente   Usuario   @relation("ReservasCliente", fields: [clienteId], references: [id])
   fotografo Fotografo @relation("ReservasFotografo", fields: [fotografoId], references: [id])
-}
+  cliente   Cliente   @relation("ReservasCliente", fields: [clienteId], references: [id])
 
-enum EstadoReserva {
-  PENDIENTE
-  CONFIRMADA
-  CANCELADA
+  @@index([fotografoId], map: "Reserva_fotografoId_fkey")
+  @@index([clienteId], map: "Reserva_clienteId_fkey")
 }

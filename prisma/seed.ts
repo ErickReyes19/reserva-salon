@@ -9,186 +9,124 @@ export const prisma = globalForPrisma.prisma ?? new PrismaClient();
 async function main() {
   console.log("🔌 Conectando a la base de datos...");
 
-  // ---------- Permisos ----------
-  const permisoNames = [
-    "ver_permisos", "ver_roles", "crear_roles", "editar_roles",
-    "ver_usuarios", "crear_usuario", "editar_usuario"
-  ];
+  // Limpiar datos de pruebas (excepto permisos/roles/usuarios admin existentes)
+  await prisma.reserva.deleteMany({});
+  await prisma.fotografo.deleteMany({});
+  await prisma.usuario.deleteMany({ where: { email: { in: ["ana.gomez@example.com", "luis.perez@example.com"] } } });
+  await prisma.cliente.deleteMany({ where: { email: "cliente.test@example.com" } });
 
-  const permisos = await Promise.all(
-    permisoNames.map((nombre) =>
-      prisma.permiso.upsert({
-        where: { nombre },
-        update: {},
-        create: {
-          id: randomUUID(),
-          nombre,
-          descripcion: `Permite ${nombre.replace(/_/g, " ")}`,
-          activo: true
-        }
-      })
-    )
-  );
-  console.log("✅ Permisos seed completado");
+  // Crear permisos y rol admin si no existen
+  const existingRolAdmin = await prisma.rol.findUnique({ where: { nombre: "administrador" } });
 
-  // ---------- Rol Administrador ----------
-  const rolAdmin = await prisma.rol.upsert({
-    where: { nombre: "administrador" },
-    update: {},
-    create: {
-      id: randomUUID(),
-      nombre: "administrador",
-      descripcion: "Rol con todos los permisos de administración",
-      activo: true,
-      permisos: {
-        create: permisos.map(p => ({
-          id: randomUUID(),
-          permiso: { connect: { id: p.id } }
-        }))
-      }
-    }
-  });
-  console.log("✅ Rol administrador seed completado");
+  let rolAdmin;
+  if (!existingRolAdmin) {
+    const permisoNames = [
+      "ver_permisos", "ver_roles", "crear_roles", "editar_roles",
+      "ver_usuarios", "crear_usuario", "editar_usuario"
+    ];
 
-  // ---------- Usuario Admin ----------
-  const adminEmail = "erickjosepineda33@gmail.com";
-  const hashedPassword = await bcrypt.hash("erick.reyes", 10);
-  await prisma.usuario.upsert({
-    where: { email: adminEmail },
-    update: {},
-    create: {
-      id: randomUUID(),
-      nombre: "Erick Reyes",
-      email: adminEmail,
-      password: hashedPassword,
-      activo: true,
-      rolId: rolAdmin.id,
-      debeCambiar: true
-    }
-  });
-  console.log("✅ Usuario administrador seed completado");
+    const permisos = await Promise.all(
+      permisoNames.map(nombre => prisma.permiso.create({
+        data: { id: randomUUID(), nombre, descripcion: `Permite ${nombre.replace(/_/g, " ")}`, activo: true }
+      }))
+    );
 
-  // ---------- Fotógrafos ----------
-  const fotografoIds: string[] = [];
-  const fotografoData = [
-    { nombre: "Ana Gómez", email: "ana.gomez@example.com", telefono: "+50412345678", bio: "Especialista en retratos" },
-    { nombre: "Luis Pérez", email: "luis.perez@example.com", telefono: "+50487654321", bio: "Fotógrafo de estudio" }
-  ];
-
-  for (const { nombre, email, telefono, bio } of fotografoData) {
-    const user = await prisma.usuario.upsert({
-      where: { email },
-      update: {},
-      create: {
+    rolAdmin = await prisma.rol.create({
+      data: {
         id: randomUUID(),
-        nombre,
-        email,
-        password: await bcrypt.hash("password123", 10),
+        nombre: "administrador",
+        descripcion: "Admin",
+        activo: true,
+        permisos: { create: permisos.map(p => ({ id: randomUUID(), permisoId: p.id })) }
+      }
+    });
+
+    // Crear usuario admin
+    await prisma.usuario.create({
+      data: {
+        id: randomUUID(),
+        nombre: "Erick Reyes",
+        email: "erickjosepineda33@gmail.com",
+        password: await bcrypt.hash("erick.reyes", 10),
+        activo: true,
+        rolId: rolAdmin.id,
+        debeCambiar: true
+      }
+    });
+  } else {
+    rolAdmin = existingRolAdmin;
+  }
+
+  // Crear cliente de prueba
+  const cliente = await prisma.cliente.create({
+    data: {
+      id: randomUUID(),
+      nombre: "Cliente de Prueba",
+      email: "cliente.test@example.com",
+      telefono: "9999-9999"
+    }
+  });
+
+  // Crear usuarios fotógrafos
+  const [fot1User, fot2User] = await Promise.all([
+    prisma.usuario.create({
+      data: {
+        id: randomUUID(),
+        nombre: "Ana Gómez",
+        email: "ana.gomez@example.com",
+        password: await bcrypt.hash("pass1234", 10),
         activo: true,
         rolId: rolAdmin.id,
         debeCambiar: false
       }
-    });
-    const fotografo = await prisma.fotografo.upsert({
-      where: { usuarioId: user.id },
-      update: {},
-      create: {
+    }),
+    prisma.usuario.create({
+      data: {
         id: randomUUID(),
-        usuarioId: user.id,
-        telefono,
-        bio
+        nombre: "Luis Pérez",
+        email: "luis.perez@example.com",
+        password: await bcrypt.hash("pass1234", 10),
+        activo: true,
+        rolId: rolAdmin.id,
+        debeCambiar: false
       }
-    });
-    fotografoIds.push(fotografo.id);
-    console.log(`✅ Fotógrafo seed: ${nombre} (${email})`);
-  }
+    }),
+  ]);
 
-  // ---------- Cliente (Usuario) ----------
-  const cliente = await prisma.usuario.upsert({
-    where: { email: "cliente.test@example.com" },
-    update: {},
-    create: {
-      id: randomUUID(),
-      nombre: "Cliente de Prueba",
-      email: "cliente.test@example.com",
-      password: await bcrypt.hash("cliente123", 10),
-      activo: true,
-      rolId: rolAdmin.id, // Cambia a rolCliente si lo tienes separado
-      debeCambiar: false
-    }
-  });
+  const fotografo1 = await prisma.fotografo.create({ data: { id: randomUUID(), usuarioId: fot1User.id } });
+  const fotografo2 = await prisma.fotografo.create({ data: { id: randomUUID(), usuarioId: fot2User.id } });
 
-  // ---------- Disponibilidad Semanal ----------
-  const disponibilidadData = [
-    { diaSemana: 1, horaInicio: "09:00", horaFin: "13:00" },
-    { diaSemana: 1, horaInicio: "14:00", horaFin: "18:00" },
-    { diaSemana: 2, horaInicio: "09:00", horaFin: "18:00" },
-    { diaSemana: 3, horaInicio: "09:00", horaFin: "18:00" },
-    { diaSemana: 4, horaInicio: "09:00", horaFin: "18:00" },
-    { diaSemana: 5, horaInicio: "09:00", horaFin: "18:00" },
-    { diaSemana: 6, horaInicio: "10:00", horaFin: "14:00" }
+  // Crear reservas asociadas al cliente
+  const dates = [
+    new Date('2025-05-17T09:00:00Z'),
+    new Date('2025-05-17T10:00:00Z'),
+    new Date('2025-05-18T11:00:00Z'),
+    new Date('2025-05-19T08:00:00Z'),
+    new Date('2025-05-19T09:00:00Z')
   ];
+  const fotografoIds = [fotografo1.id, fotografo2.id, fotografo1.id, fotografo2.id, fotografo1.id];
 
-  await Promise.all(
-    disponibilidadData.map(slot =>
-      prisma.disponibilidad.upsert({
-        where: { id: slot.diaSemana.toString() },
-        update: {},
-        create: {
-          id: randomUUID(),
-          diaSemana: slot.diaSemana,
-          horaInicio: slot.horaInicio,
-          horaFin: slot.horaFin,
-          activo: true
-        }
-      })
-    )
-  );
-  console.log("✅ Disponibilidad seed completado");
-
-  // ---------- Reservas ----------
-  const now = new Date();
-  const reservasData = [
-    {
-      nombreCliente: "Juan López",
-      emailCliente: "juan.lopez@example.com",
-      fecha: addHours(now, 2), // hoy + 2h
-      horaFin: addHours(now, 3),
-      fotografoId: fotografoIds[0]
-    },
-    {
-      nombreCliente: "Maria Ramos",
-      emailCliente: "maria.ramos@example.com",
-      fecha: addHours(now, 5),
-      horaFin: addHours(now, 6),
-      fotografoId: fotografoIds[1]
-    }
-  ];
-
-  for (const reserva of reservasData) {
+  for (let i = 0; i < dates.length; i++) {
     await prisma.reserva.create({
       data: {
         id: randomUUID(),
         clienteId: cliente.id,
-        nombreCliente: reserva.nombreCliente,
-        emailCliente: reserva.emailCliente,
-        fotografoId: reserva.fotografoId,
-        fecha: reserva.fecha,
-        horaInicio: reserva.fecha, // Assuming horaInicio is the same as fecha; adjust as needed
-        horaFin: reserva.horaFin,
+        fotografoId: fotografoIds[i],
+        fecha: dates[i],
+        horaInicio: dates[i],
+        horaFin: addHours(dates[i], 1),
         pixelpayOrder: randomUUID(),
-        estado: "PENDIENTE"
+        estado: true
       }
     });
   }
-  console.log("✅ Reservas seed completado");
 
   console.log("🎉 Seed completado exitosamente.");
+  await prisma.$disconnect();
 }
 
-main()
-  .catch(e => console.error(e))
-  .finally(async () => {
-    await prisma.$disconnect();
-    console.log("🔌 Desconectado de la base de datos.");
-  });
+main().catch(e => {
+  console.error("❌ Error en el seed:", e);
+  prisma.$disconnect();
+  process.exit(1);
+});
