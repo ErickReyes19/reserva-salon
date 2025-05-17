@@ -164,12 +164,13 @@ exports.Prisma.FotografoScalarFieldEnum = {
   bio: 'bio'
 };
 
-exports.Prisma.DisponibilidadScalarFieldEnum = {
+exports.Prisma.ClienteScalarFieldEnum = {
   id: 'id',
-  diaSemana: 'diaSemana',
-  horaInicio: 'horaInicio',
-  horaFin: 'horaFin',
-  activo: 'activo'
+  nombre: 'nombre',
+  email: 'email',
+  telefono: 'telefono',
+  createAt: 'createAt',
+  updateAt: 'updateAt'
 };
 
 exports.Prisma.ReservaScalarFieldEnum = {
@@ -177,13 +178,11 @@ exports.Prisma.ReservaScalarFieldEnum = {
   fecha: 'fecha',
   horaInicio: 'horaInicio',
   horaFin: 'horaFin',
-  nombreCliente: 'nombreCliente',
-  emailCliente: 'emailCliente',
-  clienteId: 'clienteId',
   fotografoId: 'fotografoId',
   pixelpayOrder: 'pixelpayOrder',
   estado: 'estado',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  clienteId: 'clienteId'
 };
 
 exports.Prisma.SortOrder = {
@@ -229,25 +228,20 @@ exports.Prisma.FotografoOrderByRelevanceFieldEnum = {
   bio: 'bio'
 };
 
-exports.Prisma.DisponibilidadOrderByRelevanceFieldEnum = {
+exports.Prisma.ClienteOrderByRelevanceFieldEnum = {
   id: 'id',
-  horaInicio: 'horaInicio',
-  horaFin: 'horaFin'
+  nombre: 'nombre',
+  email: 'email',
+  telefono: 'telefono'
 };
 
 exports.Prisma.ReservaOrderByRelevanceFieldEnum = {
   id: 'id',
-  nombreCliente: 'nombreCliente',
-  emailCliente: 'emailCliente',
-  clienteId: 'clienteId',
   fotografoId: 'fotografoId',
-  pixelpayOrder: 'pixelpayOrder'
+  pixelpayOrder: 'pixelpayOrder',
+  clienteId: 'clienteId'
 };
-exports.EstadoReserva = exports.$Enums.EstadoReserva = {
-  PENDIENTE: 'PENDIENTE',
-  CONFIRMADA: 'CONFIRMADA',
-  CANCELADA: 'CANCELADA'
-};
+
 
 exports.Prisma.ModelName = {
   Rol: 'Rol',
@@ -255,7 +249,7 @@ exports.Prisma.ModelName = {
   RolPermiso: 'RolPermiso',
   Usuario: 'Usuario',
   Fotografo: 'Fotografo',
-  Disponibilidad: 'Disponibilidad',
+  Cliente: 'Cliente',
   Reserva: 'Reserva'
 };
 

@@ -39,33 +39,15 @@ export type Usuario = $Result.DefaultSelection<Prisma.$UsuarioPayload>
  */
 export type Fotografo = $Result.DefaultSelection<Prisma.$FotografoPayload>
 /**
- * Model Disponibilidad
+ * Model Cliente
  * 
  */
-export type Disponibilidad = $Result.DefaultSelection<Prisma.$DisponibilidadPayload>
+export type Cliente = $Result.DefaultSelection<Prisma.$ClientePayload>
 /**
  * Model Reserva
  * 
  */
 export type Reserva = $Result.DefaultSelection<Prisma.$ReservaPayload>
-
-/**
- * Enums
- */
-export namespace $Enums {
-  export const EstadoReserva: {
-  PENDIENTE: 'PENDIENTE',
-  CONFIRMADA: 'CONFIRMADA',
-  CANCELADA: 'CANCELADA'
-};
-
-export type EstadoReserva = (typeof EstadoReserva)[keyof typeof EstadoReserva]
-
-}
-
-export type EstadoReserva = $Enums.EstadoReserva
-
-export const EstadoReserva: typeof $Enums.EstadoReserva
 
 /**
  * ##  Prisma Client ʲˢ
@@ -243,14 +225,14 @@ export class PrismaClient<
   get fotografo(): Prisma.FotografoDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.disponibilidad`: Exposes CRUD operations for the **Disponibilidad** model.
+   * `prisma.cliente`: Exposes CRUD operations for the **Cliente** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Disponibilidads
-    * const disponibilidads = await prisma.disponibilidad.findMany()
+    * // Fetch zero or more Clientes
+    * const clientes = await prisma.cliente.findMany()
     * ```
     */
-  get disponibilidad(): Prisma.DisponibilidadDelegate<ExtArgs, ClientOptions>;
+  get cliente(): Prisma.ClienteDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.reserva`: Exposes CRUD operations for the **Reserva** model.
@@ -706,7 +688,7 @@ export namespace Prisma {
     RolPermiso: 'RolPermiso',
     Usuario: 'Usuario',
     Fotografo: 'Fotografo',
-    Disponibilidad: 'Disponibilidad',
+    Cliente: 'Cliente',
     Reserva: 'Reserva'
   };
 
@@ -726,7 +708,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "rol" | "permiso" | "rolPermiso" | "usuario" | "fotografo" | "disponibilidad" | "reserva"
+      modelProps: "rol" | "permiso" | "rolPermiso" | "usuario" | "fotografo" | "cliente" | "reserva"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1060,69 +1042,69 @@ export namespace Prisma {
           }
         }
       }
-      Disponibilidad: {
-        payload: Prisma.$DisponibilidadPayload<ExtArgs>
-        fields: Prisma.DisponibilidadFieldRefs
+      Cliente: {
+        payload: Prisma.$ClientePayload<ExtArgs>
+        fields: Prisma.ClienteFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.DisponibilidadFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DisponibilidadPayload> | null
+            args: Prisma.ClienteFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClientePayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.DisponibilidadFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DisponibilidadPayload>
+            args: Prisma.ClienteFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClientePayload>
           }
           findFirst: {
-            args: Prisma.DisponibilidadFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DisponibilidadPayload> | null
+            args: Prisma.ClienteFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClientePayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.DisponibilidadFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DisponibilidadPayload>
+            args: Prisma.ClienteFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClientePayload>
           }
           findMany: {
-            args: Prisma.DisponibilidadFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DisponibilidadPayload>[]
+            args: Prisma.ClienteFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClientePayload>[]
           }
           create: {
-            args: Prisma.DisponibilidadCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DisponibilidadPayload>
+            args: Prisma.ClienteCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClientePayload>
           }
           createMany: {
-            args: Prisma.DisponibilidadCreateManyArgs<ExtArgs>
+            args: Prisma.ClienteCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           delete: {
-            args: Prisma.DisponibilidadDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DisponibilidadPayload>
+            args: Prisma.ClienteDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClientePayload>
           }
           update: {
-            args: Prisma.DisponibilidadUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DisponibilidadPayload>
+            args: Prisma.ClienteUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClientePayload>
           }
           deleteMany: {
-            args: Prisma.DisponibilidadDeleteManyArgs<ExtArgs>
+            args: Prisma.ClienteDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.DisponibilidadUpdateManyArgs<ExtArgs>
+            args: Prisma.ClienteUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           upsert: {
-            args: Prisma.DisponibilidadUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DisponibilidadPayload>
+            args: Prisma.ClienteUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClientePayload>
           }
           aggregate: {
-            args: Prisma.DisponibilidadAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateDisponibilidad>
+            args: Prisma.ClienteAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCliente>
           }
           groupBy: {
-            args: Prisma.DisponibilidadGroupByArgs<ExtArgs>
-            result: $Utils.Optional<DisponibilidadGroupByOutputType>[]
+            args: Prisma.ClienteGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ClienteGroupByOutputType>[]
           }
           count: {
-            args: Prisma.DisponibilidadCountArgs<ExtArgs>
-            result: $Utils.Optional<DisponibilidadCountAggregateOutputType> | number
+            args: Prisma.ClienteCountArgs<ExtArgs>
+            result: $Utils.Optional<ClienteCountAggregateOutputType> | number
           }
         }
       }
@@ -1281,7 +1263,7 @@ export namespace Prisma {
     rolPermiso?: RolPermisoOmit
     usuario?: UsuarioOmit
     fotografo?: FotografoOmit
-    disponibilidad?: DisponibilidadOmit
+    cliente?: ClienteOmit
     reserva?: ReservaOmit
   }
 
@@ -1444,37 +1426,6 @@ export namespace Prisma {
 
 
   /**
-   * Count Type UsuarioCountOutputType
-   */
-
-  export type UsuarioCountOutputType = {
-    reservas: number
-  }
-
-  export type UsuarioCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    reservas?: boolean | UsuarioCountOutputTypeCountReservasArgs
-  }
-
-  // Custom InputTypes
-  /**
-   * UsuarioCountOutputType without action
-   */
-  export type UsuarioCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UsuarioCountOutputType
-     */
-    select?: UsuarioCountOutputTypeSelect<ExtArgs> | null
-  }
-
-  /**
-   * UsuarioCountOutputType without action
-   */
-  export type UsuarioCountOutputTypeCountReservasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ReservaWhereInput
-  }
-
-
-  /**
    * Count Type FotografoCountOutputType
    */
 
@@ -1501,6 +1452,37 @@ export namespace Prisma {
    * FotografoCountOutputType without action
    */
   export type FotografoCountOutputTypeCountReservasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ReservaWhereInput
+  }
+
+
+  /**
+   * Count Type ClienteCountOutputType
+   */
+
+  export type ClienteCountOutputType = {
+    reservas: number
+  }
+
+  export type ClienteCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    reservas?: boolean | ClienteCountOutputTypeCountReservasArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ClienteCountOutputType without action
+   */
+  export type ClienteCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClienteCountOutputType
+     */
+    select?: ClienteCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ClienteCountOutputType without action
+   */
+  export type ClienteCountOutputTypeCountReservasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ReservaWhereInput
   }
 
@@ -4588,9 +4570,7 @@ export namespace Prisma {
     rolId?: boolean
     debeCambiar?: boolean
     rol?: boolean | RolDefaultArgs<ExtArgs>
-    reservas?: boolean | Usuario$reservasArgs<ExtArgs>
     fotografo?: boolean | Usuario$fotografoArgs<ExtArgs>
-    _count?: boolean | UsuarioCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["usuario"]>
 
 
@@ -4610,16 +4590,13 @@ export namespace Prisma {
   export type UsuarioOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nombre" | "email" | "password" | "createAt" | "updateAt" | "activo" | "rolId" | "debeCambiar", ExtArgs["result"]["usuario"]>
   export type UsuarioInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     rol?: boolean | RolDefaultArgs<ExtArgs>
-    reservas?: boolean | Usuario$reservasArgs<ExtArgs>
     fotografo?: boolean | Usuario$fotografoArgs<ExtArgs>
-    _count?: boolean | UsuarioCountOutputTypeDefaultArgs<ExtArgs>
   }
 
   export type $UsuarioPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Usuario"
     objects: {
       rol: Prisma.$RolPayload<ExtArgs>
-      reservas: Prisma.$ReservaPayload<ExtArgs>[]
       fotografo: Prisma.$FotografoPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -4973,7 +4950,6 @@ export namespace Prisma {
   export interface Prisma__UsuarioClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     rol<T extends RolDefaultArgs<ExtArgs> = {}>(args?: Subset<T, RolDefaultArgs<ExtArgs>>): Prisma__RolClient<$Result.GetResult<Prisma.$RolPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    reservas<T extends Usuario$reservasArgs<ExtArgs> = {}>(args?: Subset<T, Usuario$reservasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReservaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     fotografo<T extends Usuario$fotografoArgs<ExtArgs> = {}>(args?: Subset<T, Usuario$fotografoArgs<ExtArgs>>): Prisma__FotografoClient<$Result.GetResult<Prisma.$FotografoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -5353,30 +5329,6 @@ export namespace Prisma {
      * Limit how many Usuarios to delete.
      */
     limit?: number
-  }
-
-  /**
-   * Usuario.reservas
-   */
-  export type Usuario$reservasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Reserva
-     */
-    select?: ReservaSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Reserva
-     */
-    omit?: ReservaOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ReservaInclude<ExtArgs> | null
-    where?: ReservaWhereInput
-    orderBy?: ReservaOrderByWithRelationInput | ReservaOrderByWithRelationInput[]
-    cursor?: ReservaWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: ReservaScalarFieldEnum | ReservaScalarFieldEnum[]
   }
 
   /**
@@ -6366,363 +6318,347 @@ export namespace Prisma {
 
 
   /**
-   * Model Disponibilidad
+   * Model Cliente
    */
 
-  export type AggregateDisponibilidad = {
-    _count: DisponibilidadCountAggregateOutputType | null
-    _avg: DisponibilidadAvgAggregateOutputType | null
-    _sum: DisponibilidadSumAggregateOutputType | null
-    _min: DisponibilidadMinAggregateOutputType | null
-    _max: DisponibilidadMaxAggregateOutputType | null
+  export type AggregateCliente = {
+    _count: ClienteCountAggregateOutputType | null
+    _min: ClienteMinAggregateOutputType | null
+    _max: ClienteMaxAggregateOutputType | null
   }
 
-  export type DisponibilidadAvgAggregateOutputType = {
-    diaSemana: number | null
-  }
-
-  export type DisponibilidadSumAggregateOutputType = {
-    diaSemana: number | null
-  }
-
-  export type DisponibilidadMinAggregateOutputType = {
+  export type ClienteMinAggregateOutputType = {
     id: string | null
-    diaSemana: number | null
-    horaInicio: string | null
-    horaFin: string | null
-    activo: boolean | null
+    nombre: string | null
+    email: string | null
+    telefono: string | null
+    createAt: Date | null
+    updateAt: Date | null
   }
 
-  export type DisponibilidadMaxAggregateOutputType = {
+  export type ClienteMaxAggregateOutputType = {
     id: string | null
-    diaSemana: number | null
-    horaInicio: string | null
-    horaFin: string | null
-    activo: boolean | null
+    nombre: string | null
+    email: string | null
+    telefono: string | null
+    createAt: Date | null
+    updateAt: Date | null
   }
 
-  export type DisponibilidadCountAggregateOutputType = {
+  export type ClienteCountAggregateOutputType = {
     id: number
-    diaSemana: number
-    horaInicio: number
-    horaFin: number
-    activo: number
+    nombre: number
+    email: number
+    telefono: number
+    createAt: number
+    updateAt: number
     _all: number
   }
 
 
-  export type DisponibilidadAvgAggregateInputType = {
-    diaSemana?: true
-  }
-
-  export type DisponibilidadSumAggregateInputType = {
-    diaSemana?: true
-  }
-
-  export type DisponibilidadMinAggregateInputType = {
+  export type ClienteMinAggregateInputType = {
     id?: true
-    diaSemana?: true
-    horaInicio?: true
-    horaFin?: true
-    activo?: true
+    nombre?: true
+    email?: true
+    telefono?: true
+    createAt?: true
+    updateAt?: true
   }
 
-  export type DisponibilidadMaxAggregateInputType = {
+  export type ClienteMaxAggregateInputType = {
     id?: true
-    diaSemana?: true
-    horaInicio?: true
-    horaFin?: true
-    activo?: true
+    nombre?: true
+    email?: true
+    telefono?: true
+    createAt?: true
+    updateAt?: true
   }
 
-  export type DisponibilidadCountAggregateInputType = {
+  export type ClienteCountAggregateInputType = {
     id?: true
-    diaSemana?: true
-    horaInicio?: true
-    horaFin?: true
-    activo?: true
+    nombre?: true
+    email?: true
+    telefono?: true
+    createAt?: true
+    updateAt?: true
     _all?: true
   }
 
-  export type DisponibilidadAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClienteAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Disponibilidad to aggregate.
+     * Filter which Cliente to aggregate.
      */
-    where?: DisponibilidadWhereInput
+    where?: ClienteWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Disponibilidads to fetch.
+     * Determine the order of Clientes to fetch.
      */
-    orderBy?: DisponibilidadOrderByWithRelationInput | DisponibilidadOrderByWithRelationInput[]
+    orderBy?: ClienteOrderByWithRelationInput | ClienteOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: DisponibilidadWhereUniqueInput
+    cursor?: ClienteWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Disponibilidads from the position of the cursor.
+     * Take `±n` Clientes from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Disponibilidads.
+     * Skip the first `n` Clientes.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned Disponibilidads
+     * Count returned Clientes
     **/
-    _count?: true | DisponibilidadCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: DisponibilidadAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: DisponibilidadSumAggregateInputType
+    _count?: true | ClienteCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: DisponibilidadMinAggregateInputType
+    _min?: ClienteMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: DisponibilidadMaxAggregateInputType
+    _max?: ClienteMaxAggregateInputType
   }
 
-  export type GetDisponibilidadAggregateType<T extends DisponibilidadAggregateArgs> = {
-        [P in keyof T & keyof AggregateDisponibilidad]: P extends '_count' | 'count'
+  export type GetClienteAggregateType<T extends ClienteAggregateArgs> = {
+        [P in keyof T & keyof AggregateCliente]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateDisponibilidad[P]>
-      : GetScalarType<T[P], AggregateDisponibilidad[P]>
+        : GetScalarType<T[P], AggregateCliente[P]>
+      : GetScalarType<T[P], AggregateCliente[P]>
   }
 
 
 
 
-  export type DisponibilidadGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: DisponibilidadWhereInput
-    orderBy?: DisponibilidadOrderByWithAggregationInput | DisponibilidadOrderByWithAggregationInput[]
-    by: DisponibilidadScalarFieldEnum[] | DisponibilidadScalarFieldEnum
-    having?: DisponibilidadScalarWhereWithAggregatesInput
+  export type ClienteGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ClienteWhereInput
+    orderBy?: ClienteOrderByWithAggregationInput | ClienteOrderByWithAggregationInput[]
+    by: ClienteScalarFieldEnum[] | ClienteScalarFieldEnum
+    having?: ClienteScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: DisponibilidadCountAggregateInputType | true
-    _avg?: DisponibilidadAvgAggregateInputType
-    _sum?: DisponibilidadSumAggregateInputType
-    _min?: DisponibilidadMinAggregateInputType
-    _max?: DisponibilidadMaxAggregateInputType
+    _count?: ClienteCountAggregateInputType | true
+    _min?: ClienteMinAggregateInputType
+    _max?: ClienteMaxAggregateInputType
   }
 
-  export type DisponibilidadGroupByOutputType = {
+  export type ClienteGroupByOutputType = {
     id: string
-    diaSemana: number
-    horaInicio: string
-    horaFin: string
-    activo: boolean
-    _count: DisponibilidadCountAggregateOutputType | null
-    _avg: DisponibilidadAvgAggregateOutputType | null
-    _sum: DisponibilidadSumAggregateOutputType | null
-    _min: DisponibilidadMinAggregateOutputType | null
-    _max: DisponibilidadMaxAggregateOutputType | null
+    nombre: string
+    email: string
+    telefono: string
+    createAt: Date
+    updateAt: Date
+    _count: ClienteCountAggregateOutputType | null
+    _min: ClienteMinAggregateOutputType | null
+    _max: ClienteMaxAggregateOutputType | null
   }
 
-  type GetDisponibilidadGroupByPayload<T extends DisponibilidadGroupByArgs> = Prisma.PrismaPromise<
+  type GetClienteGroupByPayload<T extends ClienteGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<DisponibilidadGroupByOutputType, T['by']> &
+      PickEnumerable<ClienteGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof DisponibilidadGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof ClienteGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], DisponibilidadGroupByOutputType[P]>
-            : GetScalarType<T[P], DisponibilidadGroupByOutputType[P]>
+              : GetScalarType<T[P], ClienteGroupByOutputType[P]>
+            : GetScalarType<T[P], ClienteGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type DisponibilidadSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type ClienteSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    diaSemana?: boolean
-    horaInicio?: boolean
-    horaFin?: boolean
-    activo?: boolean
-  }, ExtArgs["result"]["disponibilidad"]>
+    nombre?: boolean
+    email?: boolean
+    telefono?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+    reservas?: boolean | Cliente$reservasArgs<ExtArgs>
+    _count?: boolean | ClienteCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["cliente"]>
 
 
 
-  export type DisponibilidadSelectScalar = {
+  export type ClienteSelectScalar = {
     id?: boolean
-    diaSemana?: boolean
-    horaInicio?: boolean
-    horaFin?: boolean
-    activo?: boolean
+    nombre?: boolean
+    email?: boolean
+    telefono?: boolean
+    createAt?: boolean
+    updateAt?: boolean
   }
 
-  export type DisponibilidadOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "diaSemana" | "horaInicio" | "horaFin" | "activo", ExtArgs["result"]["disponibilidad"]>
+  export type ClienteOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nombre" | "email" | "telefono" | "createAt" | "updateAt", ExtArgs["result"]["cliente"]>
+  export type ClienteInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    reservas?: boolean | Cliente$reservasArgs<ExtArgs>
+    _count?: boolean | ClienteCountOutputTypeDefaultArgs<ExtArgs>
+  }
 
-  export type $DisponibilidadPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Disponibilidad"
-    objects: {}
+  export type $ClientePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Cliente"
+    objects: {
+      reservas: Prisma.$ReservaPayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      diaSemana: number
-      horaInicio: string
-      horaFin: string
-      activo: boolean
-    }, ExtArgs["result"]["disponibilidad"]>
+      nombre: string
+      email: string
+      telefono: string
+      createAt: Date
+      updateAt: Date
+    }, ExtArgs["result"]["cliente"]>
     composites: {}
   }
 
-  type DisponibilidadGetPayload<S extends boolean | null | undefined | DisponibilidadDefaultArgs> = $Result.GetResult<Prisma.$DisponibilidadPayload, S>
+  type ClienteGetPayload<S extends boolean | null | undefined | ClienteDefaultArgs> = $Result.GetResult<Prisma.$ClientePayload, S>
 
-  type DisponibilidadCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<DisponibilidadFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: DisponibilidadCountAggregateInputType | true
+  type ClienteCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ClienteFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ClienteCountAggregateInputType | true
     }
 
-  export interface DisponibilidadDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Disponibilidad'], meta: { name: 'Disponibilidad' } }
+  export interface ClienteDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Cliente'], meta: { name: 'Cliente' } }
     /**
-     * Find zero or one Disponibilidad that matches the filter.
-     * @param {DisponibilidadFindUniqueArgs} args - Arguments to find a Disponibilidad
+     * Find zero or one Cliente that matches the filter.
+     * @param {ClienteFindUniqueArgs} args - Arguments to find a Cliente
      * @example
-     * // Get one Disponibilidad
-     * const disponibilidad = await prisma.disponibilidad.findUnique({
+     * // Get one Cliente
+     * const cliente = await prisma.cliente.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends DisponibilidadFindUniqueArgs>(args: SelectSubset<T, DisponibilidadFindUniqueArgs<ExtArgs>>): Prisma__DisponibilidadClient<$Result.GetResult<Prisma.$DisponibilidadPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends ClienteFindUniqueArgs>(args: SelectSubset<T, ClienteFindUniqueArgs<ExtArgs>>): Prisma__ClienteClient<$Result.GetResult<Prisma.$ClientePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Disponibilidad that matches the filter or throw an error with `error.code='P2025'`
+     * Find one Cliente that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {DisponibilidadFindUniqueOrThrowArgs} args - Arguments to find a Disponibilidad
+     * @param {ClienteFindUniqueOrThrowArgs} args - Arguments to find a Cliente
      * @example
-     * // Get one Disponibilidad
-     * const disponibilidad = await prisma.disponibilidad.findUniqueOrThrow({
+     * // Get one Cliente
+     * const cliente = await prisma.cliente.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends DisponibilidadFindUniqueOrThrowArgs>(args: SelectSubset<T, DisponibilidadFindUniqueOrThrowArgs<ExtArgs>>): Prisma__DisponibilidadClient<$Result.GetResult<Prisma.$DisponibilidadPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends ClienteFindUniqueOrThrowArgs>(args: SelectSubset<T, ClienteFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ClienteClient<$Result.GetResult<Prisma.$ClientePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Disponibilidad that matches the filter.
+     * Find the first Cliente that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {DisponibilidadFindFirstArgs} args - Arguments to find a Disponibilidad
+     * @param {ClienteFindFirstArgs} args - Arguments to find a Cliente
      * @example
-     * // Get one Disponibilidad
-     * const disponibilidad = await prisma.disponibilidad.findFirst({
+     * // Get one Cliente
+     * const cliente = await prisma.cliente.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends DisponibilidadFindFirstArgs>(args?: SelectSubset<T, DisponibilidadFindFirstArgs<ExtArgs>>): Prisma__DisponibilidadClient<$Result.GetResult<Prisma.$DisponibilidadPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends ClienteFindFirstArgs>(args?: SelectSubset<T, ClienteFindFirstArgs<ExtArgs>>): Prisma__ClienteClient<$Result.GetResult<Prisma.$ClientePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Disponibilidad that matches the filter or
+     * Find the first Cliente that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {DisponibilidadFindFirstOrThrowArgs} args - Arguments to find a Disponibilidad
+     * @param {ClienteFindFirstOrThrowArgs} args - Arguments to find a Cliente
      * @example
-     * // Get one Disponibilidad
-     * const disponibilidad = await prisma.disponibilidad.findFirstOrThrow({
+     * // Get one Cliente
+     * const cliente = await prisma.cliente.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends DisponibilidadFindFirstOrThrowArgs>(args?: SelectSubset<T, DisponibilidadFindFirstOrThrowArgs<ExtArgs>>): Prisma__DisponibilidadClient<$Result.GetResult<Prisma.$DisponibilidadPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends ClienteFindFirstOrThrowArgs>(args?: SelectSubset<T, ClienteFindFirstOrThrowArgs<ExtArgs>>): Prisma__ClienteClient<$Result.GetResult<Prisma.$ClientePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more Disponibilidads that matches the filter.
+     * Find zero or more Clientes that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {DisponibilidadFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {ClienteFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all Disponibilidads
-     * const disponibilidads = await prisma.disponibilidad.findMany()
+     * // Get all Clientes
+     * const clientes = await prisma.cliente.findMany()
      * 
-     * // Get first 10 Disponibilidads
-     * const disponibilidads = await prisma.disponibilidad.findMany({ take: 10 })
+     * // Get first 10 Clientes
+     * const clientes = await prisma.cliente.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const disponibilidadWithIdOnly = await prisma.disponibilidad.findMany({ select: { id: true } })
+     * const clienteWithIdOnly = await prisma.cliente.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends DisponibilidadFindManyArgs>(args?: SelectSubset<T, DisponibilidadFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DisponibilidadPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends ClienteFindManyArgs>(args?: SelectSubset<T, ClienteFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClientePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a Disponibilidad.
-     * @param {DisponibilidadCreateArgs} args - Arguments to create a Disponibilidad.
+     * Create a Cliente.
+     * @param {ClienteCreateArgs} args - Arguments to create a Cliente.
      * @example
-     * // Create one Disponibilidad
-     * const Disponibilidad = await prisma.disponibilidad.create({
+     * // Create one Cliente
+     * const Cliente = await prisma.cliente.create({
      *   data: {
-     *     // ... data to create a Disponibilidad
+     *     // ... data to create a Cliente
      *   }
      * })
      * 
      */
-    create<T extends DisponibilidadCreateArgs>(args: SelectSubset<T, DisponibilidadCreateArgs<ExtArgs>>): Prisma__DisponibilidadClient<$Result.GetResult<Prisma.$DisponibilidadPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends ClienteCreateArgs>(args: SelectSubset<T, ClienteCreateArgs<ExtArgs>>): Prisma__ClienteClient<$Result.GetResult<Prisma.$ClientePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many Disponibilidads.
-     * @param {DisponibilidadCreateManyArgs} args - Arguments to create many Disponibilidads.
+     * Create many Clientes.
+     * @param {ClienteCreateManyArgs} args - Arguments to create many Clientes.
      * @example
-     * // Create many Disponibilidads
-     * const disponibilidad = await prisma.disponibilidad.createMany({
+     * // Create many Clientes
+     * const cliente = await prisma.cliente.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends DisponibilidadCreateManyArgs>(args?: SelectSubset<T, DisponibilidadCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends ClienteCreateManyArgs>(args?: SelectSubset<T, ClienteCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Delete a Disponibilidad.
-     * @param {DisponibilidadDeleteArgs} args - Arguments to delete one Disponibilidad.
+     * Delete a Cliente.
+     * @param {ClienteDeleteArgs} args - Arguments to delete one Cliente.
      * @example
-     * // Delete one Disponibilidad
-     * const Disponibilidad = await prisma.disponibilidad.delete({
+     * // Delete one Cliente
+     * const Cliente = await prisma.cliente.delete({
      *   where: {
-     *     // ... filter to delete one Disponibilidad
+     *     // ... filter to delete one Cliente
      *   }
      * })
      * 
      */
-    delete<T extends DisponibilidadDeleteArgs>(args: SelectSubset<T, DisponibilidadDeleteArgs<ExtArgs>>): Prisma__DisponibilidadClient<$Result.GetResult<Prisma.$DisponibilidadPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends ClienteDeleteArgs>(args: SelectSubset<T, ClienteDeleteArgs<ExtArgs>>): Prisma__ClienteClient<$Result.GetResult<Prisma.$ClientePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one Disponibilidad.
-     * @param {DisponibilidadUpdateArgs} args - Arguments to update one Disponibilidad.
+     * Update one Cliente.
+     * @param {ClienteUpdateArgs} args - Arguments to update one Cliente.
      * @example
-     * // Update one Disponibilidad
-     * const disponibilidad = await prisma.disponibilidad.update({
+     * // Update one Cliente
+     * const cliente = await prisma.cliente.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -6732,30 +6668,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends DisponibilidadUpdateArgs>(args: SelectSubset<T, DisponibilidadUpdateArgs<ExtArgs>>): Prisma__DisponibilidadClient<$Result.GetResult<Prisma.$DisponibilidadPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends ClienteUpdateArgs>(args: SelectSubset<T, ClienteUpdateArgs<ExtArgs>>): Prisma__ClienteClient<$Result.GetResult<Prisma.$ClientePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more Disponibilidads.
-     * @param {DisponibilidadDeleteManyArgs} args - Arguments to filter Disponibilidads to delete.
+     * Delete zero or more Clientes.
+     * @param {ClienteDeleteManyArgs} args - Arguments to filter Clientes to delete.
      * @example
-     * // Delete a few Disponibilidads
-     * const { count } = await prisma.disponibilidad.deleteMany({
+     * // Delete a few Clientes
+     * const { count } = await prisma.cliente.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends DisponibilidadDeleteManyArgs>(args?: SelectSubset<T, DisponibilidadDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends ClienteDeleteManyArgs>(args?: SelectSubset<T, ClienteDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Disponibilidads.
+     * Update zero or more Clientes.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {DisponibilidadUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {ClienteUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many Disponibilidads
-     * const disponibilidad = await prisma.disponibilidad.updateMany({
+     * // Update many Clientes
+     * const cliente = await prisma.cliente.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -6765,56 +6701,56 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends DisponibilidadUpdateManyArgs>(args: SelectSubset<T, DisponibilidadUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends ClienteUpdateManyArgs>(args: SelectSubset<T, ClienteUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create or update one Disponibilidad.
-     * @param {DisponibilidadUpsertArgs} args - Arguments to update or create a Disponibilidad.
+     * Create or update one Cliente.
+     * @param {ClienteUpsertArgs} args - Arguments to update or create a Cliente.
      * @example
-     * // Update or create a Disponibilidad
-     * const disponibilidad = await prisma.disponibilidad.upsert({
+     * // Update or create a Cliente
+     * const cliente = await prisma.cliente.upsert({
      *   create: {
-     *     // ... data to create a Disponibilidad
+     *     // ... data to create a Cliente
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the Disponibilidad we want to update
+     *     // ... the filter for the Cliente we want to update
      *   }
      * })
      */
-    upsert<T extends DisponibilidadUpsertArgs>(args: SelectSubset<T, DisponibilidadUpsertArgs<ExtArgs>>): Prisma__DisponibilidadClient<$Result.GetResult<Prisma.$DisponibilidadPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends ClienteUpsertArgs>(args: SelectSubset<T, ClienteUpsertArgs<ExtArgs>>): Prisma__ClienteClient<$Result.GetResult<Prisma.$ClientePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of Disponibilidads.
+     * Count the number of Clientes.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {DisponibilidadCountArgs} args - Arguments to filter Disponibilidads to count.
+     * @param {ClienteCountArgs} args - Arguments to filter Clientes to count.
      * @example
-     * // Count the number of Disponibilidads
-     * const count = await prisma.disponibilidad.count({
+     * // Count the number of Clientes
+     * const count = await prisma.cliente.count({
      *   where: {
-     *     // ... the filter for the Disponibilidads we want to count
+     *     // ... the filter for the Clientes we want to count
      *   }
      * })
     **/
-    count<T extends DisponibilidadCountArgs>(
-      args?: Subset<T, DisponibilidadCountArgs>,
+    count<T extends ClienteCountArgs>(
+      args?: Subset<T, ClienteCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], DisponibilidadCountAggregateOutputType>
+          : GetScalarType<T['select'], ClienteCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a Disponibilidad.
+     * Allows you to perform aggregations operations on a Cliente.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {DisponibilidadAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {ClienteAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -6834,13 +6770,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends DisponibilidadAggregateArgs>(args: Subset<T, DisponibilidadAggregateArgs>): Prisma.PrismaPromise<GetDisponibilidadAggregateType<T>>
+    aggregate<T extends ClienteAggregateArgs>(args: Subset<T, ClienteAggregateArgs>): Prisma.PrismaPromise<GetClienteAggregateType<T>>
 
     /**
-     * Group by Disponibilidad.
+     * Group by Cliente.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {DisponibilidadGroupByArgs} args - Group by arguments.
+     * @param {ClienteGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -6855,14 +6791,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends DisponibilidadGroupByArgs,
+      T extends ClienteGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: DisponibilidadGroupByArgs['orderBy'] }
-        : { orderBy?: DisponibilidadGroupByArgs['orderBy'] },
+        ? { orderBy: ClienteGroupByArgs['orderBy'] }
+        : { orderBy?: ClienteGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -6911,21 +6847,22 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, DisponibilidadGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetDisponibilidadGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, ClienteGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetClienteGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the Disponibilidad model
+   * Fields of the Cliente model
    */
-  readonly fields: DisponibilidadFieldRefs;
+  readonly fields: ClienteFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for Disponibilidad.
+   * The delegate class that acts as a "Promise-like" for Cliente.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__DisponibilidadClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__ClienteClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    reservas<T extends Cliente$reservasArgs<ExtArgs> = {}>(args?: Subset<T, Cliente$reservasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReservaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6952,332 +6889,397 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the Disponibilidad model
+   * Fields of the Cliente model
    */
-  interface DisponibilidadFieldRefs {
-    readonly id: FieldRef<"Disponibilidad", 'String'>
-    readonly diaSemana: FieldRef<"Disponibilidad", 'Int'>
-    readonly horaInicio: FieldRef<"Disponibilidad", 'String'>
-    readonly horaFin: FieldRef<"Disponibilidad", 'String'>
-    readonly activo: FieldRef<"Disponibilidad", 'Boolean'>
+  interface ClienteFieldRefs {
+    readonly id: FieldRef<"Cliente", 'String'>
+    readonly nombre: FieldRef<"Cliente", 'String'>
+    readonly email: FieldRef<"Cliente", 'String'>
+    readonly telefono: FieldRef<"Cliente", 'String'>
+    readonly createAt: FieldRef<"Cliente", 'DateTime'>
+    readonly updateAt: FieldRef<"Cliente", 'DateTime'>
   }
     
 
   // Custom InputTypes
   /**
-   * Disponibilidad findUnique
+   * Cliente findUnique
    */
-  export type DisponibilidadFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClienteFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Disponibilidad
+     * Select specific fields to fetch from the Cliente
      */
-    select?: DisponibilidadSelect<ExtArgs> | null
+    select?: ClienteSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Disponibilidad
+     * Omit specific fields from the Cliente
      */
-    omit?: DisponibilidadOmit<ExtArgs> | null
+    omit?: ClienteOmit<ExtArgs> | null
     /**
-     * Filter, which Disponibilidad to fetch.
+     * Choose, which related nodes to fetch as well
      */
-    where: DisponibilidadWhereUniqueInput
+    include?: ClienteInclude<ExtArgs> | null
+    /**
+     * Filter, which Cliente to fetch.
+     */
+    where: ClienteWhereUniqueInput
   }
 
   /**
-   * Disponibilidad findUniqueOrThrow
+   * Cliente findUniqueOrThrow
    */
-  export type DisponibilidadFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClienteFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Disponibilidad
+     * Select specific fields to fetch from the Cliente
      */
-    select?: DisponibilidadSelect<ExtArgs> | null
+    select?: ClienteSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Disponibilidad
+     * Omit specific fields from the Cliente
      */
-    omit?: DisponibilidadOmit<ExtArgs> | null
+    omit?: ClienteOmit<ExtArgs> | null
     /**
-     * Filter, which Disponibilidad to fetch.
+     * Choose, which related nodes to fetch as well
      */
-    where: DisponibilidadWhereUniqueInput
+    include?: ClienteInclude<ExtArgs> | null
+    /**
+     * Filter, which Cliente to fetch.
+     */
+    where: ClienteWhereUniqueInput
   }
 
   /**
-   * Disponibilidad findFirst
+   * Cliente findFirst
    */
-  export type DisponibilidadFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClienteFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Disponibilidad
+     * Select specific fields to fetch from the Cliente
      */
-    select?: DisponibilidadSelect<ExtArgs> | null
+    select?: ClienteSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Disponibilidad
+     * Omit specific fields from the Cliente
      */
-    omit?: DisponibilidadOmit<ExtArgs> | null
+    omit?: ClienteOmit<ExtArgs> | null
     /**
-     * Filter, which Disponibilidad to fetch.
+     * Choose, which related nodes to fetch as well
      */
-    where?: DisponibilidadWhereInput
+    include?: ClienteInclude<ExtArgs> | null
+    /**
+     * Filter, which Cliente to fetch.
+     */
+    where?: ClienteWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Disponibilidads to fetch.
+     * Determine the order of Clientes to fetch.
      */
-    orderBy?: DisponibilidadOrderByWithRelationInput | DisponibilidadOrderByWithRelationInput[]
+    orderBy?: ClienteOrderByWithRelationInput | ClienteOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Disponibilidads.
+     * Sets the position for searching for Clientes.
      */
-    cursor?: DisponibilidadWhereUniqueInput
+    cursor?: ClienteWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Disponibilidads from the position of the cursor.
+     * Take `±n` Clientes from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Disponibilidads.
+     * Skip the first `n` Clientes.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Disponibilidads.
+     * Filter by unique combinations of Clientes.
      */
-    distinct?: DisponibilidadScalarFieldEnum | DisponibilidadScalarFieldEnum[]
+    distinct?: ClienteScalarFieldEnum | ClienteScalarFieldEnum[]
   }
 
   /**
-   * Disponibilidad findFirstOrThrow
+   * Cliente findFirstOrThrow
    */
-  export type DisponibilidadFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClienteFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Disponibilidad
+     * Select specific fields to fetch from the Cliente
      */
-    select?: DisponibilidadSelect<ExtArgs> | null
+    select?: ClienteSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Disponibilidad
+     * Omit specific fields from the Cliente
      */
-    omit?: DisponibilidadOmit<ExtArgs> | null
+    omit?: ClienteOmit<ExtArgs> | null
     /**
-     * Filter, which Disponibilidad to fetch.
+     * Choose, which related nodes to fetch as well
      */
-    where?: DisponibilidadWhereInput
+    include?: ClienteInclude<ExtArgs> | null
+    /**
+     * Filter, which Cliente to fetch.
+     */
+    where?: ClienteWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Disponibilidads to fetch.
+     * Determine the order of Clientes to fetch.
      */
-    orderBy?: DisponibilidadOrderByWithRelationInput | DisponibilidadOrderByWithRelationInput[]
+    orderBy?: ClienteOrderByWithRelationInput | ClienteOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Disponibilidads.
+     * Sets the position for searching for Clientes.
      */
-    cursor?: DisponibilidadWhereUniqueInput
+    cursor?: ClienteWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Disponibilidads from the position of the cursor.
+     * Take `±n` Clientes from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Disponibilidads.
+     * Skip the first `n` Clientes.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Disponibilidads.
+     * Filter by unique combinations of Clientes.
      */
-    distinct?: DisponibilidadScalarFieldEnum | DisponibilidadScalarFieldEnum[]
+    distinct?: ClienteScalarFieldEnum | ClienteScalarFieldEnum[]
   }
 
   /**
-   * Disponibilidad findMany
+   * Cliente findMany
    */
-  export type DisponibilidadFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClienteFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Disponibilidad
+     * Select specific fields to fetch from the Cliente
      */
-    select?: DisponibilidadSelect<ExtArgs> | null
+    select?: ClienteSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Disponibilidad
+     * Omit specific fields from the Cliente
      */
-    omit?: DisponibilidadOmit<ExtArgs> | null
+    omit?: ClienteOmit<ExtArgs> | null
     /**
-     * Filter, which Disponibilidads to fetch.
+     * Choose, which related nodes to fetch as well
      */
-    where?: DisponibilidadWhereInput
+    include?: ClienteInclude<ExtArgs> | null
+    /**
+     * Filter, which Clientes to fetch.
+     */
+    where?: ClienteWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Disponibilidads to fetch.
+     * Determine the order of Clientes to fetch.
      */
-    orderBy?: DisponibilidadOrderByWithRelationInput | DisponibilidadOrderByWithRelationInput[]
+    orderBy?: ClienteOrderByWithRelationInput | ClienteOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing Disponibilidads.
+     * Sets the position for listing Clientes.
      */
-    cursor?: DisponibilidadWhereUniqueInput
+    cursor?: ClienteWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Disponibilidads from the position of the cursor.
+     * Take `±n` Clientes from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Disponibilidads.
+     * Skip the first `n` Clientes.
      */
     skip?: number
-    distinct?: DisponibilidadScalarFieldEnum | DisponibilidadScalarFieldEnum[]
+    distinct?: ClienteScalarFieldEnum | ClienteScalarFieldEnum[]
   }
 
   /**
-   * Disponibilidad create
+   * Cliente create
    */
-  export type DisponibilidadCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClienteCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Disponibilidad
+     * Select specific fields to fetch from the Cliente
      */
-    select?: DisponibilidadSelect<ExtArgs> | null
+    select?: ClienteSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Disponibilidad
+     * Omit specific fields from the Cliente
      */
-    omit?: DisponibilidadOmit<ExtArgs> | null
+    omit?: ClienteOmit<ExtArgs> | null
     /**
-     * The data needed to create a Disponibilidad.
+     * Choose, which related nodes to fetch as well
      */
-    data: XOR<DisponibilidadCreateInput, DisponibilidadUncheckedCreateInput>
+    include?: ClienteInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Cliente.
+     */
+    data: XOR<ClienteCreateInput, ClienteUncheckedCreateInput>
   }
 
   /**
-   * Disponibilidad createMany
+   * Cliente createMany
    */
-  export type DisponibilidadCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClienteCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many Disponibilidads.
+     * The data used to create many Clientes.
      */
-    data: DisponibilidadCreateManyInput | DisponibilidadCreateManyInput[]
+    data: ClienteCreateManyInput | ClienteCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * Disponibilidad update
+   * Cliente update
    */
-  export type DisponibilidadUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClienteUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Disponibilidad
+     * Select specific fields to fetch from the Cliente
      */
-    select?: DisponibilidadSelect<ExtArgs> | null
+    select?: ClienteSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Disponibilidad
+     * Omit specific fields from the Cliente
      */
-    omit?: DisponibilidadOmit<ExtArgs> | null
+    omit?: ClienteOmit<ExtArgs> | null
     /**
-     * The data needed to update a Disponibilidad.
+     * Choose, which related nodes to fetch as well
      */
-    data: XOR<DisponibilidadUpdateInput, DisponibilidadUncheckedUpdateInput>
+    include?: ClienteInclude<ExtArgs> | null
     /**
-     * Choose, which Disponibilidad to update.
+     * The data needed to update a Cliente.
      */
-    where: DisponibilidadWhereUniqueInput
+    data: XOR<ClienteUpdateInput, ClienteUncheckedUpdateInput>
+    /**
+     * Choose, which Cliente to update.
+     */
+    where: ClienteWhereUniqueInput
   }
 
   /**
-   * Disponibilidad updateMany
+   * Cliente updateMany
    */
-  export type DisponibilidadUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClienteUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update Disponibilidads.
+     * The data used to update Clientes.
      */
-    data: XOR<DisponibilidadUpdateManyMutationInput, DisponibilidadUncheckedUpdateManyInput>
+    data: XOR<ClienteUpdateManyMutationInput, ClienteUncheckedUpdateManyInput>
     /**
-     * Filter which Disponibilidads to update
+     * Filter which Clientes to update
      */
-    where?: DisponibilidadWhereInput
+    where?: ClienteWhereInput
     /**
-     * Limit how many Disponibilidads to update.
+     * Limit how many Clientes to update.
      */
     limit?: number
   }
 
   /**
-   * Disponibilidad upsert
+   * Cliente upsert
    */
-  export type DisponibilidadUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClienteUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Disponibilidad
+     * Select specific fields to fetch from the Cliente
      */
-    select?: DisponibilidadSelect<ExtArgs> | null
+    select?: ClienteSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Disponibilidad
+     * Omit specific fields from the Cliente
      */
-    omit?: DisponibilidadOmit<ExtArgs> | null
+    omit?: ClienteOmit<ExtArgs> | null
     /**
-     * The filter to search for the Disponibilidad to update in case it exists.
+     * Choose, which related nodes to fetch as well
      */
-    where: DisponibilidadWhereUniqueInput
+    include?: ClienteInclude<ExtArgs> | null
     /**
-     * In case the Disponibilidad found by the `where` argument doesn't exist, create a new Disponibilidad with this data.
+     * The filter to search for the Cliente to update in case it exists.
      */
-    create: XOR<DisponibilidadCreateInput, DisponibilidadUncheckedCreateInput>
+    where: ClienteWhereUniqueInput
     /**
-     * In case the Disponibilidad was found with the provided `where` argument, update it with this data.
+     * In case the Cliente found by the `where` argument doesn't exist, create a new Cliente with this data.
      */
-    update: XOR<DisponibilidadUpdateInput, DisponibilidadUncheckedUpdateInput>
+    create: XOR<ClienteCreateInput, ClienteUncheckedCreateInput>
+    /**
+     * In case the Cliente was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ClienteUpdateInput, ClienteUncheckedUpdateInput>
   }
 
   /**
-   * Disponibilidad delete
+   * Cliente delete
    */
-  export type DisponibilidadDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClienteDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Disponibilidad
+     * Select specific fields to fetch from the Cliente
      */
-    select?: DisponibilidadSelect<ExtArgs> | null
+    select?: ClienteSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Disponibilidad
+     * Omit specific fields from the Cliente
      */
-    omit?: DisponibilidadOmit<ExtArgs> | null
+    omit?: ClienteOmit<ExtArgs> | null
     /**
-     * Filter which Disponibilidad to delete.
+     * Choose, which related nodes to fetch as well
      */
-    where: DisponibilidadWhereUniqueInput
+    include?: ClienteInclude<ExtArgs> | null
+    /**
+     * Filter which Cliente to delete.
+     */
+    where: ClienteWhereUniqueInput
   }
 
   /**
-   * Disponibilidad deleteMany
+   * Cliente deleteMany
    */
-  export type DisponibilidadDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClienteDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Disponibilidads to delete
+     * Filter which Clientes to delete
      */
-    where?: DisponibilidadWhereInput
+    where?: ClienteWhereInput
     /**
-     * Limit how many Disponibilidads to delete.
+     * Limit how many Clientes to delete.
      */
     limit?: number
   }
 
   /**
-   * Disponibilidad without action
+   * Cliente.reservas
    */
-  export type DisponibilidadDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Cliente$reservasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Disponibilidad
+     * Select specific fields to fetch from the Reserva
      */
-    select?: DisponibilidadSelect<ExtArgs> | null
+    select?: ReservaSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Disponibilidad
+     * Omit specific fields from the Reserva
      */
-    omit?: DisponibilidadOmit<ExtArgs> | null
+    omit?: ReservaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReservaInclude<ExtArgs> | null
+    where?: ReservaWhereInput
+    orderBy?: ReservaOrderByWithRelationInput | ReservaOrderByWithRelationInput[]
+    cursor?: ReservaWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ReservaScalarFieldEnum | ReservaScalarFieldEnum[]
+  }
+
+  /**
+   * Cliente without action
+   */
+  export type ClienteDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Cliente
+     */
+    select?: ClienteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Cliente
+     */
+    omit?: ClienteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClienteInclude<ExtArgs> | null
   }
 
 
@@ -7296,13 +7298,11 @@ export namespace Prisma {
     fecha: Date | null
     horaInicio: Date | null
     horaFin: Date | null
-    nombreCliente: string | null
-    emailCliente: string | null
-    clienteId: string | null
     fotografoId: string | null
     pixelpayOrder: string | null
-    estado: $Enums.EstadoReserva | null
+    estado: boolean | null
     createdAt: Date | null
+    clienteId: string | null
   }
 
   export type ReservaMaxAggregateOutputType = {
@@ -7310,13 +7310,11 @@ export namespace Prisma {
     fecha: Date | null
     horaInicio: Date | null
     horaFin: Date | null
-    nombreCliente: string | null
-    emailCliente: string | null
-    clienteId: string | null
     fotografoId: string | null
     pixelpayOrder: string | null
-    estado: $Enums.EstadoReserva | null
+    estado: boolean | null
     createdAt: Date | null
+    clienteId: string | null
   }
 
   export type ReservaCountAggregateOutputType = {
@@ -7324,13 +7322,11 @@ export namespace Prisma {
     fecha: number
     horaInicio: number
     horaFin: number
-    nombreCliente: number
-    emailCliente: number
-    clienteId: number
     fotografoId: number
     pixelpayOrder: number
     estado: number
     createdAt: number
+    clienteId: number
     _all: number
   }
 
@@ -7340,13 +7336,11 @@ export namespace Prisma {
     fecha?: true
     horaInicio?: true
     horaFin?: true
-    nombreCliente?: true
-    emailCliente?: true
-    clienteId?: true
     fotografoId?: true
     pixelpayOrder?: true
     estado?: true
     createdAt?: true
+    clienteId?: true
   }
 
   export type ReservaMaxAggregateInputType = {
@@ -7354,13 +7348,11 @@ export namespace Prisma {
     fecha?: true
     horaInicio?: true
     horaFin?: true
-    nombreCliente?: true
-    emailCliente?: true
-    clienteId?: true
     fotografoId?: true
     pixelpayOrder?: true
     estado?: true
     createdAt?: true
+    clienteId?: true
   }
 
   export type ReservaCountAggregateInputType = {
@@ -7368,13 +7360,11 @@ export namespace Prisma {
     fecha?: true
     horaInicio?: true
     horaFin?: true
-    nombreCliente?: true
-    emailCliente?: true
-    clienteId?: true
     fotografoId?: true
     pixelpayOrder?: true
     estado?: true
     createdAt?: true
+    clienteId?: true
     _all?: true
   }
 
@@ -7455,13 +7445,11 @@ export namespace Prisma {
     fecha: Date
     horaInicio: Date
     horaFin: Date
-    nombreCliente: string
-    emailCliente: string
-    clienteId: string
     fotografoId: string
     pixelpayOrder: string
-    estado: $Enums.EstadoReserva
+    estado: boolean
     createdAt: Date
+    clienteId: string
     _count: ReservaCountAggregateOutputType | null
     _min: ReservaMinAggregateOutputType | null
     _max: ReservaMaxAggregateOutputType | null
@@ -7486,15 +7474,13 @@ export namespace Prisma {
     fecha?: boolean
     horaInicio?: boolean
     horaFin?: boolean
-    nombreCliente?: boolean
-    emailCliente?: boolean
-    clienteId?: boolean
     fotografoId?: boolean
     pixelpayOrder?: boolean
     estado?: boolean
     createdAt?: boolean
-    cliente?: boolean | UsuarioDefaultArgs<ExtArgs>
+    clienteId?: boolean
     fotografo?: boolean | FotografoDefaultArgs<ExtArgs>
+    cliente?: boolean | ClienteDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["reserva"]>
 
 
@@ -7504,39 +7490,35 @@ export namespace Prisma {
     fecha?: boolean
     horaInicio?: boolean
     horaFin?: boolean
-    nombreCliente?: boolean
-    emailCliente?: boolean
-    clienteId?: boolean
     fotografoId?: boolean
     pixelpayOrder?: boolean
     estado?: boolean
     createdAt?: boolean
+    clienteId?: boolean
   }
 
-  export type ReservaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fecha" | "horaInicio" | "horaFin" | "nombreCliente" | "emailCliente" | "clienteId" | "fotografoId" | "pixelpayOrder" | "estado" | "createdAt", ExtArgs["result"]["reserva"]>
+  export type ReservaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fecha" | "horaInicio" | "horaFin" | "fotografoId" | "pixelpayOrder" | "estado" | "createdAt" | "clienteId", ExtArgs["result"]["reserva"]>
   export type ReservaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    cliente?: boolean | UsuarioDefaultArgs<ExtArgs>
     fotografo?: boolean | FotografoDefaultArgs<ExtArgs>
+    cliente?: boolean | ClienteDefaultArgs<ExtArgs>
   }
 
   export type $ReservaPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Reserva"
     objects: {
-      cliente: Prisma.$UsuarioPayload<ExtArgs>
       fotografo: Prisma.$FotografoPayload<ExtArgs>
+      cliente: Prisma.$ClientePayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       fecha: Date
       horaInicio: Date
       horaFin: Date
-      nombreCliente: string
-      emailCliente: string
-      clienteId: string
       fotografoId: string
       pixelpayOrder: string
-      estado: $Enums.EstadoReserva
+      estado: boolean
       createdAt: Date
+      clienteId: string
     }, ExtArgs["result"]["reserva"]>
     composites: {}
   }
@@ -7877,8 +7859,8 @@ export namespace Prisma {
    */
   export interface Prisma__ReservaClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    cliente<T extends UsuarioDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UsuarioDefaultArgs<ExtArgs>>): Prisma__UsuarioClient<$Result.GetResult<Prisma.$UsuarioPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     fotografo<T extends FotografoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FotografoDefaultArgs<ExtArgs>>): Prisma__FotografoClient<$Result.GetResult<Prisma.$FotografoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    cliente<T extends ClienteDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ClienteDefaultArgs<ExtArgs>>): Prisma__ClienteClient<$Result.GetResult<Prisma.$ClientePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7912,13 +7894,11 @@ export namespace Prisma {
     readonly fecha: FieldRef<"Reserva", 'DateTime'>
     readonly horaInicio: FieldRef<"Reserva", 'DateTime'>
     readonly horaFin: FieldRef<"Reserva", 'DateTime'>
-    readonly nombreCliente: FieldRef<"Reserva", 'String'>
-    readonly emailCliente: FieldRef<"Reserva", 'String'>
-    readonly clienteId: FieldRef<"Reserva", 'String'>
     readonly fotografoId: FieldRef<"Reserva", 'String'>
     readonly pixelpayOrder: FieldRef<"Reserva", 'String'>
-    readonly estado: FieldRef<"Reserva", 'EstadoReserva'>
+    readonly estado: FieldRef<"Reserva", 'Boolean'>
     readonly createdAt: FieldRef<"Reserva", 'DateTime'>
+    readonly clienteId: FieldRef<"Reserva", 'String'>
   }
     
 
@@ -8353,15 +8333,16 @@ export namespace Prisma {
   export type FotografoScalarFieldEnum = (typeof FotografoScalarFieldEnum)[keyof typeof FotografoScalarFieldEnum]
 
 
-  export const DisponibilidadScalarFieldEnum: {
+  export const ClienteScalarFieldEnum: {
     id: 'id',
-    diaSemana: 'diaSemana',
-    horaInicio: 'horaInicio',
-    horaFin: 'horaFin',
-    activo: 'activo'
+    nombre: 'nombre',
+    email: 'email',
+    telefono: 'telefono',
+    createAt: 'createAt',
+    updateAt: 'updateAt'
   };
 
-  export type DisponibilidadScalarFieldEnum = (typeof DisponibilidadScalarFieldEnum)[keyof typeof DisponibilidadScalarFieldEnum]
+  export type ClienteScalarFieldEnum = (typeof ClienteScalarFieldEnum)[keyof typeof ClienteScalarFieldEnum]
 
 
   export const ReservaScalarFieldEnum: {
@@ -8369,13 +8350,11 @@ export namespace Prisma {
     fecha: 'fecha',
     horaInicio: 'horaInicio',
     horaFin: 'horaFin',
-    nombreCliente: 'nombreCliente',
-    emailCliente: 'emailCliente',
-    clienteId: 'clienteId',
     fotografoId: 'fotografoId',
     pixelpayOrder: 'pixelpayOrder',
     estado: 'estado',
-    createdAt: 'createdAt'
+    createdAt: 'createdAt',
+    clienteId: 'clienteId'
   };
 
   export type ReservaScalarFieldEnum = (typeof ReservaScalarFieldEnum)[keyof typeof ReservaScalarFieldEnum]
@@ -8445,22 +8424,21 @@ export namespace Prisma {
   export type FotografoOrderByRelevanceFieldEnum = (typeof FotografoOrderByRelevanceFieldEnum)[keyof typeof FotografoOrderByRelevanceFieldEnum]
 
 
-  export const DisponibilidadOrderByRelevanceFieldEnum: {
+  export const ClienteOrderByRelevanceFieldEnum: {
     id: 'id',
-    horaInicio: 'horaInicio',
-    horaFin: 'horaFin'
+    nombre: 'nombre',
+    email: 'email',
+    telefono: 'telefono'
   };
 
-  export type DisponibilidadOrderByRelevanceFieldEnum = (typeof DisponibilidadOrderByRelevanceFieldEnum)[keyof typeof DisponibilidadOrderByRelevanceFieldEnum]
+  export type ClienteOrderByRelevanceFieldEnum = (typeof ClienteOrderByRelevanceFieldEnum)[keyof typeof ClienteOrderByRelevanceFieldEnum]
 
 
   export const ReservaOrderByRelevanceFieldEnum: {
     id: 'id',
-    nombreCliente: 'nombreCliente',
-    emailCliente: 'emailCliente',
-    clienteId: 'clienteId',
     fotografoId: 'fotografoId',
-    pixelpayOrder: 'pixelpayOrder'
+    pixelpayOrder: 'pixelpayOrder',
+    clienteId: 'clienteId'
   };
 
   export type ReservaOrderByRelevanceFieldEnum = (typeof ReservaOrderByRelevanceFieldEnum)[keyof typeof ReservaOrderByRelevanceFieldEnum]
@@ -8496,20 +8474,6 @@ export namespace Prisma {
    * Reference to a field of type 'Int'
    */
   export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
-    
-
-
-  /**
-   * Reference to a field of type 'EstadoReserva'
-   */
-  export type EnumEstadoReservaFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EstadoReserva'>
-    
-
-
-  /**
-   * Reference to a field of type 'Float'
-   */
-  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
     
   /**
    * Deep Input Types
@@ -8710,7 +8674,6 @@ export namespace Prisma {
     rolId?: StringFilter<"Usuario"> | string
     debeCambiar?: BoolFilter<"Usuario"> | boolean
     rol?: XOR<RolScalarRelationFilter, RolWhereInput>
-    reservas?: ReservaListRelationFilter
     fotografo?: XOR<FotografoNullableScalarRelationFilter, FotografoWhereInput> | null
   }
 
@@ -8725,7 +8688,6 @@ export namespace Prisma {
     rolId?: SortOrder
     debeCambiar?: SortOrder
     rol?: RolOrderByWithRelationInput
-    reservas?: ReservaOrderByRelationAggregateInput
     fotografo?: FotografoOrderByWithRelationInput
     _relevance?: UsuarioOrderByRelevanceInput
   }
@@ -8744,7 +8706,6 @@ export namespace Prisma {
     rolId?: StringFilter<"Usuario"> | string
     debeCambiar?: BoolFilter<"Usuario"> | boolean
     rol?: XOR<RolScalarRelationFilter, RolWhereInput>
-    reservas?: ReservaListRelationFilter
     fotografo?: XOR<FotografoNullableScalarRelationFilter, FotografoWhereInput> | null
   }, "id" | "email">
 
@@ -8832,59 +8793,65 @@ export namespace Prisma {
     bio?: StringNullableWithAggregatesFilter<"Fotografo"> | string | null
   }
 
-  export type DisponibilidadWhereInput = {
-    AND?: DisponibilidadWhereInput | DisponibilidadWhereInput[]
-    OR?: DisponibilidadWhereInput[]
-    NOT?: DisponibilidadWhereInput | DisponibilidadWhereInput[]
-    id?: StringFilter<"Disponibilidad"> | string
-    diaSemana?: IntFilter<"Disponibilidad"> | number
-    horaInicio?: StringFilter<"Disponibilidad"> | string
-    horaFin?: StringFilter<"Disponibilidad"> | string
-    activo?: BoolFilter<"Disponibilidad"> | boolean
+  export type ClienteWhereInput = {
+    AND?: ClienteWhereInput | ClienteWhereInput[]
+    OR?: ClienteWhereInput[]
+    NOT?: ClienteWhereInput | ClienteWhereInput[]
+    id?: StringFilter<"Cliente"> | string
+    nombre?: StringFilter<"Cliente"> | string
+    email?: StringFilter<"Cliente"> | string
+    telefono?: StringFilter<"Cliente"> | string
+    createAt?: DateTimeFilter<"Cliente"> | Date | string
+    updateAt?: DateTimeFilter<"Cliente"> | Date | string
+    reservas?: ReservaListRelationFilter
   }
 
-  export type DisponibilidadOrderByWithRelationInput = {
+  export type ClienteOrderByWithRelationInput = {
     id?: SortOrder
-    diaSemana?: SortOrder
-    horaInicio?: SortOrder
-    horaFin?: SortOrder
-    activo?: SortOrder
-    _relevance?: DisponibilidadOrderByRelevanceInput
+    nombre?: SortOrder
+    email?: SortOrder
+    telefono?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    reservas?: ReservaOrderByRelationAggregateInput
+    _relevance?: ClienteOrderByRelevanceInput
   }
 
-  export type DisponibilidadWhereUniqueInput = Prisma.AtLeast<{
+  export type ClienteWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    AND?: DisponibilidadWhereInput | DisponibilidadWhereInput[]
-    OR?: DisponibilidadWhereInput[]
-    NOT?: DisponibilidadWhereInput | DisponibilidadWhereInput[]
-    diaSemana?: IntFilter<"Disponibilidad"> | number
-    horaInicio?: StringFilter<"Disponibilidad"> | string
-    horaFin?: StringFilter<"Disponibilidad"> | string
-    activo?: BoolFilter<"Disponibilidad"> | boolean
-  }, "id">
+    email?: string
+    AND?: ClienteWhereInput | ClienteWhereInput[]
+    OR?: ClienteWhereInput[]
+    NOT?: ClienteWhereInput | ClienteWhereInput[]
+    nombre?: StringFilter<"Cliente"> | string
+    telefono?: StringFilter<"Cliente"> | string
+    createAt?: DateTimeFilter<"Cliente"> | Date | string
+    updateAt?: DateTimeFilter<"Cliente"> | Date | string
+    reservas?: ReservaListRelationFilter
+  }, "id" | "email">
 
-  export type DisponibilidadOrderByWithAggregationInput = {
+  export type ClienteOrderByWithAggregationInput = {
     id?: SortOrder
-    diaSemana?: SortOrder
-    horaInicio?: SortOrder
-    horaFin?: SortOrder
-    activo?: SortOrder
-    _count?: DisponibilidadCountOrderByAggregateInput
-    _avg?: DisponibilidadAvgOrderByAggregateInput
-    _max?: DisponibilidadMaxOrderByAggregateInput
-    _min?: DisponibilidadMinOrderByAggregateInput
-    _sum?: DisponibilidadSumOrderByAggregateInput
+    nombre?: SortOrder
+    email?: SortOrder
+    telefono?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    _count?: ClienteCountOrderByAggregateInput
+    _max?: ClienteMaxOrderByAggregateInput
+    _min?: ClienteMinOrderByAggregateInput
   }
 
-  export type DisponibilidadScalarWhereWithAggregatesInput = {
-    AND?: DisponibilidadScalarWhereWithAggregatesInput | DisponibilidadScalarWhereWithAggregatesInput[]
-    OR?: DisponibilidadScalarWhereWithAggregatesInput[]
-    NOT?: DisponibilidadScalarWhereWithAggregatesInput | DisponibilidadScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Disponibilidad"> | string
-    diaSemana?: IntWithAggregatesFilter<"Disponibilidad"> | number
-    horaInicio?: StringWithAggregatesFilter<"Disponibilidad"> | string
-    horaFin?: StringWithAggregatesFilter<"Disponibilidad"> | string
-    activo?: BoolWithAggregatesFilter<"Disponibilidad"> | boolean
+  export type ClienteScalarWhereWithAggregatesInput = {
+    AND?: ClienteScalarWhereWithAggregatesInput | ClienteScalarWhereWithAggregatesInput[]
+    OR?: ClienteScalarWhereWithAggregatesInput[]
+    NOT?: ClienteScalarWhereWithAggregatesInput | ClienteScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Cliente"> | string
+    nombre?: StringWithAggregatesFilter<"Cliente"> | string
+    email?: StringWithAggregatesFilter<"Cliente"> | string
+    telefono?: StringWithAggregatesFilter<"Cliente"> | string
+    createAt?: DateTimeWithAggregatesFilter<"Cliente"> | Date | string
+    updateAt?: DateTimeWithAggregatesFilter<"Cliente"> | Date | string
   }
 
   export type ReservaWhereInput = {
@@ -8895,15 +8862,13 @@ export namespace Prisma {
     fecha?: DateTimeFilter<"Reserva"> | Date | string
     horaInicio?: DateTimeFilter<"Reserva"> | Date | string
     horaFin?: DateTimeFilter<"Reserva"> | Date | string
-    nombreCliente?: StringFilter<"Reserva"> | string
-    emailCliente?: StringFilter<"Reserva"> | string
-    clienteId?: StringFilter<"Reserva"> | string
     fotografoId?: StringFilter<"Reserva"> | string
     pixelpayOrder?: StringFilter<"Reserva"> | string
-    estado?: EnumEstadoReservaFilter<"Reserva"> | $Enums.EstadoReserva
+    estado?: BoolFilter<"Reserva"> | boolean
     createdAt?: DateTimeFilter<"Reserva"> | Date | string
-    cliente?: XOR<UsuarioScalarRelationFilter, UsuarioWhereInput>
+    clienteId?: StringFilter<"Reserva"> | string
     fotografo?: XOR<FotografoScalarRelationFilter, FotografoWhereInput>
+    cliente?: XOR<ClienteScalarRelationFilter, ClienteWhereInput>
   }
 
   export type ReservaOrderByWithRelationInput = {
@@ -8911,15 +8876,13 @@ export namespace Prisma {
     fecha?: SortOrder
     horaInicio?: SortOrder
     horaFin?: SortOrder
-    nombreCliente?: SortOrder
-    emailCliente?: SortOrder
-    clienteId?: SortOrder
     fotografoId?: SortOrder
     pixelpayOrder?: SortOrder
     estado?: SortOrder
     createdAt?: SortOrder
-    cliente?: UsuarioOrderByWithRelationInput
+    clienteId?: SortOrder
     fotografo?: FotografoOrderByWithRelationInput
+    cliente?: ClienteOrderByWithRelationInput
     _relevance?: ReservaOrderByRelevanceInput
   }
 
@@ -8932,14 +8895,12 @@ export namespace Prisma {
     fecha?: DateTimeFilter<"Reserva"> | Date | string
     horaInicio?: DateTimeFilter<"Reserva"> | Date | string
     horaFin?: DateTimeFilter<"Reserva"> | Date | string
-    nombreCliente?: StringFilter<"Reserva"> | string
-    emailCliente?: StringFilter<"Reserva"> | string
-    clienteId?: StringFilter<"Reserva"> | string
     fotografoId?: StringFilter<"Reserva"> | string
-    estado?: EnumEstadoReservaFilter<"Reserva"> | $Enums.EstadoReserva
+    estado?: BoolFilter<"Reserva"> | boolean
     createdAt?: DateTimeFilter<"Reserva"> | Date | string
-    cliente?: XOR<UsuarioScalarRelationFilter, UsuarioWhereInput>
+    clienteId?: StringFilter<"Reserva"> | string
     fotografo?: XOR<FotografoScalarRelationFilter, FotografoWhereInput>
+    cliente?: XOR<ClienteScalarRelationFilter, ClienteWhereInput>
   }, "id" | "pixelpayOrder">
 
   export type ReservaOrderByWithAggregationInput = {
@@ -8947,13 +8908,11 @@ export namespace Prisma {
     fecha?: SortOrder
     horaInicio?: SortOrder
     horaFin?: SortOrder
-    nombreCliente?: SortOrder
-    emailCliente?: SortOrder
-    clienteId?: SortOrder
     fotografoId?: SortOrder
     pixelpayOrder?: SortOrder
     estado?: SortOrder
     createdAt?: SortOrder
+    clienteId?: SortOrder
     _count?: ReservaCountOrderByAggregateInput
     _max?: ReservaMaxOrderByAggregateInput
     _min?: ReservaMinOrderByAggregateInput
@@ -8967,13 +8926,11 @@ export namespace Prisma {
     fecha?: DateTimeWithAggregatesFilter<"Reserva"> | Date | string
     horaInicio?: DateTimeWithAggregatesFilter<"Reserva"> | Date | string
     horaFin?: DateTimeWithAggregatesFilter<"Reserva"> | Date | string
-    nombreCliente?: StringWithAggregatesFilter<"Reserva"> | string
-    emailCliente?: StringWithAggregatesFilter<"Reserva"> | string
-    clienteId?: StringWithAggregatesFilter<"Reserva"> | string
     fotografoId?: StringWithAggregatesFilter<"Reserva"> | string
     pixelpayOrder?: StringWithAggregatesFilter<"Reserva"> | string
-    estado?: EnumEstadoReservaWithAggregatesFilter<"Reserva"> | $Enums.EstadoReserva
+    estado?: BoolWithAggregatesFilter<"Reserva"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"Reserva"> | Date | string
+    clienteId?: StringWithAggregatesFilter<"Reserva"> | string
   }
 
   export type RolCreateInput = {
@@ -9171,7 +9128,6 @@ export namespace Prisma {
     activo: boolean
     debeCambiar: boolean
     rol: RolCreateNestedOneWithoutUsuariosInput
-    reservas?: ReservaCreateNestedManyWithoutClienteInput
     fotografo?: FotografoCreateNestedOneWithoutUsuarioInput
   }
 
@@ -9185,7 +9141,6 @@ export namespace Prisma {
     activo: boolean
     rolId: string
     debeCambiar: boolean
-    reservas?: ReservaUncheckedCreateNestedManyWithoutClienteInput
     fotografo?: FotografoUncheckedCreateNestedOneWithoutUsuarioInput
   }
 
@@ -9199,7 +9154,6 @@ export namespace Prisma {
     activo?: BoolFieldUpdateOperationsInput | boolean
     debeCambiar?: BoolFieldUpdateOperationsInput | boolean
     rol?: RolUpdateOneRequiredWithoutUsuariosNestedInput
-    reservas?: ReservaUpdateManyWithoutClienteNestedInput
     fotografo?: FotografoUpdateOneWithoutUsuarioNestedInput
   }
 
@@ -9213,7 +9167,6 @@ export namespace Prisma {
     activo?: BoolFieldUpdateOperationsInput | boolean
     rolId?: StringFieldUpdateOperationsInput | string
     debeCambiar?: BoolFieldUpdateOperationsInput | boolean
-    reservas?: ReservaUncheckedUpdateManyWithoutClienteNestedInput
     fotografo?: FotografoUncheckedUpdateOneWithoutUsuarioNestedInput
   }
 
@@ -9304,60 +9257,71 @@ export namespace Prisma {
     bio?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type DisponibilidadCreateInput = {
+  export type ClienteCreateInput = {
     id?: string
-    diaSemana: number
-    horaInicio: string
-    horaFin: string
-    activo?: boolean
+    nombre: string
+    email: string
+    telefono: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    reservas?: ReservaCreateNestedManyWithoutClienteInput
   }
 
-  export type DisponibilidadUncheckedCreateInput = {
+  export type ClienteUncheckedCreateInput = {
     id?: string
-    diaSemana: number
-    horaInicio: string
-    horaFin: string
-    activo?: boolean
+    nombre: string
+    email: string
+    telefono: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    reservas?: ReservaUncheckedCreateNestedManyWithoutClienteInput
   }
 
-  export type DisponibilidadUpdateInput = {
+  export type ClienteUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    diaSemana?: IntFieldUpdateOperationsInput | number
-    horaInicio?: StringFieldUpdateOperationsInput | string
-    horaFin?: StringFieldUpdateOperationsInput | string
-    activo?: BoolFieldUpdateOperationsInput | boolean
+    nombre?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    telefono?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    reservas?: ReservaUpdateManyWithoutClienteNestedInput
   }
 
-  export type DisponibilidadUncheckedUpdateInput = {
+  export type ClienteUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    diaSemana?: IntFieldUpdateOperationsInput | number
-    horaInicio?: StringFieldUpdateOperationsInput | string
-    horaFin?: StringFieldUpdateOperationsInput | string
-    activo?: BoolFieldUpdateOperationsInput | boolean
+    nombre?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    telefono?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    reservas?: ReservaUncheckedUpdateManyWithoutClienteNestedInput
   }
 
-  export type DisponibilidadCreateManyInput = {
+  export type ClienteCreateManyInput = {
     id?: string
-    diaSemana: number
-    horaInicio: string
-    horaFin: string
-    activo?: boolean
+    nombre: string
+    email: string
+    telefono: string
+    createAt?: Date | string
+    updateAt?: Date | string
   }
 
-  export type DisponibilidadUpdateManyMutationInput = {
+  export type ClienteUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    diaSemana?: IntFieldUpdateOperationsInput | number
-    horaInicio?: StringFieldUpdateOperationsInput | string
-    horaFin?: StringFieldUpdateOperationsInput | string
-    activo?: BoolFieldUpdateOperationsInput | boolean
+    nombre?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    telefono?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type DisponibilidadUncheckedUpdateManyInput = {
+  export type ClienteUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    diaSemana?: IntFieldUpdateOperationsInput | number
-    horaInicio?: StringFieldUpdateOperationsInput | string
-    horaFin?: StringFieldUpdateOperationsInput | string
-    activo?: BoolFieldUpdateOperationsInput | boolean
+    nombre?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    telefono?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ReservaCreateInput = {
@@ -9365,13 +9329,11 @@ export namespace Prisma {
     fecha: Date | string
     horaInicio: Date | string
     horaFin: Date | string
-    nombreCliente: string
-    emailCliente: string
     pixelpayOrder: string
-    estado?: $Enums.EstadoReserva
+    estado?: boolean
     createdAt?: Date | string
-    cliente: UsuarioCreateNestedOneWithoutReservasInput
     fotografo: FotografoCreateNestedOneWithoutReservasInput
+    cliente: ClienteCreateNestedOneWithoutReservasInput
   }
 
   export type ReservaUncheckedCreateInput = {
@@ -9379,13 +9341,11 @@ export namespace Prisma {
     fecha: Date | string
     horaInicio: Date | string
     horaFin: Date | string
-    nombreCliente: string
-    emailCliente: string
-    clienteId: string
     fotografoId: string
     pixelpayOrder: string
-    estado?: $Enums.EstadoReserva
+    estado?: boolean
     createdAt?: Date | string
+    clienteId: string
   }
 
   export type ReservaUpdateInput = {
@@ -9393,13 +9353,11 @@ export namespace Prisma {
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
     horaFin?: DateTimeFieldUpdateOperationsInput | Date | string
-    nombreCliente?: StringFieldUpdateOperationsInput | string
-    emailCliente?: StringFieldUpdateOperationsInput | string
     pixelpayOrder?: StringFieldUpdateOperationsInput | string
-    estado?: EnumEstadoReservaFieldUpdateOperationsInput | $Enums.EstadoReserva
+    estado?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    cliente?: UsuarioUpdateOneRequiredWithoutReservasNestedInput
     fotografo?: FotografoUpdateOneRequiredWithoutReservasNestedInput
+    cliente?: ClienteUpdateOneRequiredWithoutReservasNestedInput
   }
 
   export type ReservaUncheckedUpdateInput = {
@@ -9407,13 +9365,11 @@ export namespace Prisma {
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
     horaFin?: DateTimeFieldUpdateOperationsInput | Date | string
-    nombreCliente?: StringFieldUpdateOperationsInput | string
-    emailCliente?: StringFieldUpdateOperationsInput | string
-    clienteId?: StringFieldUpdateOperationsInput | string
     fotografoId?: StringFieldUpdateOperationsInput | string
     pixelpayOrder?: StringFieldUpdateOperationsInput | string
-    estado?: EnumEstadoReservaFieldUpdateOperationsInput | $Enums.EstadoReserva
+    estado?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    clienteId?: StringFieldUpdateOperationsInput | string
   }
 
   export type ReservaCreateManyInput = {
@@ -9421,13 +9377,11 @@ export namespace Prisma {
     fecha: Date | string
     horaInicio: Date | string
     horaFin: Date | string
-    nombreCliente: string
-    emailCliente: string
-    clienteId: string
     fotografoId: string
     pixelpayOrder: string
-    estado?: $Enums.EstadoReserva
+    estado?: boolean
     createdAt?: Date | string
+    clienteId: string
   }
 
   export type ReservaUpdateManyMutationInput = {
@@ -9435,10 +9389,8 @@ export namespace Prisma {
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
     horaFin?: DateTimeFieldUpdateOperationsInput | Date | string
-    nombreCliente?: StringFieldUpdateOperationsInput | string
-    emailCliente?: StringFieldUpdateOperationsInput | string
     pixelpayOrder?: StringFieldUpdateOperationsInput | string
-    estado?: EnumEstadoReservaFieldUpdateOperationsInput | $Enums.EstadoReserva
+    estado?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -9447,13 +9399,11 @@ export namespace Prisma {
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
     horaFin?: DateTimeFieldUpdateOperationsInput | Date | string
-    nombreCliente?: StringFieldUpdateOperationsInput | string
-    emailCliente?: StringFieldUpdateOperationsInput | string
-    clienteId?: StringFieldUpdateOperationsInput | string
     fotografoId?: StringFieldUpdateOperationsInput | string
     pixelpayOrder?: StringFieldUpdateOperationsInput | string
-    estado?: EnumEstadoReservaFieldUpdateOperationsInput | $Enums.EstadoReserva
+    estado?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    clienteId?: StringFieldUpdateOperationsInput | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -9655,19 +9605,9 @@ export namespace Prisma {
     createAt?: SortOrder
   }
 
-  export type ReservaListRelationFilter = {
-    every?: ReservaWhereInput
-    some?: ReservaWhereInput
-    none?: ReservaWhereInput
-  }
-
   export type FotografoNullableScalarRelationFilter = {
     is?: FotografoWhereInput | null
     isNot?: FotografoWhereInput | null
-  }
-
-  export type ReservaOrderByRelationAggregateInput = {
-    _count?: SortOrder
   }
 
   export type UsuarioOrderByRelevanceInput = {
@@ -9732,9 +9672,19 @@ export namespace Prisma {
     isNot?: UsuarioWhereInput
   }
 
+  export type ReservaListRelationFilter = {
+    every?: ReservaWhereInput
+    some?: ReservaWhereInput
+    none?: ReservaWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
+  }
+
+  export type ReservaOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type FotografoOrderByRelevanceInput = {
@@ -9782,81 +9732,47 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type IntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
-  }
-
-  export type DisponibilidadOrderByRelevanceInput = {
-    fields: DisponibilidadOrderByRelevanceFieldEnum | DisponibilidadOrderByRelevanceFieldEnum[]
+  export type ClienteOrderByRelevanceInput = {
+    fields: ClienteOrderByRelevanceFieldEnum | ClienteOrderByRelevanceFieldEnum[]
     sort: SortOrder
     search: string
   }
 
-  export type DisponibilidadCountOrderByAggregateInput = {
+  export type ClienteCountOrderByAggregateInput = {
     id?: SortOrder
-    diaSemana?: SortOrder
-    horaInicio?: SortOrder
-    horaFin?: SortOrder
-    activo?: SortOrder
+    nombre?: SortOrder
+    email?: SortOrder
+    telefono?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
   }
 
-  export type DisponibilidadAvgOrderByAggregateInput = {
-    diaSemana?: SortOrder
-  }
-
-  export type DisponibilidadMaxOrderByAggregateInput = {
+  export type ClienteMaxOrderByAggregateInput = {
     id?: SortOrder
-    diaSemana?: SortOrder
-    horaInicio?: SortOrder
-    horaFin?: SortOrder
-    activo?: SortOrder
+    nombre?: SortOrder
+    email?: SortOrder
+    telefono?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
   }
 
-  export type DisponibilidadMinOrderByAggregateInput = {
+  export type ClienteMinOrderByAggregateInput = {
     id?: SortOrder
-    diaSemana?: SortOrder
-    horaInicio?: SortOrder
-    horaFin?: SortOrder
-    activo?: SortOrder
-  }
-
-  export type DisponibilidadSumOrderByAggregateInput = {
-    diaSemana?: SortOrder
-  }
-
-  export type IntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
-  }
-
-  export type EnumEstadoReservaFilter<$PrismaModel = never> = {
-    equals?: $Enums.EstadoReserva | EnumEstadoReservaFieldRefInput<$PrismaModel>
-    in?: $Enums.EstadoReserva[]
-    notIn?: $Enums.EstadoReserva[]
-    not?: NestedEnumEstadoReservaFilter<$PrismaModel> | $Enums.EstadoReserva
+    nombre?: SortOrder
+    email?: SortOrder
+    telefono?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
   }
 
   export type FotografoScalarRelationFilter = {
     is?: FotografoWhereInput
     isNot?: FotografoWhereInput
+  }
+
+  export type ClienteScalarRelationFilter = {
+    is?: ClienteWhereInput
+    isNot?: ClienteWhereInput
   }
 
   export type ReservaOrderByRelevanceInput = {
@@ -9870,13 +9786,11 @@ export namespace Prisma {
     fecha?: SortOrder
     horaInicio?: SortOrder
     horaFin?: SortOrder
-    nombreCliente?: SortOrder
-    emailCliente?: SortOrder
-    clienteId?: SortOrder
     fotografoId?: SortOrder
     pixelpayOrder?: SortOrder
     estado?: SortOrder
     createdAt?: SortOrder
+    clienteId?: SortOrder
   }
 
   export type ReservaMaxOrderByAggregateInput = {
@@ -9884,13 +9798,11 @@ export namespace Prisma {
     fecha?: SortOrder
     horaInicio?: SortOrder
     horaFin?: SortOrder
-    nombreCliente?: SortOrder
-    emailCliente?: SortOrder
-    clienteId?: SortOrder
     fotografoId?: SortOrder
     pixelpayOrder?: SortOrder
     estado?: SortOrder
     createdAt?: SortOrder
+    clienteId?: SortOrder
   }
 
   export type ReservaMinOrderByAggregateInput = {
@@ -9898,23 +9810,11 @@ export namespace Prisma {
     fecha?: SortOrder
     horaInicio?: SortOrder
     horaFin?: SortOrder
-    nombreCliente?: SortOrder
-    emailCliente?: SortOrder
-    clienteId?: SortOrder
     fotografoId?: SortOrder
     pixelpayOrder?: SortOrder
     estado?: SortOrder
     createdAt?: SortOrder
-  }
-
-  export type EnumEstadoReservaWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.EstadoReserva | EnumEstadoReservaFieldRefInput<$PrismaModel>
-    in?: $Enums.EstadoReserva[]
-    notIn?: $Enums.EstadoReserva[]
-    not?: NestedEnumEstadoReservaWithAggregatesFilter<$PrismaModel> | $Enums.EstadoReserva
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumEstadoReservaFilter<$PrismaModel>
-    _max?: NestedEnumEstadoReservaFilter<$PrismaModel>
+    clienteId?: SortOrder
   }
 
   export type RolPermisoCreateNestedManyWithoutRolInput = {
@@ -10089,24 +9989,10 @@ export namespace Prisma {
     connect?: RolWhereUniqueInput
   }
 
-  export type ReservaCreateNestedManyWithoutClienteInput = {
-    create?: XOR<ReservaCreateWithoutClienteInput, ReservaUncheckedCreateWithoutClienteInput> | ReservaCreateWithoutClienteInput[] | ReservaUncheckedCreateWithoutClienteInput[]
-    connectOrCreate?: ReservaCreateOrConnectWithoutClienteInput | ReservaCreateOrConnectWithoutClienteInput[]
-    createMany?: ReservaCreateManyClienteInputEnvelope
-    connect?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
-  }
-
   export type FotografoCreateNestedOneWithoutUsuarioInput = {
     create?: XOR<FotografoCreateWithoutUsuarioInput, FotografoUncheckedCreateWithoutUsuarioInput>
     connectOrCreate?: FotografoCreateOrConnectWithoutUsuarioInput
     connect?: FotografoWhereUniqueInput
-  }
-
-  export type ReservaUncheckedCreateNestedManyWithoutClienteInput = {
-    create?: XOR<ReservaCreateWithoutClienteInput, ReservaUncheckedCreateWithoutClienteInput> | ReservaCreateWithoutClienteInput[] | ReservaUncheckedCreateWithoutClienteInput[]
-    connectOrCreate?: ReservaCreateOrConnectWithoutClienteInput | ReservaCreateOrConnectWithoutClienteInput[]
-    createMany?: ReservaCreateManyClienteInputEnvelope
-    connect?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
   }
 
   export type FotografoUncheckedCreateNestedOneWithoutUsuarioInput = {
@@ -10123,20 +10009,6 @@ export namespace Prisma {
     update?: XOR<XOR<RolUpdateToOneWithWhereWithoutUsuariosInput, RolUpdateWithoutUsuariosInput>, RolUncheckedUpdateWithoutUsuariosInput>
   }
 
-  export type ReservaUpdateManyWithoutClienteNestedInput = {
-    create?: XOR<ReservaCreateWithoutClienteInput, ReservaUncheckedCreateWithoutClienteInput> | ReservaCreateWithoutClienteInput[] | ReservaUncheckedCreateWithoutClienteInput[]
-    connectOrCreate?: ReservaCreateOrConnectWithoutClienteInput | ReservaCreateOrConnectWithoutClienteInput[]
-    upsert?: ReservaUpsertWithWhereUniqueWithoutClienteInput | ReservaUpsertWithWhereUniqueWithoutClienteInput[]
-    createMany?: ReservaCreateManyClienteInputEnvelope
-    set?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
-    disconnect?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
-    delete?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
-    connect?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
-    update?: ReservaUpdateWithWhereUniqueWithoutClienteInput | ReservaUpdateWithWhereUniqueWithoutClienteInput[]
-    updateMany?: ReservaUpdateManyWithWhereWithoutClienteInput | ReservaUpdateManyWithWhereWithoutClienteInput[]
-    deleteMany?: ReservaScalarWhereInput | ReservaScalarWhereInput[]
-  }
-
   export type FotografoUpdateOneWithoutUsuarioNestedInput = {
     create?: XOR<FotografoCreateWithoutUsuarioInput, FotografoUncheckedCreateWithoutUsuarioInput>
     connectOrCreate?: FotografoCreateOrConnectWithoutUsuarioInput
@@ -10145,20 +10017,6 @@ export namespace Prisma {
     delete?: FotografoWhereInput | boolean
     connect?: FotografoWhereUniqueInput
     update?: XOR<XOR<FotografoUpdateToOneWithWhereWithoutUsuarioInput, FotografoUpdateWithoutUsuarioInput>, FotografoUncheckedUpdateWithoutUsuarioInput>
-  }
-
-  export type ReservaUncheckedUpdateManyWithoutClienteNestedInput = {
-    create?: XOR<ReservaCreateWithoutClienteInput, ReservaUncheckedCreateWithoutClienteInput> | ReservaCreateWithoutClienteInput[] | ReservaUncheckedCreateWithoutClienteInput[]
-    connectOrCreate?: ReservaCreateOrConnectWithoutClienteInput | ReservaCreateOrConnectWithoutClienteInput[]
-    upsert?: ReservaUpsertWithWhereUniqueWithoutClienteInput | ReservaUpsertWithWhereUniqueWithoutClienteInput[]
-    createMany?: ReservaCreateManyClienteInputEnvelope
-    set?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
-    disconnect?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
-    delete?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
-    connect?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
-    update?: ReservaUpdateWithWhereUniqueWithoutClienteInput | ReservaUpdateWithWhereUniqueWithoutClienteInput[]
-    updateMany?: ReservaUpdateManyWithWhereWithoutClienteInput | ReservaUpdateManyWithWhereWithoutClienteInput[]
-    deleteMany?: ReservaScalarWhereInput | ReservaScalarWhereInput[]
   }
 
   export type FotografoUncheckedUpdateOneWithoutUsuarioNestedInput = {
@@ -10231,18 +10089,46 @@ export namespace Prisma {
     deleteMany?: ReservaScalarWhereInput | ReservaScalarWhereInput[]
   }
 
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
+  export type ReservaCreateNestedManyWithoutClienteInput = {
+    create?: XOR<ReservaCreateWithoutClienteInput, ReservaUncheckedCreateWithoutClienteInput> | ReservaCreateWithoutClienteInput[] | ReservaUncheckedCreateWithoutClienteInput[]
+    connectOrCreate?: ReservaCreateOrConnectWithoutClienteInput | ReservaCreateOrConnectWithoutClienteInput[]
+    createMany?: ReservaCreateManyClienteInputEnvelope
+    connect?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
   }
 
-  export type UsuarioCreateNestedOneWithoutReservasInput = {
-    create?: XOR<UsuarioCreateWithoutReservasInput, UsuarioUncheckedCreateWithoutReservasInput>
-    connectOrCreate?: UsuarioCreateOrConnectWithoutReservasInput
-    connect?: UsuarioWhereUniqueInput
+  export type ReservaUncheckedCreateNestedManyWithoutClienteInput = {
+    create?: XOR<ReservaCreateWithoutClienteInput, ReservaUncheckedCreateWithoutClienteInput> | ReservaCreateWithoutClienteInput[] | ReservaUncheckedCreateWithoutClienteInput[]
+    connectOrCreate?: ReservaCreateOrConnectWithoutClienteInput | ReservaCreateOrConnectWithoutClienteInput[]
+    createMany?: ReservaCreateManyClienteInputEnvelope
+    connect?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
+  }
+
+  export type ReservaUpdateManyWithoutClienteNestedInput = {
+    create?: XOR<ReservaCreateWithoutClienteInput, ReservaUncheckedCreateWithoutClienteInput> | ReservaCreateWithoutClienteInput[] | ReservaUncheckedCreateWithoutClienteInput[]
+    connectOrCreate?: ReservaCreateOrConnectWithoutClienteInput | ReservaCreateOrConnectWithoutClienteInput[]
+    upsert?: ReservaUpsertWithWhereUniqueWithoutClienteInput | ReservaUpsertWithWhereUniqueWithoutClienteInput[]
+    createMany?: ReservaCreateManyClienteInputEnvelope
+    set?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
+    disconnect?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
+    delete?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
+    connect?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
+    update?: ReservaUpdateWithWhereUniqueWithoutClienteInput | ReservaUpdateWithWhereUniqueWithoutClienteInput[]
+    updateMany?: ReservaUpdateManyWithWhereWithoutClienteInput | ReservaUpdateManyWithWhereWithoutClienteInput[]
+    deleteMany?: ReservaScalarWhereInput | ReservaScalarWhereInput[]
+  }
+
+  export type ReservaUncheckedUpdateManyWithoutClienteNestedInput = {
+    create?: XOR<ReservaCreateWithoutClienteInput, ReservaUncheckedCreateWithoutClienteInput> | ReservaCreateWithoutClienteInput[] | ReservaUncheckedCreateWithoutClienteInput[]
+    connectOrCreate?: ReservaCreateOrConnectWithoutClienteInput | ReservaCreateOrConnectWithoutClienteInput[]
+    upsert?: ReservaUpsertWithWhereUniqueWithoutClienteInput | ReservaUpsertWithWhereUniqueWithoutClienteInput[]
+    createMany?: ReservaCreateManyClienteInputEnvelope
+    set?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
+    disconnect?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
+    delete?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
+    connect?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
+    update?: ReservaUpdateWithWhereUniqueWithoutClienteInput | ReservaUpdateWithWhereUniqueWithoutClienteInput[]
+    updateMany?: ReservaUpdateManyWithWhereWithoutClienteInput | ReservaUpdateManyWithWhereWithoutClienteInput[]
+    deleteMany?: ReservaScalarWhereInput | ReservaScalarWhereInput[]
   }
 
   export type FotografoCreateNestedOneWithoutReservasInput = {
@@ -10251,16 +10137,10 @@ export namespace Prisma {
     connect?: FotografoWhereUniqueInput
   }
 
-  export type EnumEstadoReservaFieldUpdateOperationsInput = {
-    set?: $Enums.EstadoReserva
-  }
-
-  export type UsuarioUpdateOneRequiredWithoutReservasNestedInput = {
-    create?: XOR<UsuarioCreateWithoutReservasInput, UsuarioUncheckedCreateWithoutReservasInput>
-    connectOrCreate?: UsuarioCreateOrConnectWithoutReservasInput
-    upsert?: UsuarioUpsertWithoutReservasInput
-    connect?: UsuarioWhereUniqueInput
-    update?: XOR<XOR<UsuarioUpdateToOneWithWhereWithoutReservasInput, UsuarioUpdateWithoutReservasInput>, UsuarioUncheckedUpdateWithoutReservasInput>
+  export type ClienteCreateNestedOneWithoutReservasInput = {
+    create?: XOR<ClienteCreateWithoutReservasInput, ClienteUncheckedCreateWithoutReservasInput>
+    connectOrCreate?: ClienteCreateOrConnectWithoutReservasInput
+    connect?: ClienteWhereUniqueInput
   }
 
   export type FotografoUpdateOneRequiredWithoutReservasNestedInput = {
@@ -10269,6 +10149,14 @@ export namespace Prisma {
     upsert?: FotografoUpsertWithoutReservasInput
     connect?: FotografoWhereUniqueInput
     update?: XOR<XOR<FotografoUpdateToOneWithWhereWithoutReservasInput, FotografoUpdateWithoutReservasInput>, FotografoUncheckedUpdateWithoutReservasInput>
+  }
+
+  export type ClienteUpdateOneRequiredWithoutReservasNestedInput = {
+    create?: XOR<ClienteCreateWithoutReservasInput, ClienteUncheckedCreateWithoutReservasInput>
+    connectOrCreate?: ClienteCreateOrConnectWithoutReservasInput
+    upsert?: ClienteUpsertWithoutReservasInput
+    connect?: ClienteWhereUniqueInput
+    update?: XOR<XOR<ClienteUpdateToOneWithWhereWithoutReservasInput, ClienteUpdateWithoutReservasInput>, ClienteUncheckedUpdateWithoutReservasInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -10397,50 +10285,6 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
-  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
-  }
-
-  export type NestedFloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
-  }
-
-  export type NestedEnumEstadoReservaFilter<$PrismaModel = never> = {
-    equals?: $Enums.EstadoReserva | EnumEstadoReservaFieldRefInput<$PrismaModel>
-    in?: $Enums.EstadoReserva[]
-    notIn?: $Enums.EstadoReserva[]
-    not?: NestedEnumEstadoReservaFilter<$PrismaModel> | $Enums.EstadoReserva
-  }
-
-  export type NestedEnumEstadoReservaWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.EstadoReserva | EnumEstadoReservaFieldRefInput<$PrismaModel>
-    in?: $Enums.EstadoReserva[]
-    notIn?: $Enums.EstadoReserva[]
-    not?: NestedEnumEstadoReservaWithAggregatesFilter<$PrismaModel> | $Enums.EstadoReserva
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumEstadoReservaFilter<$PrismaModel>
-    _max?: NestedEnumEstadoReservaFilter<$PrismaModel>
-  }
-
   export type RolPermisoCreateWithoutRolInput = {
     id?: string
     createAt?: Date | string
@@ -10472,7 +10316,6 @@ export namespace Prisma {
     updateAt?: Date | string
     activo: boolean
     debeCambiar: boolean
-    reservas?: ReservaCreateNestedManyWithoutClienteInput
     fotografo?: FotografoCreateNestedOneWithoutUsuarioInput
   }
 
@@ -10485,7 +10328,6 @@ export namespace Prisma {
     updateAt?: Date | string
     activo: boolean
     debeCambiar: boolean
-    reservas?: ReservaUncheckedCreateNestedManyWithoutClienteInput
     fotografo?: FotografoUncheckedCreateNestedOneWithoutUsuarioInput
   }
 
@@ -10727,42 +10569,6 @@ export namespace Prisma {
     create: XOR<RolCreateWithoutUsuariosInput, RolUncheckedCreateWithoutUsuariosInput>
   }
 
-  export type ReservaCreateWithoutClienteInput = {
-    id?: string
-    fecha: Date | string
-    horaInicio: Date | string
-    horaFin: Date | string
-    nombreCliente: string
-    emailCliente: string
-    pixelpayOrder: string
-    estado?: $Enums.EstadoReserva
-    createdAt?: Date | string
-    fotografo: FotografoCreateNestedOneWithoutReservasInput
-  }
-
-  export type ReservaUncheckedCreateWithoutClienteInput = {
-    id?: string
-    fecha: Date | string
-    horaInicio: Date | string
-    horaFin: Date | string
-    nombreCliente: string
-    emailCliente: string
-    fotografoId: string
-    pixelpayOrder: string
-    estado?: $Enums.EstadoReserva
-    createdAt?: Date | string
-  }
-
-  export type ReservaCreateOrConnectWithoutClienteInput = {
-    where: ReservaWhereUniqueInput
-    create: XOR<ReservaCreateWithoutClienteInput, ReservaUncheckedCreateWithoutClienteInput>
-  }
-
-  export type ReservaCreateManyClienteInputEnvelope = {
-    data: ReservaCreateManyClienteInput | ReservaCreateManyClienteInput[]
-    skipDuplicates?: boolean
-  }
-
   export type FotografoCreateWithoutUsuarioInput = {
     id?: string
     telefono?: string | null
@@ -10813,39 +10619,6 @@ export namespace Prisma {
     permisos?: RolPermisoUncheckedUpdateManyWithoutRolNestedInput
   }
 
-  export type ReservaUpsertWithWhereUniqueWithoutClienteInput = {
-    where: ReservaWhereUniqueInput
-    update: XOR<ReservaUpdateWithoutClienteInput, ReservaUncheckedUpdateWithoutClienteInput>
-    create: XOR<ReservaCreateWithoutClienteInput, ReservaUncheckedCreateWithoutClienteInput>
-  }
-
-  export type ReservaUpdateWithWhereUniqueWithoutClienteInput = {
-    where: ReservaWhereUniqueInput
-    data: XOR<ReservaUpdateWithoutClienteInput, ReservaUncheckedUpdateWithoutClienteInput>
-  }
-
-  export type ReservaUpdateManyWithWhereWithoutClienteInput = {
-    where: ReservaScalarWhereInput
-    data: XOR<ReservaUpdateManyMutationInput, ReservaUncheckedUpdateManyWithoutClienteInput>
-  }
-
-  export type ReservaScalarWhereInput = {
-    AND?: ReservaScalarWhereInput | ReservaScalarWhereInput[]
-    OR?: ReservaScalarWhereInput[]
-    NOT?: ReservaScalarWhereInput | ReservaScalarWhereInput[]
-    id?: StringFilter<"Reserva"> | string
-    fecha?: DateTimeFilter<"Reserva"> | Date | string
-    horaInicio?: DateTimeFilter<"Reserva"> | Date | string
-    horaFin?: DateTimeFilter<"Reserva"> | Date | string
-    nombreCliente?: StringFilter<"Reserva"> | string
-    emailCliente?: StringFilter<"Reserva"> | string
-    clienteId?: StringFilter<"Reserva"> | string
-    fotografoId?: StringFilter<"Reserva"> | string
-    pixelpayOrder?: StringFilter<"Reserva"> | string
-    estado?: EnumEstadoReservaFilter<"Reserva"> | $Enums.EstadoReserva
-    createdAt?: DateTimeFilter<"Reserva"> | Date | string
-  }
-
   export type FotografoUpsertWithoutUsuarioInput = {
     update: XOR<FotografoUpdateWithoutUsuarioInput, FotografoUncheckedUpdateWithoutUsuarioInput>
     create: XOR<FotografoCreateWithoutUsuarioInput, FotografoUncheckedCreateWithoutUsuarioInput>
@@ -10881,7 +10654,6 @@ export namespace Prisma {
     activo: boolean
     debeCambiar: boolean
     rol: RolCreateNestedOneWithoutUsuariosInput
-    reservas?: ReservaCreateNestedManyWithoutClienteInput
   }
 
   export type UsuarioUncheckedCreateWithoutFotografoInput = {
@@ -10894,7 +10666,6 @@ export namespace Prisma {
     activo: boolean
     rolId: string
     debeCambiar: boolean
-    reservas?: ReservaUncheckedCreateNestedManyWithoutClienteInput
   }
 
   export type UsuarioCreateOrConnectWithoutFotografoInput = {
@@ -10907,12 +10678,10 @@ export namespace Prisma {
     fecha: Date | string
     horaInicio: Date | string
     horaFin: Date | string
-    nombreCliente: string
-    emailCliente: string
     pixelpayOrder: string
-    estado?: $Enums.EstadoReserva
+    estado?: boolean
     createdAt?: Date | string
-    cliente: UsuarioCreateNestedOneWithoutReservasInput
+    cliente: ClienteCreateNestedOneWithoutReservasInput
   }
 
   export type ReservaUncheckedCreateWithoutFotografoInput = {
@@ -10920,12 +10689,10 @@ export namespace Prisma {
     fecha: Date | string
     horaInicio: Date | string
     horaFin: Date | string
-    nombreCliente: string
-    emailCliente: string
-    clienteId: string
     pixelpayOrder: string
-    estado?: $Enums.EstadoReserva
+    estado?: boolean
     createdAt?: Date | string
+    clienteId: string
   }
 
   export type ReservaCreateOrConnectWithoutFotografoInput = {
@@ -10959,7 +10726,6 @@ export namespace Prisma {
     activo?: BoolFieldUpdateOperationsInput | boolean
     debeCambiar?: BoolFieldUpdateOperationsInput | boolean
     rol?: RolUpdateOneRequiredWithoutUsuariosNestedInput
-    reservas?: ReservaUpdateManyWithoutClienteNestedInput
   }
 
   export type UsuarioUncheckedUpdateWithoutFotografoInput = {
@@ -10972,7 +10738,6 @@ export namespace Prisma {
     activo?: BoolFieldUpdateOperationsInput | boolean
     rolId?: StringFieldUpdateOperationsInput | string
     debeCambiar?: BoolFieldUpdateOperationsInput | boolean
-    reservas?: ReservaUncheckedUpdateManyWithoutClienteNestedInput
   }
 
   export type ReservaUpsertWithWhereUniqueWithoutFotografoInput = {
@@ -10991,35 +10756,67 @@ export namespace Prisma {
     data: XOR<ReservaUpdateManyMutationInput, ReservaUncheckedUpdateManyWithoutFotografoInput>
   }
 
-  export type UsuarioCreateWithoutReservasInput = {
-    id?: string
-    nombre: string
-    email: string
-    password: string
-    createAt?: Date | string
-    updateAt?: Date | string
-    activo: boolean
-    debeCambiar: boolean
-    rol: RolCreateNestedOneWithoutUsuariosInput
-    fotografo?: FotografoCreateNestedOneWithoutUsuarioInput
+  export type ReservaScalarWhereInput = {
+    AND?: ReservaScalarWhereInput | ReservaScalarWhereInput[]
+    OR?: ReservaScalarWhereInput[]
+    NOT?: ReservaScalarWhereInput | ReservaScalarWhereInput[]
+    id?: StringFilter<"Reserva"> | string
+    fecha?: DateTimeFilter<"Reserva"> | Date | string
+    horaInicio?: DateTimeFilter<"Reserva"> | Date | string
+    horaFin?: DateTimeFilter<"Reserva"> | Date | string
+    fotografoId?: StringFilter<"Reserva"> | string
+    pixelpayOrder?: StringFilter<"Reserva"> | string
+    estado?: BoolFilter<"Reserva"> | boolean
+    createdAt?: DateTimeFilter<"Reserva"> | Date | string
+    clienteId?: StringFilter<"Reserva"> | string
   }
 
-  export type UsuarioUncheckedCreateWithoutReservasInput = {
+  export type ReservaCreateWithoutClienteInput = {
     id?: string
-    nombre: string
-    email: string
-    password: string
-    createAt?: Date | string
-    updateAt?: Date | string
-    activo: boolean
-    rolId: string
-    debeCambiar: boolean
-    fotografo?: FotografoUncheckedCreateNestedOneWithoutUsuarioInput
+    fecha: Date | string
+    horaInicio: Date | string
+    horaFin: Date | string
+    pixelpayOrder: string
+    estado?: boolean
+    createdAt?: Date | string
+    fotografo: FotografoCreateNestedOneWithoutReservasInput
   }
 
-  export type UsuarioCreateOrConnectWithoutReservasInput = {
-    where: UsuarioWhereUniqueInput
-    create: XOR<UsuarioCreateWithoutReservasInput, UsuarioUncheckedCreateWithoutReservasInput>
+  export type ReservaUncheckedCreateWithoutClienteInput = {
+    id?: string
+    fecha: Date | string
+    horaInicio: Date | string
+    horaFin: Date | string
+    fotografoId: string
+    pixelpayOrder: string
+    estado?: boolean
+    createdAt?: Date | string
+  }
+
+  export type ReservaCreateOrConnectWithoutClienteInput = {
+    where: ReservaWhereUniqueInput
+    create: XOR<ReservaCreateWithoutClienteInput, ReservaUncheckedCreateWithoutClienteInput>
+  }
+
+  export type ReservaCreateManyClienteInputEnvelope = {
+    data: ReservaCreateManyClienteInput | ReservaCreateManyClienteInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ReservaUpsertWithWhereUniqueWithoutClienteInput = {
+    where: ReservaWhereUniqueInput
+    update: XOR<ReservaUpdateWithoutClienteInput, ReservaUncheckedUpdateWithoutClienteInput>
+    create: XOR<ReservaCreateWithoutClienteInput, ReservaUncheckedCreateWithoutClienteInput>
+  }
+
+  export type ReservaUpdateWithWhereUniqueWithoutClienteInput = {
+    where: ReservaWhereUniqueInput
+    data: XOR<ReservaUpdateWithoutClienteInput, ReservaUncheckedUpdateWithoutClienteInput>
+  }
+
+  export type ReservaUpdateManyWithWhereWithoutClienteInput = {
+    where: ReservaScalarWhereInput
+    data: XOR<ReservaUpdateManyMutationInput, ReservaUncheckedUpdateManyWithoutClienteInput>
   }
 
   export type FotografoCreateWithoutReservasInput = {
@@ -11041,41 +10838,27 @@ export namespace Prisma {
     create: XOR<FotografoCreateWithoutReservasInput, FotografoUncheckedCreateWithoutReservasInput>
   }
 
-  export type UsuarioUpsertWithoutReservasInput = {
-    update: XOR<UsuarioUpdateWithoutReservasInput, UsuarioUncheckedUpdateWithoutReservasInput>
-    create: XOR<UsuarioCreateWithoutReservasInput, UsuarioUncheckedCreateWithoutReservasInput>
-    where?: UsuarioWhereInput
+  export type ClienteCreateWithoutReservasInput = {
+    id?: string
+    nombre: string
+    email: string
+    telefono: string
+    createAt?: Date | string
+    updateAt?: Date | string
   }
 
-  export type UsuarioUpdateToOneWithWhereWithoutReservasInput = {
-    where?: UsuarioWhereInput
-    data: XOR<UsuarioUpdateWithoutReservasInput, UsuarioUncheckedUpdateWithoutReservasInput>
+  export type ClienteUncheckedCreateWithoutReservasInput = {
+    id?: string
+    nombre: string
+    email: string
+    telefono: string
+    createAt?: Date | string
+    updateAt?: Date | string
   }
 
-  export type UsuarioUpdateWithoutReservasInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    nombre?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    activo?: BoolFieldUpdateOperationsInput | boolean
-    debeCambiar?: BoolFieldUpdateOperationsInput | boolean
-    rol?: RolUpdateOneRequiredWithoutUsuariosNestedInput
-    fotografo?: FotografoUpdateOneWithoutUsuarioNestedInput
-  }
-
-  export type UsuarioUncheckedUpdateWithoutReservasInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    nombre?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    activo?: BoolFieldUpdateOperationsInput | boolean
-    rolId?: StringFieldUpdateOperationsInput | string
-    debeCambiar?: BoolFieldUpdateOperationsInput | boolean
-    fotografo?: FotografoUncheckedUpdateOneWithoutUsuarioNestedInput
+  export type ClienteCreateOrConnectWithoutReservasInput = {
+    where: ClienteWhereUniqueInput
+    create: XOR<ClienteCreateWithoutReservasInput, ClienteUncheckedCreateWithoutReservasInput>
   }
 
   export type FotografoUpsertWithoutReservasInput = {
@@ -11101,6 +10884,35 @@ export namespace Prisma {
     usuarioId?: StringFieldUpdateOperationsInput | string
     telefono?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ClienteUpsertWithoutReservasInput = {
+    update: XOR<ClienteUpdateWithoutReservasInput, ClienteUncheckedUpdateWithoutReservasInput>
+    create: XOR<ClienteCreateWithoutReservasInput, ClienteUncheckedCreateWithoutReservasInput>
+    where?: ClienteWhereInput
+  }
+
+  export type ClienteUpdateToOneWithWhereWithoutReservasInput = {
+    where?: ClienteWhereInput
+    data: XOR<ClienteUpdateWithoutReservasInput, ClienteUncheckedUpdateWithoutReservasInput>
+  }
+
+  export type ClienteUpdateWithoutReservasInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nombre?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    telefono?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ClienteUncheckedUpdateWithoutReservasInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nombre?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    telefono?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type RolPermisoCreateManyRolInput = {
@@ -11147,7 +10959,6 @@ export namespace Prisma {
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     activo?: BoolFieldUpdateOperationsInput | boolean
     debeCambiar?: BoolFieldUpdateOperationsInput | boolean
-    reservas?: ReservaUpdateManyWithoutClienteNestedInput
     fotografo?: FotografoUpdateOneWithoutUsuarioNestedInput
   }
 
@@ -11160,7 +10971,6 @@ export namespace Prisma {
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     activo?: BoolFieldUpdateOperationsInput | boolean
     debeCambiar?: BoolFieldUpdateOperationsInput | boolean
-    reservas?: ReservaUncheckedUpdateManyWithoutClienteNestedInput
     fotografo?: FotografoUncheckedUpdateOneWithoutUsuarioNestedInput
   }
 
@@ -11199,16 +11009,58 @@ export namespace Prisma {
     createAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type ReservaCreateManyFotografoInput = {
+    id?: string
+    fecha: Date | string
+    horaInicio: Date | string
+    horaFin: Date | string
+    pixelpayOrder: string
+    estado?: boolean
+    createdAt?: Date | string
+    clienteId: string
+  }
+
+  export type ReservaUpdateWithoutFotografoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fecha?: DateTimeFieldUpdateOperationsInput | Date | string
+    horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
+    horaFin?: DateTimeFieldUpdateOperationsInput | Date | string
+    pixelpayOrder?: StringFieldUpdateOperationsInput | string
+    estado?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    cliente?: ClienteUpdateOneRequiredWithoutReservasNestedInput
+  }
+
+  export type ReservaUncheckedUpdateWithoutFotografoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fecha?: DateTimeFieldUpdateOperationsInput | Date | string
+    horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
+    horaFin?: DateTimeFieldUpdateOperationsInput | Date | string
+    pixelpayOrder?: StringFieldUpdateOperationsInput | string
+    estado?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    clienteId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ReservaUncheckedUpdateManyWithoutFotografoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fecha?: DateTimeFieldUpdateOperationsInput | Date | string
+    horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
+    horaFin?: DateTimeFieldUpdateOperationsInput | Date | string
+    pixelpayOrder?: StringFieldUpdateOperationsInput | string
+    estado?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    clienteId?: StringFieldUpdateOperationsInput | string
+  }
+
   export type ReservaCreateManyClienteInput = {
     id?: string
     fecha: Date | string
     horaInicio: Date | string
     horaFin: Date | string
-    nombreCliente: string
-    emailCliente: string
     fotografoId: string
     pixelpayOrder: string
-    estado?: $Enums.EstadoReserva
+    estado?: boolean
     createdAt?: Date | string
   }
 
@@ -11217,10 +11069,8 @@ export namespace Prisma {
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
     horaFin?: DateTimeFieldUpdateOperationsInput | Date | string
-    nombreCliente?: StringFieldUpdateOperationsInput | string
-    emailCliente?: StringFieldUpdateOperationsInput | string
     pixelpayOrder?: StringFieldUpdateOperationsInput | string
-    estado?: EnumEstadoReservaFieldUpdateOperationsInput | $Enums.EstadoReserva
+    estado?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     fotografo?: FotografoUpdateOneRequiredWithoutReservasNestedInput
   }
@@ -11230,11 +11080,9 @@ export namespace Prisma {
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
     horaFin?: DateTimeFieldUpdateOperationsInput | Date | string
-    nombreCliente?: StringFieldUpdateOperationsInput | string
-    emailCliente?: StringFieldUpdateOperationsInput | string
     fotografoId?: StringFieldUpdateOperationsInput | string
     pixelpayOrder?: StringFieldUpdateOperationsInput | string
-    estado?: EnumEstadoReservaFieldUpdateOperationsInput | $Enums.EstadoReserva
+    estado?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -11243,63 +11091,9 @@ export namespace Prisma {
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
     horaFin?: DateTimeFieldUpdateOperationsInput | Date | string
-    nombreCliente?: StringFieldUpdateOperationsInput | string
-    emailCliente?: StringFieldUpdateOperationsInput | string
     fotografoId?: StringFieldUpdateOperationsInput | string
     pixelpayOrder?: StringFieldUpdateOperationsInput | string
-    estado?: EnumEstadoReservaFieldUpdateOperationsInput | $Enums.EstadoReserva
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type ReservaCreateManyFotografoInput = {
-    id?: string
-    fecha: Date | string
-    horaInicio: Date | string
-    horaFin: Date | string
-    nombreCliente: string
-    emailCliente: string
-    clienteId: string
-    pixelpayOrder: string
-    estado?: $Enums.EstadoReserva
-    createdAt?: Date | string
-  }
-
-  export type ReservaUpdateWithoutFotografoInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    fecha?: DateTimeFieldUpdateOperationsInput | Date | string
-    horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
-    horaFin?: DateTimeFieldUpdateOperationsInput | Date | string
-    nombreCliente?: StringFieldUpdateOperationsInput | string
-    emailCliente?: StringFieldUpdateOperationsInput | string
-    pixelpayOrder?: StringFieldUpdateOperationsInput | string
-    estado?: EnumEstadoReservaFieldUpdateOperationsInput | $Enums.EstadoReserva
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    cliente?: UsuarioUpdateOneRequiredWithoutReservasNestedInput
-  }
-
-  export type ReservaUncheckedUpdateWithoutFotografoInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    fecha?: DateTimeFieldUpdateOperationsInput | Date | string
-    horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
-    horaFin?: DateTimeFieldUpdateOperationsInput | Date | string
-    nombreCliente?: StringFieldUpdateOperationsInput | string
-    emailCliente?: StringFieldUpdateOperationsInput | string
-    clienteId?: StringFieldUpdateOperationsInput | string
-    pixelpayOrder?: StringFieldUpdateOperationsInput | string
-    estado?: EnumEstadoReservaFieldUpdateOperationsInput | $Enums.EstadoReserva
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type ReservaUncheckedUpdateManyWithoutFotografoInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    fecha?: DateTimeFieldUpdateOperationsInput | Date | string
-    horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
-    horaFin?: DateTimeFieldUpdateOperationsInput | Date | string
-    nombreCliente?: StringFieldUpdateOperationsInput | string
-    emailCliente?: StringFieldUpdateOperationsInput | string
-    clienteId?: StringFieldUpdateOperationsInput | string
-    pixelpayOrder?: StringFieldUpdateOperationsInput | string
-    estado?: EnumEstadoReservaFieldUpdateOperationsInput | $Enums.EstadoReserva
+    estado?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
