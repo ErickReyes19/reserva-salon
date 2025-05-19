@@ -161,7 +161,9 @@ exports.Prisma.FotografoScalarFieldEnum = {
   id: 'id',
   usuarioId: 'usuarioId',
   telefono: 'telefono',
-  bio: 'bio'
+  bio: 'bio',
+  url: 'url',
+  disponible: 'disponible'
 };
 
 exports.Prisma.ClienteScalarFieldEnum = {
@@ -175,18 +177,16 @@ exports.Prisma.ClienteScalarFieldEnum = {
 
 exports.Prisma.CategoryScalarFieldEnum = {
   id: 'id',
-  name: 'name'
+  name: 'name',
+  activo: 'activo'
 };
 
 exports.Prisma.PhotoServiceScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  price: 'price',
   img: 'img',
   description: 'description',
-  featured: 'featured',
-  duration: 'duration',
-  location: 'location',
+  activo: 'activo',
   categoryId: 'categoryId'
 };
 
@@ -242,7 +242,8 @@ exports.Prisma.FotografoOrderByRelevanceFieldEnum = {
   id: 'id',
   usuarioId: 'usuarioId',
   telefono: 'telefono',
-  bio: 'bio'
+  bio: 'bio',
+  url: 'url'
 };
 
 exports.Prisma.ClienteOrderByRelevanceFieldEnum = {
@@ -260,11 +261,8 @@ exports.Prisma.CategoryOrderByRelevanceFieldEnum = {
 exports.Prisma.PhotoServiceOrderByRelevanceFieldEnum = {
   id: 'id',
   name: 'name',
-  price: 'price',
   img: 'img',
   description: 'description',
-  duration: 'duration',
-  location: 'location',
   categoryId: 'categoryId'
 };
 

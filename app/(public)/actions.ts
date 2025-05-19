@@ -1,7 +1,7 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
-import type {  CategoryWithServices, PhotoService, ReservaEvent } from "./types";
+import type { CategoryWithServices, PhotoService, ReservaEvent } from "./types";
 
 export async function getReservasEvent(): Promise<ReservaEvent[]> {
   try {
@@ -26,6 +26,7 @@ export async function getCategoriesWithServices(): Promise<CategoryWithServices[
   try {
     const categories = await prisma.category.findMany({
       include: { services: true },
+      where: { activo: true }
     })
 
     return categories.map((cat) => ({

@@ -5581,6 +5581,8 @@ export namespace Prisma {
     usuarioId: string | null
     telefono: string | null
     bio: string | null
+    url: string | null
+    disponible: boolean | null
   }
 
   export type FotografoMaxAggregateOutputType = {
@@ -5588,6 +5590,8 @@ export namespace Prisma {
     usuarioId: string | null
     telefono: string | null
     bio: string | null
+    url: string | null
+    disponible: boolean | null
   }
 
   export type FotografoCountAggregateOutputType = {
@@ -5595,6 +5599,8 @@ export namespace Prisma {
     usuarioId: number
     telefono: number
     bio: number
+    url: number
+    disponible: number
     _all: number
   }
 
@@ -5604,6 +5610,8 @@ export namespace Prisma {
     usuarioId?: true
     telefono?: true
     bio?: true
+    url?: true
+    disponible?: true
   }
 
   export type FotografoMaxAggregateInputType = {
@@ -5611,6 +5619,8 @@ export namespace Prisma {
     usuarioId?: true
     telefono?: true
     bio?: true
+    url?: true
+    disponible?: true
   }
 
   export type FotografoCountAggregateInputType = {
@@ -5618,6 +5628,8 @@ export namespace Prisma {
     usuarioId?: true
     telefono?: true
     bio?: true
+    url?: true
+    disponible?: true
     _all?: true
   }
 
@@ -5698,6 +5710,8 @@ export namespace Prisma {
     usuarioId: string
     telefono: string | null
     bio: string | null
+    url: string | null
+    disponible: boolean
     _count: FotografoCountAggregateOutputType | null
     _min: FotografoMinAggregateOutputType | null
     _max: FotografoMaxAggregateOutputType | null
@@ -5722,6 +5736,8 @@ export namespace Prisma {
     usuarioId?: boolean
     telefono?: boolean
     bio?: boolean
+    url?: boolean
+    disponible?: boolean
     usuario?: boolean | UsuarioDefaultArgs<ExtArgs>
     reservas?: boolean | Fotografo$reservasArgs<ExtArgs>
     _count?: boolean | FotografoCountOutputTypeDefaultArgs<ExtArgs>
@@ -5734,9 +5750,11 @@ export namespace Prisma {
     usuarioId?: boolean
     telefono?: boolean
     bio?: boolean
+    url?: boolean
+    disponible?: boolean
   }
 
-  export type FotografoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "usuarioId" | "telefono" | "bio", ExtArgs["result"]["fotografo"]>
+  export type FotografoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "usuarioId" | "telefono" | "bio" | "url" | "disponible", ExtArgs["result"]["fotografo"]>
   export type FotografoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     usuario?: boolean | UsuarioDefaultArgs<ExtArgs>
     reservas?: boolean | Fotografo$reservasArgs<ExtArgs>
@@ -5754,6 +5772,8 @@ export namespace Prisma {
       usuarioId: string
       telefono: string | null
       bio: string | null
+      url: string | null
+      disponible: boolean
     }, ExtArgs["result"]["fotografo"]>
     composites: {}
   }
@@ -6129,6 +6149,8 @@ export namespace Prisma {
     readonly usuarioId: FieldRef<"Fotografo", 'String'>
     readonly telefono: FieldRef<"Fotografo", 'String'>
     readonly bio: FieldRef<"Fotografo", 'String'>
+    readonly url: FieldRef<"Fotografo", 'String'>
+    readonly disponible: FieldRef<"Fotografo", 'Boolean'>
   }
     
 
@@ -7493,16 +7515,19 @@ export namespace Prisma {
   export type CategoryMinAggregateOutputType = {
     id: string | null
     name: string | null
+    activo: boolean | null
   }
 
   export type CategoryMaxAggregateOutputType = {
     id: string | null
     name: string | null
+    activo: boolean | null
   }
 
   export type CategoryCountAggregateOutputType = {
     id: number
     name: number
+    activo: number
     _all: number
   }
 
@@ -7510,16 +7535,19 @@ export namespace Prisma {
   export type CategoryMinAggregateInputType = {
     id?: true
     name?: true
+    activo?: true
   }
 
   export type CategoryMaxAggregateInputType = {
     id?: true
     name?: true
+    activo?: true
   }
 
   export type CategoryCountAggregateInputType = {
     id?: true
     name?: true
+    activo?: true
     _all?: true
   }
 
@@ -7598,6 +7626,7 @@ export namespace Prisma {
   export type CategoryGroupByOutputType = {
     id: string
     name: string
+    activo: boolean
     _count: CategoryCountAggregateOutputType | null
     _min: CategoryMinAggregateOutputType | null
     _max: CategoryMaxAggregateOutputType | null
@@ -7620,6 +7649,7 @@ export namespace Prisma {
   export type CategorySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
+    activo?: boolean
     services?: boolean | Category$servicesArgs<ExtArgs>
     _count?: boolean | CategoryCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["category"]>
@@ -7629,9 +7659,10 @@ export namespace Prisma {
   export type CategorySelectScalar = {
     id?: boolean
     name?: boolean
+    activo?: boolean
   }
 
-  export type CategoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name", ExtArgs["result"]["category"]>
+  export type CategoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "activo", ExtArgs["result"]["category"]>
   export type CategoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     services?: boolean | Category$servicesArgs<ExtArgs>
     _count?: boolean | CategoryCountOutputTypeDefaultArgs<ExtArgs>
@@ -7645,6 +7676,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       name: string
+      activo: boolean
     }, ExtArgs["result"]["category"]>
     composites: {}
   }
@@ -8017,6 +8049,7 @@ export namespace Prisma {
   interface CategoryFieldRefs {
     readonly id: FieldRef<"Category", 'String'>
     readonly name: FieldRef<"Category", 'String'>
+    readonly activo: FieldRef<"Category", 'Boolean'>
   }
     
 
@@ -8415,36 +8448,27 @@ export namespace Prisma {
   export type PhotoServiceMinAggregateOutputType = {
     id: string | null
     name: string | null
-    price: string | null
     img: string | null
     description: string | null
-    featured: boolean | null
-    duration: string | null
-    location: string | null
+    activo: boolean | null
     categoryId: string | null
   }
 
   export type PhotoServiceMaxAggregateOutputType = {
     id: string | null
     name: string | null
-    price: string | null
     img: string | null
     description: string | null
-    featured: boolean | null
-    duration: string | null
-    location: string | null
+    activo: boolean | null
     categoryId: string | null
   }
 
   export type PhotoServiceCountAggregateOutputType = {
     id: number
     name: number
-    price: number
     img: number
     description: number
-    featured: number
-    duration: number
-    location: number
+    activo: number
     categoryId: number
     _all: number
   }
@@ -8453,36 +8477,27 @@ export namespace Prisma {
   export type PhotoServiceMinAggregateInputType = {
     id?: true
     name?: true
-    price?: true
     img?: true
     description?: true
-    featured?: true
-    duration?: true
-    location?: true
+    activo?: true
     categoryId?: true
   }
 
   export type PhotoServiceMaxAggregateInputType = {
     id?: true
     name?: true
-    price?: true
     img?: true
     description?: true
-    featured?: true
-    duration?: true
-    location?: true
+    activo?: true
     categoryId?: true
   }
 
   export type PhotoServiceCountAggregateInputType = {
     id?: true
     name?: true
-    price?: true
     img?: true
     description?: true
-    featured?: true
-    duration?: true
-    location?: true
+    activo?: true
     categoryId?: true
     _all?: true
   }
@@ -8562,12 +8577,9 @@ export namespace Prisma {
   export type PhotoServiceGroupByOutputType = {
     id: string
     name: string
-    price: string
     img: string
     description: string
-    featured: boolean | null
-    duration: string | null
-    location: string | null
+    activo: boolean
     categoryId: string
     _count: PhotoServiceCountAggregateOutputType | null
     _min: PhotoServiceMinAggregateOutputType | null
@@ -8591,12 +8603,9 @@ export namespace Prisma {
   export type PhotoServiceSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
-    price?: boolean
     img?: boolean
     description?: boolean
-    featured?: boolean
-    duration?: boolean
-    location?: boolean
+    activo?: boolean
     categoryId?: boolean
     category?: boolean | CategoryDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["photoService"]>
@@ -8606,16 +8615,13 @@ export namespace Prisma {
   export type PhotoServiceSelectScalar = {
     id?: boolean
     name?: boolean
-    price?: boolean
     img?: boolean
     description?: boolean
-    featured?: boolean
-    duration?: boolean
-    location?: boolean
+    activo?: boolean
     categoryId?: boolean
   }
 
-  export type PhotoServiceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "price" | "img" | "description" | "featured" | "duration" | "location" | "categoryId", ExtArgs["result"]["photoService"]>
+  export type PhotoServiceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "img" | "description" | "activo" | "categoryId", ExtArgs["result"]["photoService"]>
   export type PhotoServiceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     category?: boolean | CategoryDefaultArgs<ExtArgs>
   }
@@ -8628,12 +8634,9 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       name: string
-      price: string
       img: string
       description: string
-      featured: boolean | null
-      duration: string | null
-      location: string | null
+      activo: boolean
       categoryId: string
     }, ExtArgs["result"]["photoService"]>
     composites: {}
@@ -9007,12 +9010,9 @@ export namespace Prisma {
   interface PhotoServiceFieldRefs {
     readonly id: FieldRef<"PhotoService", 'String'>
     readonly name: FieldRef<"PhotoService", 'String'>
-    readonly price: FieldRef<"PhotoService", 'String'>
     readonly img: FieldRef<"PhotoService", 'String'>
     readonly description: FieldRef<"PhotoService", 'String'>
-    readonly featured: FieldRef<"PhotoService", 'Boolean'>
-    readonly duration: FieldRef<"PhotoService", 'String'>
-    readonly location: FieldRef<"PhotoService", 'String'>
+    readonly activo: FieldRef<"PhotoService", 'Boolean'>
     readonly categoryId: FieldRef<"PhotoService", 'String'>
   }
     
@@ -10419,7 +10419,9 @@ export namespace Prisma {
     id: 'id',
     usuarioId: 'usuarioId',
     telefono: 'telefono',
-    bio: 'bio'
+    bio: 'bio',
+    url: 'url',
+    disponible: 'disponible'
   };
 
   export type FotografoScalarFieldEnum = (typeof FotografoScalarFieldEnum)[keyof typeof FotografoScalarFieldEnum]
@@ -10439,7 +10441,8 @@ export namespace Prisma {
 
   export const CategoryScalarFieldEnum: {
     id: 'id',
-    name: 'name'
+    name: 'name',
+    activo: 'activo'
   };
 
   export type CategoryScalarFieldEnum = (typeof CategoryScalarFieldEnum)[keyof typeof CategoryScalarFieldEnum]
@@ -10448,12 +10451,9 @@ export namespace Prisma {
   export const PhotoServiceScalarFieldEnum: {
     id: 'id',
     name: 'name',
-    price: 'price',
     img: 'img',
     description: 'description',
-    featured: 'featured',
-    duration: 'duration',
-    location: 'location',
+    activo: 'activo',
     categoryId: 'categoryId'
   };
 
@@ -10533,7 +10533,8 @@ export namespace Prisma {
     id: 'id',
     usuarioId: 'usuarioId',
     telefono: 'telefono',
-    bio: 'bio'
+    bio: 'bio',
+    url: 'url'
   };
 
   export type FotografoOrderByRelevanceFieldEnum = (typeof FotografoOrderByRelevanceFieldEnum)[keyof typeof FotografoOrderByRelevanceFieldEnum]
@@ -10560,11 +10561,8 @@ export namespace Prisma {
   export const PhotoServiceOrderByRelevanceFieldEnum: {
     id: 'id',
     name: 'name',
-    price: 'price',
     img: 'img',
     description: 'description',
-    duration: 'duration',
-    location: 'location',
     categoryId: 'categoryId'
   };
 
@@ -10884,6 +10882,8 @@ export namespace Prisma {
     usuarioId?: StringFilter<"Fotografo"> | string
     telefono?: StringNullableFilter<"Fotografo"> | string | null
     bio?: StringNullableFilter<"Fotografo"> | string | null
+    url?: StringNullableFilter<"Fotografo"> | string | null
+    disponible?: BoolFilter<"Fotografo"> | boolean
     usuario?: XOR<UsuarioScalarRelationFilter, UsuarioWhereInput>
     reservas?: ReservaListRelationFilter
   }
@@ -10893,6 +10893,8 @@ export namespace Prisma {
     usuarioId?: SortOrder
     telefono?: SortOrderInput | SortOrder
     bio?: SortOrderInput | SortOrder
+    url?: SortOrderInput | SortOrder
+    disponible?: SortOrder
     usuario?: UsuarioOrderByWithRelationInput
     reservas?: ReservaOrderByRelationAggregateInput
     _relevance?: FotografoOrderByRelevanceInput
@@ -10906,6 +10908,8 @@ export namespace Prisma {
     NOT?: FotografoWhereInput | FotografoWhereInput[]
     telefono?: StringNullableFilter<"Fotografo"> | string | null
     bio?: StringNullableFilter<"Fotografo"> | string | null
+    url?: StringNullableFilter<"Fotografo"> | string | null
+    disponible?: BoolFilter<"Fotografo"> | boolean
     usuario?: XOR<UsuarioScalarRelationFilter, UsuarioWhereInput>
     reservas?: ReservaListRelationFilter
   }, "id" | "usuarioId">
@@ -10915,6 +10919,8 @@ export namespace Prisma {
     usuarioId?: SortOrder
     telefono?: SortOrderInput | SortOrder
     bio?: SortOrderInput | SortOrder
+    url?: SortOrderInput | SortOrder
+    disponible?: SortOrder
     _count?: FotografoCountOrderByAggregateInput
     _max?: FotografoMaxOrderByAggregateInput
     _min?: FotografoMinOrderByAggregateInput
@@ -10928,6 +10934,8 @@ export namespace Prisma {
     usuarioId?: StringWithAggregatesFilter<"Fotografo"> | string
     telefono?: StringNullableWithAggregatesFilter<"Fotografo"> | string | null
     bio?: StringNullableWithAggregatesFilter<"Fotografo"> | string | null
+    url?: StringNullableWithAggregatesFilter<"Fotografo"> | string | null
+    disponible?: BoolWithAggregatesFilter<"Fotografo"> | boolean
   }
 
   export type ClienteWhereInput = {
@@ -10997,12 +11005,14 @@ export namespace Prisma {
     NOT?: CategoryWhereInput | CategoryWhereInput[]
     id?: StringFilter<"Category"> | string
     name?: StringFilter<"Category"> | string
+    activo?: BoolFilter<"Category"> | boolean
     services?: PhotoServiceListRelationFilter
   }
 
   export type CategoryOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
+    activo?: SortOrder
     services?: PhotoServiceOrderByRelationAggregateInput
     _relevance?: CategoryOrderByRelevanceInput
   }
@@ -11013,12 +11023,14 @@ export namespace Prisma {
     AND?: CategoryWhereInput | CategoryWhereInput[]
     OR?: CategoryWhereInput[]
     NOT?: CategoryWhereInput | CategoryWhereInput[]
+    activo?: BoolFilter<"Category"> | boolean
     services?: PhotoServiceListRelationFilter
   }, "id" | "name">
 
   export type CategoryOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
+    activo?: SortOrder
     _count?: CategoryCountOrderByAggregateInput
     _max?: CategoryMaxOrderByAggregateInput
     _min?: CategoryMinOrderByAggregateInput
@@ -11030,6 +11042,7 @@ export namespace Prisma {
     NOT?: CategoryScalarWhereWithAggregatesInput | CategoryScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Category"> | string
     name?: StringWithAggregatesFilter<"Category"> | string
+    activo?: BoolWithAggregatesFilter<"Category"> | boolean
   }
 
   export type PhotoServiceWhereInput = {
@@ -11038,12 +11051,9 @@ export namespace Prisma {
     NOT?: PhotoServiceWhereInput | PhotoServiceWhereInput[]
     id?: StringFilter<"PhotoService"> | string
     name?: StringFilter<"PhotoService"> | string
-    price?: StringFilter<"PhotoService"> | string
     img?: StringFilter<"PhotoService"> | string
     description?: StringFilter<"PhotoService"> | string
-    featured?: BoolNullableFilter<"PhotoService"> | boolean | null
-    duration?: StringNullableFilter<"PhotoService"> | string | null
-    location?: StringNullableFilter<"PhotoService"> | string | null
+    activo?: BoolFilter<"PhotoService"> | boolean
     categoryId?: StringFilter<"PhotoService"> | string
     category?: XOR<CategoryScalarRelationFilter, CategoryWhereInput>
   }
@@ -11051,12 +11061,9 @@ export namespace Prisma {
   export type PhotoServiceOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
-    price?: SortOrder
     img?: SortOrder
     description?: SortOrder
-    featured?: SortOrderInput | SortOrder
-    duration?: SortOrderInput | SortOrder
-    location?: SortOrderInput | SortOrder
+    activo?: SortOrder
     categoryId?: SortOrder
     category?: CategoryOrderByWithRelationInput
     _relevance?: PhotoServiceOrderByRelevanceInput
@@ -11068,12 +11075,9 @@ export namespace Prisma {
     AND?: PhotoServiceWhereInput | PhotoServiceWhereInput[]
     OR?: PhotoServiceWhereInput[]
     NOT?: PhotoServiceWhereInput | PhotoServiceWhereInput[]
-    price?: StringFilter<"PhotoService"> | string
     img?: StringFilter<"PhotoService"> | string
     description?: StringFilter<"PhotoService"> | string
-    featured?: BoolNullableFilter<"PhotoService"> | boolean | null
-    duration?: StringNullableFilter<"PhotoService"> | string | null
-    location?: StringNullableFilter<"PhotoService"> | string | null
+    activo?: BoolFilter<"PhotoService"> | boolean
     categoryId?: StringFilter<"PhotoService"> | string
     category?: XOR<CategoryScalarRelationFilter, CategoryWhereInput>
   }, "id" | "name">
@@ -11081,12 +11085,9 @@ export namespace Prisma {
   export type PhotoServiceOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
-    price?: SortOrder
     img?: SortOrder
     description?: SortOrder
-    featured?: SortOrderInput | SortOrder
-    duration?: SortOrderInput | SortOrder
-    location?: SortOrderInput | SortOrder
+    activo?: SortOrder
     categoryId?: SortOrder
     _count?: PhotoServiceCountOrderByAggregateInput
     _max?: PhotoServiceMaxOrderByAggregateInput
@@ -11099,12 +11100,9 @@ export namespace Prisma {
     NOT?: PhotoServiceScalarWhereWithAggregatesInput | PhotoServiceScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"PhotoService"> | string
     name?: StringWithAggregatesFilter<"PhotoService"> | string
-    price?: StringWithAggregatesFilter<"PhotoService"> | string
     img?: StringWithAggregatesFilter<"PhotoService"> | string
     description?: StringWithAggregatesFilter<"PhotoService"> | string
-    featured?: BoolNullableWithAggregatesFilter<"PhotoService"> | boolean | null
-    duration?: StringNullableWithAggregatesFilter<"PhotoService"> | string | null
-    location?: StringNullableWithAggregatesFilter<"PhotoService"> | string | null
+    activo?: BoolWithAggregatesFilter<"PhotoService"> | boolean
     categoryId?: StringWithAggregatesFilter<"PhotoService"> | string
   }
 
@@ -11463,6 +11461,8 @@ export namespace Prisma {
     id?: string
     telefono?: string | null
     bio?: string | null
+    url?: string | null
+    disponible: boolean
     usuario: UsuarioCreateNestedOneWithoutFotografoInput
     reservas?: ReservaCreateNestedManyWithoutFotografoInput
   }
@@ -11472,6 +11472,8 @@ export namespace Prisma {
     usuarioId: string
     telefono?: string | null
     bio?: string | null
+    url?: string | null
+    disponible: boolean
     reservas?: ReservaUncheckedCreateNestedManyWithoutFotografoInput
   }
 
@@ -11479,6 +11481,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     telefono?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    disponible?: BoolFieldUpdateOperationsInput | boolean
     usuario?: UsuarioUpdateOneRequiredWithoutFotografoNestedInput
     reservas?: ReservaUpdateManyWithoutFotografoNestedInput
   }
@@ -11488,6 +11492,8 @@ export namespace Prisma {
     usuarioId?: StringFieldUpdateOperationsInput | string
     telefono?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    disponible?: BoolFieldUpdateOperationsInput | boolean
     reservas?: ReservaUncheckedUpdateManyWithoutFotografoNestedInput
   }
 
@@ -11496,12 +11502,16 @@ export namespace Prisma {
     usuarioId: string
     telefono?: string | null
     bio?: string | null
+    url?: string | null
+    disponible: boolean
   }
 
   export type FotografoUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     telefono?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    disponible?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type FotografoUncheckedUpdateManyInput = {
@@ -11509,6 +11519,8 @@ export namespace Prisma {
     usuarioId?: StringFieldUpdateOperationsInput | string
     telefono?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    disponible?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ClienteCreateInput = {
@@ -11581,122 +11593,108 @@ export namespace Prisma {
   export type CategoryCreateInput = {
     id?: string
     name: string
+    activo: boolean
     services?: PhotoServiceCreateNestedManyWithoutCategoryInput
   }
 
   export type CategoryUncheckedCreateInput = {
     id?: string
     name: string
+    activo: boolean
     services?: PhotoServiceUncheckedCreateNestedManyWithoutCategoryInput
   }
 
   export type CategoryUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    activo?: BoolFieldUpdateOperationsInput | boolean
     services?: PhotoServiceUpdateManyWithoutCategoryNestedInput
   }
 
   export type CategoryUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    activo?: BoolFieldUpdateOperationsInput | boolean
     services?: PhotoServiceUncheckedUpdateManyWithoutCategoryNestedInput
   }
 
   export type CategoryCreateManyInput = {
     id?: string
     name: string
+    activo: boolean
   }
 
   export type CategoryUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    activo?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type CategoryUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    activo?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type PhotoServiceCreateInput = {
     id?: string
     name: string
-    price: string
     img: string
     description: string
-    featured?: boolean | null
-    duration?: string | null
-    location?: string | null
+    activo: boolean
     category: CategoryCreateNestedOneWithoutServicesInput
   }
 
   export type PhotoServiceUncheckedCreateInput = {
     id?: string
     name: string
-    price: string
     img: string
     description: string
-    featured?: boolean | null
-    duration?: string | null
-    location?: string | null
+    activo: boolean
     categoryId: string
   }
 
   export type PhotoServiceUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    price?: StringFieldUpdateOperationsInput | string
     img?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    featured?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    duration?: NullableStringFieldUpdateOperationsInput | string | null
-    location?: NullableStringFieldUpdateOperationsInput | string | null
+    activo?: BoolFieldUpdateOperationsInput | boolean
     category?: CategoryUpdateOneRequiredWithoutServicesNestedInput
   }
 
   export type PhotoServiceUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    price?: StringFieldUpdateOperationsInput | string
     img?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    featured?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    duration?: NullableStringFieldUpdateOperationsInput | string | null
-    location?: NullableStringFieldUpdateOperationsInput | string | null
+    activo?: BoolFieldUpdateOperationsInput | boolean
     categoryId?: StringFieldUpdateOperationsInput | string
   }
 
   export type PhotoServiceCreateManyInput = {
     id?: string
     name: string
-    price: string
     img: string
     description: string
-    featured?: boolean | null
-    duration?: string | null
-    location?: string | null
+    activo: boolean
     categoryId: string
   }
 
   export type PhotoServiceUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    price?: StringFieldUpdateOperationsInput | string
     img?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    featured?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    duration?: NullableStringFieldUpdateOperationsInput | string | null
-    location?: NullableStringFieldUpdateOperationsInput | string | null
+    activo?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type PhotoServiceUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    price?: StringFieldUpdateOperationsInput | string
     img?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    featured?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    duration?: NullableStringFieldUpdateOperationsInput | string | null
-    location?: NullableStringFieldUpdateOperationsInput | string | null
+    activo?: BoolFieldUpdateOperationsInput | boolean
     categoryId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -12074,6 +12072,8 @@ export namespace Prisma {
     usuarioId?: SortOrder
     telefono?: SortOrder
     bio?: SortOrder
+    url?: SortOrder
+    disponible?: SortOrder
   }
 
   export type FotografoMaxOrderByAggregateInput = {
@@ -12081,6 +12081,8 @@ export namespace Prisma {
     usuarioId?: SortOrder
     telefono?: SortOrder
     bio?: SortOrder
+    url?: SortOrder
+    disponible?: SortOrder
   }
 
   export type FotografoMinOrderByAggregateInput = {
@@ -12088,6 +12090,8 @@ export namespace Prisma {
     usuarioId?: SortOrder
     telefono?: SortOrder
     bio?: SortOrder
+    url?: SortOrder
+    disponible?: SortOrder
   }
 
   export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -12160,21 +12164,19 @@ export namespace Prisma {
   export type CategoryCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    activo?: SortOrder
   }
 
   export type CategoryMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    activo?: SortOrder
   }
 
   export type CategoryMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-  }
-
-  export type BoolNullableFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
-    not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
+    activo?: SortOrder
   }
 
   export type CategoryScalarRelationFilter = {
@@ -12191,45 +12193,28 @@ export namespace Prisma {
   export type PhotoServiceCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    price?: SortOrder
     img?: SortOrder
     description?: SortOrder
-    featured?: SortOrder
-    duration?: SortOrder
-    location?: SortOrder
+    activo?: SortOrder
     categoryId?: SortOrder
   }
 
   export type PhotoServiceMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    price?: SortOrder
     img?: SortOrder
     description?: SortOrder
-    featured?: SortOrder
-    duration?: SortOrder
-    location?: SortOrder
+    activo?: SortOrder
     categoryId?: SortOrder
   }
 
   export type PhotoServiceMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    price?: SortOrder
     img?: SortOrder
     description?: SortOrder
-    featured?: SortOrder
-    duration?: SortOrder
-    location?: SortOrder
+    activo?: SortOrder
     categoryId?: SortOrder
-  }
-
-  export type BoolNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
-    not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedBoolNullableFilter<$PrismaModel>
-    _max?: NestedBoolNullableFilter<$PrismaModel>
   }
 
   export type FotografoScalarRelationFilter = {
@@ -12646,10 +12631,6 @@ export namespace Prisma {
     connect?: CategoryWhereUniqueInput
   }
 
-  export type NullableBoolFieldUpdateOperationsInput = {
-    set?: boolean | null
-  }
-
   export type CategoryUpdateOneRequiredWithoutServicesNestedInput = {
     create?: XOR<CategoryCreateWithoutServicesInput, CategoryUncheckedCreateWithoutServicesInput>
     connectOrCreate?: CategoryCreateOrConnectWithoutServicesInput
@@ -12810,19 +12791,6 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
-  export type NestedBoolNullableFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
-    not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
-  }
-
-  export type NestedBoolNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
-    not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedBoolNullableFilter<$PrismaModel>
-    _max?: NestedBoolNullableFilter<$PrismaModel>
   }
 
   export type RolPermisoCreateWithoutRolInput = {
@@ -13113,6 +13081,8 @@ export namespace Prisma {
     id?: string
     telefono?: string | null
     bio?: string | null
+    url?: string | null
+    disponible: boolean
     reservas?: ReservaCreateNestedManyWithoutFotografoInput
   }
 
@@ -13120,6 +13090,8 @@ export namespace Prisma {
     id?: string
     telefono?: string | null
     bio?: string | null
+    url?: string | null
+    disponible: boolean
     reservas?: ReservaUncheckedCreateNestedManyWithoutFotografoInput
   }
 
@@ -13174,6 +13146,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     telefono?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    disponible?: BoolFieldUpdateOperationsInput | boolean
     reservas?: ReservaUpdateManyWithoutFotografoNestedInput
   }
 
@@ -13181,6 +13155,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     telefono?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    disponible?: BoolFieldUpdateOperationsInput | boolean
     reservas?: ReservaUncheckedUpdateManyWithoutFotografoNestedInput
   }
 
@@ -13362,23 +13338,17 @@ export namespace Prisma {
   export type PhotoServiceCreateWithoutCategoryInput = {
     id?: string
     name: string
-    price: string
     img: string
     description: string
-    featured?: boolean | null
-    duration?: string | null
-    location?: string | null
+    activo: boolean
   }
 
   export type PhotoServiceUncheckedCreateWithoutCategoryInput = {
     id?: string
     name: string
-    price: string
     img: string
     description: string
-    featured?: boolean | null
-    duration?: string | null
-    location?: string | null
+    activo: boolean
   }
 
   export type PhotoServiceCreateOrConnectWithoutCategoryInput = {
@@ -13413,23 +13383,22 @@ export namespace Prisma {
     NOT?: PhotoServiceScalarWhereInput | PhotoServiceScalarWhereInput[]
     id?: StringFilter<"PhotoService"> | string
     name?: StringFilter<"PhotoService"> | string
-    price?: StringFilter<"PhotoService"> | string
     img?: StringFilter<"PhotoService"> | string
     description?: StringFilter<"PhotoService"> | string
-    featured?: BoolNullableFilter<"PhotoService"> | boolean | null
-    duration?: StringNullableFilter<"PhotoService"> | string | null
-    location?: StringNullableFilter<"PhotoService"> | string | null
+    activo?: BoolFilter<"PhotoService"> | boolean
     categoryId?: StringFilter<"PhotoService"> | string
   }
 
   export type CategoryCreateWithoutServicesInput = {
     id?: string
     name: string
+    activo: boolean
   }
 
   export type CategoryUncheckedCreateWithoutServicesInput = {
     id?: string
     name: string
+    activo: boolean
   }
 
   export type CategoryCreateOrConnectWithoutServicesInput = {
@@ -13451,17 +13420,21 @@ export namespace Prisma {
   export type CategoryUpdateWithoutServicesInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    activo?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type CategoryUncheckedUpdateWithoutServicesInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    activo?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type FotografoCreateWithoutReservasInput = {
     id?: string
     telefono?: string | null
     bio?: string | null
+    url?: string | null
+    disponible: boolean
     usuario: UsuarioCreateNestedOneWithoutFotografoInput
   }
 
@@ -13470,6 +13443,8 @@ export namespace Prisma {
     usuarioId: string
     telefono?: string | null
     bio?: string | null
+    url?: string | null
+    disponible: boolean
   }
 
   export type FotografoCreateOrConnectWithoutReservasInput = {
@@ -13515,6 +13490,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     telefono?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    disponible?: BoolFieldUpdateOperationsInput | boolean
     usuario?: UsuarioUpdateOneRequiredWithoutFotografoNestedInput
   }
 
@@ -13523,6 +13500,8 @@ export namespace Prisma {
     usuarioId?: StringFieldUpdateOperationsInput | string
     telefono?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    disponible?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ClienteUpsertWithoutReservasInput = {
@@ -13739,45 +13718,33 @@ export namespace Prisma {
   export type PhotoServiceCreateManyCategoryInput = {
     id?: string
     name: string
-    price: string
     img: string
     description: string
-    featured?: boolean | null
-    duration?: string | null
-    location?: string | null
+    activo: boolean
   }
 
   export type PhotoServiceUpdateWithoutCategoryInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    price?: StringFieldUpdateOperationsInput | string
     img?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    featured?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    duration?: NullableStringFieldUpdateOperationsInput | string | null
-    location?: NullableStringFieldUpdateOperationsInput | string | null
+    activo?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type PhotoServiceUncheckedUpdateWithoutCategoryInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    price?: StringFieldUpdateOperationsInput | string
     img?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    featured?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    duration?: NullableStringFieldUpdateOperationsInput | string | null
-    location?: NullableStringFieldUpdateOperationsInput | string | null
+    activo?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type PhotoServiceUncheckedUpdateManyWithoutCategoryInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    price?: StringFieldUpdateOperationsInput | string
     img?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    featured?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    duration?: NullableStringFieldUpdateOperationsInput | string | null
-    location?: NullableStringFieldUpdateOperationsInput | string | null
+    activo?: BoolFieldUpdateOperationsInput | boolean
   }
 
 

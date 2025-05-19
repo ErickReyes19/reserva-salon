@@ -13,11 +13,11 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
-import { TipoSeccion } from "../types";
+import { Category } from "../types";
 
-export const columns: ColumnDef<TipoSeccion>[] = [
+export const columns: ColumnDef<Category>[] = [
   {
-    accessorKey: "nombre",
+    accessorKey: "name",
     header: ({ column }) => (
       <Button
         variant="ghost"
@@ -25,19 +25,6 @@ export const columns: ColumnDef<TipoSeccion>[] = [
         className="text-center"
       >
         Puesto
-        <ArrowUpDown className="ml-2 h-4 w-4" />
-      </Button>
-    ),
-  },
-  {
-    accessorKey: "descripcion",
-    header: ({ column }) => (
-      <Button
-        variant="ghost"
-        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        className="text-center"
-      >
-        Descripción
         <ArrowUpDown className="ml-2 h-4 w-4" />
       </Button>
     ),
@@ -89,7 +76,7 @@ export const columns: ColumnDef<TipoSeccion>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Acciones</DropdownMenuLabel>
-            <Link href={`/tipo-seccion/${seccion.id}/edit`}>
+            <Link href={`/categorias/${seccion.id}/edit`}>
               <DropdownMenuItem>Editar</DropdownMenuItem>
             </Link>
           </DropdownMenuContent>

@@ -1,63 +1,94 @@
 "use server";
 
+import { prisma } from "@/lib/prisma";
+import { randomUUID } from "crypto";
+import { Category } from "./types";
 
-import ApiService from "@/lib/server";
-import { TipoSeccion } from "./types";
-// import { ClienteElementSchema } from "./schema";
-
-export async function getTipoSeccion() {
+export async function getCategorias(): Promise<Category[]> {
   try {
-    const response = await ApiService.get<TipoSeccion[]>("/TipoSeccion");
-    return response.data;
+    const categorias = await prisma.category.findMany();
+    return categorias.map((c) => ({
+      id: c.id,
+      name: c.name,
+      activo: c.activo,
+    }));
   } catch (error) {
-    console.error("Error al obtener los Tipo de sección:", error);
-    return [];
-  }
-}
-export async function getTipoSeccionActivas() {
-  try {
-    const response = await ApiService.get<TipoSeccion[]>("/TipoSeccion/activos");
-    return response.data;
-  } catch (error) {
-    console.error("Error al obtener los Tipo de sección activos:", error);
+    console.error("Error al obtener las categorías:", error);
     return [];
   }
 }
 
-
-export async function putTipoSeccion({ tipoSeccion }: { tipoSeccion: TipoSeccion }) {
-
+export async function getCategoriasActivas(): Promise<Category[]> {
   try {
-
-    const response = await ApiService.put(`/TipoSeccion/${tipoSeccion.id}`, tipoSeccion);
-
-    return response.data;
+    const categorias = await prisma.category.findMany({
+      where: { activo: true },
+    });
+    return categorias.map((c) => ({
+      id: c.id,
+      name: c.name,
+      activo: c.activo,
+    }));
   } catch (error) {
-    console.error("Error al actualizar el tipo de sección:", error);
+    console.error("Error al obtener categorías activas:", error);
     return [];
   }
 }
 
-export async function getTipoSeccionId(id: string) {
+export async function getCategoriaById(id: string): Promise<Category | null> {
   try {
-    const response = await ApiService.get<TipoSeccion>(`/TipoSeccion/${id}`);
-    return response.data;
+    const categoria = await prisma.category.findUnique({ where: { id } });
+
+    if (!categoria) return null;
+
+    return {
+      id: categoria.id,
+      name: categoria.name,
+      activo: categoria.activo,
+    };
   } catch (error) {
-    console.error("Error al obtener el tipo de sección:", error);
+    console.error("Error al obtener la categoría por ID:", error);
     return null;
   }
 }
 
-
-
-export async function postTipoSeccion({ tipoSeccion }: { tipoSeccion: TipoSeccion }) {
+export async function postCategoria({ categoria }: { categoria: Category }): Promise<Category | null> {
   try {
-    const response = await ApiService.post("/TipoSeccion", tipoSeccion);
+    const created = await prisma.category.create({
+      data: {
+        id: randomUUID(),
+        name: categoria.name,
+        activo: categoria.activo ?? true,
+      },
+    });
 
-    return response.data;
+    return {
+      id: created.id,
+      name: created.name,
+      activo: created.activo,
+    };
   } catch (error) {
-    console.error("Error al crear el tipo de sección:", error);
-    throw error;
+    console.error("Error al crear la categoría:", error);
+    return null;
   }
 }
 
+export async function putCategoria({ categoria }: { categoria: Category }): Promise<Category | null> {
+  try {
+    const updated = await prisma.category.update({
+      where: { id: categoria.id },
+      data: {
+        name: categoria.name,
+        activo: categoria.activo ?? true,
+      },
+    });
+
+    return {
+      id: updated.id,
+      name: updated.name,
+      activo: updated.activo,
+    };
+  } catch (error) {
+    console.error("Error al actualizar la categoría:", error);
+    return null;
+  }
+}

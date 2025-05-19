@@ -7,7 +7,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { Suspense } from 'react'
-import Login from "./components/formLogin"
+import Login from "../components/formLogin"
 
 export default function LoginPage() {
   return (

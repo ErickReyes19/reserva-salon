@@ -16,7 +16,7 @@ import {
   SidebarMenuSubItem,
   SidebarRail,
 } from "@/components/ui/sidebar";
-import { ChevronDown, ChevronUp, HouseIcon, LayersIcon, Settings, UserIcon } from 'lucide-react';
+import { ChevronDown, ChevronUp, Folder, LayersIcon, Settings, UserIcon } from 'lucide-react';
 import Link from "next/link";
 import ToggleThemeButton from "../components/button-theme";
 import { NavUser } from "./nav-user";
@@ -51,10 +51,10 @@ const mantenimientoItems = [
 const items = [
 
   {
-    title: "Apartamentos",
-    url: "/apartamentos",
-    icon: HouseIcon,
-    permiso: "ver_apartamentos",
+    title: "Categorias",
+    url: "/categorias",
+    icon: Folder,
+    permiso: "ver_categoria",
   },
 
 ];

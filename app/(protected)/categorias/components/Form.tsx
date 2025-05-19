@@ -25,22 +25,22 @@ import {
 import { useToast } from "@/hooks/use-toast";
 import { Loader2 } from "lucide-react";
 import { z } from "zod";
-import { postTipoSeccion, putTipoSeccion } from "../actions"; // Tu función para enviar datos
-import { TipoSeccionSchema } from "../schema"; // Tu esquema de Zod para tipo de sección
+import { postCategoria, putCategoria } from "../actions"; // Tu función para enviar datos
+import { CategorySchema } from "../schema";
 
-export function TipoSeccionFormulario({
+export function CategoriaFormulario({
   isUpdate,
   initialData,
 }: {
   isUpdate: boolean;
-  initialData: z.infer<typeof TipoSeccionSchema>;
+  initialData: z.infer<typeof CategorySchema>;
 }) {
   const { toast } = useToast();
   const router = useRouter();
 
   // Usamos Zod para resolver la validación
-  const form = useForm<z.infer<typeof TipoSeccionSchema>>({
-    resolver: zodResolver(TipoSeccionSchema),
+  const form = useForm<z.infer<typeof CategorySchema>>({
+    resolver: zodResolver(CategorySchema),
     defaultValues: initialData,
   });
 
@@ -50,28 +50,28 @@ export function TipoSeccionFormulario({
   // //forma de saber si un form esta valido o no
   // const isValid = formState.errors;
   // console.log("🚀 ~ isValid:", isValid)
-  async function onSubmit(data: z.infer<typeof TipoSeccionSchema>) {
-    const tipoSeccionData = {
-      tipoSeccion: data,
+  async function onSubmit(data: z.infer<typeof CategorySchema>) {
+    const categoriaData = {
+      categoria: data,
     };
 
 
     try {
       if (isUpdate) {
-        await putTipoSeccion(tipoSeccionData); // Llamada a la API para actualizar
+        await putCategoria(categoriaData); // Llamada a la API para actualizar
       } else {
-        await postTipoSeccion(tipoSeccionData); // Llamada a la API para crear un nuevo tipo de sección
+        await postCategoria(categoriaData); // Llamada a la API para crear un nuevo tipo de sección
       }
 
       // Notificación de éxito
       toast({
         title: isUpdate ? "Actualización Exitosa" : "Creación Exitosa",
         description: isUpdate
-          ? "El tipo de sección ha sido actualizado."
-          : "El tipo de sección ha sido creado.",
+          ? "La categoría ha sido actualizada."
+          : "La categoría ha sido creada.",
       });
 
-      router.push("/tipo-seccion"); // Redirige después de la acción
+      router.push("/categorias"); // Redirige después de la acción
       router.refresh();
     } catch (error) {
       console.error("Error en la operación:", error);
@@ -94,36 +94,17 @@ export function TipoSeccionFormulario({
           {/* Nombre */}
           <FormField
             control={form.control}
-            name="nombre"
+            name="name"
             render={({ field }) => (
               <FormItem className="col-span-1 sm:col-span-1">
                 {" "}
                 {/* Asignamos el ancho adecuado */}
                 <FormLabel>Nombre</FormLabel>
                 <FormControl>
-                  <Input placeholder="Ingresa tu nombre" {...field} />
+                  <Input placeholder="Ingresa el nombre" {...field} />
                 </FormControl>
                 <FormDescription>
-                  Por favor ingresa tu nombre completo.
-                </FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          {/* Nombre */}
-          <FormField
-            control={form.control}
-            name="descripcion"
-            render={({ field }) => (
-              <FormItem className="col-span-1 sm:col-span-1">
-                {" "}
-                {/* Asignamos el ancho adecuado */}
-                <FormLabel>Descripción</FormLabel>
-                <FormControl>
-                  <Input placeholder="Ingresa tu nombre" {...field} />
-                </FormControl>
-                <FormDescription>
-                  Por favor ingresa la descripción de tipo de sección.
+                  Por favor ingresa el nombre de la categoría.
                 </FormDescription>
                 <FormMessage />
               </FormItem>

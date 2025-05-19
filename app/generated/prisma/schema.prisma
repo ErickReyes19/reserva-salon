@@ -61,12 +61,14 @@ model Usuario {
 }
 
 model Fotografo {
-  id        String    @id @default(uuid())
-  usuarioId String    @unique
-  telefono  String?
-  bio       String?
-  usuario   Usuario   @relation("FotografoUsuario", fields: [usuarioId], references: [id])
-  reservas  Reserva[] @relation("ReservasFotografo")
+  id         String    @id @default(uuid())
+  usuarioId  String    @unique
+  telefono   String?
+  bio        String?
+  url        String?
+  disponible Boolean
+  usuario    Usuario   @relation("FotografoUsuario", fields: [usuarioId], references: [id])
+  reservas   Reserva[] @relation("ReservasFotografo")
 }
 
 model Cliente {
@@ -82,21 +84,18 @@ model Cliente {
 model Category {
   id       String         @id @default(uuid())
   name     String         @unique
+  activo   Boolean
   services PhotoService[]
 }
 
 model PhotoService {
   id          String   @id @default(uuid())
   name        String   @unique
-  price       String
   img         String
   description String
-  featured    Boolean?
-  duration    String? // opcional, proveniente de "details.duration"
-  location    String? // opcional, proveniente de "details.location"
-
-  categoryId String
-  category   Category @relation(fields: [categoryId], references: [id])
+  activo      Boolean
+  categoryId  String
+  category    Category @relation(fields: [categoryId], references: [id])
 }
 
 model Reserva {

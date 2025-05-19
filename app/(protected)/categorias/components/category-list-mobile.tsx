@@ -6,32 +6,32 @@ import { Input } from "@/components/ui/input";
 import { Pencil, Plus, Search } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
-import { TipoSeccion } from "../types";
+import { Category } from "../types";
 
-interface TipoSeccionListProps {
-  tipoSeccion: TipoSeccion[];
+interface CategoriaListProps {
+  categorias: Category[];
 }
 
-export default function TipoSeccionListMobile({ tipoSeccion: tipoSeccion }: TipoSeccionListProps) {
+export default function CategoriaListMobile({ categorias }: CategoriaListProps) {
   const [searchTerm, setSearchTerm] = useState("");
 
-  const filteredTipoSecciones = tipoSeccion.filter(
-    (tipoSeccion) =>
-      tipoSeccion.nombre.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredCategorias = categorias.filter((categoria) =>
+    categoria.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
     <div className="space-y-4">
-      <Link href={`/tipo-seccion/create`} className="w-full md:w-auto">
+      <Link href={`/categorias/create`} className="w-full md:w-auto">
         <Button className="w-full md:w-auto flex items-center gap-2">
-          Nueva tipo de seccion
+          Nueva categoría
           <Plus />
         </Button>
       </Link>
+
       <div className="relative">
         <Input
           type="text"
-          placeholder="Buscar tipo de sección..."
+          placeholder="Buscar categoría..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           className="pl-10"
@@ -39,24 +39,21 @@ export default function TipoSeccionListMobile({ tipoSeccion: tipoSeccion }: Tipo
         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
       </div>
 
-      {filteredTipoSecciones.map((tipoSeccion) => (
+      {filteredCategorias.map((categoria) => (
         <div
-          key={tipoSeccion.id}
+          key={categoria.id}
           className="flex items-center justify-between p-4 rounded-lg shadow border"
         >
           <div className="flex-1 min-w-0">
             <h3 className="text-base font-semibold truncate">
-              {tipoSeccion.nombre}
+              {categoria.name}
             </h3>
-            <p className="text-sm text-gray-500 truncate">
-              {tipoSeccion.descripcion}
-            </p>
-            <Badge variant={tipoSeccion.activo ? "default" : "destructive"}>
-              {tipoSeccion.activo ? "Activo" : "Inactivo"}
+            <Badge variant={categoria.activo ? "default" : "destructive"}>
+              {categoria.activo ? "Activo" : "Inactivo"}
             </Badge>
           </div>
           <div className="flex items-center ml-4">
-            <Link href={`/tipo-seccion/${tipoSeccion.id}/edit`}>
+            <Link href={`/categorias/${categoria.id}/edit`}>
               <Button variant="ghost" size="icon" className="h-8 w-8">
                 <Pencil className="h-4 w-4" />
               </Button>
@@ -64,10 +61,9 @@ export default function TipoSeccionListMobile({ tipoSeccion: tipoSeccion }: Tipo
           </div>
         </div>
       ))}
-      {filteredTipoSecciones.length === 0 && (
-        <p className="text-center text-gray-500">
-          No se encontraron tipo de sección.
-        </p>
+
+      {filteredCategorias.length === 0 && (
+        <p className="text-center text-gray-500">No se encontraron categorías.</p>
       )}
     </div>
   );
