@@ -44,6 +44,16 @@ export type Fotografo = $Result.DefaultSelection<Prisma.$FotografoPayload>
  */
 export type Cliente = $Result.DefaultSelection<Prisma.$ClientePayload>
 /**
+ * Model Category
+ * 
+ */
+export type Category = $Result.DefaultSelection<Prisma.$CategoryPayload>
+/**
+ * Model PhotoService
+ * 
+ */
+export type PhotoService = $Result.DefaultSelection<Prisma.$PhotoServicePayload>
+/**
  * Model Reserva
  * 
  */
@@ -233,6 +243,26 @@ export class PrismaClient<
     * ```
     */
   get cliente(): Prisma.ClienteDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.category`: Exposes CRUD operations for the **Category** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Categories
+    * const categories = await prisma.category.findMany()
+    * ```
+    */
+  get category(): Prisma.CategoryDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.photoService`: Exposes CRUD operations for the **PhotoService** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more PhotoServices
+    * const photoServices = await prisma.photoService.findMany()
+    * ```
+    */
+  get photoService(): Prisma.PhotoServiceDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.reserva`: Exposes CRUD operations for the **Reserva** model.
@@ -689,6 +719,8 @@ export namespace Prisma {
     Usuario: 'Usuario',
     Fotografo: 'Fotografo',
     Cliente: 'Cliente',
+    Category: 'Category',
+    PhotoService: 'PhotoService',
     Reserva: 'Reserva'
   };
 
@@ -708,7 +740,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "rol" | "permiso" | "rolPermiso" | "usuario" | "fotografo" | "cliente" | "reserva"
+      modelProps: "rol" | "permiso" | "rolPermiso" | "usuario" | "fotografo" | "cliente" | "category" | "photoService" | "reserva"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1108,6 +1140,138 @@ export namespace Prisma {
           }
         }
       }
+      Category: {
+        payload: Prisma.$CategoryPayload<ExtArgs>
+        fields: Prisma.CategoryFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CategoryFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CategoryPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CategoryFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CategoryPayload>
+          }
+          findFirst: {
+            args: Prisma.CategoryFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CategoryPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CategoryFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CategoryPayload>
+          }
+          findMany: {
+            args: Prisma.CategoryFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CategoryPayload>[]
+          }
+          create: {
+            args: Prisma.CategoryCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CategoryPayload>
+          }
+          createMany: {
+            args: Prisma.CategoryCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.CategoryDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CategoryPayload>
+          }
+          update: {
+            args: Prisma.CategoryUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CategoryPayload>
+          }
+          deleteMany: {
+            args: Prisma.CategoryDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CategoryUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.CategoryUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CategoryPayload>
+          }
+          aggregate: {
+            args: Prisma.CategoryAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCategory>
+          }
+          groupBy: {
+            args: Prisma.CategoryGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CategoryGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CategoryCountArgs<ExtArgs>
+            result: $Utils.Optional<CategoryCountAggregateOutputType> | number
+          }
+        }
+      }
+      PhotoService: {
+        payload: Prisma.$PhotoServicePayload<ExtArgs>
+        fields: Prisma.PhotoServiceFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PhotoServiceFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhotoServicePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PhotoServiceFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhotoServicePayload>
+          }
+          findFirst: {
+            args: Prisma.PhotoServiceFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhotoServicePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PhotoServiceFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhotoServicePayload>
+          }
+          findMany: {
+            args: Prisma.PhotoServiceFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhotoServicePayload>[]
+          }
+          create: {
+            args: Prisma.PhotoServiceCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhotoServicePayload>
+          }
+          createMany: {
+            args: Prisma.PhotoServiceCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.PhotoServiceDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhotoServicePayload>
+          }
+          update: {
+            args: Prisma.PhotoServiceUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhotoServicePayload>
+          }
+          deleteMany: {
+            args: Prisma.PhotoServiceDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PhotoServiceUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.PhotoServiceUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhotoServicePayload>
+          }
+          aggregate: {
+            args: Prisma.PhotoServiceAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePhotoService>
+          }
+          groupBy: {
+            args: Prisma.PhotoServiceGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PhotoServiceGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PhotoServiceCountArgs<ExtArgs>
+            result: $Utils.Optional<PhotoServiceCountAggregateOutputType> | number
+          }
+        }
+      }
       Reserva: {
         payload: Prisma.$ReservaPayload<ExtArgs>
         fields: Prisma.ReservaFieldRefs
@@ -1264,6 +1428,8 @@ export namespace Prisma {
     usuario?: UsuarioOmit
     fotografo?: FotografoOmit
     cliente?: ClienteOmit
+    category?: CategoryOmit
+    photoService?: PhotoServiceOmit
     reserva?: ReservaOmit
   }
 
@@ -1484,6 +1650,37 @@ export namespace Prisma {
    */
   export type ClienteCountOutputTypeCountReservasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ReservaWhereInput
+  }
+
+
+  /**
+   * Count Type CategoryCountOutputType
+   */
+
+  export type CategoryCountOutputType = {
+    services: number
+  }
+
+  export type CategoryCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    services?: boolean | CategoryCountOutputTypeCountServicesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * CategoryCountOutputType without action
+   */
+  export type CategoryCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CategoryCountOutputType
+     */
+    select?: CategoryCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * CategoryCountOutputType without action
+   */
+  export type CategoryCountOutputTypeCountServicesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PhotoServiceWhereInput
   }
 
 
@@ -7284,6 +7481,1901 @@ export namespace Prisma {
 
 
   /**
+   * Model Category
+   */
+
+  export type AggregateCategory = {
+    _count: CategoryCountAggregateOutputType | null
+    _min: CategoryMinAggregateOutputType | null
+    _max: CategoryMaxAggregateOutputType | null
+  }
+
+  export type CategoryMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+  }
+
+  export type CategoryMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+  }
+
+  export type CategoryCountAggregateOutputType = {
+    id: number
+    name: number
+    _all: number
+  }
+
+
+  export type CategoryMinAggregateInputType = {
+    id?: true
+    name?: true
+  }
+
+  export type CategoryMaxAggregateInputType = {
+    id?: true
+    name?: true
+  }
+
+  export type CategoryCountAggregateInputType = {
+    id?: true
+    name?: true
+    _all?: true
+  }
+
+  export type CategoryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Category to aggregate.
+     */
+    where?: CategoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Categories to fetch.
+     */
+    orderBy?: CategoryOrderByWithRelationInput | CategoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CategoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Categories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Categories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Categories
+    **/
+    _count?: true | CategoryCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CategoryMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CategoryMaxAggregateInputType
+  }
+
+  export type GetCategoryAggregateType<T extends CategoryAggregateArgs> = {
+        [P in keyof T & keyof AggregateCategory]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCategory[P]>
+      : GetScalarType<T[P], AggregateCategory[P]>
+  }
+
+
+
+
+  export type CategoryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CategoryWhereInput
+    orderBy?: CategoryOrderByWithAggregationInput | CategoryOrderByWithAggregationInput[]
+    by: CategoryScalarFieldEnum[] | CategoryScalarFieldEnum
+    having?: CategoryScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CategoryCountAggregateInputType | true
+    _min?: CategoryMinAggregateInputType
+    _max?: CategoryMaxAggregateInputType
+  }
+
+  export type CategoryGroupByOutputType = {
+    id: string
+    name: string
+    _count: CategoryCountAggregateOutputType | null
+    _min: CategoryMinAggregateOutputType | null
+    _max: CategoryMaxAggregateOutputType | null
+  }
+
+  type GetCategoryGroupByPayload<T extends CategoryGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CategoryGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CategoryGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CategoryGroupByOutputType[P]>
+            : GetScalarType<T[P], CategoryGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CategorySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    services?: boolean | Category$servicesArgs<ExtArgs>
+    _count?: boolean | CategoryCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["category"]>
+
+
+
+  export type CategorySelectScalar = {
+    id?: boolean
+    name?: boolean
+  }
+
+  export type CategoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name", ExtArgs["result"]["category"]>
+  export type CategoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    services?: boolean | Category$servicesArgs<ExtArgs>
+    _count?: boolean | CategoryCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $CategoryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Category"
+    objects: {
+      services: Prisma.$PhotoServicePayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+    }, ExtArgs["result"]["category"]>
+    composites: {}
+  }
+
+  type CategoryGetPayload<S extends boolean | null | undefined | CategoryDefaultArgs> = $Result.GetResult<Prisma.$CategoryPayload, S>
+
+  type CategoryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CategoryFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CategoryCountAggregateInputType | true
+    }
+
+  export interface CategoryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Category'], meta: { name: 'Category' } }
+    /**
+     * Find zero or one Category that matches the filter.
+     * @param {CategoryFindUniqueArgs} args - Arguments to find a Category
+     * @example
+     * // Get one Category
+     * const category = await prisma.category.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CategoryFindUniqueArgs>(args: SelectSubset<T, CategoryFindUniqueArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Category that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CategoryFindUniqueOrThrowArgs} args - Arguments to find a Category
+     * @example
+     * // Get one Category
+     * const category = await prisma.category.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CategoryFindUniqueOrThrowArgs>(args: SelectSubset<T, CategoryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Category that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CategoryFindFirstArgs} args - Arguments to find a Category
+     * @example
+     * // Get one Category
+     * const category = await prisma.category.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CategoryFindFirstArgs>(args?: SelectSubset<T, CategoryFindFirstArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Category that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CategoryFindFirstOrThrowArgs} args - Arguments to find a Category
+     * @example
+     * // Get one Category
+     * const category = await prisma.category.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CategoryFindFirstOrThrowArgs>(args?: SelectSubset<T, CategoryFindFirstOrThrowArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Categories that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CategoryFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Categories
+     * const categories = await prisma.category.findMany()
+     * 
+     * // Get first 10 Categories
+     * const categories = await prisma.category.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const categoryWithIdOnly = await prisma.category.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CategoryFindManyArgs>(args?: SelectSubset<T, CategoryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Category.
+     * @param {CategoryCreateArgs} args - Arguments to create a Category.
+     * @example
+     * // Create one Category
+     * const Category = await prisma.category.create({
+     *   data: {
+     *     // ... data to create a Category
+     *   }
+     * })
+     * 
+     */
+    create<T extends CategoryCreateArgs>(args: SelectSubset<T, CategoryCreateArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Categories.
+     * @param {CategoryCreateManyArgs} args - Arguments to create many Categories.
+     * @example
+     * // Create many Categories
+     * const category = await prisma.category.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CategoryCreateManyArgs>(args?: SelectSubset<T, CategoryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Category.
+     * @param {CategoryDeleteArgs} args - Arguments to delete one Category.
+     * @example
+     * // Delete one Category
+     * const Category = await prisma.category.delete({
+     *   where: {
+     *     // ... filter to delete one Category
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CategoryDeleteArgs>(args: SelectSubset<T, CategoryDeleteArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Category.
+     * @param {CategoryUpdateArgs} args - Arguments to update one Category.
+     * @example
+     * // Update one Category
+     * const category = await prisma.category.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CategoryUpdateArgs>(args: SelectSubset<T, CategoryUpdateArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Categories.
+     * @param {CategoryDeleteManyArgs} args - Arguments to filter Categories to delete.
+     * @example
+     * // Delete a few Categories
+     * const { count } = await prisma.category.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CategoryDeleteManyArgs>(args?: SelectSubset<T, CategoryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Categories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CategoryUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Categories
+     * const category = await prisma.category.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CategoryUpdateManyArgs>(args: SelectSubset<T, CategoryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Category.
+     * @param {CategoryUpsertArgs} args - Arguments to update or create a Category.
+     * @example
+     * // Update or create a Category
+     * const category = await prisma.category.upsert({
+     *   create: {
+     *     // ... data to create a Category
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Category we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CategoryUpsertArgs>(args: SelectSubset<T, CategoryUpsertArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Categories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CategoryCountArgs} args - Arguments to filter Categories to count.
+     * @example
+     * // Count the number of Categories
+     * const count = await prisma.category.count({
+     *   where: {
+     *     // ... the filter for the Categories we want to count
+     *   }
+     * })
+    **/
+    count<T extends CategoryCountArgs>(
+      args?: Subset<T, CategoryCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CategoryCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Category.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CategoryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CategoryAggregateArgs>(args: Subset<T, CategoryAggregateArgs>): Prisma.PrismaPromise<GetCategoryAggregateType<T>>
+
+    /**
+     * Group by Category.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CategoryGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CategoryGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CategoryGroupByArgs['orderBy'] }
+        : { orderBy?: CategoryGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CategoryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCategoryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Category model
+   */
+  readonly fields: CategoryFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Category.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CategoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    services<T extends Category$servicesArgs<ExtArgs> = {}>(args?: Subset<T, Category$servicesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PhotoServicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Category model
+   */
+  interface CategoryFieldRefs {
+    readonly id: FieldRef<"Category", 'String'>
+    readonly name: FieldRef<"Category", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Category findUnique
+   */
+  export type CategoryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+    /**
+     * Filter, which Category to fetch.
+     */
+    where: CategoryWhereUniqueInput
+  }
+
+  /**
+   * Category findUniqueOrThrow
+   */
+  export type CategoryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+    /**
+     * Filter, which Category to fetch.
+     */
+    where: CategoryWhereUniqueInput
+  }
+
+  /**
+   * Category findFirst
+   */
+  export type CategoryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+    /**
+     * Filter, which Category to fetch.
+     */
+    where?: CategoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Categories to fetch.
+     */
+    orderBy?: CategoryOrderByWithRelationInput | CategoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Categories.
+     */
+    cursor?: CategoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Categories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Categories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Categories.
+     */
+    distinct?: CategoryScalarFieldEnum | CategoryScalarFieldEnum[]
+  }
+
+  /**
+   * Category findFirstOrThrow
+   */
+  export type CategoryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+    /**
+     * Filter, which Category to fetch.
+     */
+    where?: CategoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Categories to fetch.
+     */
+    orderBy?: CategoryOrderByWithRelationInput | CategoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Categories.
+     */
+    cursor?: CategoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Categories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Categories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Categories.
+     */
+    distinct?: CategoryScalarFieldEnum | CategoryScalarFieldEnum[]
+  }
+
+  /**
+   * Category findMany
+   */
+  export type CategoryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+    /**
+     * Filter, which Categories to fetch.
+     */
+    where?: CategoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Categories to fetch.
+     */
+    orderBy?: CategoryOrderByWithRelationInput | CategoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Categories.
+     */
+    cursor?: CategoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Categories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Categories.
+     */
+    skip?: number
+    distinct?: CategoryScalarFieldEnum | CategoryScalarFieldEnum[]
+  }
+
+  /**
+   * Category create
+   */
+  export type CategoryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Category.
+     */
+    data: XOR<CategoryCreateInput, CategoryUncheckedCreateInput>
+  }
+
+  /**
+   * Category createMany
+   */
+  export type CategoryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Categories.
+     */
+    data: CategoryCreateManyInput | CategoryCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Category update
+   */
+  export type CategoryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Category.
+     */
+    data: XOR<CategoryUpdateInput, CategoryUncheckedUpdateInput>
+    /**
+     * Choose, which Category to update.
+     */
+    where: CategoryWhereUniqueInput
+  }
+
+  /**
+   * Category updateMany
+   */
+  export type CategoryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Categories.
+     */
+    data: XOR<CategoryUpdateManyMutationInput, CategoryUncheckedUpdateManyInput>
+    /**
+     * Filter which Categories to update
+     */
+    where?: CategoryWhereInput
+    /**
+     * Limit how many Categories to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Category upsert
+   */
+  export type CategoryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Category to update in case it exists.
+     */
+    where: CategoryWhereUniqueInput
+    /**
+     * In case the Category found by the `where` argument doesn't exist, create a new Category with this data.
+     */
+    create: XOR<CategoryCreateInput, CategoryUncheckedCreateInput>
+    /**
+     * In case the Category was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CategoryUpdateInput, CategoryUncheckedUpdateInput>
+  }
+
+  /**
+   * Category delete
+   */
+  export type CategoryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+    /**
+     * Filter which Category to delete.
+     */
+    where: CategoryWhereUniqueInput
+  }
+
+  /**
+   * Category deleteMany
+   */
+  export type CategoryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Categories to delete
+     */
+    where?: CategoryWhereInput
+    /**
+     * Limit how many Categories to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Category.services
+   */
+  export type Category$servicesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhotoService
+     */
+    select?: PhotoServiceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhotoService
+     */
+    omit?: PhotoServiceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhotoServiceInclude<ExtArgs> | null
+    where?: PhotoServiceWhereInput
+    orderBy?: PhotoServiceOrderByWithRelationInput | PhotoServiceOrderByWithRelationInput[]
+    cursor?: PhotoServiceWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PhotoServiceScalarFieldEnum | PhotoServiceScalarFieldEnum[]
+  }
+
+  /**
+   * Category without action
+   */
+  export type CategoryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model PhotoService
+   */
+
+  export type AggregatePhotoService = {
+    _count: PhotoServiceCountAggregateOutputType | null
+    _min: PhotoServiceMinAggregateOutputType | null
+    _max: PhotoServiceMaxAggregateOutputType | null
+  }
+
+  export type PhotoServiceMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    price: string | null
+    img: string | null
+    description: string | null
+    featured: boolean | null
+    duration: string | null
+    location: string | null
+    categoryId: string | null
+  }
+
+  export type PhotoServiceMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    price: string | null
+    img: string | null
+    description: string | null
+    featured: boolean | null
+    duration: string | null
+    location: string | null
+    categoryId: string | null
+  }
+
+  export type PhotoServiceCountAggregateOutputType = {
+    id: number
+    name: number
+    price: number
+    img: number
+    description: number
+    featured: number
+    duration: number
+    location: number
+    categoryId: number
+    _all: number
+  }
+
+
+  export type PhotoServiceMinAggregateInputType = {
+    id?: true
+    name?: true
+    price?: true
+    img?: true
+    description?: true
+    featured?: true
+    duration?: true
+    location?: true
+    categoryId?: true
+  }
+
+  export type PhotoServiceMaxAggregateInputType = {
+    id?: true
+    name?: true
+    price?: true
+    img?: true
+    description?: true
+    featured?: true
+    duration?: true
+    location?: true
+    categoryId?: true
+  }
+
+  export type PhotoServiceCountAggregateInputType = {
+    id?: true
+    name?: true
+    price?: true
+    img?: true
+    description?: true
+    featured?: true
+    duration?: true
+    location?: true
+    categoryId?: true
+    _all?: true
+  }
+
+  export type PhotoServiceAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PhotoService to aggregate.
+     */
+    where?: PhotoServiceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PhotoServices to fetch.
+     */
+    orderBy?: PhotoServiceOrderByWithRelationInput | PhotoServiceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PhotoServiceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PhotoServices from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PhotoServices.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned PhotoServices
+    **/
+    _count?: true | PhotoServiceCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PhotoServiceMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PhotoServiceMaxAggregateInputType
+  }
+
+  export type GetPhotoServiceAggregateType<T extends PhotoServiceAggregateArgs> = {
+        [P in keyof T & keyof AggregatePhotoService]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePhotoService[P]>
+      : GetScalarType<T[P], AggregatePhotoService[P]>
+  }
+
+
+
+
+  export type PhotoServiceGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PhotoServiceWhereInput
+    orderBy?: PhotoServiceOrderByWithAggregationInput | PhotoServiceOrderByWithAggregationInput[]
+    by: PhotoServiceScalarFieldEnum[] | PhotoServiceScalarFieldEnum
+    having?: PhotoServiceScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PhotoServiceCountAggregateInputType | true
+    _min?: PhotoServiceMinAggregateInputType
+    _max?: PhotoServiceMaxAggregateInputType
+  }
+
+  export type PhotoServiceGroupByOutputType = {
+    id: string
+    name: string
+    price: string
+    img: string
+    description: string
+    featured: boolean | null
+    duration: string | null
+    location: string | null
+    categoryId: string
+    _count: PhotoServiceCountAggregateOutputType | null
+    _min: PhotoServiceMinAggregateOutputType | null
+    _max: PhotoServiceMaxAggregateOutputType | null
+  }
+
+  type GetPhotoServiceGroupByPayload<T extends PhotoServiceGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PhotoServiceGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PhotoServiceGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PhotoServiceGroupByOutputType[P]>
+            : GetScalarType<T[P], PhotoServiceGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PhotoServiceSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    price?: boolean
+    img?: boolean
+    description?: boolean
+    featured?: boolean
+    duration?: boolean
+    location?: boolean
+    categoryId?: boolean
+    category?: boolean | CategoryDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["photoService"]>
+
+
+
+  export type PhotoServiceSelectScalar = {
+    id?: boolean
+    name?: boolean
+    price?: boolean
+    img?: boolean
+    description?: boolean
+    featured?: boolean
+    duration?: boolean
+    location?: boolean
+    categoryId?: boolean
+  }
+
+  export type PhotoServiceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "price" | "img" | "description" | "featured" | "duration" | "location" | "categoryId", ExtArgs["result"]["photoService"]>
+  export type PhotoServiceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    category?: boolean | CategoryDefaultArgs<ExtArgs>
+  }
+
+  export type $PhotoServicePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "PhotoService"
+    objects: {
+      category: Prisma.$CategoryPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      price: string
+      img: string
+      description: string
+      featured: boolean | null
+      duration: string | null
+      location: string | null
+      categoryId: string
+    }, ExtArgs["result"]["photoService"]>
+    composites: {}
+  }
+
+  type PhotoServiceGetPayload<S extends boolean | null | undefined | PhotoServiceDefaultArgs> = $Result.GetResult<Prisma.$PhotoServicePayload, S>
+
+  type PhotoServiceCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<PhotoServiceFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: PhotoServiceCountAggregateInputType | true
+    }
+
+  export interface PhotoServiceDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PhotoService'], meta: { name: 'PhotoService' } }
+    /**
+     * Find zero or one PhotoService that matches the filter.
+     * @param {PhotoServiceFindUniqueArgs} args - Arguments to find a PhotoService
+     * @example
+     * // Get one PhotoService
+     * const photoService = await prisma.photoService.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends PhotoServiceFindUniqueArgs>(args: SelectSubset<T, PhotoServiceFindUniqueArgs<ExtArgs>>): Prisma__PhotoServiceClient<$Result.GetResult<Prisma.$PhotoServicePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one PhotoService that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {PhotoServiceFindUniqueOrThrowArgs} args - Arguments to find a PhotoService
+     * @example
+     * // Get one PhotoService
+     * const photoService = await prisma.photoService.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends PhotoServiceFindUniqueOrThrowArgs>(args: SelectSubset<T, PhotoServiceFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PhotoServiceClient<$Result.GetResult<Prisma.$PhotoServicePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PhotoService that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PhotoServiceFindFirstArgs} args - Arguments to find a PhotoService
+     * @example
+     * // Get one PhotoService
+     * const photoService = await prisma.photoService.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends PhotoServiceFindFirstArgs>(args?: SelectSubset<T, PhotoServiceFindFirstArgs<ExtArgs>>): Prisma__PhotoServiceClient<$Result.GetResult<Prisma.$PhotoServicePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PhotoService that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PhotoServiceFindFirstOrThrowArgs} args - Arguments to find a PhotoService
+     * @example
+     * // Get one PhotoService
+     * const photoService = await prisma.photoService.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends PhotoServiceFindFirstOrThrowArgs>(args?: SelectSubset<T, PhotoServiceFindFirstOrThrowArgs<ExtArgs>>): Prisma__PhotoServiceClient<$Result.GetResult<Prisma.$PhotoServicePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more PhotoServices that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PhotoServiceFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all PhotoServices
+     * const photoServices = await prisma.photoService.findMany()
+     * 
+     * // Get first 10 PhotoServices
+     * const photoServices = await prisma.photoService.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const photoServiceWithIdOnly = await prisma.photoService.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends PhotoServiceFindManyArgs>(args?: SelectSubset<T, PhotoServiceFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PhotoServicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a PhotoService.
+     * @param {PhotoServiceCreateArgs} args - Arguments to create a PhotoService.
+     * @example
+     * // Create one PhotoService
+     * const PhotoService = await prisma.photoService.create({
+     *   data: {
+     *     // ... data to create a PhotoService
+     *   }
+     * })
+     * 
+     */
+    create<T extends PhotoServiceCreateArgs>(args: SelectSubset<T, PhotoServiceCreateArgs<ExtArgs>>): Prisma__PhotoServiceClient<$Result.GetResult<Prisma.$PhotoServicePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many PhotoServices.
+     * @param {PhotoServiceCreateManyArgs} args - Arguments to create many PhotoServices.
+     * @example
+     * // Create many PhotoServices
+     * const photoService = await prisma.photoService.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends PhotoServiceCreateManyArgs>(args?: SelectSubset<T, PhotoServiceCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a PhotoService.
+     * @param {PhotoServiceDeleteArgs} args - Arguments to delete one PhotoService.
+     * @example
+     * // Delete one PhotoService
+     * const PhotoService = await prisma.photoService.delete({
+     *   where: {
+     *     // ... filter to delete one PhotoService
+     *   }
+     * })
+     * 
+     */
+    delete<T extends PhotoServiceDeleteArgs>(args: SelectSubset<T, PhotoServiceDeleteArgs<ExtArgs>>): Prisma__PhotoServiceClient<$Result.GetResult<Prisma.$PhotoServicePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one PhotoService.
+     * @param {PhotoServiceUpdateArgs} args - Arguments to update one PhotoService.
+     * @example
+     * // Update one PhotoService
+     * const photoService = await prisma.photoService.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends PhotoServiceUpdateArgs>(args: SelectSubset<T, PhotoServiceUpdateArgs<ExtArgs>>): Prisma__PhotoServiceClient<$Result.GetResult<Prisma.$PhotoServicePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more PhotoServices.
+     * @param {PhotoServiceDeleteManyArgs} args - Arguments to filter PhotoServices to delete.
+     * @example
+     * // Delete a few PhotoServices
+     * const { count } = await prisma.photoService.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends PhotoServiceDeleteManyArgs>(args?: SelectSubset<T, PhotoServiceDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PhotoServices.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PhotoServiceUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many PhotoServices
+     * const photoService = await prisma.photoService.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends PhotoServiceUpdateManyArgs>(args: SelectSubset<T, PhotoServiceUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one PhotoService.
+     * @param {PhotoServiceUpsertArgs} args - Arguments to update or create a PhotoService.
+     * @example
+     * // Update or create a PhotoService
+     * const photoService = await prisma.photoService.upsert({
+     *   create: {
+     *     // ... data to create a PhotoService
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the PhotoService we want to update
+     *   }
+     * })
+     */
+    upsert<T extends PhotoServiceUpsertArgs>(args: SelectSubset<T, PhotoServiceUpsertArgs<ExtArgs>>): Prisma__PhotoServiceClient<$Result.GetResult<Prisma.$PhotoServicePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of PhotoServices.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PhotoServiceCountArgs} args - Arguments to filter PhotoServices to count.
+     * @example
+     * // Count the number of PhotoServices
+     * const count = await prisma.photoService.count({
+     *   where: {
+     *     // ... the filter for the PhotoServices we want to count
+     *   }
+     * })
+    **/
+    count<T extends PhotoServiceCountArgs>(
+      args?: Subset<T, PhotoServiceCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PhotoServiceCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a PhotoService.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PhotoServiceAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PhotoServiceAggregateArgs>(args: Subset<T, PhotoServiceAggregateArgs>): Prisma.PrismaPromise<GetPhotoServiceAggregateType<T>>
+
+    /**
+     * Group by PhotoService.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PhotoServiceGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PhotoServiceGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PhotoServiceGroupByArgs['orderBy'] }
+        : { orderBy?: PhotoServiceGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PhotoServiceGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPhotoServiceGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the PhotoService model
+   */
+  readonly fields: PhotoServiceFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for PhotoService.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PhotoServiceClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    category<T extends CategoryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CategoryDefaultArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the PhotoService model
+   */
+  interface PhotoServiceFieldRefs {
+    readonly id: FieldRef<"PhotoService", 'String'>
+    readonly name: FieldRef<"PhotoService", 'String'>
+    readonly price: FieldRef<"PhotoService", 'String'>
+    readonly img: FieldRef<"PhotoService", 'String'>
+    readonly description: FieldRef<"PhotoService", 'String'>
+    readonly featured: FieldRef<"PhotoService", 'Boolean'>
+    readonly duration: FieldRef<"PhotoService", 'String'>
+    readonly location: FieldRef<"PhotoService", 'String'>
+    readonly categoryId: FieldRef<"PhotoService", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * PhotoService findUnique
+   */
+  export type PhotoServiceFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhotoService
+     */
+    select?: PhotoServiceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhotoService
+     */
+    omit?: PhotoServiceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhotoServiceInclude<ExtArgs> | null
+    /**
+     * Filter, which PhotoService to fetch.
+     */
+    where: PhotoServiceWhereUniqueInput
+  }
+
+  /**
+   * PhotoService findUniqueOrThrow
+   */
+  export type PhotoServiceFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhotoService
+     */
+    select?: PhotoServiceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhotoService
+     */
+    omit?: PhotoServiceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhotoServiceInclude<ExtArgs> | null
+    /**
+     * Filter, which PhotoService to fetch.
+     */
+    where: PhotoServiceWhereUniqueInput
+  }
+
+  /**
+   * PhotoService findFirst
+   */
+  export type PhotoServiceFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhotoService
+     */
+    select?: PhotoServiceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhotoService
+     */
+    omit?: PhotoServiceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhotoServiceInclude<ExtArgs> | null
+    /**
+     * Filter, which PhotoService to fetch.
+     */
+    where?: PhotoServiceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PhotoServices to fetch.
+     */
+    orderBy?: PhotoServiceOrderByWithRelationInput | PhotoServiceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PhotoServices.
+     */
+    cursor?: PhotoServiceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PhotoServices from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PhotoServices.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PhotoServices.
+     */
+    distinct?: PhotoServiceScalarFieldEnum | PhotoServiceScalarFieldEnum[]
+  }
+
+  /**
+   * PhotoService findFirstOrThrow
+   */
+  export type PhotoServiceFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhotoService
+     */
+    select?: PhotoServiceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhotoService
+     */
+    omit?: PhotoServiceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhotoServiceInclude<ExtArgs> | null
+    /**
+     * Filter, which PhotoService to fetch.
+     */
+    where?: PhotoServiceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PhotoServices to fetch.
+     */
+    orderBy?: PhotoServiceOrderByWithRelationInput | PhotoServiceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PhotoServices.
+     */
+    cursor?: PhotoServiceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PhotoServices from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PhotoServices.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PhotoServices.
+     */
+    distinct?: PhotoServiceScalarFieldEnum | PhotoServiceScalarFieldEnum[]
+  }
+
+  /**
+   * PhotoService findMany
+   */
+  export type PhotoServiceFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhotoService
+     */
+    select?: PhotoServiceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhotoService
+     */
+    omit?: PhotoServiceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhotoServiceInclude<ExtArgs> | null
+    /**
+     * Filter, which PhotoServices to fetch.
+     */
+    where?: PhotoServiceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PhotoServices to fetch.
+     */
+    orderBy?: PhotoServiceOrderByWithRelationInput | PhotoServiceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing PhotoServices.
+     */
+    cursor?: PhotoServiceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PhotoServices from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PhotoServices.
+     */
+    skip?: number
+    distinct?: PhotoServiceScalarFieldEnum | PhotoServiceScalarFieldEnum[]
+  }
+
+  /**
+   * PhotoService create
+   */
+  export type PhotoServiceCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhotoService
+     */
+    select?: PhotoServiceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhotoService
+     */
+    omit?: PhotoServiceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhotoServiceInclude<ExtArgs> | null
+    /**
+     * The data needed to create a PhotoService.
+     */
+    data: XOR<PhotoServiceCreateInput, PhotoServiceUncheckedCreateInput>
+  }
+
+  /**
+   * PhotoService createMany
+   */
+  export type PhotoServiceCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many PhotoServices.
+     */
+    data: PhotoServiceCreateManyInput | PhotoServiceCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * PhotoService update
+   */
+  export type PhotoServiceUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhotoService
+     */
+    select?: PhotoServiceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhotoService
+     */
+    omit?: PhotoServiceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhotoServiceInclude<ExtArgs> | null
+    /**
+     * The data needed to update a PhotoService.
+     */
+    data: XOR<PhotoServiceUpdateInput, PhotoServiceUncheckedUpdateInput>
+    /**
+     * Choose, which PhotoService to update.
+     */
+    where: PhotoServiceWhereUniqueInput
+  }
+
+  /**
+   * PhotoService updateMany
+   */
+  export type PhotoServiceUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update PhotoServices.
+     */
+    data: XOR<PhotoServiceUpdateManyMutationInput, PhotoServiceUncheckedUpdateManyInput>
+    /**
+     * Filter which PhotoServices to update
+     */
+    where?: PhotoServiceWhereInput
+    /**
+     * Limit how many PhotoServices to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * PhotoService upsert
+   */
+  export type PhotoServiceUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhotoService
+     */
+    select?: PhotoServiceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhotoService
+     */
+    omit?: PhotoServiceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhotoServiceInclude<ExtArgs> | null
+    /**
+     * The filter to search for the PhotoService to update in case it exists.
+     */
+    where: PhotoServiceWhereUniqueInput
+    /**
+     * In case the PhotoService found by the `where` argument doesn't exist, create a new PhotoService with this data.
+     */
+    create: XOR<PhotoServiceCreateInput, PhotoServiceUncheckedCreateInput>
+    /**
+     * In case the PhotoService was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PhotoServiceUpdateInput, PhotoServiceUncheckedUpdateInput>
+  }
+
+  /**
+   * PhotoService delete
+   */
+  export type PhotoServiceDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhotoService
+     */
+    select?: PhotoServiceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhotoService
+     */
+    omit?: PhotoServiceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhotoServiceInclude<ExtArgs> | null
+    /**
+     * Filter which PhotoService to delete.
+     */
+    where: PhotoServiceWhereUniqueInput
+  }
+
+  /**
+   * PhotoService deleteMany
+   */
+  export type PhotoServiceDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PhotoServices to delete
+     */
+    where?: PhotoServiceWhereInput
+    /**
+     * Limit how many PhotoServices to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * PhotoService without action
+   */
+  export type PhotoServiceDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhotoService
+     */
+    select?: PhotoServiceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhotoService
+     */
+    omit?: PhotoServiceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhotoServiceInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model Reserva
    */
 
@@ -8345,6 +10437,29 @@ export namespace Prisma {
   export type ClienteScalarFieldEnum = (typeof ClienteScalarFieldEnum)[keyof typeof ClienteScalarFieldEnum]
 
 
+  export const CategoryScalarFieldEnum: {
+    id: 'id',
+    name: 'name'
+  };
+
+  export type CategoryScalarFieldEnum = (typeof CategoryScalarFieldEnum)[keyof typeof CategoryScalarFieldEnum]
+
+
+  export const PhotoServiceScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    price: 'price',
+    img: 'img',
+    description: 'description',
+    featured: 'featured',
+    duration: 'duration',
+    location: 'location',
+    categoryId: 'categoryId'
+  };
+
+  export type PhotoServiceScalarFieldEnum = (typeof PhotoServiceScalarFieldEnum)[keyof typeof PhotoServiceScalarFieldEnum]
+
+
   export const ReservaScalarFieldEnum: {
     id: 'id',
     fecha: 'fecha',
@@ -8432,6 +10547,28 @@ export namespace Prisma {
   };
 
   export type ClienteOrderByRelevanceFieldEnum = (typeof ClienteOrderByRelevanceFieldEnum)[keyof typeof ClienteOrderByRelevanceFieldEnum]
+
+
+  export const CategoryOrderByRelevanceFieldEnum: {
+    id: 'id',
+    name: 'name'
+  };
+
+  export type CategoryOrderByRelevanceFieldEnum = (typeof CategoryOrderByRelevanceFieldEnum)[keyof typeof CategoryOrderByRelevanceFieldEnum]
+
+
+  export const PhotoServiceOrderByRelevanceFieldEnum: {
+    id: 'id',
+    name: 'name',
+    price: 'price',
+    img: 'img',
+    description: 'description',
+    duration: 'duration',
+    location: 'location',
+    categoryId: 'categoryId'
+  };
+
+  export type PhotoServiceOrderByRelevanceFieldEnum = (typeof PhotoServiceOrderByRelevanceFieldEnum)[keyof typeof PhotoServiceOrderByRelevanceFieldEnum]
 
 
   export const ReservaOrderByRelevanceFieldEnum: {
@@ -8852,6 +10989,123 @@ export namespace Prisma {
     telefono?: StringWithAggregatesFilter<"Cliente"> | string
     createAt?: DateTimeWithAggregatesFilter<"Cliente"> | Date | string
     updateAt?: DateTimeWithAggregatesFilter<"Cliente"> | Date | string
+  }
+
+  export type CategoryWhereInput = {
+    AND?: CategoryWhereInput | CategoryWhereInput[]
+    OR?: CategoryWhereInput[]
+    NOT?: CategoryWhereInput | CategoryWhereInput[]
+    id?: StringFilter<"Category"> | string
+    name?: StringFilter<"Category"> | string
+    services?: PhotoServiceListRelationFilter
+  }
+
+  export type CategoryOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    services?: PhotoServiceOrderByRelationAggregateInput
+    _relevance?: CategoryOrderByRelevanceInput
+  }
+
+  export type CategoryWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    name?: string
+    AND?: CategoryWhereInput | CategoryWhereInput[]
+    OR?: CategoryWhereInput[]
+    NOT?: CategoryWhereInput | CategoryWhereInput[]
+    services?: PhotoServiceListRelationFilter
+  }, "id" | "name">
+
+  export type CategoryOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    _count?: CategoryCountOrderByAggregateInput
+    _max?: CategoryMaxOrderByAggregateInput
+    _min?: CategoryMinOrderByAggregateInput
+  }
+
+  export type CategoryScalarWhereWithAggregatesInput = {
+    AND?: CategoryScalarWhereWithAggregatesInput | CategoryScalarWhereWithAggregatesInput[]
+    OR?: CategoryScalarWhereWithAggregatesInput[]
+    NOT?: CategoryScalarWhereWithAggregatesInput | CategoryScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Category"> | string
+    name?: StringWithAggregatesFilter<"Category"> | string
+  }
+
+  export type PhotoServiceWhereInput = {
+    AND?: PhotoServiceWhereInput | PhotoServiceWhereInput[]
+    OR?: PhotoServiceWhereInput[]
+    NOT?: PhotoServiceWhereInput | PhotoServiceWhereInput[]
+    id?: StringFilter<"PhotoService"> | string
+    name?: StringFilter<"PhotoService"> | string
+    price?: StringFilter<"PhotoService"> | string
+    img?: StringFilter<"PhotoService"> | string
+    description?: StringFilter<"PhotoService"> | string
+    featured?: BoolNullableFilter<"PhotoService"> | boolean | null
+    duration?: StringNullableFilter<"PhotoService"> | string | null
+    location?: StringNullableFilter<"PhotoService"> | string | null
+    categoryId?: StringFilter<"PhotoService"> | string
+    category?: XOR<CategoryScalarRelationFilter, CategoryWhereInput>
+  }
+
+  export type PhotoServiceOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    price?: SortOrder
+    img?: SortOrder
+    description?: SortOrder
+    featured?: SortOrderInput | SortOrder
+    duration?: SortOrderInput | SortOrder
+    location?: SortOrderInput | SortOrder
+    categoryId?: SortOrder
+    category?: CategoryOrderByWithRelationInput
+    _relevance?: PhotoServiceOrderByRelevanceInput
+  }
+
+  export type PhotoServiceWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    name?: string
+    AND?: PhotoServiceWhereInput | PhotoServiceWhereInput[]
+    OR?: PhotoServiceWhereInput[]
+    NOT?: PhotoServiceWhereInput | PhotoServiceWhereInput[]
+    price?: StringFilter<"PhotoService"> | string
+    img?: StringFilter<"PhotoService"> | string
+    description?: StringFilter<"PhotoService"> | string
+    featured?: BoolNullableFilter<"PhotoService"> | boolean | null
+    duration?: StringNullableFilter<"PhotoService"> | string | null
+    location?: StringNullableFilter<"PhotoService"> | string | null
+    categoryId?: StringFilter<"PhotoService"> | string
+    category?: XOR<CategoryScalarRelationFilter, CategoryWhereInput>
+  }, "id" | "name">
+
+  export type PhotoServiceOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    price?: SortOrder
+    img?: SortOrder
+    description?: SortOrder
+    featured?: SortOrderInput | SortOrder
+    duration?: SortOrderInput | SortOrder
+    location?: SortOrderInput | SortOrder
+    categoryId?: SortOrder
+    _count?: PhotoServiceCountOrderByAggregateInput
+    _max?: PhotoServiceMaxOrderByAggregateInput
+    _min?: PhotoServiceMinOrderByAggregateInput
+  }
+
+  export type PhotoServiceScalarWhereWithAggregatesInput = {
+    AND?: PhotoServiceScalarWhereWithAggregatesInput | PhotoServiceScalarWhereWithAggregatesInput[]
+    OR?: PhotoServiceScalarWhereWithAggregatesInput[]
+    NOT?: PhotoServiceScalarWhereWithAggregatesInput | PhotoServiceScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"PhotoService"> | string
+    name?: StringWithAggregatesFilter<"PhotoService"> | string
+    price?: StringWithAggregatesFilter<"PhotoService"> | string
+    img?: StringWithAggregatesFilter<"PhotoService"> | string
+    description?: StringWithAggregatesFilter<"PhotoService"> | string
+    featured?: BoolNullableWithAggregatesFilter<"PhotoService"> | boolean | null
+    duration?: StringNullableWithAggregatesFilter<"PhotoService"> | string | null
+    location?: StringNullableWithAggregatesFilter<"PhotoService"> | string | null
+    categoryId?: StringWithAggregatesFilter<"PhotoService"> | string
   }
 
   export type ReservaWhereInput = {
@@ -9324,6 +11578,128 @@ export namespace Prisma {
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type CategoryCreateInput = {
+    id?: string
+    name: string
+    services?: PhotoServiceCreateNestedManyWithoutCategoryInput
+  }
+
+  export type CategoryUncheckedCreateInput = {
+    id?: string
+    name: string
+    services?: PhotoServiceUncheckedCreateNestedManyWithoutCategoryInput
+  }
+
+  export type CategoryUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    services?: PhotoServiceUpdateManyWithoutCategoryNestedInput
+  }
+
+  export type CategoryUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    services?: PhotoServiceUncheckedUpdateManyWithoutCategoryNestedInput
+  }
+
+  export type CategoryCreateManyInput = {
+    id?: string
+    name: string
+  }
+
+  export type CategoryUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type CategoryUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type PhotoServiceCreateInput = {
+    id?: string
+    name: string
+    price: string
+    img: string
+    description: string
+    featured?: boolean | null
+    duration?: string | null
+    location?: string | null
+    category: CategoryCreateNestedOneWithoutServicesInput
+  }
+
+  export type PhotoServiceUncheckedCreateInput = {
+    id?: string
+    name: string
+    price: string
+    img: string
+    description: string
+    featured?: boolean | null
+    duration?: string | null
+    location?: string | null
+    categoryId: string
+  }
+
+  export type PhotoServiceUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    price?: StringFieldUpdateOperationsInput | string
+    img?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    featured?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    duration?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    category?: CategoryUpdateOneRequiredWithoutServicesNestedInput
+  }
+
+  export type PhotoServiceUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    price?: StringFieldUpdateOperationsInput | string
+    img?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    featured?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    duration?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    categoryId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type PhotoServiceCreateManyInput = {
+    id?: string
+    name: string
+    price: string
+    img: string
+    description: string
+    featured?: boolean | null
+    duration?: string | null
+    location?: string | null
+    categoryId: string
+  }
+
+  export type PhotoServiceUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    price?: StringFieldUpdateOperationsInput | string
+    img?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    featured?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    duration?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type PhotoServiceUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    price?: StringFieldUpdateOperationsInput | string
+    img?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    featured?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    duration?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    categoryId?: StringFieldUpdateOperationsInput | string
+  }
+
   export type ReservaCreateInput = {
     id?: string
     fecha: Date | string
@@ -9765,6 +12141,97 @@ export namespace Prisma {
     updateAt?: SortOrder
   }
 
+  export type PhotoServiceListRelationFilter = {
+    every?: PhotoServiceWhereInput
+    some?: PhotoServiceWhereInput
+    none?: PhotoServiceWhereInput
+  }
+
+  export type PhotoServiceOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type CategoryOrderByRelevanceInput = {
+    fields: CategoryOrderByRelevanceFieldEnum | CategoryOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type CategoryCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+  }
+
+  export type CategoryMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+  }
+
+  export type CategoryMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+  }
+
+  export type BoolNullableFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
+  }
+
+  export type CategoryScalarRelationFilter = {
+    is?: CategoryWhereInput
+    isNot?: CategoryWhereInput
+  }
+
+  export type PhotoServiceOrderByRelevanceInput = {
+    fields: PhotoServiceOrderByRelevanceFieldEnum | PhotoServiceOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type PhotoServiceCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    price?: SortOrder
+    img?: SortOrder
+    description?: SortOrder
+    featured?: SortOrder
+    duration?: SortOrder
+    location?: SortOrder
+    categoryId?: SortOrder
+  }
+
+  export type PhotoServiceMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    price?: SortOrder
+    img?: SortOrder
+    description?: SortOrder
+    featured?: SortOrder
+    duration?: SortOrder
+    location?: SortOrder
+    categoryId?: SortOrder
+  }
+
+  export type PhotoServiceMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    price?: SortOrder
+    img?: SortOrder
+    description?: SortOrder
+    featured?: SortOrder
+    duration?: SortOrder
+    location?: SortOrder
+    categoryId?: SortOrder
+  }
+
+  export type BoolNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedBoolNullableFilter<$PrismaModel>
+    _max?: NestedBoolNullableFilter<$PrismaModel>
+  }
+
   export type FotografoScalarRelationFilter = {
     is?: FotografoWhereInput
     isNot?: FotografoWhereInput
@@ -10131,6 +12598,66 @@ export namespace Prisma {
     deleteMany?: ReservaScalarWhereInput | ReservaScalarWhereInput[]
   }
 
+  export type PhotoServiceCreateNestedManyWithoutCategoryInput = {
+    create?: XOR<PhotoServiceCreateWithoutCategoryInput, PhotoServiceUncheckedCreateWithoutCategoryInput> | PhotoServiceCreateWithoutCategoryInput[] | PhotoServiceUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: PhotoServiceCreateOrConnectWithoutCategoryInput | PhotoServiceCreateOrConnectWithoutCategoryInput[]
+    createMany?: PhotoServiceCreateManyCategoryInputEnvelope
+    connect?: PhotoServiceWhereUniqueInput | PhotoServiceWhereUniqueInput[]
+  }
+
+  export type PhotoServiceUncheckedCreateNestedManyWithoutCategoryInput = {
+    create?: XOR<PhotoServiceCreateWithoutCategoryInput, PhotoServiceUncheckedCreateWithoutCategoryInput> | PhotoServiceCreateWithoutCategoryInput[] | PhotoServiceUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: PhotoServiceCreateOrConnectWithoutCategoryInput | PhotoServiceCreateOrConnectWithoutCategoryInput[]
+    createMany?: PhotoServiceCreateManyCategoryInputEnvelope
+    connect?: PhotoServiceWhereUniqueInput | PhotoServiceWhereUniqueInput[]
+  }
+
+  export type PhotoServiceUpdateManyWithoutCategoryNestedInput = {
+    create?: XOR<PhotoServiceCreateWithoutCategoryInput, PhotoServiceUncheckedCreateWithoutCategoryInput> | PhotoServiceCreateWithoutCategoryInput[] | PhotoServiceUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: PhotoServiceCreateOrConnectWithoutCategoryInput | PhotoServiceCreateOrConnectWithoutCategoryInput[]
+    upsert?: PhotoServiceUpsertWithWhereUniqueWithoutCategoryInput | PhotoServiceUpsertWithWhereUniqueWithoutCategoryInput[]
+    createMany?: PhotoServiceCreateManyCategoryInputEnvelope
+    set?: PhotoServiceWhereUniqueInput | PhotoServiceWhereUniqueInput[]
+    disconnect?: PhotoServiceWhereUniqueInput | PhotoServiceWhereUniqueInput[]
+    delete?: PhotoServiceWhereUniqueInput | PhotoServiceWhereUniqueInput[]
+    connect?: PhotoServiceWhereUniqueInput | PhotoServiceWhereUniqueInput[]
+    update?: PhotoServiceUpdateWithWhereUniqueWithoutCategoryInput | PhotoServiceUpdateWithWhereUniqueWithoutCategoryInput[]
+    updateMany?: PhotoServiceUpdateManyWithWhereWithoutCategoryInput | PhotoServiceUpdateManyWithWhereWithoutCategoryInput[]
+    deleteMany?: PhotoServiceScalarWhereInput | PhotoServiceScalarWhereInput[]
+  }
+
+  export type PhotoServiceUncheckedUpdateManyWithoutCategoryNestedInput = {
+    create?: XOR<PhotoServiceCreateWithoutCategoryInput, PhotoServiceUncheckedCreateWithoutCategoryInput> | PhotoServiceCreateWithoutCategoryInput[] | PhotoServiceUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: PhotoServiceCreateOrConnectWithoutCategoryInput | PhotoServiceCreateOrConnectWithoutCategoryInput[]
+    upsert?: PhotoServiceUpsertWithWhereUniqueWithoutCategoryInput | PhotoServiceUpsertWithWhereUniqueWithoutCategoryInput[]
+    createMany?: PhotoServiceCreateManyCategoryInputEnvelope
+    set?: PhotoServiceWhereUniqueInput | PhotoServiceWhereUniqueInput[]
+    disconnect?: PhotoServiceWhereUniqueInput | PhotoServiceWhereUniqueInput[]
+    delete?: PhotoServiceWhereUniqueInput | PhotoServiceWhereUniqueInput[]
+    connect?: PhotoServiceWhereUniqueInput | PhotoServiceWhereUniqueInput[]
+    update?: PhotoServiceUpdateWithWhereUniqueWithoutCategoryInput | PhotoServiceUpdateWithWhereUniqueWithoutCategoryInput[]
+    updateMany?: PhotoServiceUpdateManyWithWhereWithoutCategoryInput | PhotoServiceUpdateManyWithWhereWithoutCategoryInput[]
+    deleteMany?: PhotoServiceScalarWhereInput | PhotoServiceScalarWhereInput[]
+  }
+
+  export type CategoryCreateNestedOneWithoutServicesInput = {
+    create?: XOR<CategoryCreateWithoutServicesInput, CategoryUncheckedCreateWithoutServicesInput>
+    connectOrCreate?: CategoryCreateOrConnectWithoutServicesInput
+    connect?: CategoryWhereUniqueInput
+  }
+
+  export type NullableBoolFieldUpdateOperationsInput = {
+    set?: boolean | null
+  }
+
+  export type CategoryUpdateOneRequiredWithoutServicesNestedInput = {
+    create?: XOR<CategoryCreateWithoutServicesInput, CategoryUncheckedCreateWithoutServicesInput>
+    connectOrCreate?: CategoryCreateOrConnectWithoutServicesInput
+    upsert?: CategoryUpsertWithoutServicesInput
+    connect?: CategoryWhereUniqueInput
+    update?: XOR<XOR<CategoryUpdateToOneWithWhereWithoutServicesInput, CategoryUpdateWithoutServicesInput>, CategoryUncheckedUpdateWithoutServicesInput>
+  }
+
   export type FotografoCreateNestedOneWithoutReservasInput = {
     create?: XOR<FotografoCreateWithoutReservasInput, FotografoUncheckedCreateWithoutReservasInput>
     connectOrCreate?: FotografoCreateOrConnectWithoutReservasInput
@@ -10283,6 +12810,19 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedBoolNullableFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
+  }
+
+  export type NestedBoolNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedBoolNullableFilter<$PrismaModel>
+    _max?: NestedBoolNullableFilter<$PrismaModel>
   }
 
   export type RolPermisoCreateWithoutRolInput = {
@@ -10819,6 +13359,105 @@ export namespace Prisma {
     data: XOR<ReservaUpdateManyMutationInput, ReservaUncheckedUpdateManyWithoutClienteInput>
   }
 
+  export type PhotoServiceCreateWithoutCategoryInput = {
+    id?: string
+    name: string
+    price: string
+    img: string
+    description: string
+    featured?: boolean | null
+    duration?: string | null
+    location?: string | null
+  }
+
+  export type PhotoServiceUncheckedCreateWithoutCategoryInput = {
+    id?: string
+    name: string
+    price: string
+    img: string
+    description: string
+    featured?: boolean | null
+    duration?: string | null
+    location?: string | null
+  }
+
+  export type PhotoServiceCreateOrConnectWithoutCategoryInput = {
+    where: PhotoServiceWhereUniqueInput
+    create: XOR<PhotoServiceCreateWithoutCategoryInput, PhotoServiceUncheckedCreateWithoutCategoryInput>
+  }
+
+  export type PhotoServiceCreateManyCategoryInputEnvelope = {
+    data: PhotoServiceCreateManyCategoryInput | PhotoServiceCreateManyCategoryInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type PhotoServiceUpsertWithWhereUniqueWithoutCategoryInput = {
+    where: PhotoServiceWhereUniqueInput
+    update: XOR<PhotoServiceUpdateWithoutCategoryInput, PhotoServiceUncheckedUpdateWithoutCategoryInput>
+    create: XOR<PhotoServiceCreateWithoutCategoryInput, PhotoServiceUncheckedCreateWithoutCategoryInput>
+  }
+
+  export type PhotoServiceUpdateWithWhereUniqueWithoutCategoryInput = {
+    where: PhotoServiceWhereUniqueInput
+    data: XOR<PhotoServiceUpdateWithoutCategoryInput, PhotoServiceUncheckedUpdateWithoutCategoryInput>
+  }
+
+  export type PhotoServiceUpdateManyWithWhereWithoutCategoryInput = {
+    where: PhotoServiceScalarWhereInput
+    data: XOR<PhotoServiceUpdateManyMutationInput, PhotoServiceUncheckedUpdateManyWithoutCategoryInput>
+  }
+
+  export type PhotoServiceScalarWhereInput = {
+    AND?: PhotoServiceScalarWhereInput | PhotoServiceScalarWhereInput[]
+    OR?: PhotoServiceScalarWhereInput[]
+    NOT?: PhotoServiceScalarWhereInput | PhotoServiceScalarWhereInput[]
+    id?: StringFilter<"PhotoService"> | string
+    name?: StringFilter<"PhotoService"> | string
+    price?: StringFilter<"PhotoService"> | string
+    img?: StringFilter<"PhotoService"> | string
+    description?: StringFilter<"PhotoService"> | string
+    featured?: BoolNullableFilter<"PhotoService"> | boolean | null
+    duration?: StringNullableFilter<"PhotoService"> | string | null
+    location?: StringNullableFilter<"PhotoService"> | string | null
+    categoryId?: StringFilter<"PhotoService"> | string
+  }
+
+  export type CategoryCreateWithoutServicesInput = {
+    id?: string
+    name: string
+  }
+
+  export type CategoryUncheckedCreateWithoutServicesInput = {
+    id?: string
+    name: string
+  }
+
+  export type CategoryCreateOrConnectWithoutServicesInput = {
+    where: CategoryWhereUniqueInput
+    create: XOR<CategoryCreateWithoutServicesInput, CategoryUncheckedCreateWithoutServicesInput>
+  }
+
+  export type CategoryUpsertWithoutServicesInput = {
+    update: XOR<CategoryUpdateWithoutServicesInput, CategoryUncheckedUpdateWithoutServicesInput>
+    create: XOR<CategoryCreateWithoutServicesInput, CategoryUncheckedCreateWithoutServicesInput>
+    where?: CategoryWhereInput
+  }
+
+  export type CategoryUpdateToOneWithWhereWithoutServicesInput = {
+    where?: CategoryWhereInput
+    data: XOR<CategoryUpdateWithoutServicesInput, CategoryUncheckedUpdateWithoutServicesInput>
+  }
+
+  export type CategoryUpdateWithoutServicesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type CategoryUncheckedUpdateWithoutServicesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+  }
+
   export type FotografoCreateWithoutReservasInput = {
     id?: string
     telefono?: string | null
@@ -11095,6 +13734,50 @@ export namespace Prisma {
     pixelpayOrder?: StringFieldUpdateOperationsInput | string
     estado?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PhotoServiceCreateManyCategoryInput = {
+    id?: string
+    name: string
+    price: string
+    img: string
+    description: string
+    featured?: boolean | null
+    duration?: string | null
+    location?: string | null
+  }
+
+  export type PhotoServiceUpdateWithoutCategoryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    price?: StringFieldUpdateOperationsInput | string
+    img?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    featured?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    duration?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type PhotoServiceUncheckedUpdateWithoutCategoryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    price?: StringFieldUpdateOperationsInput | string
+    img?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    featured?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    duration?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type PhotoServiceUncheckedUpdateManyWithoutCategoryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    price?: StringFieldUpdateOperationsInput | string
+    img?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    featured?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    duration?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
 

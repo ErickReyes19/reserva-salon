@@ -79,6 +79,26 @@ model Cliente {
   reservas Reserva[] @relation("ReservasCliente")
 }
 
+model Category {
+  id       String         @id @default(uuid())
+  name     String         @unique
+  services PhotoService[]
+}
+
+model PhotoService {
+  id          String   @id @default(uuid())
+  name        String   @unique
+  price       String
+  img         String
+  description String
+  featured    Boolean?
+  duration    String? // opcional, proveniente de "details.duration"
+  location    String? // opcional, proveniente de "details.location"
+
+  categoryId String
+  category   Category @relation(fields: [categoryId], references: [id])
+}
+
 model Reserva {
   id            String   @id @default(uuid())
   fecha         DateTime // fecha y hora de inicio

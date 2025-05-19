@@ -1,7 +1,7 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
-import type { ReservaEvent } from "./types";
+import type {  CategoryWithServices, PhotoService, ReservaEvent } from "./types";
 
 export async function getReservasEvent(): Promise<ReservaEvent[]> {
   try {
@@ -20,3 +20,28 @@ export async function getReservasEvent(): Promise<ReservaEvent[]> {
     return [];
   }
 }
+
+
+export async function getCategoriesWithServices(): Promise<CategoryWithServices[]> {
+  try {
+    const categories = await prisma.category.findMany({
+      include: { services: true },
+    })
+
+    return categories.map((cat) => ({
+      id: cat.id,
+      name: cat.name,
+      services: cat.services.map((svc): PhotoService => ({
+        id: svc.id,
+        name: svc.name,
+        img: svc.img,
+        description: svc.description,
+        category: cat.name,
+      })),
+    }))
+  } catch (error) {
+    console.error("Error al obtener categorías con servicios:", error)
+    return []
+  }
+}
+
