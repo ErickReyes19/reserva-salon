@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 
 import type React from "react"
@@ -17,7 +18,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 
 // Componente para cargar datos del servidor
 import { Suspense } from "react"
-import type { ReservaEvent } from "@/types"
+import { ReservaEvent } from "./types"
 
 // Corregir el tipo de children en los componentes
 interface AnimatedSectionProps {
@@ -72,7 +73,7 @@ interface AnimatedCardProps {
   index?: number
 }
 
-const AnimatedCard = ({ children, delay = 0, index = 0 }: AnimatedCardProps) => {
+const AnimatedCard = ({ children, delay = 0, }: AnimatedCardProps) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
@@ -820,7 +821,7 @@ export default function PublicPage() {
                           </div>
                         </CardHeader>
                         <CardContent className="flex-grow">
-                          <p className="text-gray-700 italic">"{testimonial.quote}"</p>
+                          <p className="text-gray-700 italic">&quot;{testimonial.quote}&quot;</p>
                         </CardContent>
                         <CardFooter className="border-t pt-4">
                           <div className="flex text-yellow-400">
