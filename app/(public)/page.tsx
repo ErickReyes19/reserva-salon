@@ -43,7 +43,7 @@ export default function PublicPage() {
         <HeroSection />
         <AboutSection />
         <PhotographersSection />
-        <ServicesSection />
+        <ServicesSection  />
         <PortfolioSection />
         <TestimonialsSection />
         <BookingSection />

@@ -4,3 +4,17 @@ export type ReservaEvent = {
   horaInicio: string;
   horaFin: string;
 };
+export interface PhotoService {
+  id: string
+  name: string
+  img: string
+  description: string
+  category: string
+}
+
+/** Categoría con sus servicios */
+export interface CategoryWithServices {
+  id: string
+  name: string
+  services: PhotoService[]
+}

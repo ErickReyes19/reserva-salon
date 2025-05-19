@@ -173,6 +173,23 @@ exports.Prisma.ClienteScalarFieldEnum = {
   updateAt: 'updateAt'
 };
 
+exports.Prisma.CategoryScalarFieldEnum = {
+  id: 'id',
+  name: 'name'
+};
+
+exports.Prisma.PhotoServiceScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  price: 'price',
+  img: 'img',
+  description: 'description',
+  featured: 'featured',
+  duration: 'duration',
+  location: 'location',
+  categoryId: 'categoryId'
+};
+
 exports.Prisma.ReservaScalarFieldEnum = {
   id: 'id',
   fecha: 'fecha',
@@ -235,6 +252,22 @@ exports.Prisma.ClienteOrderByRelevanceFieldEnum = {
   telefono: 'telefono'
 };
 
+exports.Prisma.CategoryOrderByRelevanceFieldEnum = {
+  id: 'id',
+  name: 'name'
+};
+
+exports.Prisma.PhotoServiceOrderByRelevanceFieldEnum = {
+  id: 'id',
+  name: 'name',
+  price: 'price',
+  img: 'img',
+  description: 'description',
+  duration: 'duration',
+  location: 'location',
+  categoryId: 'categoryId'
+};
+
 exports.Prisma.ReservaOrderByRelevanceFieldEnum = {
   id: 'id',
   fotografoId: 'fotografoId',
@@ -250,6 +283,8 @@ exports.Prisma.ModelName = {
   Usuario: 'Usuario',
   Fotografo: 'Fotografo',
   Cliente: 'Cliente',
+  Category: 'Category',
+  PhotoService: 'PhotoService',
   Reserva: 'Reserva'
 };
 

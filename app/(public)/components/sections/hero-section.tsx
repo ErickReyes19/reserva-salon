@@ -79,7 +79,7 @@ export default function HeroSection() {
           </Button>
           <Button
             size="lg"
-            variant="outline"
+            variant="default"
             className="border-white text-white hover:bg-white/10 rounded-full px-8"
             asChild
           >

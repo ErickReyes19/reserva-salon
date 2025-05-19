@@ -121,6 +121,143 @@ async function main() {
     });
   }
 
+
+  // ——————————————
+// NUEVO: SEED DE CATEGORÍAS Y SERVICIOS (Categorías en español)
+// ——————————————
+const categoryNames = ["retratos", "eventos", "comercial", "paisajes"];
+const categories = await Promise.all(
+  categoryNames.map((name) =>
+    prisma.category.upsert({
+      where: { name },
+      update: {},
+      create: { id: randomUUID(), name },
+    })
+  )
+);
+
+// Servicios de ejemplo por categoría
+const servicesData = [
+  // retratos
+  {
+    category: categories.find(c => c.name === "retratos")!,
+    items: [
+      {
+        name: "Retrato de Estudio",
+        price: "120",
+        img: "studio_portrait.jpg",
+        description: "Sesión en estudio con iluminación profesional.",
+        featured: true,
+        duration: "1 hora",
+        location: "Estudio Central"
+      },
+      {
+        name: "Retrato al Aire Libre",
+        price: "100",
+        img: "outdoor_portrait.jpg",
+        description: "Sesión en parque o jardín.",
+        featured: false,
+        duration: "1.5 horas",
+        location: "Parque Central"
+      }
+    ]
+  },
+  // eventos
+  {
+    category: categories.find(c => c.name === "eventos")!,
+    items: [
+      {
+        name: "Cobertura Evento Pequeño",
+        price: "200",
+        img: "small_event.jpg",
+        description: "Hasta 2 horas de cobertura.",
+        featured: false,
+        duration: "2 horas",
+        location: "Lugar a convenir"
+      },
+      {
+        name: "Cobertura Evento Grande",
+        price: "350",
+        img: "large_event.jpg",
+        description: "Cobertura completa del evento (hasta 5 horas).",
+        featured: true,
+        duration: "5 horas",
+        location: "Lugar a convenir"
+      }
+    ]
+  },
+  // comercial
+  {
+    category: categories.find(c => c.name === "comercial")!,
+    items: [
+      {
+        name: "Sesión Producto",
+        price: "180",
+        img: "product_shoot.jpg",
+        description: "Fotografía de producto para e-commerce.",
+        featured: false,
+        duration: "2 horas",
+        location: "Estudio o cliente"
+      },
+      {
+        name: "Publicidad Exterior",
+        price: "300",
+        img: "ad_campaign.jpg",
+        description: "Fotos para campaña publicitaria exterior.",
+        featured: true,
+        duration: "3 horas",
+        location: "Ubicación exterior"
+      }
+    ]
+  },
+  // paisajes
+  {
+    category: categories.find(c => c.name === "paisajes")!,
+    items: [
+      {
+        name: "Paisaje Urbano",
+        price: "150",
+        img: "urban_landscape.jpg",
+        description: "Fotografía de arquitectura y calles.",
+        featured: false,
+        duration: "2 horas",
+        location: "Centro de la ciudad"
+      },
+      {
+        name: "Paisaje Natural",
+        price: "170",
+        img: "nature_landscape.jpg",
+        description: "Fotografía en exteriores naturales.",
+        featured: false,
+        duration: "3 horas",
+        location: "Parque Nacional"
+      }
+    ]
+  }
+];
+
+// Crear PhotoService
+for (const svcGroup of servicesData) {
+  for (const svc of svcGroup.items) {
+    await prisma.photoService.upsert({
+      where: { name: svc.name },
+      update: {},
+      create: {
+        id: randomUUID(),
+        name: svc.name,
+        price: svc.price,
+        img: svc.img,
+        description: svc.description,
+        featured: svc.featured,
+        duration: svc.duration,
+        location: svc.location,
+        categoryId: svcGroup.category.id
+      }
+    });
+  }
+}
+
+
   console.log("🎉 Seed completado exitosamente.");
   await prisma.$disconnect();
 }
