@@ -4,28 +4,27 @@ import HeaderComponent from "@/components/HeaderComponent";
 import NoAcceso from "@/components/noAccess";
 import { Pencil } from "lucide-react";
 import { redirect } from "next/navigation";
-import { getTipoSeccionId } from "../../actions";
-import { TipoSeccionFormulario } from "../../components/Form";
+import { getCategoriaById } from "../../actions";
+import { CategoriaFormulario } from "../../components/Form";
 
 export default async function Edit({ params }: { params: { id: string } }) {
   // Verificar si hay una sesión activa
 
   const permisos = await getSessionPermisos();
 
-  if (!permisos?.includes("editar_tipo_seccion")) {
+  if (!permisos?.includes("editar_categoria")) {
     return <NoAcceso />;
   }
 
   // Obtener el cliente por su ID
-  const tipoSeccion = await getTipoSeccionId(params.id);
-  if (!tipoSeccion) {
-    redirect("/tipo-seccion"); // Redirige si no se encuentra el cliente
+  const categoria = await getCategoriaById(params.id);
+  if (!categoria) {
+    redirect("/categorias"); // Redirige si no se encuentra el cliente
   }
-  const puestoCreate = {
-    id: tipoSeccion.id,
-    nombre: tipoSeccion.nombre,
-    activo: tipoSeccion.activo,
-    descripcion: tipoSeccion.descripcion
+  const categoriaCreate = {
+    id: categoria.id,
+    name: categoria.name,
+    activo: categoria.activo,
   };
 
 
@@ -36,9 +35,9 @@ export default async function Edit({ params }: { params: { id: string } }) {
         description="En este apartado podrá editar un puesto."
         screenName="Editar Puesto"
       />
-      <TipoSeccionFormulario
+      <CategoriaFormulario
         isUpdate={true}
-        initialData={puestoCreate} // Pasamos los datos del cliente al formulario
+        initialData={categoriaCreate} // Pasamos los datos del cliente al formulario
       />
     </div>
   );
