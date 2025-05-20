@@ -26,7 +26,7 @@ async function main() {
       "ver_permisos", "ver_roles", "crear_roles", "editar_roles",
       "ver_usuarios", "crear_usuario", "editar_usuario", "ver_categoria", "crear_categoria",
       "editar_categoria", "ver_servicios", "crear_servicios", "editar_servicios",
-      "editar_fotografos","ver_fotografos"
+      "editar_fotografos", "ver_fotografos"
     ];
 
     const permisos = await Promise.all(
@@ -97,8 +97,8 @@ async function main() {
     }),
   ]);
 
-  const fotografo1 = await prisma.fotografo.create({ data: { Foto: "placeholder.svg", id: randomUUID(), usuarioId: fot1User.id, disponible: true, url: "prueba.com", bio: "El mas mamalon" } });
-  const fotografo2 = await prisma.fotografo.create({ data: { Foto: "placeholder.svg", id: randomUUID(), usuarioId: fot2User.id, disponible: true, url: "Prueba.com", bio: "El mas reciooo" } });
+  const fotografo1 = await prisma.fotografo.create({ data: { Foto: "placeholder.svg", id: randomUUID(), usuarioId: fot1User.id, disponible: true, url: "prueba.com", bio: "El mas mamalon", nombre: "Alexis Reyes" } });
+  const fotografo2 = await prisma.fotografo.create({ data: { Foto: "placeholder.svg", id: randomUUID(), usuarioId: fot2User.id, disponible: true, url: "Prueba.com", bio: "El mas reciooo", nombre: "Mafafa" } });
 
   // Crear reservas asociadas al cliente
   const dates = [

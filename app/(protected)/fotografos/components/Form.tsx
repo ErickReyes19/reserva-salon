@@ -189,6 +189,20 @@ export function FotografoFormulario({ isUpdate, initialData, usuarios }: Fotogra
 
           <FormField
             control={form.control}
+            name="nombre"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Nombre</FormLabel>
+                <FormControl>
+                  <Input placeholder="Nombre del fotografo" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
             name="url"
             render={({ field }) => (
               <FormItem>

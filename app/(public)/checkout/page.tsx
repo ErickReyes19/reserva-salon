@@ -21,6 +21,8 @@ export default function CheckoutWizardPage() {
   const name = params.get("name") || ""
   const email = params.get("email") || ""
   const phone = params.get("phone") || ""
+  const fotografo = params.get("fotografoName") || ""
+  const fotografoId = params.get("fotografoId") || ""
 
   const date = dateIso ? new Date(dateIso) : new Date()
   const formattedDate = format(date, "EEEE, d 'de' MMMM yyyy", { locale: es })
@@ -69,7 +71,7 @@ export default function CheckoutWizardPage() {
               </div>
 
               {/* Información personal */}
-              <div className="w-2/3 p-6">
+              <div className="w-auto p-6">
                 <h3 className="font-medium text-gray-700 mb-3 flex items-center">
                   <User className="h-4 w-4 mr-2 text-blue-600" />
                   Información Personal
@@ -95,17 +97,22 @@ export default function CheckoutWizardPage() {
             <div className="p-6">
               <h3 className="font-medium text-gray-700 mb-3 flex items-center">
                 <Calendar className="h-4 w-4 mr-2 text-blue-600" />
-                Detalles de la Cita
+                Detalles de la sesión
               </h3>
               <div className="bg-gray-50 rounded-lg p-4 border border-gray-100">
                 <div className="flex items-center mb-2">
                   <Calendar className="h-4 w-4 text-blue-600 mr-2" />
                   <span className="text-gray-700">{formattedDate}</span>
                 </div>
+                <div className="flex items-center mb-2">
+                  <User className="h-4 w-4 text-blue-600 mr-2" />
+                  <span className="text-gray-700">{fotografo}</span>
+                </div>
                 <div className="flex items-center">
                   <Clock className="h-4 w-4 text-blue-600 mr-2" />
                   <span className="text-gray-700">{hour}:00 hrs</span>
                 </div>
+
               </div>
             </div>
           </CardContent>

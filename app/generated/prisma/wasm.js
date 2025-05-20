@@ -160,6 +160,7 @@ exports.Prisma.UsuarioScalarFieldEnum = {
 exports.Prisma.FotografoScalarFieldEnum = {
   id: 'id',
   usuarioId: 'usuarioId',
+  nombre: 'nombre',
   telefono: 'telefono',
   bio: 'bio',
   url: 'url',
@@ -242,6 +243,7 @@ exports.Prisma.NullsOrder = {
 exports.Prisma.FotografoOrderByRelevanceFieldEnum = {
   id: 'id',
   usuarioId: 'usuarioId',
+  nombre: 'nombre',
   telefono: 'telefono',
   bio: 'bio',
   url: 'url',
