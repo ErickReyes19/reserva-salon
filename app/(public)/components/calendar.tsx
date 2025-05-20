@@ -4,15 +4,17 @@ import FullCalendar from "@fullcalendar/react"
 import dayGridPlugin from "@fullcalendar/daygrid"
 import interactionPlugin from "@fullcalendar/interaction"
 import { useState, useMemo, useEffect } from "react"
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import type { ReservaEvent } from "../types"
 import { format, startOfToday } from "date-fns"
 import { es } from "date-fns/locale"
 import { motion } from "framer-motion"
-import { Clock } from "lucide-react"
+import { Calendar, Clock, Loader2, Mail, Phone, User } from "lucide-react"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Input } from "@/components/ui/input"
+import { useRouter } from "next/navigation"
 
 interface Props {
   eventos?: ReservaEvent[]
@@ -26,14 +28,31 @@ const formatHour = (hour: number): string => {
 }
 
 export default function CalendarioReservas({ eventos = [] }: Props) {
+  const router = useRouter()
   const [selectedDate, setSelectedDate] = useState<Date>(startOfToday())
   const [showModal, setShowModal] = useState(false)
   const [selectedHour, setSelectedHour] = useState<number | null>(null)
   const [viewDate, setViewDate] = useState<Date>(startOfToday())
   const [availableHours, setAvailableHours] = useState<number[]>([])
-
+  const [isLoading, setIsLoading] = useState(false)
   // Horario de 7 a 21
   const allHours = useMemo(() => Array.from({ length: 14 }, (_, i) => i + 7), [])
+
+  const handleConfirm = (name: string, email: string, phone: string) => {
+    setIsLoading(true)
+    const params = new URLSearchParams({
+      date: selectedDate.toISOString(),
+      hour: String(selectedHour),
+      name,
+      email,
+      phone,
+    })
+
+    // Simular un pequeño retraso para mostrar el spinner
+    setTimeout(() => {
+      router.push(`/checkout?${params.toString()}`)
+    }, 500)
+  }
 
   // Recalcular horas disponibles cuando cambia la fecha o los eventos
   useEffect(() => {
@@ -191,31 +210,73 @@ export default function CalendarioReservas({ eventos = [] }: Props) {
         </CardContent>
       </Card>
 
-      {/* Modal */}
-      <Dialog open={showModal} onOpenChange={setShowModal}>
+      {/* Modal mejorado */}
+      <Dialog open={showModal} onOpenChange={(open) => !isLoading && setShowModal(open)}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle>Reservar cita</DialogTitle>
+            <DialogTitle className="text-xl font-semibold text-center">Confirmar Reserva</DialogTitle>
+
+            {/* Información de la reserva en el header */}
+            <div className="mt-4 p-4 bg-blue-50 rounded-lg">
+              <div className="flex items-center gap-2 mb-2">
+                <Calendar className="h-4 w-4 text-blue-600" />
+                <span className="text-sm font-medium">
+                  {format(selectedDate, "EEEE, d 'de' MMMM 'de' yyyy", { locale: es })}
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Clock className="h-4 w-4 text-blue-600" />
+                <span className="text-sm font-medium">{selectedHour !== null ? formatHour(selectedHour) : ""}</span>
+              </div>
+            </div>
           </DialogHeader>
-          <div className="p-4 space-y-4">
-            <p className="text-sm">
-              <strong>Fecha:</strong> {format(selectedDate, "EEEE, d 'de' MMMM 'de' yyyy", { locale: es })}
-              <br />
-              <strong>Hora:</strong> {selectedHour !== null ? formatHour(selectedHour) : ""}
-            </p>
-            {/* formulario intacto */}
-            <div className="space-y-2">
-              <input className="w-full border rounded px-3 py-2" placeholder="Nombre" />
-              <input className="w-full border rounded px-3 py-2" placeholder="Correo" type="email" />
-              <input className="w-full border rounded px-3 py-2" placeholder="Teléfono" type="tel" />
+
+          {isLoading ? (
+            <div className="flex flex-col items-center justify-center py-8">
+              <Loader2 className="h-8 w-8 text-blue-600 animate-spin mb-4" />
+              <p className="text-gray-600">Procesando su reserva...</p>
             </div>
-            <div className="flex justify-end space-x-2">
-              <Button variant="outline" onClick={() => setShowModal(false)}>
-                Cancelar
-              </Button>
-              <Button>Confirmar</Button>
-            </div>
-          </div>
+          ) : (
+            <form
+              className="space-y-4 py-2"
+              onSubmit={(e) => {
+                e.preventDefault()
+                const form = e.currentTarget
+                const name = (form.elements.namedItem("name") as HTMLInputElement).value
+                const email = (form.elements.namedItem("email") as HTMLInputElement).value
+                const phone = (form.elements.namedItem("phone") as HTMLInputElement).value
+                handleConfirm(name, email, phone)
+              }}
+            >
+              <div className="space-y-1">
+                <div className="flex items-center gap-2">
+                  <User className="h-4 w-4 text-gray-500" />
+                  <Input name="name" className="w-full" placeholder="Nombre" required />
+                </div>
+              </div>
+
+              <div className="space-y-1">
+                <div className="flex items-center gap-2">
+                  <Mail className="h-4 w-4 text-gray-500" />
+                  <Input name="email" className="w-full" placeholder="Correo" type="email" required />
+                </div>
+              </div>
+
+              <div className="space-y-1">
+                <div className="flex items-center gap-2">
+                  <Phone className="h-4 w-4 text-gray-500" />
+                  <Input name="phone" className="w-full" placeholder="Teléfono" type="tel" required />
+                </div>
+              </div>
+
+              <DialogFooter className="mt-6">
+                <Button variant="outline" type="button" onClick={() => setShowModal(false)}>
+                  Cancelar
+                </Button>
+                <Button type="submit">Confirmar Reserva</Button>
+              </DialogFooter>
+            </form>
+          )}
         </DialogContent>
       </Dialog>
     </div>
