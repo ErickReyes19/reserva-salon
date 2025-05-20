@@ -16,7 +16,7 @@ import {
   SidebarMenuSubItem,
   SidebarRail,
 } from "@/components/ui/sidebar";
-import { ChevronDown, ChevronUp, Folder, LayersIcon, Settings, UserIcon } from 'lucide-react';
+import { Camera, ChevronDown, ChevronUp, Folder, LayersIcon, Settings, UserIcon } from 'lucide-react';
 import Link from "next/link";
 import ToggleThemeButton from "../components/button-theme";
 import { NavUser } from "./nav-user";
@@ -55,6 +55,12 @@ const items = [
     url: "/categorias",
     icon: Folder,
     permiso: "ver_categoria",
+  },
+  {
+    title: "Fotografos",
+    url: "/fotografos",
+    icon: Camera,
+    permiso: "ver_fotografos",
   },
 
 ];

@@ -24,8 +24,9 @@ async function main() {
   if (!existingRolAdmin) {
     const permisoNames = [
       "ver_permisos", "ver_roles", "crear_roles", "editar_roles",
-      "ver_usuarios", "crear_usuario", "editar_usuario","ver_categoria","crear_categoria",
-      "editar_categoria","ver_servicios","crear_servicios","editar_servicios"
+      "ver_usuarios", "crear_usuario", "editar_usuario", "ver_categoria", "crear_categoria",
+      "editar_categoria", "ver_servicios", "crear_servicios", "editar_servicios",
+      "editar_fotografos","ver_fotografos"
     ];
 
     const permisos = await Promise.all(
@@ -96,8 +97,8 @@ async function main() {
     }),
   ]);
 
-  const fotografo1 = await prisma.fotografo.create({ data: { id: randomUUID(), usuarioId: fot1User.id, disponible: true } });
-  const fotografo2 = await prisma.fotografo.create({ data: { id: randomUUID(), usuarioId: fot2User.id, disponible: true } });
+  const fotografo1 = await prisma.fotografo.create({ data: { Foto: "placeholder.svg", id: randomUUID(), usuarioId: fot1User.id, disponible: true, url: "prueba.com", bio: "El mas mamalon" } });
+  const fotografo2 = await prisma.fotografo.create({ data: { Foto: "placeholder.svg", id: randomUUID(), usuarioId: fot2User.id, disponible: true, url: "Prueba.com", bio: "El mas reciooo" } });
 
   // Crear reservas asociadas al cliente
   const dates = [
@@ -134,7 +135,7 @@ async function main() {
       prisma.category.upsert({
         where: { name },
         update: {},
-        create: { id: randomUUID(), name , activo:true},
+        create: { id: randomUUID(), name, activo: true },
       })
     )
   );
@@ -181,13 +182,13 @@ async function main() {
       items: [
         {
           name: "Sesión Producto",
-          img: "product_shoot.jpg",
+          img: "/placeholder.svg",
           description: "Fotografía de producto para e-commerce.",
 
         },
         {
           name: "Publicidad Exterior",
-          img: "ad_campaign.jpg",
+          img: "/placeholder.svg",
           description: "Fotos para campaña publicitaria exterior.",
 
         }
@@ -216,7 +217,7 @@ async function main() {
   for (const svcGroup of servicesData) {
     for (const svc of svcGroup.items) {
       await prisma.photoService.upsert({
-        where: { name: svc.name},
+        where: { name: svc.name },
         update: {},
         create: {
           activo: true,

@@ -5582,6 +5582,7 @@ export namespace Prisma {
     telefono: string | null
     bio: string | null
     url: string | null
+    Foto: string | null
     disponible: boolean | null
   }
 
@@ -5591,6 +5592,7 @@ export namespace Prisma {
     telefono: string | null
     bio: string | null
     url: string | null
+    Foto: string | null
     disponible: boolean | null
   }
 
@@ -5600,6 +5602,7 @@ export namespace Prisma {
     telefono: number
     bio: number
     url: number
+    Foto: number
     disponible: number
     _all: number
   }
@@ -5611,6 +5614,7 @@ export namespace Prisma {
     telefono?: true
     bio?: true
     url?: true
+    Foto?: true
     disponible?: true
   }
 
@@ -5620,6 +5624,7 @@ export namespace Prisma {
     telefono?: true
     bio?: true
     url?: true
+    Foto?: true
     disponible?: true
   }
 
@@ -5629,6 +5634,7 @@ export namespace Prisma {
     telefono?: true
     bio?: true
     url?: true
+    Foto?: true
     disponible?: true
     _all?: true
   }
@@ -5711,6 +5717,7 @@ export namespace Prisma {
     telefono: string | null
     bio: string | null
     url: string | null
+    Foto: string
     disponible: boolean
     _count: FotografoCountAggregateOutputType | null
     _min: FotografoMinAggregateOutputType | null
@@ -5737,6 +5744,7 @@ export namespace Prisma {
     telefono?: boolean
     bio?: boolean
     url?: boolean
+    Foto?: boolean
     disponible?: boolean
     usuario?: boolean | UsuarioDefaultArgs<ExtArgs>
     reservas?: boolean | Fotografo$reservasArgs<ExtArgs>
@@ -5751,10 +5759,11 @@ export namespace Prisma {
     telefono?: boolean
     bio?: boolean
     url?: boolean
+    Foto?: boolean
     disponible?: boolean
   }
 
-  export type FotografoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "usuarioId" | "telefono" | "bio" | "url" | "disponible", ExtArgs["result"]["fotografo"]>
+  export type FotografoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "usuarioId" | "telefono" | "bio" | "url" | "Foto" | "disponible", ExtArgs["result"]["fotografo"]>
   export type FotografoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     usuario?: boolean | UsuarioDefaultArgs<ExtArgs>
     reservas?: boolean | Fotografo$reservasArgs<ExtArgs>
@@ -5773,6 +5782,7 @@ export namespace Prisma {
       telefono: string | null
       bio: string | null
       url: string | null
+      Foto: string
       disponible: boolean
     }, ExtArgs["result"]["fotografo"]>
     composites: {}
@@ -6150,6 +6160,7 @@ export namespace Prisma {
     readonly telefono: FieldRef<"Fotografo", 'String'>
     readonly bio: FieldRef<"Fotografo", 'String'>
     readonly url: FieldRef<"Fotografo", 'String'>
+    readonly Foto: FieldRef<"Fotografo", 'String'>
     readonly disponible: FieldRef<"Fotografo", 'Boolean'>
   }
     
@@ -10421,6 +10432,7 @@ export namespace Prisma {
     telefono: 'telefono',
     bio: 'bio',
     url: 'url',
+    Foto: 'Foto',
     disponible: 'disponible'
   };
 
@@ -10534,7 +10546,8 @@ export namespace Prisma {
     usuarioId: 'usuarioId',
     telefono: 'telefono',
     bio: 'bio',
-    url: 'url'
+    url: 'url',
+    Foto: 'Foto'
   };
 
   export type FotografoOrderByRelevanceFieldEnum = (typeof FotografoOrderByRelevanceFieldEnum)[keyof typeof FotografoOrderByRelevanceFieldEnum]
@@ -10883,6 +10896,7 @@ export namespace Prisma {
     telefono?: StringNullableFilter<"Fotografo"> | string | null
     bio?: StringNullableFilter<"Fotografo"> | string | null
     url?: StringNullableFilter<"Fotografo"> | string | null
+    Foto?: StringFilter<"Fotografo"> | string
     disponible?: BoolFilter<"Fotografo"> | boolean
     usuario?: XOR<UsuarioScalarRelationFilter, UsuarioWhereInput>
     reservas?: ReservaListRelationFilter
@@ -10894,6 +10908,7 @@ export namespace Prisma {
     telefono?: SortOrderInput | SortOrder
     bio?: SortOrderInput | SortOrder
     url?: SortOrderInput | SortOrder
+    Foto?: SortOrder
     disponible?: SortOrder
     usuario?: UsuarioOrderByWithRelationInput
     reservas?: ReservaOrderByRelationAggregateInput
@@ -10909,6 +10924,7 @@ export namespace Prisma {
     telefono?: StringNullableFilter<"Fotografo"> | string | null
     bio?: StringNullableFilter<"Fotografo"> | string | null
     url?: StringNullableFilter<"Fotografo"> | string | null
+    Foto?: StringFilter<"Fotografo"> | string
     disponible?: BoolFilter<"Fotografo"> | boolean
     usuario?: XOR<UsuarioScalarRelationFilter, UsuarioWhereInput>
     reservas?: ReservaListRelationFilter
@@ -10920,6 +10936,7 @@ export namespace Prisma {
     telefono?: SortOrderInput | SortOrder
     bio?: SortOrderInput | SortOrder
     url?: SortOrderInput | SortOrder
+    Foto?: SortOrder
     disponible?: SortOrder
     _count?: FotografoCountOrderByAggregateInput
     _max?: FotografoMaxOrderByAggregateInput
@@ -10935,6 +10952,7 @@ export namespace Prisma {
     telefono?: StringNullableWithAggregatesFilter<"Fotografo"> | string | null
     bio?: StringNullableWithAggregatesFilter<"Fotografo"> | string | null
     url?: StringNullableWithAggregatesFilter<"Fotografo"> | string | null
+    Foto?: StringWithAggregatesFilter<"Fotografo"> | string
     disponible?: BoolWithAggregatesFilter<"Fotografo"> | boolean
   }
 
@@ -11462,6 +11480,7 @@ export namespace Prisma {
     telefono?: string | null
     bio?: string | null
     url?: string | null
+    Foto: string
     disponible: boolean
     usuario: UsuarioCreateNestedOneWithoutFotografoInput
     reservas?: ReservaCreateNestedManyWithoutFotografoInput
@@ -11473,6 +11492,7 @@ export namespace Prisma {
     telefono?: string | null
     bio?: string | null
     url?: string | null
+    Foto: string
     disponible: boolean
     reservas?: ReservaUncheckedCreateNestedManyWithoutFotografoInput
   }
@@ -11482,6 +11502,7 @@ export namespace Prisma {
     telefono?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
     url?: NullableStringFieldUpdateOperationsInput | string | null
+    Foto?: StringFieldUpdateOperationsInput | string
     disponible?: BoolFieldUpdateOperationsInput | boolean
     usuario?: UsuarioUpdateOneRequiredWithoutFotografoNestedInput
     reservas?: ReservaUpdateManyWithoutFotografoNestedInput
@@ -11493,6 +11514,7 @@ export namespace Prisma {
     telefono?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
     url?: NullableStringFieldUpdateOperationsInput | string | null
+    Foto?: StringFieldUpdateOperationsInput | string
     disponible?: BoolFieldUpdateOperationsInput | boolean
     reservas?: ReservaUncheckedUpdateManyWithoutFotografoNestedInput
   }
@@ -11503,6 +11525,7 @@ export namespace Prisma {
     telefono?: string | null
     bio?: string | null
     url?: string | null
+    Foto: string
     disponible: boolean
   }
 
@@ -11511,6 +11534,7 @@ export namespace Prisma {
     telefono?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
     url?: NullableStringFieldUpdateOperationsInput | string | null
+    Foto?: StringFieldUpdateOperationsInput | string
     disponible?: BoolFieldUpdateOperationsInput | boolean
   }
 
@@ -11520,6 +11544,7 @@ export namespace Prisma {
     telefono?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
     url?: NullableStringFieldUpdateOperationsInput | string | null
+    Foto?: StringFieldUpdateOperationsInput | string
     disponible?: BoolFieldUpdateOperationsInput | boolean
   }
 
@@ -12073,6 +12098,7 @@ export namespace Prisma {
     telefono?: SortOrder
     bio?: SortOrder
     url?: SortOrder
+    Foto?: SortOrder
     disponible?: SortOrder
   }
 
@@ -12082,6 +12108,7 @@ export namespace Prisma {
     telefono?: SortOrder
     bio?: SortOrder
     url?: SortOrder
+    Foto?: SortOrder
     disponible?: SortOrder
   }
 
@@ -12091,6 +12118,7 @@ export namespace Prisma {
     telefono?: SortOrder
     bio?: SortOrder
     url?: SortOrder
+    Foto?: SortOrder
     disponible?: SortOrder
   }
 
@@ -13082,6 +13110,7 @@ export namespace Prisma {
     telefono?: string | null
     bio?: string | null
     url?: string | null
+    Foto: string
     disponible: boolean
     reservas?: ReservaCreateNestedManyWithoutFotografoInput
   }
@@ -13091,6 +13120,7 @@ export namespace Prisma {
     telefono?: string | null
     bio?: string | null
     url?: string | null
+    Foto: string
     disponible: boolean
     reservas?: ReservaUncheckedCreateNestedManyWithoutFotografoInput
   }
@@ -13147,6 +13177,7 @@ export namespace Prisma {
     telefono?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
     url?: NullableStringFieldUpdateOperationsInput | string | null
+    Foto?: StringFieldUpdateOperationsInput | string
     disponible?: BoolFieldUpdateOperationsInput | boolean
     reservas?: ReservaUpdateManyWithoutFotografoNestedInput
   }
@@ -13156,6 +13187,7 @@ export namespace Prisma {
     telefono?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
     url?: NullableStringFieldUpdateOperationsInput | string | null
+    Foto?: StringFieldUpdateOperationsInput | string
     disponible?: BoolFieldUpdateOperationsInput | boolean
     reservas?: ReservaUncheckedUpdateManyWithoutFotografoNestedInput
   }
@@ -13434,6 +13466,7 @@ export namespace Prisma {
     telefono?: string | null
     bio?: string | null
     url?: string | null
+    Foto: string
     disponible: boolean
     usuario: UsuarioCreateNestedOneWithoutFotografoInput
   }
@@ -13444,6 +13477,7 @@ export namespace Prisma {
     telefono?: string | null
     bio?: string | null
     url?: string | null
+    Foto: string
     disponible: boolean
   }
 
@@ -13491,6 +13525,7 @@ export namespace Prisma {
     telefono?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
     url?: NullableStringFieldUpdateOperationsInput | string | null
+    Foto?: StringFieldUpdateOperationsInput | string
     disponible?: BoolFieldUpdateOperationsInput | boolean
     usuario?: UsuarioUpdateOneRequiredWithoutFotografoNestedInput
   }
@@ -13501,6 +13536,7 @@ export namespace Prisma {
     telefono?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
     url?: NullableStringFieldUpdateOperationsInput | string | null
+    Foto?: StringFieldUpdateOperationsInput | string
     disponible?: BoolFieldUpdateOperationsInput | boolean
   }
 

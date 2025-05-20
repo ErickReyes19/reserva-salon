@@ -4,7 +4,7 @@ import { useEffect, useState, Suspense } from "react"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { MapPin, Phone, Mail, Clock, Facebook, Instagram, Twitter } from "lucide-react"
-import { ReservaEvent } from "../../types"
+import type { ReservaEvent } from "../../types"
 import { getReservasEvent } from "../../actions"
 import CalendarioReservas from "../calendar"
 import AnimatedSection from "../animated-section"
@@ -54,71 +54,8 @@ export default function BookingSection() {
         </div>
         <Card className="border-none shadow-2xl rounded-2xl overflow-hidden">
           <CardContent className="p-0">
-            <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-              {/* Columna izquierda: Información de contacto (1/4) */}
-              <div className="lg:col-span-1 bg-purple-900 p-8 text-white flex flex-col justify-between">
-                <div>
-                  <h3 className="text-2xl font-bold mb-6">Información de Contacto</h3>
-                  <div className="space-y-6">
-                    <div className="flex items-start gap-4">
-                      <MapPin className="h-6 w-6 text-purple-300 pt-1" />
-                      <div>
-                        <h4 className="font-semibold text-purple-200">Dirección</h4>
-                        <p className="text-white/80">Calle Principal 123, Ciudad</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-4">
-                      <Phone className="h-6 w-6 text-purple-300 pt-1" />
-                      <div>
-                        <h4 className="font-semibold text-purple-200">Teléfono</h4>
-                        <p className="text-white/80">(123) 456-7890</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-4">
-                      <Mail className="h-6 w-6 text-purple-300 pt-1" />
-                      <div>
-                        <h4 className="font-semibold text-purple-200">Email</h4>
-                        <p className="text-white/80">info@fotostudio.com</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-4">
-                      <Clock className="h-6 w-6 text-purple-300 pt-1" />
-                      <div>
-                        <h4 className="font-semibold text-purple-200">Horario</h4>
-                        <p className="text-white/80">Lun - Vie: 9:00 AM - 8:00 PM</p>
-                        <p className="text-white/80">Sáb: 10:00 AM - 6:00 PM</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mt-10">
-                  <h4 className="font-semibold text-purple-200 mb-4">Síguenos</h4>
-                  <div className="flex gap-3">
-                    <a
-                      href="#"
-                      className="h-10 w-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition"
-                    >
-                      <Facebook size={20} />
-                    </a>
-                    <a
-                      href="#"
-                      className="h-10 w-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition"
-                    >
-                      <Instagram size={20} />
-                    </a>
-                    <a
-                      href="#"
-                      className="h-10 w-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition"
-                    >
-                      <Twitter size={20} />
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              {/* Columna derecha: Calendario + horas (3/4) */}
-              <div className="lg:col-span-3 p-8">
+                          {/* Calendario a ancho completo */}
+              <div className="p-8">
                 <Suspense
                   fallback={
                     <div className="flex justify-center items-center h-64">
@@ -129,6 +66,69 @@ export default function BookingSection() {
                   <CalendarioReservasWrapper />
                 </Suspense>
               </div>
+            <div className="flex flex-col">
+              {/* Información de contacto en la parte superior */}
+              <div className="bg-purple-900 p-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                  <div className="flex items-start gap-4">
+                    <MapPin className="h-6 w-6 text-purple-300 pt-1 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-semibold text-purple-200">Dirección</h4>
+                      <p className="text-white/80">Calle Principal 123, Ciudad</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <Phone className="h-6 w-6 text-purple-300 pt-1 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-semibold text-purple-200">Teléfono</h4>
+                      <p className="text-white/80">(123) 456-7890</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <Mail className="h-6 w-6 text-purple-300 pt-1 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-semibold text-purple-200">Email</h4>
+                      <p className="text-white/80">info@fotostudio.com</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <Clock className="h-6 w-6 text-purple-300 pt-1 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-semibold text-purple-200">Horario</h4>
+                      <p className="text-white/80">Lun - Vie: 9:00 AM - 8:00 PM</p>
+                      <p className="text-white/80">Sáb: 10:00 AM - 6:00 PM</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Redes sociales */}
+                <div className="mt-6 flex items-center justify-center md:justify-end gap-3 border-t border-white/10 pt-6">
+                  <span className="text-purple-200 mr-2">Síguenos:</span>
+                  <a
+                    href="#"
+                    className="h-10 w-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition"
+                  >
+                    <Facebook size={20} />
+                  </a>
+                  <a
+                    href="#"
+                    className="h-10 w-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition"
+                  >
+                    <Instagram size={20} />
+                  </a>
+                  <a
+                    href="#"
+                    className="h-10 w-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition"
+                  >
+                    <Twitter size={20} />
+                  </a>
+                </div>
+              </div>
+
+
             </div>
           </CardContent>
         </Card>
