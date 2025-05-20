@@ -49,8 +49,11 @@ export default function TestimonialsSection() {
           </p>
         </div>
 
-        <Carousel className="w-full">
+        <Carousel className="w-full"  opts={{
+          loop: true,
+        }}>
           <CarouselContent>
+
             {testimonials.map((testimonial, index) => (
               <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
                 <div className="p-2 h-full">

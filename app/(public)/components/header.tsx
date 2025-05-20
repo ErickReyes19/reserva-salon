@@ -1,20 +1,41 @@
-"use client"
+"use client";
 
-import { Camera } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { useState, useEffect } from "react";
+import { Camera } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
-interface HeaderProps {
-  activeSection: string
-}
+export default function Header() {
+  const [activeSection, setActiveSection] = useState<string>("home");
 
-export default function Header({ activeSection }: HeaderProps) {
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = document.querySelectorAll<HTMLElement>("section[id]");
+      const scrollPosition = window.scrollY + 100;
+
+      sections.forEach((section) => {
+        const top = section.getBoundingClientRect().top + window.scrollY;
+        const height = section.clientHeight;
+        const id = section.id;
+
+        if (scrollPosition >= top && scrollPosition < top + height) {
+          setActiveSection(id);
+        }
+      });
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll(); // inicializa al cargar
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const navItems = [
     { id: "home", label: "Inicio" },
     { id: "about", label: "Nosotros" },
     { id: "photographers", label: "Fotógrafos" },
     { id: "services", label: "Servicios" },
     { id: "reservar", label: "Reservar" },
-  ]
+  ];
 
   return (
     <header className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-md z-50 shadow-sm">
@@ -41,5 +62,5 @@ export default function Header({ activeSection }: HeaderProps) {
         </div>
       </div>
     </header>
-  )
+  );
 }

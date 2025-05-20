@@ -163,6 +163,7 @@ exports.Prisma.FotografoScalarFieldEnum = {
   telefono: 'telefono',
   bio: 'bio',
   url: 'url',
+  Foto: 'Foto',
   disponible: 'disponible'
 };
 
@@ -243,7 +244,8 @@ exports.Prisma.FotografoOrderByRelevanceFieldEnum = {
   usuarioId: 'usuarioId',
   telefono: 'telefono',
   bio: 'bio',
-  url: 'url'
+  url: 'url',
+  Foto: 'Foto'
 };
 
 exports.Prisma.ClienteOrderByRelevanceFieldEnum = {

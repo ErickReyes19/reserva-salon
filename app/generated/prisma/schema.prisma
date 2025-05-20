@@ -66,6 +66,7 @@ model Fotografo {
   telefono   String?
   bio        String?
   url        String?
+  Foto       String
   disponible Boolean
   usuario    Usuario   @relation("FotografoUsuario", fields: [usuarioId], references: [id])
   reservas   Reserva[] @relation("ReservasFotografo")

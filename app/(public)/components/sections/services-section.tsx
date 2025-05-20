@@ -1,23 +1,23 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
-import Image from "next/image"
-import AnimatedCard from "../animated-card"
-import AnimatedSection from "../animated-section"
-import { CategoryWithServices, PhotoService } from "../../types"
-import { getCategoriesWithServices } from "../../actions"
+import { useState, useEffect } from "react";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import Image from "next/image";
+import AnimatedCard from "../animated-card";
+import AnimatedSection from "../animated-section";
+import { CategoryWithServices, PhotoService } from "../../types";
+import { getCategoriesWithServices } from "../../actions";
 
 export default function ServicesSection() {
-  const [categories, setCategories] = useState<CategoryWithServices[]>([])
-  const [loading, setLoading] = useState(true)
+  const [categories, setCategories] = useState<CategoryWithServices[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getCategoriesWithServices()
       .then((data) => setCategories(data))
       .catch((err) => console.error(err))
-      .finally(() => setLoading(false))
-  }, [])
+      .finally(() => setLoading(false));
+  }, []);
 
   if (loading) {
     return (
@@ -26,34 +26,62 @@ export default function ServicesSection() {
           <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-purple-500" />
         </div>
       </AnimatedSection>
-    )
+    );
   }
 
-  // Todos los servicios juntos
-  const allServices: PhotoService[] = categories.flatMap((cat) => cat.services)
+  const allServices: PhotoService[] = categories.flatMap((cat) => cat.services);
 
-  const ServiceGrid = ({ services }: { services: PhotoService[] }) => (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-      {services.map((svc, i) => (
-        <AnimatedCard key={svc.id} delay={i}>
-          <div className="overflow-hidden rounded-lg shadow-lg h-full flex flex-col">
-            <div className="relative h-48 w-full">
-              <Image
-                src={svc.img}
-                alt={svc.name}
-                fill
-                className="object-cover transition-transform duration-500 hover:scale-105"
-              />
-            </div>
-            <div className="p-4 flex-1">
-              <h3 className="text-lg font-semibold mb-2">{svc.name}</h3>
-              <p className="text-gray-600 line-clamp-3">{svc.description}</p>
-            </div>
+  function ServiceCarousel({ services }: { services: PhotoService[] }) {
+    return (
+      <div className="flex space-x-4 overflow-x-auto scrollbar-none py-4 px-2">
+        {services.map((svc) => (
+          <div key={svc.id} className="min-w-[80%] sm:min-w-[45%] md:hidden">
+            <AnimatedCard>
+              <div className="overflow-hidden rounded-lg shadow-lg h-full flex flex-col">
+                <div className="relative h-48 w-full">
+                  <Image
+                    src={"/placeholder.svg"}
+                    alt={svc.name}
+                    fill
+                    className="object-cover transition-transform duration-500 hover:scale-105"
+                  />
+                </div>
+                <div className="p-4 flex-1">
+                  <h3 className="text-lg font-semibold mb-2">{svc.name}</h3>
+                  <p className="text-gray-600 line-clamp-3">{svc.description}</p>
+                </div>
+              </div>
+            </AnimatedCard>
           </div>
-        </AnimatedCard>
-      ))}
-    </div>
-  )
+        ))}
+      </div>
+    );
+  }
+
+  function ServiceGrid({ services }: { services: PhotoService[] }) {
+    return (
+      <div className="hidden md:grid grid-cols-1 md:grid-cols-3 gap-8">
+        {services.map((svc, i) => (
+          <AnimatedCard key={svc.id} delay={i}>
+            <div className="overflow-hidden rounded-lg shadow-lg h-full flex flex-col">
+              <div className="relative h-48 w-full">
+                <Image
+                  src={ "/placeholder.svg"}
+                  alt={svc.name}
+                  fill
+                  className="object-cover transition-transform duration-500 hover:scale-105"
+                />
+              </div>
+              <div className="p-4 flex-1">
+                <h3 className="text-lg font-semibold mb-2">{svc.name}</h3>
+                <p className="text-gray-600 line-clamp-3">{svc.description}</p>
+              </div>
+            </div>
+          </AnimatedCard>
+        ))}
+      </div>
+    );
+  }
 
   return (
     <AnimatedSection id="services" className="py-24 bg-white">
@@ -73,16 +101,18 @@ export default function ServicesSection() {
           </TabsList>
 
           <TabsContent value="all">
+            <ServiceCarousel services={allServices} />
             <ServiceGrid services={allServices} />
           </TabsContent>
 
           {categories.map((cat) => (
             <TabsContent key={cat.id} value={cat.name}>
+              <ServiceCarousel services={cat.services} />
               <ServiceGrid services={cat.services} />
             </TabsContent>
           ))}
         </Tabs>
       </div>
     </AnimatedSection>
-  )
+  );
 }
