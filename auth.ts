@@ -185,7 +185,7 @@ export async function getADAuthentication(
         Rol: user.rol.nombre,
         IdRol: user.rolId,
         Permiso: permisos,
-        DebeCambiar: user.DebeCambiar,
+        DebeCambiar: user.debeCambiar,
         Puesto: "",
         PuestoId: "",
         exp: Math.floor(Date.now() / 1000) + 3600,
@@ -220,7 +220,7 @@ export async function changePassword(
       where: { id: existing.id },
       data: {
         password: hashedPassword,
-        DebeCambiar: false,
+        debeCambiar: false,
       },
     });
 
@@ -232,7 +232,7 @@ export async function changePassword(
         Rol: "",      // o updated.rol.nombre si lo incluyes
         IdRol: updated.rolId,
         Permiso: permisos,
-        DebeCambiar: updated.DebeCambiar,
+        DebeCambiar: updated.debeCambiar,
         Puesto: "",
         PuestoId: "",
         exp: Math.floor(Date.now() / 1000) + 3600,

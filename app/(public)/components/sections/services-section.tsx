@@ -39,7 +39,7 @@ export default function ServicesSection() {
           <div className="overflow-hidden rounded-lg shadow-lg h-full flex flex-col">
             <div className="relative h-48 w-full">
               <Image
-                src={'placeholder.svg'}
+                src={svc.img}
                 alt={svc.name}
                 fill
                 className="object-cover transition-transform duration-500 hover:scale-105"

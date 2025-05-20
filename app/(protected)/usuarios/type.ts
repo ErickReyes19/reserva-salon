@@ -6,11 +6,12 @@ export type Usuario = {
     rol?: string;
     rol_id: string;
     activo: boolean;
-    password?: string; // Solo para crear o actualizar
+    password?: string;
+    debeCambiar: true; // Solo para crear o actualizar
     
 }
 
-export type UsuarioCreate = Omit<Usuario, "id" | "activo">;
+export type UsuarioCreate = Omit<Usuario, "id" | "activo" | "debeCambiar">;
 
 // UsuarioUpdate: Para actualizar un usuario existente (requiere 'id' y 'activo')
 export type UsuarioUpdate = Required<Usuario> & { usuario: string };  

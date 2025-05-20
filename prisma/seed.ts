@@ -25,7 +25,7 @@ async function main() {
     const permisoNames = [
       "ver_permisos", "ver_roles", "crear_roles", "editar_roles",
       "ver_usuarios", "crear_usuario", "editar_usuario","ver_categoria","crear_categoria",
-      "editar_categoria"
+      "editar_categoria","ver_servicios","crear_servicios","editar_servicios"
     ];
 
     const permisos = await Promise.all(
