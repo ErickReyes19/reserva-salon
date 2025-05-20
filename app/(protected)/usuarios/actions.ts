@@ -16,17 +16,18 @@ function mapUsuario(data: {
   rolId: string; 
   email: string; 
   password: string; 
-  DebeCambiar: boolean; 
+  debeCambiar: boolean; 
   rol: Rol | null; 
 }): Usuario {
   return {
-    id: data.id,
-    usuario: data.nombre, 
-    rol_id: data.rolId,  
-    rol: data.rol?.nombre ?? "", 
-    activo: data.activo,
-    email: data.email, 
-  };
+  id: data.id,
+  usuario: data.nombre,
+  rol_id: data.rolId,
+  rol: data.rol?.nombre ?? "",
+  activo: data.activo,
+  email: data.email,
+  debeCambiar:true
+};
 }
 
 export async function getUsuarios(): Promise<Usuario[]> {
@@ -62,7 +63,7 @@ export async function postUsuario({ usuario }: { usuario: UsuarioCreate }): Prom
         activo: true,              // Por defecto, lo creamos activo
         email: usuario.email,     // Agregar email
         password: hashedPassword, // Agregar la contraseña encriptada
-        DebeCambiar: true,        // Cambiar por un valor por defecto si no lo pasas
+        debeCambiar: true,        // Cambiar por un valor por defecto si no lo pasas
       },
       include: {
         rol: true, 
