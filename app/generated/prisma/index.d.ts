@@ -5579,6 +5579,7 @@ export namespace Prisma {
   export type FotografoMinAggregateOutputType = {
     id: string | null
     usuarioId: string | null
+    nombre: string | null
     telefono: string | null
     bio: string | null
     url: string | null
@@ -5589,6 +5590,7 @@ export namespace Prisma {
   export type FotografoMaxAggregateOutputType = {
     id: string | null
     usuarioId: string | null
+    nombre: string | null
     telefono: string | null
     bio: string | null
     url: string | null
@@ -5599,6 +5601,7 @@ export namespace Prisma {
   export type FotografoCountAggregateOutputType = {
     id: number
     usuarioId: number
+    nombre: number
     telefono: number
     bio: number
     url: number
@@ -5611,6 +5614,7 @@ export namespace Prisma {
   export type FotografoMinAggregateInputType = {
     id?: true
     usuarioId?: true
+    nombre?: true
     telefono?: true
     bio?: true
     url?: true
@@ -5621,6 +5625,7 @@ export namespace Prisma {
   export type FotografoMaxAggregateInputType = {
     id?: true
     usuarioId?: true
+    nombre?: true
     telefono?: true
     bio?: true
     url?: true
@@ -5631,6 +5636,7 @@ export namespace Prisma {
   export type FotografoCountAggregateInputType = {
     id?: true
     usuarioId?: true
+    nombre?: true
     telefono?: true
     bio?: true
     url?: true
@@ -5714,6 +5720,7 @@ export namespace Prisma {
   export type FotografoGroupByOutputType = {
     id: string
     usuarioId: string
+    nombre: string
     telefono: string | null
     bio: string | null
     url: string | null
@@ -5741,6 +5748,7 @@ export namespace Prisma {
   export type FotografoSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     usuarioId?: boolean
+    nombre?: boolean
     telefono?: boolean
     bio?: boolean
     url?: boolean
@@ -5756,6 +5764,7 @@ export namespace Prisma {
   export type FotografoSelectScalar = {
     id?: boolean
     usuarioId?: boolean
+    nombre?: boolean
     telefono?: boolean
     bio?: boolean
     url?: boolean
@@ -5763,7 +5772,7 @@ export namespace Prisma {
     disponible?: boolean
   }
 
-  export type FotografoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "usuarioId" | "telefono" | "bio" | "url" | "Foto" | "disponible", ExtArgs["result"]["fotografo"]>
+  export type FotografoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "usuarioId" | "nombre" | "telefono" | "bio" | "url" | "Foto" | "disponible", ExtArgs["result"]["fotografo"]>
   export type FotografoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     usuario?: boolean | UsuarioDefaultArgs<ExtArgs>
     reservas?: boolean | Fotografo$reservasArgs<ExtArgs>
@@ -5779,6 +5788,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       usuarioId: string
+      nombre: string
       telefono: string | null
       bio: string | null
       url: string | null
@@ -6157,6 +6167,7 @@ export namespace Prisma {
   interface FotografoFieldRefs {
     readonly id: FieldRef<"Fotografo", 'String'>
     readonly usuarioId: FieldRef<"Fotografo", 'String'>
+    readonly nombre: FieldRef<"Fotografo", 'String'>
     readonly telefono: FieldRef<"Fotografo", 'String'>
     readonly bio: FieldRef<"Fotografo", 'String'>
     readonly url: FieldRef<"Fotografo", 'String'>
@@ -10429,6 +10440,7 @@ export namespace Prisma {
   export const FotografoScalarFieldEnum: {
     id: 'id',
     usuarioId: 'usuarioId',
+    nombre: 'nombre',
     telefono: 'telefono',
     bio: 'bio',
     url: 'url',
@@ -10544,6 +10556,7 @@ export namespace Prisma {
   export const FotografoOrderByRelevanceFieldEnum: {
     id: 'id',
     usuarioId: 'usuarioId',
+    nombre: 'nombre',
     telefono: 'telefono',
     bio: 'bio',
     url: 'url',
@@ -10893,6 +10906,7 @@ export namespace Prisma {
     NOT?: FotografoWhereInput | FotografoWhereInput[]
     id?: StringFilter<"Fotografo"> | string
     usuarioId?: StringFilter<"Fotografo"> | string
+    nombre?: StringFilter<"Fotografo"> | string
     telefono?: StringNullableFilter<"Fotografo"> | string | null
     bio?: StringNullableFilter<"Fotografo"> | string | null
     url?: StringNullableFilter<"Fotografo"> | string | null
@@ -10905,6 +10919,7 @@ export namespace Prisma {
   export type FotografoOrderByWithRelationInput = {
     id?: SortOrder
     usuarioId?: SortOrder
+    nombre?: SortOrder
     telefono?: SortOrderInput | SortOrder
     bio?: SortOrderInput | SortOrder
     url?: SortOrderInput | SortOrder
@@ -10918,6 +10933,7 @@ export namespace Prisma {
   export type FotografoWhereUniqueInput = Prisma.AtLeast<{
     id?: string
     usuarioId?: string
+    nombre?: string
     AND?: FotografoWhereInput | FotografoWhereInput[]
     OR?: FotografoWhereInput[]
     NOT?: FotografoWhereInput | FotografoWhereInput[]
@@ -10928,11 +10944,12 @@ export namespace Prisma {
     disponible?: BoolFilter<"Fotografo"> | boolean
     usuario?: XOR<UsuarioScalarRelationFilter, UsuarioWhereInput>
     reservas?: ReservaListRelationFilter
-  }, "id" | "usuarioId">
+  }, "id" | "usuarioId" | "nombre">
 
   export type FotografoOrderByWithAggregationInput = {
     id?: SortOrder
     usuarioId?: SortOrder
+    nombre?: SortOrder
     telefono?: SortOrderInput | SortOrder
     bio?: SortOrderInput | SortOrder
     url?: SortOrderInput | SortOrder
@@ -10949,6 +10966,7 @@ export namespace Prisma {
     NOT?: FotografoScalarWhereWithAggregatesInput | FotografoScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Fotografo"> | string
     usuarioId?: StringWithAggregatesFilter<"Fotografo"> | string
+    nombre?: StringWithAggregatesFilter<"Fotografo"> | string
     telefono?: StringNullableWithAggregatesFilter<"Fotografo"> | string | null
     bio?: StringNullableWithAggregatesFilter<"Fotografo"> | string | null
     url?: StringNullableWithAggregatesFilter<"Fotografo"> | string | null
@@ -11477,6 +11495,7 @@ export namespace Prisma {
 
   export type FotografoCreateInput = {
     id?: string
+    nombre: string
     telefono?: string | null
     bio?: string | null
     url?: string | null
@@ -11489,6 +11508,7 @@ export namespace Prisma {
   export type FotografoUncheckedCreateInput = {
     id?: string
     usuarioId: string
+    nombre: string
     telefono?: string | null
     bio?: string | null
     url?: string | null
@@ -11499,6 +11519,7 @@ export namespace Prisma {
 
   export type FotografoUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    nombre?: StringFieldUpdateOperationsInput | string
     telefono?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
     url?: NullableStringFieldUpdateOperationsInput | string | null
@@ -11511,6 +11532,7 @@ export namespace Prisma {
   export type FotografoUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     usuarioId?: StringFieldUpdateOperationsInput | string
+    nombre?: StringFieldUpdateOperationsInput | string
     telefono?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
     url?: NullableStringFieldUpdateOperationsInput | string | null
@@ -11522,6 +11544,7 @@ export namespace Prisma {
   export type FotografoCreateManyInput = {
     id?: string
     usuarioId: string
+    nombre: string
     telefono?: string | null
     bio?: string | null
     url?: string | null
@@ -11531,6 +11554,7 @@ export namespace Prisma {
 
   export type FotografoUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    nombre?: StringFieldUpdateOperationsInput | string
     telefono?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
     url?: NullableStringFieldUpdateOperationsInput | string | null
@@ -11541,6 +11565,7 @@ export namespace Prisma {
   export type FotografoUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     usuarioId?: StringFieldUpdateOperationsInput | string
+    nombre?: StringFieldUpdateOperationsInput | string
     telefono?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
     url?: NullableStringFieldUpdateOperationsInput | string | null
@@ -12095,6 +12120,7 @@ export namespace Prisma {
   export type FotografoCountOrderByAggregateInput = {
     id?: SortOrder
     usuarioId?: SortOrder
+    nombre?: SortOrder
     telefono?: SortOrder
     bio?: SortOrder
     url?: SortOrder
@@ -12105,6 +12131,7 @@ export namespace Prisma {
   export type FotografoMaxOrderByAggregateInput = {
     id?: SortOrder
     usuarioId?: SortOrder
+    nombre?: SortOrder
     telefono?: SortOrder
     bio?: SortOrder
     url?: SortOrder
@@ -12115,6 +12142,7 @@ export namespace Prisma {
   export type FotografoMinOrderByAggregateInput = {
     id?: SortOrder
     usuarioId?: SortOrder
+    nombre?: SortOrder
     telefono?: SortOrder
     bio?: SortOrder
     url?: SortOrder
@@ -13107,6 +13135,7 @@ export namespace Prisma {
 
   export type FotografoCreateWithoutUsuarioInput = {
     id?: string
+    nombre: string
     telefono?: string | null
     bio?: string | null
     url?: string | null
@@ -13117,6 +13146,7 @@ export namespace Prisma {
 
   export type FotografoUncheckedCreateWithoutUsuarioInput = {
     id?: string
+    nombre: string
     telefono?: string | null
     bio?: string | null
     url?: string | null
@@ -13174,6 +13204,7 @@ export namespace Prisma {
 
   export type FotografoUpdateWithoutUsuarioInput = {
     id?: StringFieldUpdateOperationsInput | string
+    nombre?: StringFieldUpdateOperationsInput | string
     telefono?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
     url?: NullableStringFieldUpdateOperationsInput | string | null
@@ -13184,6 +13215,7 @@ export namespace Prisma {
 
   export type FotografoUncheckedUpdateWithoutUsuarioInput = {
     id?: StringFieldUpdateOperationsInput | string
+    nombre?: StringFieldUpdateOperationsInput | string
     telefono?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
     url?: NullableStringFieldUpdateOperationsInput | string | null
@@ -13463,6 +13495,7 @@ export namespace Prisma {
 
   export type FotografoCreateWithoutReservasInput = {
     id?: string
+    nombre: string
     telefono?: string | null
     bio?: string | null
     url?: string | null
@@ -13474,6 +13507,7 @@ export namespace Prisma {
   export type FotografoUncheckedCreateWithoutReservasInput = {
     id?: string
     usuarioId: string
+    nombre: string
     telefono?: string | null
     bio?: string | null
     url?: string | null
@@ -13522,6 +13556,7 @@ export namespace Prisma {
 
   export type FotografoUpdateWithoutReservasInput = {
     id?: StringFieldUpdateOperationsInput | string
+    nombre?: StringFieldUpdateOperationsInput | string
     telefono?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
     url?: NullableStringFieldUpdateOperationsInput | string | null
@@ -13533,6 +13568,7 @@ export namespace Prisma {
   export type FotografoUncheckedUpdateWithoutReservasInput = {
     id?: StringFieldUpdateOperationsInput | string
     usuarioId?: StringFieldUpdateOperationsInput | string
+    nombre?: StringFieldUpdateOperationsInput | string
     telefono?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
     url?: NullableStringFieldUpdateOperationsInput | string | null

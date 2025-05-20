@@ -39,7 +39,7 @@ export default function TestimonialsSection() {
   ]
 
   return (
-    <AnimatedSection className="py-24 bg-white">
+    <AnimatedSection className="py-12 bg-gray-100">
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <Badge className="mb-4 bg-purple-100 text-purple-800 hover:bg-purple-100">Testimonios</Badge>

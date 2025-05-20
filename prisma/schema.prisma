@@ -63,6 +63,7 @@ model Usuario {
 model Fotografo {
   id         String    @id @default(uuid())
   usuarioId  String    @unique
+  nombre     String    @unique
   telefono   String?
   bio        String?
   url        String?

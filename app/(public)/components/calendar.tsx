@@ -15,6 +15,8 @@ import { Calendar, Clock, Loader2, Mail, Phone, User } from "lucide-react"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Input } from "@/components/ui/input"
 import { useRouter } from "next/navigation"
+import { getFotografosDisponibles } from "@/app/(protected)/fotografos/actions"
+import { Fotografo } from "@/app/(protected)/fotografos/type"
 
 interface Props {
   eventos?: ReservaEvent[]
@@ -35,24 +37,34 @@ export default function CalendarioReservas({ eventos = [] }: Props) {
   const [viewDate, setViewDate] = useState<Date>(startOfToday())
   const [availableHours, setAvailableHours] = useState<number[]>([])
   const [isLoading, setIsLoading] = useState(false)
+  const [fotografos, setFotografos] = useState<Fotografo[]>([]);
+  const [selectedFotografo, setSelectedFotografo] = useState<string>("");
+
+  useEffect(() => {
+    getFotografosDisponibles()
+      .then((data) => setFotografos(data))
+      .catch((err) => console.error(err));
+  }, []);
+
   // Horario de 7 a 21
   const allHours = useMemo(() => Array.from({ length: 14 }, (_, i) => i + 7), [])
 
   const handleConfirm = (name: string, email: string, phone: string) => {
-    setIsLoading(true)
+    setIsLoading(true);
+    const selected = fotografos.find((f) => f.id === selectedFotografo);
     const params = new URLSearchParams({
       date: selectedDate.toISOString(),
       hour: String(selectedHour),
       name,
       email,
       phone,
-    })
-
-    // Simular un pequeño retraso para mostrar el spinner
+      fotografoId: selectedFotografo,
+      fotografoName: selected?.nombre || "",
+    });
     setTimeout(() => {
-      router.push(`/checkout?${params.toString()}`)
-    }, 500)
-  }
+      router.push(`/checkout?${params.toString()}`);
+    }, 500);
+  };
 
   // Recalcular horas disponibles cuando cambia la fecha o los eventos
   useEffect(() => {
@@ -229,6 +241,7 @@ export default function CalendarioReservas({ eventos = [] }: Props) {
                 <span className="text-sm font-medium">{selectedHour !== null ? formatHour(selectedHour) : ""}</span>
               </div>
             </div>
+
           </DialogHeader>
 
           {isLoading ? (
@@ -260,6 +273,18 @@ export default function CalendarioReservas({ eventos = [] }: Props) {
                   <Mail className="h-4 w-4 text-gray-500" />
                   <Input name="email" className="w-full" placeholder="Correo" type="email" required />
                 </div>
+              </div>
+              <div className="space-y-1">
+                <div className="flex items-center gap-2"><User className="h-4 w-4 text-gray-500" /><Select onValueChange={setSelectedFotografo} value={selectedFotografo}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Elige un fotógrafo" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {fotografos.map((f) => (
+                      <SelectItem key={f.id} value={f.id || ""}>{f.nombre}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select></div>
               </div>
 
               <div className="space-y-1">

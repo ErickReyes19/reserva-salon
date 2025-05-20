@@ -16,6 +16,35 @@ export async function getFotografos(): Promise<Fotografo[]> {
     return fotografos.map((f) => ({
       id: f.id,
       usuarioId: f.usuarioId,
+      nombre: f.nombre,
+      telefono: f.telefono ?? "",
+      bio: f.bio ?? "",
+      url: f.url ?? "",
+      Foto: f.Foto,
+      disponible: f.disponible,
+      usuarioNombre: f.usuario?.nombre ?? "",
+    }));
+  } catch (error) {
+    console.error("Error al obtener los fotógrafos:", error);
+    return [];
+  }
+}
+// Obtener todos los fotógrafos
+export async function getFotografosDisponibles(): Promise<Fotografo[]> {
+  try {
+    const fotografos = await prisma.fotografo.findMany({
+      where: {
+        disponible: true
+      },
+      include: {
+        usuario: true,
+      },
+    });
+
+    return fotografos.map((f) => ({
+      id: f.id,
+      usuarioId: f.usuarioId,
+      nombre: f.nombre,
       telefono: f.telefono ?? "",
       bio: f.bio ?? "",
       url: f.url ?? "",
@@ -42,6 +71,7 @@ export async function getFotografoById(id: string): Promise<Fotografo | null> {
     return {
       id: f.id,
       usuarioId: f.usuarioId,
+      nombre: f.nombre,
       telefono: f.telefono ?? "",
       bio: f.bio ?? "",
       url: f.url ?? "",
@@ -65,6 +95,7 @@ export async function postFotografo({
     const created = await prisma.fotografo.create({
       data: {
         id: randomUUID(),
+        nombre: fotografo.nombre,
         usuarioId: fotografo.usuarioId,
         telefono: fotografo.telefono,
         bio: fotografo.bio,
@@ -81,6 +112,7 @@ export async function postFotografo({
       telefono: created.telefono ?? "",
       bio: created.bio ?? "",
       url: created.url ?? "",
+      nombre: created.nombre,
       Foto: created.Foto,
       disponible: created.disponible,
     };
@@ -114,6 +146,7 @@ export async function putFotografo({
       usuarioId: updated.usuarioId,
       telefono: updated.telefono ?? "",
       bio: updated.bio ?? "",
+      nombre: updated.nombre,
       url: updated.url ?? "",
       Foto: updated.Foto,
       disponible: updated.disponible,

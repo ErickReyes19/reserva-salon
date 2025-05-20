@@ -44,7 +44,7 @@ export default function PhotographersSection() {
           <Badge className="mb-4 bg-purple-100 text-purple-800 hover:bg-purple-200 transition-colors px-4 py-1.5 text-sm font-medium rounded-full">
             Nuestro Equipo
           </Badge>
-          <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-700 to-pink-600 mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent pb-2 bg-gradient-to-r from-purple-700 to-pink-600 mb-6">
             Fotógrafos Profesionales
           </h2>
           <p className="text-gray-600 text-lg">
@@ -104,7 +104,7 @@ function PhotoCard({ fotografo }: { fotografo: Fotografo }) {
       </div>
       <CardContent className="pt-6 pb-4">
         <h3 className="text-xl font-bold text-gray-900 group-hover:text-purple-700 transition-colors">
-          {fotografo.usuarioNombre}
+          {fotografo.nombre}
         </h3>
         <p className="text-purple-600 mt-2 line-clamp-2">{fotografo.bio}</p>
       </CardContent>

@@ -4,6 +4,7 @@ export const FotografoSchema = z.object({
   id: z.string().optional(),
   Foto: z.string().min(1, "La imagen es requerida"),
   bio: z.string().min(1, "La biografia es requerida"),
+  nombre: z.string().min(1, "El nombre es requerido"),
   url: z.string().min(1, "La url es requerida"),
   telefono: z.string().min(1, "El telfono es requerida"),
   disponible: z.boolean().optional(),

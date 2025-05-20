@@ -57,12 +57,15 @@ CREATE TABLE `Usuario` (
 CREATE TABLE `Fotografo` (
     `id` VARCHAR(191) NOT NULL,
     `usuarioId` VARCHAR(191) NOT NULL,
+    `nombre` VARCHAR(191) NOT NULL,
     `telefono` VARCHAR(191) NULL,
     `bio` VARCHAR(191) NULL,
     `url` VARCHAR(191) NULL,
+    `Foto` VARCHAR(191) NOT NULL,
     `disponible` BOOLEAN NOT NULL,
 
     UNIQUE INDEX `Fotografo_usuarioId_key`(`usuarioId`),
+    UNIQUE INDEX `Fotografo_nombre_key`(`nombre`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
