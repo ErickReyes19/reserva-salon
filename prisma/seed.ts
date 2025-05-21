@@ -26,7 +26,7 @@ async function main() {
       "ver_permisos", "ver_roles", "crear_roles", "editar_roles",
       "ver_usuarios", "crear_usuario", "editar_usuario", "ver_categoria", "crear_categoria",
       "editar_categoria", "ver_servicios", "crear_servicios", "editar_servicios",
-      "editar_fotografos", "ver_fotografos"
+      "editar_fotografos", "ver_fotografos","ver_clientes","crear_clientes","ver_reservas"
     ];
 
     const permisos = await Promise.all(
@@ -119,7 +119,6 @@ async function main() {
         fecha: dates[i],
         horaInicio: dates[i],
         horaFin: addHours(dates[i], 1),
-        pixelpayOrder: randomUUID(),
         estado: true
       }
     });

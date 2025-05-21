@@ -26,7 +26,6 @@ export default async function EditFotografoPage({ params }: { params: { id: stri
     usuarioId: fotografo.usuarioId,
     telefono: fotografo.telefono || "",
     bio: fotografo.bio || "",
-    nombre: fotografo.nombre,
     url: fotografo.url || "",
     Foto: fotografo.Foto || "",
     disponible: fotografo.disponible,
