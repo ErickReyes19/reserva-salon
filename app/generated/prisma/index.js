@@ -303,11 +303,12 @@ const config = {
     "db"
   ],
   "activeProvider": "mysql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": "mysql://avnadmin:AVNS_m2qIUlLKAuUJhDFMMu9@reserva-erickjosepineda33-1f0d.i.aivencloud.com:10168/defaultdb"
+        "value": null
       }
     }
   },
