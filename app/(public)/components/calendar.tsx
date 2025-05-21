@@ -223,8 +223,8 @@ export default function CalendarioReservas({ eventos = [] }: Props) {
       </Card>
 
       {/* Modal mejorado */}
-      <Dialog open={showModal} onOpenChange={(open) => !isLoading && setShowModal(open)}>
-        <DialogContent className="sm:max-w-md">
+      <Dialog open={showModal} onOpenChange={(open) => !isLoading && setShowModal(open)} >
+        <DialogContent className="sm:max-w-md p-2">
           <DialogHeader>
             <DialogTitle className="text-xl font-semibold text-center">Confirmar Reserva</DialogTitle>
 
