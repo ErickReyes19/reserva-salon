@@ -16,7 +16,7 @@ import {
   SidebarMenuSubItem,
   SidebarRail,
 } from "@/components/ui/sidebar";
-import { Calendar, Camera, ChevronDown, ChevronUp, Folder, LayersIcon, Settings, UserIcon, Users } from 'lucide-react';
+import { Calendar, Camera, ChevronDown, ChevronUp, Folder, LayersIcon, ListOrderedIcon, Settings, UserIcon, Users } from 'lucide-react';
 import Link from "next/link";
 import ToggleThemeButton from "../components/button-theme";
 import { NavUser } from "./nav-user";
@@ -73,6 +73,12 @@ const items = [
     url: "/clientes",
     icon: Users,
     permiso: "ver_clientes",
+  },
+    {
+    title: "Servicios",
+    url: "/servicios",
+    icon: ListOrderedIcon,
+    permiso: "ver_servicios",
   },
 
 ];
