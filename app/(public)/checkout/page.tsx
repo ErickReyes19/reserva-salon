@@ -1,20 +1,41 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { useSearchParams } from "next/navigation"
-import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import { format } from "date-fns"
 import { es } from "date-fns/locale"
-import { CheckCircle, CreditCard, Calendar, Clock, User, ArrowRight, ArrowLeft, CalendarCheck } from "lucide-react"
+import { CheckCircle, CreditCard, CalendarCheck } from "lucide-react"
 import { motion } from "framer-motion"
+import { ReservationDetails } from "./components/detalles-reserva"
+import { PaymentForm } from "./components/formulario-pago"
+import { Confirmation } from "./components/confirmacion"
+import { InvalidParameters } from "./components/datos-erroneos"
+import { LoadingState } from "./components/validando-reserva"
+import { SlotUnavailable } from "./components/reserva-no-disponible"
+import { ProgressSteps } from "./components/barra-progreso"
+import { isSlotAvailableByHourNumber } from "@/app/(protected)/reservas/actions"
+
+
+// Helper function to validate email format
+const isValidEmail = (email: string): boolean => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  return emailRegex.test(email)
+}
+
+// Helper function to validate phone format (simple version)
+const isValidPhone = (phone: string): boolean => {
+  const phoneRegex = /^\d{8,10}$/
+  return phoneRegex.test(phone.replace(/\D/g, ""))
+}
 
 export default function CheckoutWizardPage() {
   const params = useSearchParams()
   const router = useRouter()
   const [currentStep, setCurrentStep] = useState(0)
+  const [isLoading, setIsLoading] = useState(true)
+  const [isSlotAvailable, setIsSlotAvailable] = useState<boolean | null>(null)
+  const [invalidParams, setInvalidParams] = useState<string[]>([])
 
   const dateIso = params.get("date") || ""
   const hour = params.get("hour") || ""
@@ -24,10 +45,73 @@ export default function CheckoutWizardPage() {
   const fotografo = params.get("fotografoName") || ""
   const fotografoId = params.get("fotografoId") || ""
 
-  const date = dateIso ? new Date(dateIso) : new Date()
-  const formattedDate = format(date, "EEEE, d 'de' MMMM yyyy", { locale: es })
-  const formattedDay = format(date, "dd", { locale: es })
-  const formattedMonth = format(date, "MMM", { locale: es })
+  // Parse hour to number
+  const hourNumber = hour ? Number(hour) : null
+
+  // Create date object if dateIso is valid
+  let date: Date | null = null
+  let formattedDate = ""
+  let formattedDay = ""
+  let formattedMonth = ""
+
+  try {
+    if (dateIso) {
+      date = new Date(dateIso)
+      // Check if date is valid
+      if (!isNaN(date.getTime())) {
+        formattedDate = format(date, "EEEE, d 'de' MMMM yyyy", { locale: es })
+        formattedDay = format(date, "dd", { locale: es })
+        formattedMonth = format(date, "MMM", { locale: es })
+      } else {
+        date = null
+      }
+    }
+  } catch (error) {
+    console.error("Error parsing date:", error)
+    date = null
+  }
+
+  useEffect(() => {
+    // Validate all required parameters
+    const missingParams: string[] = []
+
+    if (!dateIso || !date) missingParams.push("Fecha")
+    if (!hour || hourNumber === null || isNaN(hourNumber) || hourNumber < 0 || hourNumber > 23)
+      missingParams.push("Hora")
+    if (!name) missingParams.push("Nombre")
+    if (!email || !isValidEmail(email)) missingParams.push("Email")
+    if (!phone || !isValidPhone(phone)) missingParams.push("Teléfono")
+    if (!fotografo) missingParams.push("Fotógrafo")
+    if (!fotografoId) missingParams.push("ID del fotógrafo")
+
+    setInvalidParams(missingParams)
+
+    // If all parameters are valid, check slot availability
+    if (missingParams.length === 0) {
+      checkSlotAvailability()
+    } else {
+      setIsLoading(false)
+    }
+  }, [dateIso, hour, name, email, phone, fotografo, fotografoId])
+
+  const checkSlotAvailability = async () => {
+    setIsLoading(true)
+
+    try {
+      if (date && hourNumber !== null) {
+        const available = await isSlotAvailableByHourNumber({
+          fecha: date,
+          horaInicioNumber: hourNumber,
+        })
+        setIsSlotAvailable(available)
+      }
+    } catch (error) {
+      console.error("Error checking slot availability:", error)
+      setIsSlotAvailable(false)
+    } finally {
+      setIsLoading(false)
+    }
+  }
 
   const nextStep = () => {
     if (currentStep < 2) {
@@ -41,198 +125,95 @@ export default function CheckoutWizardPage() {
     }
   }
 
+  const goToHome = () => {
+    router.push("/")
+  }
+
   const steps = [
     {
       title: "Detalle de la reserva",
       icon: <CalendarCheck className="h-6 w-6" />,
-      content: (
-        <Card className="w-full max-w-md mx-auto overflow-hidden border-0 shadow-lg">
-          <div className="bg-gradient-to-r from-blue-600 to-indigo-700 p-6 text-white">
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-xl font-bold">Detalles de Reserva</h2>
-              <CalendarCheck className="h-7 w-7" />
-            </div>
-            <p className="text-blue-100 text-sm">Por favor confirma los detalles de tu reserva</p>
-          </div>
-
-          <CardContent className="p-0">
-            <div className="flex border-b">
-              {/* Fecha visual */}
-              <div className="w-1/3 bg-blue-50 p-6 flex flex-col items-center justify-center border-r">
-                <div className="text-center">
-                  <div className="bg-white rounded-lg shadow-md p-2 w-20 mx-auto mb-2">
-                    <div className="bg-blue-600 text-white text-xs uppercase font-bold rounded-t-sm py-1">
-                      {formattedMonth}
-                    </div>
-                    <div className="text-3xl font-bold py-2">{formattedDay}</div>
-                  </div>
-                  <div className="text-blue-800 font-medium text-sm mt-2">{hour}:00</div>
-                </div>
-              </div>
-
-              {/* Información personal */}
-              <div className="w-auto p-6">
-                <h3 className="font-medium text-gray-700 mb-3 flex items-center">
-                  <User className="h-4 w-4 mr-2 text-blue-600" />
-                  Información Personal
-                </h3>
-                <div className="space-y-2 text-sm">
-                  <div className="flex items-start">
-                    <div className="w-24 text-gray-500">Nombre:</div>
-                    <div className="font-medium">{name}</div>
-                  </div>
-                  <div className="flex items-start">
-                    <div className="w-24 text-gray-500">Correo:</div>
-                    <div className="font-medium">{email}</div>
-                  </div>
-                  <div className="flex items-start">
-                    <div className="w-24 text-gray-500">Teléfono:</div>
-                    <div className="font-medium">{phone}</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Detalles de la reserva */}
-            <div className="p-6">
-              <h3 className="font-medium text-gray-700 mb-3 flex items-center">
-                <Calendar className="h-4 w-4 mr-2 text-blue-600" />
-                Detalles de la sesión
-              </h3>
-              <div className="bg-gray-50 rounded-lg p-4 border border-gray-100">
-                <div className="flex items-center mb-2">
-                  <Calendar className="h-4 w-4 text-blue-600 mr-2" />
-                  <span className="text-gray-700">{formattedDate}</span>
-                </div>
-                <div className="flex items-center mb-2">
-                  <User className="h-4 w-4 text-blue-600 mr-2" />
-                  <span className="text-gray-700">{fotografo}</span>
-                </div>
-                <div className="flex items-center">
-                  <Clock className="h-4 w-4 text-blue-600 mr-2" />
-                  <span className="text-gray-700">{hour}:00 hrs</span>
-                </div>
-
-              </div>
-            </div>
-          </CardContent>
-
-          <CardFooter className="px-6 py-4 bg-gray-50 border-t">
-            <div className="w-full flex justify-end">
-              <Button onClick={nextStep} className="bg-blue-600 hover:bg-blue-700 gap-1">
-                Continuar al Pago
-                <ArrowRight className="h-4 w-4 ml-1" />
-              </Button>
-            </div>
-          </CardFooter>
-        </Card>
-      ),
     },
     {
       title: "Información de pago",
       icon: <CreditCard className="h-6 w-6" />,
-      content: (
-        <Card className="w-full max-w-md mx-auto">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <CreditCard className="h-5 w-5 text-primary" />
-              Paso 2: Información de pago
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <Input placeholder="Número de tarjeta" />
-            <div className="flex space-x-2">
-              <Input placeholder="MM/YY" className="flex-1" />
-              <Input placeholder="CVV" className="w-24" />
-            </div>
-            <Input placeholder="Nombre en la tarjeta" />
-          </CardContent>
-          <CardFooter className="flex justify-between">
-            <Button variant="outline" onClick={prevStep} className="gap-1">
-              <ArrowLeft className="h-4 w-4 mr-1" />
-              Atrás
-            </Button>
-            <Button onClick={nextStep}>Pagar</Button>
-          </CardFooter>
-        </Card>
-      ),
     },
     {
       title: "Confirmación",
       icon: <CheckCircle className="h-6 w-6" />,
-      content: (
-        <Card className="w-full max-w-md mx-auto">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <CheckCircle className="h-5 w-5 text-primary" />
-              Paso 3: Confirmación
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="flex flex-col items-center justify-center py-6">
-              <div className="rounded-full bg-green-100 p-3 mb-4">
-                <CheckCircle className="h-12 w-12 text-green-600" />
-              </div>
-              <h3 className="text-xl font-medium mb-2 text-center">¡Tu pago se ha procesado correctamente!</h3>
-              <p className="text-gray-500 text-center">
-                Gracias por confiar en nosotros. Hemos enviado un correo de confirmación a {email}.
-              </p>
-            </div>
-          </CardContent>
-          <CardFooter className="flex justify-end">
-            <Button onClick={() => router.push("/")}>Ir al inicio</Button>
-          </CardFooter>
-        </Card>
-      ),
     },
   ]
+
+  const renderStepContent = () => {
+    switch (currentStep) {
+      case 0:
+        return (
+          <ReservationDetails
+            formattedDate={formattedDate}
+            formattedDay={formattedDay}
+            formattedMonth={formattedMonth}
+            hour={hour}
+            name={name}
+            email={email}
+            phone={phone}
+            fotografo={fotografo}
+            onNext={nextStep}
+          />
+        )
+      case 1:
+        return <PaymentForm onNext={nextStep} onPrev={prevStep} />
+      case 2:
+        return <Confirmation email={email} onGoHome={goToHome} />
+      default:
+        return null
+    }
+  }
+
+  // Render different components based on state
+  const renderContent = () => {
+    // If there are invalid parameters, show the invalid parameters component
+    if (invalidParams.length > 0) {
+      return <InvalidParameters missingParams={invalidParams} onBack={() => router.push("/booking")} />
+    }
+
+    // If still loading, show loading component
+    if (isLoading) {
+      return <LoadingState />
+    }
+
+    // If slot is not available, show unavailable component
+    if (isSlotAvailable === !true) {
+      return (
+        <SlotUnavailable
+          date={formattedDate}
+          hour={hour}
+          fotografo={fotografo}
+          onBack={() => router.push("/booking")}
+        />
+      )
+    }
+
+    // Otherwise show the normal checkout flow
+    return (
+      <>
+        <ProgressSteps steps={steps} currentStep={currentStep} />
+        <motion.div
+          key={currentStep}
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -20 }}
+          transition={{ duration: 0.3 }}
+        >
+          {renderStepContent()}
+        </motion.div>
+      </>
+    )
+  }
 
   return (
     <div className="container mx-auto py-12 px-4">
       <h1 className="text-3xl font-bold mb-10 text-center">Proceso de Reserva</h1>
-
-      {/* Progress Steps */}
-      <div className="mb-10">
-        <div className="flex justify-center items-center mb-8">
-          {steps.map((step, index) => (
-            <div key={index} className="flex items-center">
-              <div
-                className={`flex items-center justify-center w-10 h-10 rounded-full border-2 ${
-                  index <= currentStep
-                    ? "border-blue-600 bg-blue-600 text-white"
-                    : "border-gray-300 bg-white text-gray-400"
-                } transition-all duration-300`}
-              >
-                {step.icon}
-              </div>
-
-              {index < steps.length - 1 && (
-                <div className="w-24 h-1 mx-2 bg-gray-200">
-                  <div
-                    className="h-full bg-blue-600 transition-all duration-500"
-                    style={{ width: index < currentStep ? "100%" : "0%" }}
-                  />
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-
-        <div className="flex justify-center">
-          <p className="text-lg font-medium">{steps[currentStep].title}</p>
-        </div>
-      </div>
-
-      {/* Step Content with Animation */}
-      <motion.div
-        key={currentStep}
-        initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: 1, x: 0 }}
-        exit={{ opacity: 0, x: -20 }}
-        transition={{ duration: 0.3 }}
-      >
-        {steps[currentStep].content}
-      </motion.div>
+      {renderContent()}
     </div>
   )
 }
