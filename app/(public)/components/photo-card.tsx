@@ -7,6 +7,7 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import type { Fotografo } from "@/app/(protected)/fotografos/type"
 
 export default function PhotoCard({ fotografo }: { fotografo: Fotografo }) {
+  console.log("🚀 ~ PhotoCard ~ fotografo:", fotografo)
   const [imgLoading, setImgLoading] = useState(true)
 
   return (
@@ -20,7 +21,7 @@ export default function PhotoCard({ fotografo }: { fotografo: Fotografo }) {
           </div>
         )}
         <Image
-          src={fotografo.Foto || "/placeholder.svg"}
+          src={fotografo.Foto}
           alt={fotografo.usuarioNombre || "Fotógrafo"}
           fill
           className={`object-cover transition-all duration-700 ${
