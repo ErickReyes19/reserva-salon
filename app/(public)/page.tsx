@@ -12,18 +12,14 @@ export default function PublicPage() {
     <main className="pt-16">
       <Header />
       <HeroSection />
-      <Suspense fallback={<div className="h-screen animate-pulse bg-gray-100" />}>
-        <AboutSection />
-      </Suspense>
+      <AboutSection />
       <Suspense fallback={<div className="h-screen animate-pulse bg-gray-100" />}>
         <PhotographersSection />
       </Suspense>
       <Suspense fallback={<div className="h-screen animate-pulse bg-gray-100" />}>
         <ServicesSection />
       </Suspense>
-      <Suspense fallback={<div className="h-screen animate-pulse bg-gray-100" />}>
         <TestimonialsSection />
-      </Suspense>
       <Suspense fallback={<div className="h-screen animate-pulse bg-gray-100" />}>
         <BookingSection />
       </Suspense>
