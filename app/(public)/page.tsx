@@ -7,7 +7,7 @@ import TestimonialsSection from "./components/sections/testimonials";
 import BookingSection from "./components/sections/booking-section";
 import Header from './components/header';
 import { getCategoriesWithServices } from './actions';
-
+export const dynamic = "force-dynamic";
 export default async function PublicPage() {
     const categories = await getCategoriesWithServices();
   return (
