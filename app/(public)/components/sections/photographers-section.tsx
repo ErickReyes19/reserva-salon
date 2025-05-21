@@ -1,11 +1,7 @@
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { Instagram } from "lucide-react";
-import Image from "next/image";
 import AnimatedSection from "../animated-section";
 import AnimatedCard from "../animated-card";
 import { getFotografos } from "@/app/(protected)/fotografos/actions";
-import type { Fotografo } from "@/app/(protected)/fotografos/type";
 import PhotoCard from "../photo-card";
 
 export default async function PhotographersSection() {

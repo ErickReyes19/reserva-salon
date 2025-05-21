@@ -4,6 +4,10 @@ import { prisma } from "@/lib/prisma";
 import { randomUUID } from "crypto";
 import { Fotografo } from "./type"; // Asegúrate de tener este tipo definido con usuarioNombre opcional
 
+
+
+
+
 // Obtener todos los fotógrafos
 export async function getFotografos(): Promise<Fotografo[]> {
   try {

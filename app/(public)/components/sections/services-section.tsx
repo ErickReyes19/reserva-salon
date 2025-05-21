@@ -1,87 +1,15 @@
-"use client";
+// components/sections/services-section.tsx
 
-import { useState, useEffect } from "react";
+import AnimatedSection from "../animated-section";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import Image from "next/image";
 import AnimatedCard from "../animated-card";
-import AnimatedSection from "../animated-section";
+import ServiceGrid from "../components-services/service-grid";
+import ServiceCarousel from "../components-services/service-carousel";
 import { CategoryWithServices, PhotoService } from "../../types";
-import { getCategoriesWithServices } from "../../actions";
 
-export default function ServicesSection() {
-  const [categories, setCategories] = useState<CategoryWithServices[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    getCategoriesWithServices()
-      .then((data) => setCategories(data))
-      .catch((err) => console.error(err))
-      .finally(() => setLoading(false));
-  }, []);
-
-  if (loading) {
-    return (
-      <AnimatedSection id="services" className="py-24 bg-white">
-        <div className="container mx-auto px-4 flex justify-center items-center h-64">
-          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-purple-500" />
-        </div>
-      </AnimatedSection>
-    );
-  }
-
+export default function ServicesSection({ categories }: { categories: CategoryWithServices[] }) {
   const allServices: PhotoService[] = categories.flatMap((cat) => cat.services);
-
-  function ServiceCarousel({ services }: { services: PhotoService[] }) {
-    return (
-      <div className="flex space-x-4 overflow-x-auto scrollbar-none py-4 px-2">
-        {services.map((svc) => (
-          <div key={svc.id} className="min-w-[80%] sm:min-w-[45%] md:hidden">
-            <AnimatedCard>
-              <div className="overflow-hidden rounded-lg shadow-lg h-full flex flex-col">
-                <div className="relative h-48 w-full">
-                  <Image
-                    src={"/placeholder.svg"}
-                    alt={svc.name}
-                    fill
-                    className="object-cover transition-transform duration-500 hover:scale-105"
-                  />
-                </div>
-                <div className="p-4 flex-1">
-                  <h3 className="text-lg font-semibold mb-2">{svc.name}</h3>
-                  <p className="text-gray-600 line-clamp-3">{svc.description}</p>
-                </div>
-              </div>
-            </AnimatedCard>
-          </div>
-        ))}
-      </div>
-    );
-  }
-
-  function ServiceGrid({ services }: { services: PhotoService[] }) {
-    return (
-      <div className="hidden md:grid grid-cols-1 md:grid-cols-3 gap-8">
-        {services.map((svc, i) => (
-          <AnimatedCard key={svc.id} delay={i}>
-            <div className="overflow-hidden rounded-lg shadow-lg h-full flex flex-col">
-              <div className="relative h-48 w-full">
-                <Image
-                  src={ "/placeholder.svg"}
-                  alt={svc.name}
-                  fill
-                  className="object-cover transition-transform duration-500 hover:scale-105"
-                />
-              </div>
-              <div className="p-4 flex-1">
-                <h3 className="text-lg font-semibold mb-2">{svc.name}</h3>
-                <p className="text-gray-600 line-clamp-3">{svc.description}</p>
-              </div>
-            </div>
-          </AnimatedCard>
-        ))}
-      </div>
-    );
-  }
 
   return (
     <AnimatedSection id="services" className="py-24 bg-white">

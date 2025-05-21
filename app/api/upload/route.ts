@@ -1,53 +1,51 @@
-// app/api/upload/route.ts
 import { NextResponse } from "next/server";
-import { randomUUID } from "crypto";
-import path from "path";
-import fs from "fs";
-import sharp from "sharp";
+import { v2 as cloudinary } from "cloudinary";
+import { Readable } from "stream";
 
-export const runtime = "nodejs";
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME!,
+  api_key:    process.env.CLOUDINARY_API_KEY!,
+  api_secret: process.env.CLOUDINARY_API_SECRET!,
+  secure:     true,
+});
+
+export const runtime = "nodejs"; // Edge runtime no soporta streams de Node
 
 export async function POST(request: Request) {
   const formData = await request.formData();
-  const file = formData.get("file") as File;
-
-  if (!file) {
-    return NextResponse.json({ error: "No file uploaded" }, { status: 400 });
+  const file = formData.get("file") as File | null;
+  if (!file || !file.type.startsWith("image/")) {
+    return NextResponse.json({ error: "No es una imagen válida" }, { status: 400 });
+  }
+  const MAX_SIZE = 5 * 1024 * 1024;
+  if (file.size > MAX_SIZE) {
+    return NextResponse.json({ error: "El archivo excede 5 MB" }, { status: 413 });
   }
 
-  // Leemos el buffer original
-  const originalBuffer = Buffer.from(await file.arrayBuffer());
+  // Convertir File a Buffer
+  const arrayBuffer = await file.arrayBuffer();
+  const buffer = Buffer.from(arrayBuffer);
 
-  // Convertimos a WebP con sharp (podrías hacer resize, calidad, etc.)
-  const webpBuffer = await sharp(originalBuffer)
-    .webp({ quality: 80 })    // ajusta calidad: 0–100
-    .toBuffer();
+  try {
+    // Subir con upload_stream envuelto en Promise
+    const result = await new Promise<any>((resolve, reject) => {
+      const uploadStream = cloudinary.uploader.upload_stream(
+        { folder: "fotografos", resource_type: "image" },
+        (error, uploaded) => {
+          if (error) {
+            reject(error);
+          } else {
+            resolve(uploaded);
+          }
+        }
+      );
+      // Pipe buffer al stream
+      Readable.from(buffer).pipe(uploadStream);
+    });
 
-  // Generamos nombre y ruta
-  const fileName = `${randomUUID()}.webp`;
-  const uploadsDir = path.join(process.cwd(), "public", "uploads");
-  const filePath = path.join(uploadsDir, fileName);
-
-  // Aseguramos existencia de la carpeta
-  if (!fs.existsSync(uploadsDir)) {
-    fs.mkdirSync(uploadsDir, { recursive: true });
+    return NextResponse.json({ url: (result as any).secure_url });
+  } catch (err) {
+    console.error("Cloudinary upload error:", err);
+    return NextResponse.json({ error: "Error al subir imagen" }, { status: 500 });
   }
-
-  // Guardamos el buffer WebP en disco
-  fs.writeFileSync(filePath, webpBuffer);
-
-  // Devolvemos la URL pública
-  return NextResponse.json({ url: `/uploads/${fileName}` });
-}
-export async function GET(req: Request, { params }: { params: { filename: string } }) {
-  const filePath = path.join(process.cwd(), "public", "uploads", params.filename);
-  if (!fs.existsSync(filePath)) {
-    return new NextResponse("Not found", { status: 404 });
-  }
-  const buffer = fs.readFileSync(filePath);
-  const ext = path.extname(filePath).slice(1);
-  return new NextResponse(buffer, {
-    status: 200,
-    headers: { "Content-Type": `image/${ext}` },
-  });
 }

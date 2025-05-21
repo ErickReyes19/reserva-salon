@@ -3,7 +3,7 @@ import HeaderComponent from "@/components/HeaderComponent";
 import NoAcceso from "@/components/noAccess";
 import { PlusCircle } from "lucide-react";
 import { getUsuarios } from "../../usuarios/actions";
-import { FotografoFormulario } from "../components/Form";
+import { FotografoFormulario } from "../../fotografos/components/Form";
 
 export default async function CreateFotografoPage() {
   const permisos = await getSessionPermisos();
@@ -21,6 +21,7 @@ export default async function CreateFotografoPage() {
     url: "",
     Foto: "",
     disponible: true,
+    nombre: "",
     usuarioNombre: "",
   };
 
