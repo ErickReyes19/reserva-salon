@@ -7,6 +7,12 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import AnimatedSection from "../animated-section"
 
 export default function TestimonialsSection() {
+  function getInitials(name: string) {
+    const parts = name.trim().split(" ");
+    if (parts.length === 1) return parts[0][0]?.toUpperCase() ?? "";
+    return `${parts[0][0]}${parts[1][0]}`.toUpperCase();
+  }
+
   const testimonials = [
     {
       name: "María González",
@@ -49,7 +55,7 @@ export default function TestimonialsSection() {
           </p>
         </div>
 
-        <Carousel className="w-full"  opts={{
+        <Carousel className="w-full" opts={{
           loop: true,
         }}>
           <CarouselContent>
@@ -60,10 +66,9 @@ export default function TestimonialsSection() {
                   <Card className="border-none shadow-md h-full flex flex-col">
                     <CardHeader>
                       <div className="flex items-center space-x-4">
-                        <Avatar className="h-12 w-12 border-2 border-purple-200">
-                          <AvatarImage src={testimonial.avatar || "/placeholder.svg"} alt={testimonial.name} />
-                          <AvatarFallback className="bg-purple-100 text-purple-800">
-                            {testimonial.name.charAt(0)}
+                        <Avatar className="h-12 w-12 border-2 border-purple-200 bg-purple-100 text-purple-800">
+                          <AvatarFallback>
+                            {getInitials(testimonial.name)}
                           </AvatarFallback>
                         </Avatar>
                         <div>

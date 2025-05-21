@@ -3,9 +3,9 @@ import HeaderComponent from "@/components/HeaderComponent";
 import NoAcceso from "@/components/noAccess";
 import { Pencil } from "lucide-react";
 import { redirect } from "next/navigation";
-import { getFotografoById } from "../../actions";
 import { getUsuarios } from "@/app/(protected)/usuarios/actions";
-import { FotografoFormulario } from "../../components/Form";
+import { FotografoFormulario } from "@/app/(protected)/fotografos/components/Form";
+import { getFotografoById } from "@/app/(protected)/fotografos/actions";
 
 export default async function EditFotografoPage({ params }: { params: { id: string } }) {
   const permisos = await getSessionPermisos();
@@ -26,6 +26,7 @@ export default async function EditFotografoPage({ params }: { params: { id: stri
     usuarioId: fotografo.usuarioId,
     telefono: fotografo.telefono || "",
     bio: fotografo.bio || "",
+    nombre: fotografo.nombre,
     url: fotografo.url || "",
     Foto: fotografo.Foto || "",
     disponible: fotografo.disponible,

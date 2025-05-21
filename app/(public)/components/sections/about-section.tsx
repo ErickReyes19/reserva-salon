@@ -1,16 +1,12 @@
-"use client"
 
 import { Badge } from "@/components/ui/badge"
 import { Camera, Clock } from "lucide-react"
 import Image from "next/image"
 import AnimatedSection from "../animated-section"
-import { useState } from "react"
 
 export default function AboutSection() {
-  const [imageError, setImageError] = useState(false)
 
   // Fallback image from the internet (a photography studio interior)
-  const fallbackImage = "https://images.unsplash.com/photo-1520549233664-03f65c1d1327?q=80&w=2070&auto=format&fit=crop"
 
   return (
     <AnimatedSection id="about" className="py-12 md:py-24 bg-white">
@@ -20,14 +16,13 @@ export default function AboutSection() {
           <div className="w-full md:w-1/2 relative mb-10 md:mb-0">
             <div className="relative h-[300px] md:h-[500px] rounded-2xl overflow-hidden shadow-2xl">
               <Image
-                src={imageError ? fallbackImage : "/placeholder.svg?height=600&width=800"}
+                src={"/placeholder.svg"}
                 alt="Interior del estudio"
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
-                onError={() => setImageError(true)}
-                priority
               />
+
             </div>
             {/* Experience badge - adjusted position for mobile */}
             <div className="absolute -bottom-4 md:-bottom-6 -right-4 md:-right-6 h-24 md:h-32 w-24 md:w-32 bg-purple-600 rounded-full flex items-center justify-center">

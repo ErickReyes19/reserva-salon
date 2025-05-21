@@ -26,7 +26,7 @@ async function main() {
       "ver_permisos", "ver_roles", "crear_roles", "editar_roles",
       "ver_usuarios", "crear_usuario", "editar_usuario", "ver_categoria", "crear_categoria",
       "editar_categoria", "ver_servicios", "crear_servicios", "editar_servicios",
-      "editar_fotografos", "ver_fotografos","ver_clientes","crear_clientes","ver_reservas"
+      "editar_fotografos", "ver_fotografos", "ver_clientes", "crear_clientes", "ver_reservas"
     ];
 
     const permisos = await Promise.all(
@@ -97,8 +97,8 @@ async function main() {
     }),
   ]);
 
-  const fotografo1 = await prisma.fotografo.create({ data: { Foto: "placeholder.svg", id: randomUUID(), usuarioId: fot1User.id, disponible: true, url: "prueba.com", bio: "El mas mamalon", nombre: "Alexis Reyes" } });
-  const fotografo2 = await prisma.fotografo.create({ data: { Foto: "placeholder.svg", id: randomUUID(), usuarioId: fot2User.id, disponible: true, url: "Prueba.com", bio: "El mas reciooo", nombre: "Mafafa" } });
+  const fotografo1 = await prisma.fotografo.create({ data: { Foto: "placeholder.svg", id: randomUUID(), usuarioId: fot1User.id, disponible: true, url: "prueba.com", bio: "El mas mamalon", nombre: "Alexis Reyes", telefono: "99889988" } });
+  const fotografo2 = await prisma.fotografo.create({ data: { Foto: "placeholder.svg", id: randomUUID(), usuarioId: fot2User.id, disponible: true, url: "Prueba.com", bio: "El mas reciooo", nombre: "Mafafa", telefono: "99889988" } });
 
   // Crear reservas asociadas al cliente
   const dates = [
@@ -125,113 +125,7 @@ async function main() {
   }
 
 
-  // ——————————————
-  // NUEVO: SEED DE CATEGORÍAS Y SERVICIOS (Categorías en español)
-  // ——————————————
-  const categoryNames = ["retratos", "eventos", "comercial", "paisajes"];
-  const categories = await Promise.all(
-    categoryNames.map((name) =>
-      prisma.category.upsert({
-        where: { name },
-        update: {},
-        create: { id: randomUUID(), name, activo: true },
-      })
-    )
-  );
-
-  // Servicios de ejemplo por categoría
-  const servicesData = [
-    // retratos
-    {
-      category: categories.find(c => c.name === "retratos")!,
-      items: [
-        {
-          name: "Retrato de Estudio",
-          img: "studio_portrait.jpg",
-          description: "Sesión en estudio con iluminación profesional.",
-
-        },
-        {
-          name: "Retrato al Aire Libre",
-          img: "outdoor_portrait.jpg",
-          description: "Sesión en parque o jardín.",
-
-        }
-      ]
-    },
-    // eventos
-    {
-      category: categories.find(c => c.name === "eventos")!,
-      items: [
-        {
-          name: "Cobertura Evento Pequeño",
-          img: "small_event.jpg",
-          description: "Hasta 2 horas de cobertura.",
-        },
-        {
-          name: "Cobertura Evento Grande",
-          img: "large_event.jpg",
-          description: "Cobertura completa del evento (hasta 5 horas).",
-        }
-      ]
-    },
-    // comercial
-    {
-      category: categories.find(c => c.name === "comercial")!,
-      items: [
-        {
-          name: "Sesión Producto",
-          img: "/placeholder.svg",
-          description: "Fotografía de producto para e-commerce.",
-
-        },
-        {
-          name: "Publicidad Exterior",
-          img: "/placeholder.svg",
-          description: "Fotos para campaña publicitaria exterior.",
-
-        }
-      ]
-    },
-    // paisajes
-    {
-      category: categories.find(c => c.name === "paisajes")!,
-      items: [
-        {
-          name: "Paisaje Urbano",
-          img: "urban_landscape.jpg",
-          description: "Fotografía de arquitectura y calles.",
-        },
-        {
-          name: "Paisaje Natural",
-          img: "nature_landscape.jpg",
-          description: "Fotografía en exteriores naturales.",
-
-        }
-      ]
-    }
-  ];
-
-  // Crear PhotoService
-  for (const svcGroup of servicesData) {
-    for (const svc of svcGroup.items) {
-      await prisma.photoService.upsert({
-        where: { name: svc.name },
-        update: {},
-        create: {
-          activo: true,
-          id: randomUUID(),
-          name: svc.name,
-          img: svc.img,
-          description: svc.description,
-          categoryId: svcGroup.category.id
-        }
-      });
-    }
-  }
-
-
-  console.log("🎉 Seed completado exitosamente.");
+  console.log("Seed completado exitosamente.");
   await prisma.$disconnect();
 }
 
