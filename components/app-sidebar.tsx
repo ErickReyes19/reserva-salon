@@ -16,7 +16,7 @@ import {
   SidebarMenuSubItem,
   SidebarRail,
 } from "@/components/ui/sidebar";
-import { Camera, ChevronDown, ChevronUp, Folder, LayersIcon, Settings, UserIcon } from 'lucide-react';
+import { Calendar, Camera, ChevronDown, ChevronUp, Folder, LayersIcon, Settings, UserIcon, Users } from 'lucide-react';
 import Link from "next/link";
 import ToggleThemeButton from "../components/button-theme";
 import { NavUser } from "./nav-user";
@@ -51,6 +51,12 @@ const mantenimientoItems = [
 const items = [
 
   {
+    title: "Reservas",
+    url: "/reservas",
+    icon: Calendar,
+    permiso: "ver_reservas",
+  },
+  {
     title: "Categorias",
     url: "/categorias",
     icon: Folder,
@@ -61,6 +67,12 @@ const items = [
     url: "/fotografos",
     icon: Camera,
     permiso: "ver_fotografos",
+  },
+  {
+    title: "Clientes",
+    url: "/clientes",
+    icon: Users,
+    permiso: "ver_clientes",
   },
 
 ];

@@ -13,17 +13,16 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
-import { Fotografo } from "../type";
+import { Cliente } from "../types";
 
-export const columns: ColumnDef<Fotografo>[] = [
-
+export const columns: ColumnDef<Cliente>[] = [
   {
     accessorKey: "nombre",
     header: ({ column }) => (
       <Button
         variant="ghost"
         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        className="text-left"
+        className="text-center"
       >
         Nombre
         <ArrowUpDown className="ml-2 h-4 w-4" />
@@ -31,14 +30,14 @@ export const columns: ColumnDef<Fotografo>[] = [
     ),
   },
   {
-    accessorKey: "bio",
+    accessorKey: "email",
     header: ({ column }) => (
       <Button
         variant="ghost"
         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        className="text-left"
+        className="text-center"
       >
-        Biografía
+        Email
         <ArrowUpDown className="ml-2 h-4 w-4" />
       </Button>
     ),
@@ -49,60 +48,19 @@ export const columns: ColumnDef<Fotografo>[] = [
       <Button
         variant="ghost"
         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        className="text-left"
+        className="text-center"
       >
         Telefono
         <ArrowUpDown className="ml-2 h-4 w-4" />
       </Button>
     ),
   },
-  {
-    accessorKey: "url",
-    header: ({ column }) => (
-      <Button
-        variant="ghost"
-        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        className="text-left"
-      >
-        Url
-        <ArrowUpDown className="ml-2 h-4 w-4" />
-      </Button>
-    ),
-  },
-  {
-    accessorKey: "disponible",
-    header: ({ column }) => (
-      <Button
-        variant="ghost"
-        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        className="text-left"
-      >
-        Disponible
-        <ArrowUpDown className="ml-2 h-4 w-4" />
-      </Button>
-    ),
-    cell: ({ row }) => {
-      const isActive = row.getValue("disponible");
-      return (
-        <div className="">
-          {isActive ? (
-            <div className="flex gap-2">
-              <CheckCircleIcon color="green" /> Activo{" "}
-            </div>
-          ) : (
-            <div className="flex gap-2">
-              <XCircleIcon color="red" /> Inactivo{" "}
-            </div>
-          )}
-        </div>
-      );
-    },
-  },
+
   {
     id: "actions",
     header: "Acciones",
     cell: ({ row }) => {
-      const fotografos = row.original;
+      const cliente = row.original;
 
       return (
         <DropdownMenu>
@@ -114,8 +72,8 @@ export const columns: ColumnDef<Fotografo>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Acciones</DropdownMenuLabel>
-            <Link href={`/fotografos/${fotografos.id}/edit`}>
-              <DropdownMenuItem>Editar</DropdownMenuItem>
+            <Link href={`/clientes/${cliente.id}/edit`}>
+              <DropdownMenuItem>ver</DropdownMenuItem>
             </Link>
           </DropdownMenuContent>
         </DropdownMenu>

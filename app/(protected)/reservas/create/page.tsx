@@ -22,7 +22,6 @@ export default async function CreateFotografoPage() {
     Foto: "",
     disponible: true,
     usuarioNombre: "",
-    nombre: ""
   };
 
   return (

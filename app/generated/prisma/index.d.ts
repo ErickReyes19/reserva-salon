@@ -9413,7 +9413,6 @@ export namespace Prisma {
     horaInicio: Date | null
     horaFin: Date | null
     fotografoId: string | null
-    pixelpayOrder: string | null
     estado: boolean | null
     createdAt: Date | null
     clienteId: string | null
@@ -9425,7 +9424,6 @@ export namespace Prisma {
     horaInicio: Date | null
     horaFin: Date | null
     fotografoId: string | null
-    pixelpayOrder: string | null
     estado: boolean | null
     createdAt: Date | null
     clienteId: string | null
@@ -9437,7 +9435,6 @@ export namespace Prisma {
     horaInicio: number
     horaFin: number
     fotografoId: number
-    pixelpayOrder: number
     estado: number
     createdAt: number
     clienteId: number
@@ -9451,7 +9448,6 @@ export namespace Prisma {
     horaInicio?: true
     horaFin?: true
     fotografoId?: true
-    pixelpayOrder?: true
     estado?: true
     createdAt?: true
     clienteId?: true
@@ -9463,7 +9459,6 @@ export namespace Prisma {
     horaInicio?: true
     horaFin?: true
     fotografoId?: true
-    pixelpayOrder?: true
     estado?: true
     createdAt?: true
     clienteId?: true
@@ -9475,7 +9470,6 @@ export namespace Prisma {
     horaInicio?: true
     horaFin?: true
     fotografoId?: true
-    pixelpayOrder?: true
     estado?: true
     createdAt?: true
     clienteId?: true
@@ -9560,7 +9554,6 @@ export namespace Prisma {
     horaInicio: Date
     horaFin: Date
     fotografoId: string
-    pixelpayOrder: string
     estado: boolean
     createdAt: Date
     clienteId: string
@@ -9589,7 +9582,6 @@ export namespace Prisma {
     horaInicio?: boolean
     horaFin?: boolean
     fotografoId?: boolean
-    pixelpayOrder?: boolean
     estado?: boolean
     createdAt?: boolean
     clienteId?: boolean
@@ -9605,13 +9597,12 @@ export namespace Prisma {
     horaInicio?: boolean
     horaFin?: boolean
     fotografoId?: boolean
-    pixelpayOrder?: boolean
     estado?: boolean
     createdAt?: boolean
     clienteId?: boolean
   }
 
-  export type ReservaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fecha" | "horaInicio" | "horaFin" | "fotografoId" | "pixelpayOrder" | "estado" | "createdAt" | "clienteId", ExtArgs["result"]["reserva"]>
+  export type ReservaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fecha" | "horaInicio" | "horaFin" | "fotografoId" | "estado" | "createdAt" | "clienteId", ExtArgs["result"]["reserva"]>
   export type ReservaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     fotografo?: boolean | FotografoDefaultArgs<ExtArgs>
     cliente?: boolean | ClienteDefaultArgs<ExtArgs>
@@ -9629,7 +9620,6 @@ export namespace Prisma {
       horaInicio: Date
       horaFin: Date
       fotografoId: string
-      pixelpayOrder: string
       estado: boolean
       createdAt: Date
       clienteId: string
@@ -10009,7 +9999,6 @@ export namespace Prisma {
     readonly horaInicio: FieldRef<"Reserva", 'DateTime'>
     readonly horaFin: FieldRef<"Reserva", 'DateTime'>
     readonly fotografoId: FieldRef<"Reserva", 'String'>
-    readonly pixelpayOrder: FieldRef<"Reserva", 'String'>
     readonly estado: FieldRef<"Reserva", 'Boolean'>
     readonly createdAt: FieldRef<"Reserva", 'DateTime'>
     readonly clienteId: FieldRef<"Reserva", 'String'>
@@ -10490,7 +10479,6 @@ export namespace Prisma {
     horaInicio: 'horaInicio',
     horaFin: 'horaFin',
     fotografoId: 'fotografoId',
-    pixelpayOrder: 'pixelpayOrder',
     estado: 'estado',
     createdAt: 'createdAt',
     clienteId: 'clienteId'
@@ -10598,7 +10586,6 @@ export namespace Prisma {
   export const ReservaOrderByRelevanceFieldEnum: {
     id: 'id',
     fotografoId: 'fotografoId',
-    pixelpayOrder: 'pixelpayOrder',
     clienteId: 'clienteId'
   };
 
@@ -11151,7 +11138,6 @@ export namespace Prisma {
     horaInicio?: DateTimeFilter<"Reserva"> | Date | string
     horaFin?: DateTimeFilter<"Reserva"> | Date | string
     fotografoId?: StringFilter<"Reserva"> | string
-    pixelpayOrder?: StringFilter<"Reserva"> | string
     estado?: BoolFilter<"Reserva"> | boolean
     createdAt?: DateTimeFilter<"Reserva"> | Date | string
     clienteId?: StringFilter<"Reserva"> | string
@@ -11165,7 +11151,6 @@ export namespace Prisma {
     horaInicio?: SortOrder
     horaFin?: SortOrder
     fotografoId?: SortOrder
-    pixelpayOrder?: SortOrder
     estado?: SortOrder
     createdAt?: SortOrder
     clienteId?: SortOrder
@@ -11176,7 +11161,6 @@ export namespace Prisma {
 
   export type ReservaWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    pixelpayOrder?: string
     AND?: ReservaWhereInput | ReservaWhereInput[]
     OR?: ReservaWhereInput[]
     NOT?: ReservaWhereInput | ReservaWhereInput[]
@@ -11189,7 +11173,7 @@ export namespace Prisma {
     clienteId?: StringFilter<"Reserva"> | string
     fotografo?: XOR<FotografoScalarRelationFilter, FotografoWhereInput>
     cliente?: XOR<ClienteScalarRelationFilter, ClienteWhereInput>
-  }, "id" | "pixelpayOrder">
+  }, "id">
 
   export type ReservaOrderByWithAggregationInput = {
     id?: SortOrder
@@ -11197,7 +11181,6 @@ export namespace Prisma {
     horaInicio?: SortOrder
     horaFin?: SortOrder
     fotografoId?: SortOrder
-    pixelpayOrder?: SortOrder
     estado?: SortOrder
     createdAt?: SortOrder
     clienteId?: SortOrder
@@ -11215,7 +11198,6 @@ export namespace Prisma {
     horaInicio?: DateTimeWithAggregatesFilter<"Reserva"> | Date | string
     horaFin?: DateTimeWithAggregatesFilter<"Reserva"> | Date | string
     fotografoId?: StringWithAggregatesFilter<"Reserva"> | string
-    pixelpayOrder?: StringWithAggregatesFilter<"Reserva"> | string
     estado?: BoolWithAggregatesFilter<"Reserva"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"Reserva"> | Date | string
     clienteId?: StringWithAggregatesFilter<"Reserva"> | string
@@ -11753,7 +11735,6 @@ export namespace Prisma {
     fecha: Date | string
     horaInicio: Date | string
     horaFin: Date | string
-    pixelpayOrder: string
     estado?: boolean
     createdAt?: Date | string
     fotografo: FotografoCreateNestedOneWithoutReservasInput
@@ -11766,7 +11747,6 @@ export namespace Prisma {
     horaInicio: Date | string
     horaFin: Date | string
     fotografoId: string
-    pixelpayOrder: string
     estado?: boolean
     createdAt?: Date | string
     clienteId: string
@@ -11777,7 +11757,6 @@ export namespace Prisma {
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
     horaFin?: DateTimeFieldUpdateOperationsInput | Date | string
-    pixelpayOrder?: StringFieldUpdateOperationsInput | string
     estado?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     fotografo?: FotografoUpdateOneRequiredWithoutReservasNestedInput
@@ -11790,7 +11769,6 @@ export namespace Prisma {
     horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
     horaFin?: DateTimeFieldUpdateOperationsInput | Date | string
     fotografoId?: StringFieldUpdateOperationsInput | string
-    pixelpayOrder?: StringFieldUpdateOperationsInput | string
     estado?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     clienteId?: StringFieldUpdateOperationsInput | string
@@ -11802,7 +11780,6 @@ export namespace Prisma {
     horaInicio: Date | string
     horaFin: Date | string
     fotografoId: string
-    pixelpayOrder: string
     estado?: boolean
     createdAt?: Date | string
     clienteId: string
@@ -11813,7 +11790,6 @@ export namespace Prisma {
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
     horaFin?: DateTimeFieldUpdateOperationsInput | Date | string
-    pixelpayOrder?: StringFieldUpdateOperationsInput | string
     estado?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -11824,7 +11800,6 @@ export namespace Prisma {
     horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
     horaFin?: DateTimeFieldUpdateOperationsInput | Date | string
     fotografoId?: StringFieldUpdateOperationsInput | string
-    pixelpayOrder?: StringFieldUpdateOperationsInput | string
     estado?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     clienteId?: StringFieldUpdateOperationsInput | string
@@ -12295,7 +12270,6 @@ export namespace Prisma {
     horaInicio?: SortOrder
     horaFin?: SortOrder
     fotografoId?: SortOrder
-    pixelpayOrder?: SortOrder
     estado?: SortOrder
     createdAt?: SortOrder
     clienteId?: SortOrder
@@ -12307,7 +12281,6 @@ export namespace Prisma {
     horaInicio?: SortOrder
     horaFin?: SortOrder
     fotografoId?: SortOrder
-    pixelpayOrder?: SortOrder
     estado?: SortOrder
     createdAt?: SortOrder
     clienteId?: SortOrder
@@ -12319,7 +12292,6 @@ export namespace Prisma {
     horaInicio?: SortOrder
     horaFin?: SortOrder
     fotografoId?: SortOrder
-    pixelpayOrder?: SortOrder
     estado?: SortOrder
     createdAt?: SortOrder
     clienteId?: SortOrder
@@ -13258,7 +13230,6 @@ export namespace Prisma {
     fecha: Date | string
     horaInicio: Date | string
     horaFin: Date | string
-    pixelpayOrder: string
     estado?: boolean
     createdAt?: Date | string
     cliente: ClienteCreateNestedOneWithoutReservasInput
@@ -13269,7 +13240,6 @@ export namespace Prisma {
     fecha: Date | string
     horaInicio: Date | string
     horaFin: Date | string
-    pixelpayOrder: string
     estado?: boolean
     createdAt?: Date | string
     clienteId: string
@@ -13345,7 +13315,6 @@ export namespace Prisma {
     horaInicio?: DateTimeFilter<"Reserva"> | Date | string
     horaFin?: DateTimeFilter<"Reserva"> | Date | string
     fotografoId?: StringFilter<"Reserva"> | string
-    pixelpayOrder?: StringFilter<"Reserva"> | string
     estado?: BoolFilter<"Reserva"> | boolean
     createdAt?: DateTimeFilter<"Reserva"> | Date | string
     clienteId?: StringFilter<"Reserva"> | string
@@ -13356,7 +13325,6 @@ export namespace Prisma {
     fecha: Date | string
     horaInicio: Date | string
     horaFin: Date | string
-    pixelpayOrder: string
     estado?: boolean
     createdAt?: Date | string
     fotografo: FotografoCreateNestedOneWithoutReservasInput
@@ -13368,7 +13336,6 @@ export namespace Prisma {
     horaInicio: Date | string
     horaFin: Date | string
     fotografoId: string
-    pixelpayOrder: string
     estado?: boolean
     createdAt?: Date | string
   }
@@ -13704,7 +13671,6 @@ export namespace Prisma {
     fecha: Date | string
     horaInicio: Date | string
     horaFin: Date | string
-    pixelpayOrder: string
     estado?: boolean
     createdAt?: Date | string
     clienteId: string
@@ -13715,7 +13681,6 @@ export namespace Prisma {
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
     horaFin?: DateTimeFieldUpdateOperationsInput | Date | string
-    pixelpayOrder?: StringFieldUpdateOperationsInput | string
     estado?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     cliente?: ClienteUpdateOneRequiredWithoutReservasNestedInput
@@ -13726,7 +13691,6 @@ export namespace Prisma {
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
     horaFin?: DateTimeFieldUpdateOperationsInput | Date | string
-    pixelpayOrder?: StringFieldUpdateOperationsInput | string
     estado?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     clienteId?: StringFieldUpdateOperationsInput | string
@@ -13737,7 +13701,6 @@ export namespace Prisma {
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
     horaFin?: DateTimeFieldUpdateOperationsInput | Date | string
-    pixelpayOrder?: StringFieldUpdateOperationsInput | string
     estado?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     clienteId?: StringFieldUpdateOperationsInput | string
@@ -13749,7 +13712,6 @@ export namespace Prisma {
     horaInicio: Date | string
     horaFin: Date | string
     fotografoId: string
-    pixelpayOrder: string
     estado?: boolean
     createdAt?: Date | string
   }
@@ -13759,7 +13721,6 @@ export namespace Prisma {
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
     horaFin?: DateTimeFieldUpdateOperationsInput | Date | string
-    pixelpayOrder?: StringFieldUpdateOperationsInput | string
     estado?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     fotografo?: FotografoUpdateOneRequiredWithoutReservasNestedInput
@@ -13771,7 +13732,6 @@ export namespace Prisma {
     horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
     horaFin?: DateTimeFieldUpdateOperationsInput | Date | string
     fotografoId?: StringFieldUpdateOperationsInput | string
-    pixelpayOrder?: StringFieldUpdateOperationsInput | string
     estado?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -13782,7 +13742,6 @@ export namespace Prisma {
     horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
     horaFin?: DateTimeFieldUpdateOperationsInput | Date | string
     fotografoId?: StringFieldUpdateOperationsInput | string
-    pixelpayOrder?: StringFieldUpdateOperationsInput | string
     estado?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
