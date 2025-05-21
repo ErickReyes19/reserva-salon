@@ -112,12 +112,10 @@ CREATE TABLE `Reserva` (
     `horaInicio` DATETIME(3) NOT NULL,
     `horaFin` DATETIME(3) NOT NULL,
     `fotografoId` VARCHAR(191) NOT NULL,
-    `pixelpayOrder` VARCHAR(191) NOT NULL,
     `estado` BOOLEAN NOT NULL DEFAULT true,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `clienteId` VARCHAR(191) NOT NULL,
 
-    UNIQUE INDEX `Reserva_pixelpayOrder_key`(`pixelpayOrder`),
     INDEX `Reserva_fotografoId_fkey`(`fotografoId`),
     INDEX `Reserva_clienteId_fkey`(`clienteId`),
     PRIMARY KEY (`id`)

@@ -307,7 +307,7 @@ const config = {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": "mysql://root:P@ssWord.123@localhost:3306/reserva"
+        "value": "mysql://avnadmin:AVNS_m2qIUlLKAuUJhDFMMu9@reserva-erickjosepineda33-1f0d.i.aivencloud.com:10168/defaultdb"
       }
     }
   },
