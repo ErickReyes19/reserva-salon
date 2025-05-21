@@ -25,6 +25,7 @@ export default function Login() {
   const [isPending, startTransition] = useTransition();
   const [showPassword, setShowPassword] = useState(false);
   const [mounted, setMounted] = useState(false);
+  
 
   // Ruta a redirigir tras login exitoso
   const redirectTo = searchParams.get("redirect") ?? "/reservas";
