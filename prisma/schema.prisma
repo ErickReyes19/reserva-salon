@@ -65,7 +65,7 @@ model Fotografo {
   usuarioId   String     @unique
   nombre      String     @unique
   telefono    String?
-  bio         String?
+  bio         String?    @db.Text
   url         String?
   Foto        String
   disponible  Boolean
