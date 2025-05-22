@@ -7,7 +7,7 @@ import { FotografoFormulario } from "../components/Form";
 
 export default async function CreateFotografoPage() {
   const permisos = await getSessionPermisos();
-  if (!permisos?.includes("crear_fotografos")) {
+  if (!permisos?.includes("ver_fotografos")) {
     return <NoAcceso />;
   }
 
