@@ -141,6 +141,7 @@ export async function putFotografo({
         url: fotografo.url,
         Foto: fotografo.Foto,
         disponible: fotografo.disponible,
+        nombre : fotografo.nombre
       },
       include: { usuario: true },
     });
