@@ -62,7 +62,6 @@ export async function isSlotAvailableByDate(params: {
       ]
     }
   });
-  console.log("🚀 ~ conflict:", conflict)
 
   return conflict === null;
 }

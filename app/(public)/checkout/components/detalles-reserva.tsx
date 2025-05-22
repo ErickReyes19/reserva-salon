@@ -64,15 +64,15 @@ export function ReservationDetails({
             </h3>
             <div className="space-y-2 text-sm">
               <div className="flex items-start">
-                <div className="w-24 text-gray-500">Nombre:</div>
+                <div className=" text-gray-500">Nombre: </div>
                 <div className="font-medium">{name}</div>
               </div>
               <div className="flex items-start">
-                <div className="w-24 text-gray-500">Correo:</div>
+                <div className=" text-gray-500">Correo: </div>
                 <div className="font-medium">{email}</div>
               </div>
               <div className="flex items-start">
-                <div className="w-24 text-gray-500">Teléfono:</div>
+                <div className=" text-gray-500">Teléfono: </div>
                 <div className="font-medium">{phone}</div>
               </div>
             </div>

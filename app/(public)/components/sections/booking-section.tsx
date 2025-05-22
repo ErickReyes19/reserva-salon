@@ -42,7 +42,7 @@ const CalendarioReservasWrapper = () => {
 
 export default function BookingSection() {
   return (
-    <AnimatedSection id="reservar" className="py-24 bg-gray-50">
+    <AnimatedSection id="reservar" className="py-12 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <Badge className="mb-4 bg-purple-100 text-purple-800 hover:bg-purple-100">Reservas</Badge>
@@ -54,18 +54,18 @@ export default function BookingSection() {
         </div>
         <Card className="border-none shadow-2xl rounded-2xl overflow-hidden">
           <CardContent className="p-0">
-                          {/* Calendario a ancho completo */}
-              <div className="p-8">
-                <Suspense
-                  fallback={
-                    <div className="flex justify-center items-center h-64">
-                      <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-purple-500" />
-                    </div>
-                  }
-                >
-                  <CalendarioReservasWrapper />
-                </Suspense>
-              </div>
+            {/* Calendario a ancho completo */}
+            <div className="p-2">
+              <Suspense
+                fallback={
+                  <div className="flex justify-center items-center h-64">
+                    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-purple-500" />
+                  </div>
+                }
+              >
+                <CalendarioReservasWrapper />
+              </Suspense>
+            </div>
             <div className="flex flex-col">
               {/* Información de contacto en la parte superior */}
               <div className="bg-purple-900 p-6">

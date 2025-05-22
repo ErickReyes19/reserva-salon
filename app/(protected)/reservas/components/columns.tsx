@@ -55,20 +55,70 @@ export const columns: ColumnDef<Reserva>[] = [
     header: "Hora Inicio",
     accessorFn: (row) => row.horaInicio,
     cell: ({ getValue }) => {
-      const inicio = getValue<string>();
-      return <span>{format(new Date(inicio), "HH:mm")} hrs</span>;
+      const val = getValue<string | Date>()
+      // 1) Aseguramos un Date en UTC
+      const dateUtc =
+        typeof val === "string"
+          ? new Date(val.replace(" ", "T") + "Z")
+          : val
+      // 2) Sacamos horas y minutos en UTC
+      const hours = dateUtc.getUTCHours()
+      const minutes = dateUtc.getUTCMinutes()
+      // 3) Convertimos a formato 12h con AM/PM
+      const hh = hours % 12 || 12
+      const mm = String(minutes).padStart(2, "0")
+      const ampm = hours < 12 ? "AM" : "PM"
+
+      return <span>{`${hh}:${mm} ${ampm}`}</span>
     },
     enableSorting: true,
   },
-  {
-    header: "Hora Fin",
-    accessorFn: (row) => row.horaFin,
-    cell: ({ getValue }) => {
-      const fin = getValue<string>();
-      return <span>{format(new Date(fin), "HH:mm")} hrs</span>;
-    },
-    enableSorting: true,
+{
+  header: "Hora Fin",
+  accessorFn: (row) => row.horaFin,
+  cell: ({ getValue }) => {
+    const val = getValue<string | Date>()
+    console.log("🚀 ~ getValue:", val)
+
+    // 1) Obtener un Date UTC correcto
+    let dateUtc: Date
+    if (typeof val === "string") {
+      if (val.endsWith("Z")) {
+        // Ya viene en ISO UTC
+        dateUtc = new Date(val)
+      } else {
+        // Formato SQL “YYYY-MM-DD HH:mm:ss”
+        dateUtc = new Date(val.replace(" ", "T") + "Z")
+      }
+    } else {
+      // Si ya es Date, construimos uno nuevo en UTC puro
+      dateUtc = new Date(
+        Date.UTC(
+          val.getFullYear(),
+          val.getMonth(),
+          val.getDate(),
+          val.getHours(),
+          val.getMinutes(),
+          val.getSeconds()
+        )
+      )
+    }
+
+    // 2) Sacar horas y minutos en UTC
+    const hours = dateUtc.getUTCHours()
+    const minutes = dateUtc.getUTCMinutes()
+
+    // 3) Convertir a 12h + AM/PM
+    const hh = hours % 12 || 12
+    const mm = String(minutes).padStart(2, "0")
+    const ampm = hours < 12 ? "AM" : "PM"
+
+    return <span>{`${hh}:${mm} ${ampm}`}</span>
   },
+  enableSorting: true,
+},
+
+
   {
     id: "actions",
     header: "Acciones",

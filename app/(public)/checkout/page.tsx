@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 
 import { useState, useEffect } from "react"
@@ -161,7 +162,7 @@ export default function CheckoutWizardPage() {
           />
         )
       case 1:
-        return <PaymentForm onNext={nextStep} onPrev={prevStep} />
+        return <PaymentForm email={email} fotografoId={fotografoId} hora={hourNumber!} nombre={name} telefono={phone} fecha={date!} onNext={nextStep} onPrev={prevStep} />
       case 2:
         return <Confirmation email={email} onGoHome={goToHome} />
       default:
