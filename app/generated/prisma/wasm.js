@@ -168,6 +168,13 @@ exports.Prisma.FotografoScalarFieldEnum = {
   disponible: 'disponible'
 };
 
+exports.Prisma.GaleriaScalarFieldEnum = {
+  id: 'id',
+  nombreFoto: 'nombreFoto',
+  url: 'url',
+  fotografoId: 'fotografoId'
+};
+
 exports.Prisma.ClienteScalarFieldEnum = {
   id: 'id',
   nombre: 'nombre',
@@ -249,6 +256,13 @@ exports.Prisma.FotografoOrderByRelevanceFieldEnum = {
   Foto: 'Foto'
 };
 
+exports.Prisma.GaleriaOrderByRelevanceFieldEnum = {
+  id: 'id',
+  nombreFoto: 'nombreFoto',
+  url: 'url',
+  fotografoId: 'fotografoId'
+};
+
 exports.Prisma.ClienteOrderByRelevanceFieldEnum = {
   id: 'id',
   nombre: 'nombre',
@@ -282,6 +296,7 @@ exports.Prisma.ModelName = {
   RolPermiso: 'RolPermiso',
   Usuario: 'Usuario',
   Fotografo: 'Fotografo',
+  Galeria: 'Galeria',
   Cliente: 'Cliente',
   Category: 'Category',
   PhotoService: 'PhotoService',

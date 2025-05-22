@@ -71,6 +71,17 @@ model Fotografo {
   disponible Boolean
   usuario    Usuario   @relation("FotografoUsuario", fields: [usuarioId], references: [id])
   reservas   Reserva[] @relation("ReservasFotografo")
+  galeria    Galeria[] @relation("GaleriaFotografo")
+}
+
+model Galeria {
+  id          String    @id @default(uuid())
+  nombreFoto  String
+  url         String
+  fotografoId String
+  fotografo   Fotografo @relation("GaleriaFotografo", fields: [fotografoId], references: [id])
+
+  @@map("galeria")
 }
 
 model Cliente {

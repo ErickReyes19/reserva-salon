@@ -13,49 +13,40 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
-import { Fotografo } from "../type";
+import { Galeria } from "../type";
+import Image from "next/image";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 
-export const columns: ColumnDef<Fotografo>[] = [
+export const columns: ColumnDef<Galeria>[] = [
 
   {
-    accessorKey: "nombre",
+    accessorKey: "fotografoNombre",
     header: ({ column }) => (
       <Button
         variant="ghost"
         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         className="text-left"
       >
-        Nombre
+        Nombre fotografo
         <ArrowUpDown className="ml-2 h-4 w-4" />
       </Button>
     ),
   },
   {
-    accessorKey: "bio",
+    accessorKey: "nombreFoto",
     header: ({ column }) => (
       <Button
         variant="ghost"
         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         className="text-left"
       >
-        Biografía
+        Nombre foto
         <ArrowUpDown className="ml-2 h-4 w-4" />
       </Button>
     ),
   },
-  {
-    accessorKey: "telefono",
-    header: ({ column }) => (
-      <Button
-        variant="ghost"
-        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        className="text-left"
-      >
-        Telefono
-        <ArrowUpDown className="ml-2 h-4 w-4" />
-      </Button>
-    ),
-  },
+
+  // Dentro de tu definición de columnas:
   {
     accessorKey: "url",
     header: ({ column }) => (
@@ -64,40 +55,44 @@ export const columns: ColumnDef<Fotografo>[] = [
         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         className="text-left"
       >
-        Url
+        Imagen
         <ArrowUpDown className="ml-2 h-4 w-4" />
       </Button>
     ),
-  },
-  {
-    accessorKey: "disponible",
-    header: ({ column }) => (
-      <Button
-        variant="ghost"
-        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        className="text-left"
-      >
-        Disponible
-        <ArrowUpDown className="ml-2 h-4 w-4" />
-      </Button>
-    ),
-    cell: ({ row }) => {
-      const isActive = row.getValue("disponible");
+    cell: ({ getValue }) => {
+      const url = getValue() as string;
+
       return (
-        <div className="">
-          {isActive ? (
-            <div className="flex gap-2">
-              <CheckCircleIcon color="green" /> Activo{" "}
-            </div>
-          ) : (
-            <div className="flex gap-2">
-              <XCircleIcon color="red" /> Inactivo{" "}
-            </div>
-          )}
-        </div>
+        <HoverCard>
+          <HoverCardTrigger asChild>
+            <Image
+              src={url}
+              alt="Foto"
+              width={40}
+              height={40}
+              className="w-10 h-10 object-cover rounded-md border shadow-sm cursor-pointer"
+            />
+          </HoverCardTrigger>
+          <HoverCardContent
+            side="right"
+            align="start"
+            className="w-auto p-2 bg-white border rounded-md shadow-lg"
+          >
+            <Image
+              src={url}
+              alt="Vista ampliada"
+              width={200}
+              height={200}
+              className="w-48 h-48 object-cover rounded-md"
+            />
+          </HoverCardContent>
+        </HoverCard>
       );
     },
   },
+
+
+
   {
     id: "actions",
     header: "Acciones",
@@ -114,11 +109,8 @@ export const columns: ColumnDef<Fotografo>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Acciones</DropdownMenuLabel>
-            <Link href={`/fotografos/${fotografos.id}/edit`}>
+            <Link href={`/fotografos/${fotografos.fotografoId}/galeria/${fotografos.id}/edit`}>
               <DropdownMenuItem>Editar</DropdownMenuItem>
-            </Link>
-            <Link href={`/fotografos/${fotografos.id}/galeria`}>
-              <DropdownMenuItem>Galeria</DropdownMenuItem>
             </Link>
           </DropdownMenuContent>
         </DropdownMenu>
