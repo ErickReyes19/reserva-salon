@@ -1,8 +1,9 @@
+/* eslint-disable jsx-a11y/alt-text */
 "use client";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Pencil, Plus, Search } from "lucide-react";
+import { GalleryVertical, Image, Pencil, Plus, Search } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import { Fotografo } from "../type";
@@ -61,6 +62,11 @@ export default function FotografoListMobile({ fotografos }: FotografoListMobileP
             <Link href={`/fotografos/${fotografo.id}/edit`}>
               <Button variant="ghost" size="icon" className="h-8 w-8">
                 <Pencil className="h-4 w-4" />
+              </Button>
+            </Link>
+            <Link href={`/fotografos/${fotografo.id}/galeria`}>
+              <Button variant="ghost" size="icon" className="h-8 w-8">
+                <Image className="h-4 w-4" />
               </Button>
             </Link>
           </div>

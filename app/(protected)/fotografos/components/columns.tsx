@@ -120,6 +120,9 @@ export const columns: ColumnDef<Fotografo>[] = [
             <Link href={`/fotografos/${fotografos.id}/galeria`}>
               <DropdownMenuItem>Galeria</DropdownMenuItem>
             </Link>
+            <Link href={`/fotografos/${fotografos.id}/disponibilidad`}>
+              <DropdownMenuItem>Galeria</DropdownMenuItem>
+            </Link>
           </DropdownMenuContent>
         </DropdownMenu>
       );

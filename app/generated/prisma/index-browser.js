@@ -157,17 +157,6 @@ exports.Prisma.UsuarioScalarFieldEnum = {
   debeCambiar: 'debeCambiar'
 };
 
-exports.Prisma.FotografoScalarFieldEnum = {
-  id: 'id',
-  usuarioId: 'usuarioId',
-  nombre: 'nombre',
-  telefono: 'telefono',
-  bio: 'bio',
-  url: 'url',
-  Foto: 'Foto',
-  disponible: 'disponible'
-};
-
 exports.Prisma.GaleriaScalarFieldEnum = {
   id: 'id',
   nombreFoto: 'nombreFoto',
@@ -197,6 +186,29 @@ exports.Prisma.PhotoServiceScalarFieldEnum = {
   description: 'description',
   activo: 'activo',
   categoryId: 'categoryId'
+};
+
+exports.Prisma.FotografoScalarFieldEnum = {
+  id: 'id',
+  usuarioId: 'usuarioId',
+  nombre: 'nombre',
+  telefono: 'telefono',
+  bio: 'bio',
+  url: 'url',
+  Foto: 'Foto',
+  disponible: 'disponible'
+};
+
+exports.Prisma.UnavailabilityScalarFieldEnum = {
+  id: 'id',
+  fotografoId: 'fotografoId',
+  recurring: 'recurring',
+  weekday: 'weekday',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  startTime: 'startTime',
+  endTime: 'endTime',
+  activo: 'activo'
 };
 
 exports.Prisma.ReservaScalarFieldEnum = {
@@ -241,21 +253,6 @@ exports.Prisma.UsuarioOrderByRelevanceFieldEnum = {
   rolId: 'rolId'
 };
 
-exports.Prisma.NullsOrder = {
-  first: 'first',
-  last: 'last'
-};
-
-exports.Prisma.FotografoOrderByRelevanceFieldEnum = {
-  id: 'id',
-  usuarioId: 'usuarioId',
-  nombre: 'nombre',
-  telefono: 'telefono',
-  bio: 'bio',
-  url: 'url',
-  Foto: 'Foto'
-};
-
 exports.Prisma.GaleriaOrderByRelevanceFieldEnum = {
   id: 'id',
   nombreFoto: 'nombreFoto',
@@ -283,6 +280,26 @@ exports.Prisma.PhotoServiceOrderByRelevanceFieldEnum = {
   categoryId: 'categoryId'
 };
 
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+
+exports.Prisma.FotografoOrderByRelevanceFieldEnum = {
+  id: 'id',
+  usuarioId: 'usuarioId',
+  nombre: 'nombre',
+  telefono: 'telefono',
+  bio: 'bio',
+  url: 'url',
+  Foto: 'Foto'
+};
+
+exports.Prisma.UnavailabilityOrderByRelevanceFieldEnum = {
+  id: 'id',
+  fotografoId: 'fotografoId'
+};
+
 exports.Prisma.ReservaOrderByRelevanceFieldEnum = {
   id: 'id',
   fotografoId: 'fotografoId',
@@ -295,11 +312,12 @@ exports.Prisma.ModelName = {
   Permiso: 'Permiso',
   RolPermiso: 'RolPermiso',
   Usuario: 'Usuario',
-  Fotografo: 'Fotografo',
   Galeria: 'Galeria',
   Cliente: 'Cliente',
   Category: 'Category',
   PhotoService: 'PhotoService',
+  Fotografo: 'Fotografo',
+  Unavailability: 'Unavailability',
   Reserva: 'Reserva'
 };
 

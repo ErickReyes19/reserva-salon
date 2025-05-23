@@ -60,19 +60,6 @@ model Usuario {
   @@index([rolId], map: "Usuario_rolId_fkey")
 }
 
-model Fotografo {
-  id          String     @id @default(uuid())
-  usuarioId   String     @unique
-  nombre      String     @unique
-  telefono    String?
-  bio         String?    @db.Text
-  url         String?
-  Foto        String
-  disponible  Boolean
-  usuario     Usuario    @relation("FotografoUsuario", fields: [usuarioId], references: [id])
-  reservas    Reserva[]  @relation("ReservasFotografo")
-  galeria     Galeria[]  @relation("GaleriaFotografo")
-}
 
 model Galeria {
   id           String    @id @default(uuid())
@@ -111,6 +98,40 @@ model PhotoService {
   categoryId  String
   category    Category @relation(fields: [categoryId], references: [id])
 }
+
+model Fotografo {
+  id          String     @id @default(uuid())
+  usuarioId   String     @unique
+  nombre      String     @unique
+  telefono    String?
+  bio         String?    @db.Text
+  url         String?
+  Foto        String
+  disponible  Boolean
+  usuario     Usuario    @relation("FotografoUsuario", fields: [usuarioId], references: [id])
+  reservas    Reserva[]  @relation("ReservasFotografo")
+  galeria     Galeria[]  @relation("GaleriaFotografo")
+  unavailabilities Unavailability[]
+}
+
+model Unavailability {
+  id           String     @id @default(uuid())
+  fotografoId  String
+  recurring    Boolean    // true = regla semanal, false = bloqueo puntual
+  weekday      Int?       // 0 = domingo … 6 = sábado (solo si recurring = true)
+  startDate    DateTime?  // solo si recurring = false
+  endDate      DateTime?  // solo si recurring = false
+  startTime    DateTime?  // hora de inicio (solo si recurring = false)
+  endTime      DateTime?  // hora de fin (solo si recurring = false)
+  activo       Boolean    @default(true)
+
+  fotografo    Fotografo  @relation(fields: [fotografoId], references: [id])
+
+  @@index([fotografoId])
+}
+
+
+
 
 model Reserva {
   id            String   @id @default(uuid())

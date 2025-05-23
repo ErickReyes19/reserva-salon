@@ -26,7 +26,7 @@ async function main() {
     "ver_usuarios", "crear_usuario", "editar_usuario", "ver_categoria", "crear_categoria",
     "editar_categoria", "ver_servicios", "crear_servicios", "editar_servicios",
     "editar_fotografos", "ver_fotografos", "crear_fotografos", "ver_clientes", "crear_clientes", "ver_reservas",
-    "ver_galeria", "crear_foto", "editar_fotos"
+    "ver_galeria", "crear_foto", "editar_fotos","editar_disponibilidad","crear_disponibilidad","ver_disponibilidad"
   ];
 
   // Buscar o crear permisos y guardar sus ids

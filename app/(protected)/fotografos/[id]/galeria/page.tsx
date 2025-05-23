@@ -5,7 +5,7 @@ import { Image as ImageIcon } from "lucide-react";
 import { columns } from "./components/columns";
 import { DataTable } from "./components/data-table";
 import { Galeria } from "./type";
-import { getGalerias } from "./actions";
+import { getGalerias, getGaleriasByFotografoId } from "./actions";
 import GaleriaListMobile from "./components/fotografos-list-mobile";
 
 export default async function GaleriaPage({ params }: { params: { id: string } }) {
@@ -15,7 +15,7 @@ export default async function GaleriaPage({ params }: { params: { id: string } }
     return <NoAcceso />;
   }
 
-  const data: Galeria[] = await getGalerias();
+  const data: Galeria[] = await getGaleriasByFotografoId(params.id);
 
   return (
     <div className="container mx-auto py-2">
