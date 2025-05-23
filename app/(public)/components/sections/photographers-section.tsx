@@ -1,11 +1,11 @@
-import { Badge } from "@/components/ui/badge";
-import AnimatedSection from "../animated-section";
-import AnimatedCard from "../animated-card";
-import { getFotografos } from "@/app/(protected)/fotografos/actions";
-import PhotoCard from "../photo-card";
+import { Badge } from "@/components/ui/badge"
+import AnimatedSection from "../animated-section"
+import AnimatedCard from "../animated-card"
+import { getFotografos } from "@/app/(protected)/fotografos/actions"
+import PhotoCard from "../photo-card"
 
 export default async function PhotographersSection() {
-  const fotografos = await getFotografos();
+  const fotografos = await getFotografos()
 
   return (
     <AnimatedSection id="photographers" className="py-24 bg-gradient-to-b from-white to-gray-50">
@@ -18,18 +18,21 @@ export default async function PhotographersSection() {
             Fotógrafos Profesionales
           </h2>
           <p className="text-gray-600 text-lg">
-            Nuestro talentoso equipo de fotógrafos combina experiencia, creatividad y pasión para capturar momentos únicos desde perspectivas extraordinarias.
+            Nuestro talentoso equipo de fotógrafos combina experiencia, creatividad y pasión para capturar momentos
+            únicos desde perspectivas extraordinarias.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+        <div className="flex overflow-x-auto gap-6 md:overflow-visible md:grid md:grid-cols-3 md:gap-8 pb-4 md:pb-0">
           {fotografos.map((photographer, index) => (
-            <AnimatedCard key={photographer.id} delay={index}>
-              <PhotoCard fotografo={photographer} />
-            </AnimatedCard>
+            <div key={photographer.id} className="flex-shrink-0 w-80 md:w-auto">
+              <AnimatedCard delay={index}>
+                <PhotoCard fotografo={photographer} />
+              </AnimatedCard>
+            </div>
           ))}
         </div>
       </div>
     </AnimatedSection>
-  );
+  )
 }

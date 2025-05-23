@@ -13,7 +13,7 @@ export async function getReservasEvent(): Promise<ReservaEvent[]> {
       horaInicio: r.horaInicio.toISOString(),
       horaFin: r.horaFin.toISOString(),
     }));
-
+    
     return eventos;
   } catch (error) {
     console.error("Error al obtener las reservas:", error);

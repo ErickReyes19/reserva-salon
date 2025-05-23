@@ -114,21 +114,38 @@ export async function createReserva(data: {
   clienteId: string;
 }): Promise<Reserva> {
   const { fecha, horaInicio, fotografoId, clienteId } = data;
+
+  const realHoraInicio = new Date(horaInicio);
+  realHoraInicio.setMinutes(realHoraInicio.getMinutes() - 30);
+
+  const horaFin = new Date(horaInicio);
+  horaFin.setHours(horaFin.getHours() + 1);
+  horaFin.setMinutes(horaFin.getMinutes() + 30);
+
   const isAvailable = await isSlotAvailableByDate({ fecha, horaInicio });
+
   if (!isAvailable) {
     throw new Error("El horario ya está ocupado");
   }
 
-  const horaFin = new Date(horaInicio);
-  horaFin.setHours(horaFin.getHours() + 1);
-
   const created = await prisma.reserva.create({
-    data: { fecha, horaInicio, horaFin, fotografoId, clienteId, estado: true },
-    include: { fotografo: true, cliente: true },
+    data: {
+      fecha,
+      horaInicio: realHoraInicio,
+      horaFin,
+      fotografoId,
+      clienteId,
+      estado: true,
+    },
+    include: {
+      fotografo: true,
+      cliente: true,
+    },
   });
 
   return mapReserva(created);
 }
+
 
 /**
  * Actualizar una reserva existente

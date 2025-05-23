@@ -36,7 +36,6 @@ export function GaleriaFormulario({
 
   const params = useParams();
   const fotografoId = params.id as string;
-  console.log("🚀 ~ fotografoId:", fotografoId);
   const [preview, setPreview] = useState<string | null>(null);
   const [file, setFile] = useState<File | null>(null);
 
@@ -81,7 +80,6 @@ export function GaleriaFormulario({
         fotografoId,
         url,
       };
-      console.log("🚀 ~ onSubmit ~ galeriaData:", galeriaData)
 
       const result = isUpdate
         ? await putGaleria({ galeria: galeriaData })

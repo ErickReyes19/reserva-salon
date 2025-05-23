@@ -75,16 +75,27 @@ export default function CalendarioReservas({ eventos = [] }: Props) {
     const occupiedHours = new Set<number>()
 
     eventsForSelectedDay.forEach((event) => {
-      // Extraer las horas directamente de las cadenas ISO sin convertir a Date
-      // para evitar problemas de zona horaria
-      const startHour = Number.parseInt(event.horaInicio.split("T")[1].split(":")[0], 10)
-      const endHour = Number.parseInt(event.horaFin.split("T")[1].split(":")[0], 10)
+      // Extraer las horas y minutos de las cadenas ISO
+      const startHourStr = event.horaInicio.split("T")[1].split(":")
+      const endHourStr = event.horaFin.split("T")[1].split(":")
 
-      // Si inicio y fin son iguales, asumir duración de 1 hora
-      const finalHour = startHour === endHour ? endHour + 1 : endHour
+      const startHour = Number.parseInt(startHourStr[0], 10)
+      const startMinute = Number.parseInt(startHourStr[1], 10)
+
+      const endHour = Number.parseInt(endHourStr[0], 10)
+      const endMinute = Number.parseInt(endHourStr[1], 10)
+
+      // Calcular las horas afectadas
+      // Si el evento comienza a la hora en punto (XX:00), comenzamos a bloquear desde esa hora
+      // Si comienza a media hora (XX:30), también bloqueamos esa hora completa
+      const effectiveStartHour = startHour
+
+      // Si el evento termina a la hora en punto (XX:00), no bloqueamos esa hora
+      // Si termina a cualquier otro minuto (incluyendo XX:30), bloqueamos esa hora completa
+      const effectiveEndHour = endMinute > 0 ? endHour + 1 : endHour
 
       // Marcar todas las horas entre inicio y fin como ocupadas
-      for (let h = startHour; h < finalHour; h++) {
+      for (let h = effectiveStartHour; h < effectiveEndHour; h++) {
         occupiedHours.add(h)
       }
     })
@@ -114,7 +125,7 @@ export default function CalendarioReservas({ eventos = [] }: Props) {
   }
 
   return (
-    <div className="flex flex-col   mx-auto px-4 sm:px-6">
+    <div className="flex flex-col mx-auto px-4 sm:px-6">
       {/* Calendario y Horas disponibles */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2">
