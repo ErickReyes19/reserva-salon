@@ -198,8 +198,18 @@ export default function PhotographerGalleryDialog({
                       </p>
                     </div>
                     <div className="mt-4 bg-green-50 p-3 rounded-lg flex items-center justify-between text-sm">
-                      <span>Disponible para reservas</span>
-                      <span className="w-3 h-3 bg-green-400 rounded-full animate-pulse" />
+                      {fotografo.disponible == true && (
+                        <div className="flex space-x-2 items-center">
+                          <span>Disponible para reservas</span>
+                          <span className="w-3 h-3 bg-green-400 rounded-full animate-pulse" />
+                        </div>
+                      )}
+                      {fotografo.disponible == false && (
+                        <div className="flex space-x-2 items-center">
+                          <span>No disponible para reservas</span>
+                          <span className="w-3 h-3 bg-red-400 rounded-full animate-pulse" />
+                        </div>
+                      )}
                     </div>
                   </CardContent>
                 </Card>
