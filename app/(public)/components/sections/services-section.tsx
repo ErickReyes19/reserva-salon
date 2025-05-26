@@ -7,7 +7,6 @@ import type { CategoryWithServices, PhotoService } from "../../types"
 
 export default function ServicesSection({ categories }: { categories: CategoryWithServices[] }) {
   const allServices: PhotoService[] = categories.flatMap((cat) => cat.services)
-  console.log("🚀 ~ ServicesSection ~ allServices:", allServices)
 
   return (
     <AnimatedSection id="services" className="py-24 bg-white">

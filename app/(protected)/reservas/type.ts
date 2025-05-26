@@ -1,12 +1,15 @@
 export type Reserva = {
-  id?: Date;
+  id?: string;
   fecha: Date;
   horaInicio: Date;
-  horaFin: string;
+  horaFin: Date;
   fotografoId: string;
-  estado: string;
   clienteId: string;
+  photoServiceId?: string;
+  estado: boolean;
+  precio?: number;  // nuevo campo
 
   fotografoNombre?: string;
   clienteNombre?: string;
+  nombreSesion?: string;
 };

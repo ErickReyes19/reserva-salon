@@ -112,8 +112,10 @@ model PhotoService {
   activo      Boolean             @default(true)
   categoryId  String
   category    Category            @relation(fields: [categoryId], references: [id])
-  fotografos  FotografoServicio[] // Relación con Fotografo a través de la tabla intermedia
+  fotografos  FotografoServicio[] 
+  reservas    Reserva[]           
 }
+
 
 model FotografoServicio {
   fotografoId String
@@ -144,18 +146,24 @@ model Unavailability {
 }
 
 model Reserva {
-  id          String   @id @default(uuid())
-  fecha       DateTime // fecha y hora de inicio
-  horaInicio  DateTime
-  horaFin     DateTime
-  fotografoId String
-  estado      Boolean  @default(true)
-  createdAt   DateTime @default(now())
-  clienteId   String
+  id             String        @id @default(uuid())
+  fecha          DateTime
+  horaInicio     DateTime
+  horaFin        DateTime
+  fotografoId    String
+  clienteId      String
+  photoServiceId String?        
+  estado         Boolean       @default(true)
+  precio         Float?        
+  createdAt      DateTime      @default(now())
 
-  fotografo Fotografo @relation("ReservasFotografo", fields: [fotografoId], references: [id])
-  cliente   Cliente   @relation("ReservasCliente", fields: [clienteId], references: [id])
+  fotografo      Fotografo     @relation("ReservasFotografo", fields: [fotografoId], references: [id])
+  cliente        Cliente       @relation("ReservasCliente", fields: [clienteId], references: [id])
+  photoService   PhotoService? @relation(fields: [photoServiceId], references: [id])
 
   @@index([fotografoId], map: "Reserva_fotografoId_fkey")
   @@index([clienteId], map: "Reserva_clienteId_fkey")
+  @@index([photoServiceId], map: "Reserva_photoServiceId_fkey")
 }
+
+

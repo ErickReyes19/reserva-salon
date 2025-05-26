@@ -7,16 +7,21 @@ import { Reserva } from "./type";
  */
 function mapReserva(r: any): Reserva {
   return {
+    id: r.id,
     fecha: r.fecha,
     horaInicio: r.horaInicio,
-    horaFin: r.horaFin.toISOString(),
+    horaFin: r.horaFin,
     fotografoId: r.fotografoId,
     clienteId: r.clienteId,
-    estado: r.estado ? "activo" : "inactivo",
+    photoServiceId: r.photoServiceId,
+    estado: r.estado,
+    precio: r.precio,
     fotografoNombre: r.fotografo?.nombre,
     clienteNombre: r.cliente?.nombre,
+    nombreSesion: r.nombreSesion,
   };
 }
+
 
 /**
  * Obtener todas las reservas
@@ -154,10 +159,22 @@ export async function createReserva(data: {
   horaInicio: Date;
   fotografoId: string;
   clienteId: string;
+  photoServiceId?: string;
+  estado?: boolean;
+  precio?: number;
+  nombreSesion?: string;
 }): Promise<Reserva> {
-  const { fecha, horaInicio, fotografoId, clienteId } = data;
+  const {
+    fecha,
+    horaInicio,
+    fotografoId,
+    clienteId,
+    photoServiceId,
+    estado = true,
+    precio,
+    nombreSesion,
+  } = data;
 
-  // Ajuste de tiempos según tu lógica de negocio
   const realHoraInicio = new Date(horaInicio);
   realHoraInicio.setMinutes(realHoraInicio.getMinutes() - 30);
 
@@ -165,19 +182,12 @@ export async function createReserva(data: {
   horaFin.setHours(horaFin.getHours() + 1);
   horaFin.setMinutes(horaFin.getMinutes() + 30);
 
-  // 1) Verificar que la franja no esté ocupada
   const isSlotFree = await isSlotAvailableByDate({ fecha, horaInicio });
-  if (!isSlotFree) {
-    throw new Error("El horario ya está ocupado");
-  }
+  if (!isSlotFree) throw new Error("El horario ya está ocupado");
 
-  // 2) Verificar que el fotógrafo esté disponible
   const available = await isPhotographerAvailable(fotografoId, fecha);
-  if (!available) {
-    throw new Error("El fotógrafo no está disponible en esa fecha");
-  }
+  if (!available) throw new Error("El fotógrafo no está disponible en esa fecha");
 
-  // 3) Crear la reserva
   const created = await prisma.reserva.create({
     data: {
       fecha: realHoraInicio,
@@ -185,16 +195,18 @@ export async function createReserva(data: {
       horaFin,
       fotografoId,
       clienteId,
-      estado: true,
+      photoServiceId,
+      estado,
+      precio,
+      ...(nombreSesion ? { nombreSesion } : {}),
     },
-    include: {
-      fotografo: true,
-      cliente: true,
-    },
+    include: { fotografo: true, cliente: true },
   });
 
   return mapReserva(created);
 }
+
+
 
 
 

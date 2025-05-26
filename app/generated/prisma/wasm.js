@@ -221,9 +221,11 @@ exports.Prisma.ReservaScalarFieldEnum = {
   horaInicio: 'horaInicio',
   horaFin: 'horaFin',
   fotografoId: 'fotografoId',
+  clienteId: 'clienteId',
+  photoServiceId: 'photoServiceId',
   estado: 'estado',
-  createdAt: 'createdAt',
-  clienteId: 'clienteId'
+  precio: 'precio',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -312,7 +314,8 @@ exports.Prisma.UnavailabilityOrderByRelevanceFieldEnum = {
 exports.Prisma.ReservaOrderByRelevanceFieldEnum = {
   id: 'id',
   fotografoId: 'fotografoId',
-  clienteId: 'clienteId'
+  clienteId: 'clienteId',
+  photoServiceId: 'photoServiceId'
 };
 
 

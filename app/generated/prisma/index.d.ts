@@ -1966,10 +1966,12 @@ export namespace Prisma {
 
   export type PhotoServiceCountOutputType = {
     fotografos: number
+    reservas: number
   }
 
   export type PhotoServiceCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     fotografos?: boolean | PhotoServiceCountOutputTypeCountFotografosArgs
+    reservas?: boolean | PhotoServiceCountOutputTypeCountReservasArgs
   }
 
   // Custom InputTypes
@@ -1988,6 +1990,13 @@ export namespace Prisma {
    */
   export type PhotoServiceCountOutputTypeCountFotografosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: FotografoServicioWhereInput
+  }
+
+  /**
+   * PhotoServiceCountOutputType without action
+   */
+  export type PhotoServiceCountOutputTypeCountReservasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ReservaWhereInput
   }
 
 
@@ -9982,6 +9991,7 @@ export namespace Prisma {
     categoryId?: boolean
     category?: boolean | CategoryDefaultArgs<ExtArgs>
     fotografos?: boolean | PhotoService$fotografosArgs<ExtArgs>
+    reservas?: boolean | PhotoService$reservasArgs<ExtArgs>
     _count?: boolean | PhotoServiceCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["photoService"]>
 
@@ -10001,6 +10011,7 @@ export namespace Prisma {
   export type PhotoServiceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     category?: boolean | CategoryDefaultArgs<ExtArgs>
     fotografos?: boolean | PhotoService$fotografosArgs<ExtArgs>
+    reservas?: boolean | PhotoService$reservasArgs<ExtArgs>
     _count?: boolean | PhotoServiceCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -10009,6 +10020,7 @@ export namespace Prisma {
     objects: {
       category: Prisma.$CategoryPayload<ExtArgs>
       fotografos: Prisma.$FotografoServicioPayload<ExtArgs>[]
+      reservas: Prisma.$ReservaPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -10360,6 +10372,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     category<T extends CategoryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CategoryDefaultArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     fotografos<T extends PhotoService$fotografosArgs<ExtArgs> = {}>(args?: Subset<T, PhotoService$fotografosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FotografoServicioPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    reservas<T extends PhotoService$reservasArgs<ExtArgs> = {}>(args?: Subset<T, PhotoService$reservasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReservaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -10760,6 +10773,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: FotografoServicioScalarFieldEnum | FotografoServicioScalarFieldEnum[]
+  }
+
+  /**
+   * PhotoService.reservas
+   */
+  export type PhotoService$reservasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Reserva
+     */
+    select?: ReservaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Reserva
+     */
+    omit?: ReservaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReservaInclude<ExtArgs> | null
+    where?: ReservaWhereInput
+    orderBy?: ReservaOrderByWithRelationInput | ReservaOrderByWithRelationInput[]
+    cursor?: ReservaWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ReservaScalarFieldEnum | ReservaScalarFieldEnum[]
   }
 
   /**
@@ -12672,8 +12709,18 @@ export namespace Prisma {
 
   export type AggregateReserva = {
     _count: ReservaCountAggregateOutputType | null
+    _avg: ReservaAvgAggregateOutputType | null
+    _sum: ReservaSumAggregateOutputType | null
     _min: ReservaMinAggregateOutputType | null
     _max: ReservaMaxAggregateOutputType | null
+  }
+
+  export type ReservaAvgAggregateOutputType = {
+    precio: number | null
+  }
+
+  export type ReservaSumAggregateOutputType = {
+    precio: number | null
   }
 
   export type ReservaMinAggregateOutputType = {
@@ -12682,9 +12729,11 @@ export namespace Prisma {
     horaInicio: Date | null
     horaFin: Date | null
     fotografoId: string | null
-    estado: boolean | null
-    createdAt: Date | null
     clienteId: string | null
+    photoServiceId: string | null
+    estado: boolean | null
+    precio: number | null
+    createdAt: Date | null
   }
 
   export type ReservaMaxAggregateOutputType = {
@@ -12693,9 +12742,11 @@ export namespace Prisma {
     horaInicio: Date | null
     horaFin: Date | null
     fotografoId: string | null
-    estado: boolean | null
-    createdAt: Date | null
     clienteId: string | null
+    photoServiceId: string | null
+    estado: boolean | null
+    precio: number | null
+    createdAt: Date | null
   }
 
   export type ReservaCountAggregateOutputType = {
@@ -12704,12 +12755,22 @@ export namespace Prisma {
     horaInicio: number
     horaFin: number
     fotografoId: number
-    estado: number
-    createdAt: number
     clienteId: number
+    photoServiceId: number
+    estado: number
+    precio: number
+    createdAt: number
     _all: number
   }
 
+
+  export type ReservaAvgAggregateInputType = {
+    precio?: true
+  }
+
+  export type ReservaSumAggregateInputType = {
+    precio?: true
+  }
 
   export type ReservaMinAggregateInputType = {
     id?: true
@@ -12717,9 +12778,11 @@ export namespace Prisma {
     horaInicio?: true
     horaFin?: true
     fotografoId?: true
-    estado?: true
-    createdAt?: true
     clienteId?: true
+    photoServiceId?: true
+    estado?: true
+    precio?: true
+    createdAt?: true
   }
 
   export type ReservaMaxAggregateInputType = {
@@ -12728,9 +12791,11 @@ export namespace Prisma {
     horaInicio?: true
     horaFin?: true
     fotografoId?: true
-    estado?: true
-    createdAt?: true
     clienteId?: true
+    photoServiceId?: true
+    estado?: true
+    precio?: true
+    createdAt?: true
   }
 
   export type ReservaCountAggregateInputType = {
@@ -12739,9 +12804,11 @@ export namespace Prisma {
     horaInicio?: true
     horaFin?: true
     fotografoId?: true
-    estado?: true
-    createdAt?: true
     clienteId?: true
+    photoServiceId?: true
+    estado?: true
+    precio?: true
+    createdAt?: true
     _all?: true
   }
 
@@ -12783,6 +12850,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: ReservaAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ReservaSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: ReservaMinAggregateInputType
@@ -12813,6 +12892,8 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: ReservaCountAggregateInputType | true
+    _avg?: ReservaAvgAggregateInputType
+    _sum?: ReservaSumAggregateInputType
     _min?: ReservaMinAggregateInputType
     _max?: ReservaMaxAggregateInputType
   }
@@ -12823,10 +12904,14 @@ export namespace Prisma {
     horaInicio: Date
     horaFin: Date
     fotografoId: string
-    estado: boolean
-    createdAt: Date
     clienteId: string
+    photoServiceId: string | null
+    estado: boolean
+    precio: number | null
+    createdAt: Date
     _count: ReservaCountAggregateOutputType | null
+    _avg: ReservaAvgAggregateOutputType | null
+    _sum: ReservaSumAggregateOutputType | null
     _min: ReservaMinAggregateOutputType | null
     _max: ReservaMaxAggregateOutputType | null
   }
@@ -12851,11 +12936,14 @@ export namespace Prisma {
     horaInicio?: boolean
     horaFin?: boolean
     fotografoId?: boolean
-    estado?: boolean
-    createdAt?: boolean
     clienteId?: boolean
+    photoServiceId?: boolean
+    estado?: boolean
+    precio?: boolean
+    createdAt?: boolean
     fotografo?: boolean | FotografoDefaultArgs<ExtArgs>
     cliente?: boolean | ClienteDefaultArgs<ExtArgs>
+    photoService?: boolean | Reserva$photoServiceArgs<ExtArgs>
   }, ExtArgs["result"]["reserva"]>
 
 
@@ -12866,15 +12954,18 @@ export namespace Prisma {
     horaInicio?: boolean
     horaFin?: boolean
     fotografoId?: boolean
-    estado?: boolean
-    createdAt?: boolean
     clienteId?: boolean
+    photoServiceId?: boolean
+    estado?: boolean
+    precio?: boolean
+    createdAt?: boolean
   }
 
-  export type ReservaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fecha" | "horaInicio" | "horaFin" | "fotografoId" | "estado" | "createdAt" | "clienteId", ExtArgs["result"]["reserva"]>
+  export type ReservaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fecha" | "horaInicio" | "horaFin" | "fotografoId" | "clienteId" | "photoServiceId" | "estado" | "precio" | "createdAt", ExtArgs["result"]["reserva"]>
   export type ReservaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     fotografo?: boolean | FotografoDefaultArgs<ExtArgs>
     cliente?: boolean | ClienteDefaultArgs<ExtArgs>
+    photoService?: boolean | Reserva$photoServiceArgs<ExtArgs>
   }
 
   export type $ReservaPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -12882,6 +12973,7 @@ export namespace Prisma {
     objects: {
       fotografo: Prisma.$FotografoPayload<ExtArgs>
       cliente: Prisma.$ClientePayload<ExtArgs>
+      photoService: Prisma.$PhotoServicePayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -12889,9 +12981,11 @@ export namespace Prisma {
       horaInicio: Date
       horaFin: Date
       fotografoId: string
-      estado: boolean
-      createdAt: Date
       clienteId: string
+      photoServiceId: string | null
+      estado: boolean
+      precio: number | null
+      createdAt: Date
     }, ExtArgs["result"]["reserva"]>
     composites: {}
   }
@@ -13234,6 +13328,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     fotografo<T extends FotografoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FotografoDefaultArgs<ExtArgs>>): Prisma__FotografoClient<$Result.GetResult<Prisma.$FotografoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     cliente<T extends ClienteDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ClienteDefaultArgs<ExtArgs>>): Prisma__ClienteClient<$Result.GetResult<Prisma.$ClientePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    photoService<T extends Reserva$photoServiceArgs<ExtArgs> = {}>(args?: Subset<T, Reserva$photoServiceArgs<ExtArgs>>): Prisma__PhotoServiceClient<$Result.GetResult<Prisma.$PhotoServicePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -13268,9 +13363,11 @@ export namespace Prisma {
     readonly horaInicio: FieldRef<"Reserva", 'DateTime'>
     readonly horaFin: FieldRef<"Reserva", 'DateTime'>
     readonly fotografoId: FieldRef<"Reserva", 'String'>
-    readonly estado: FieldRef<"Reserva", 'Boolean'>
-    readonly createdAt: FieldRef<"Reserva", 'DateTime'>
     readonly clienteId: FieldRef<"Reserva", 'String'>
+    readonly photoServiceId: FieldRef<"Reserva", 'String'>
+    readonly estado: FieldRef<"Reserva", 'Boolean'>
+    readonly precio: FieldRef<"Reserva", 'Float'>
+    readonly createdAt: FieldRef<"Reserva", 'DateTime'>
   }
     
 
@@ -13614,6 +13711,25 @@ export namespace Prisma {
   }
 
   /**
+   * Reserva.photoService
+   */
+  export type Reserva$photoServiceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhotoService
+     */
+    select?: PhotoServiceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhotoService
+     */
+    omit?: PhotoServiceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhotoServiceInclude<ExtArgs> | null
+    where?: PhotoServiceWhereInput
+  }
+
+  /**
    * Reserva without action
    */
   export type ReservaDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -13780,9 +13896,11 @@ export namespace Prisma {
     horaInicio: 'horaInicio',
     horaFin: 'horaFin',
     fotografoId: 'fotografoId',
+    clienteId: 'clienteId',
+    photoServiceId: 'photoServiceId',
     estado: 'estado',
-    createdAt: 'createdAt',
-    clienteId: 'clienteId'
+    precio: 'precio',
+    createdAt: 'createdAt'
   };
 
   export type ReservaScalarFieldEnum = (typeof ReservaScalarFieldEnum)[keyof typeof ReservaScalarFieldEnum]
@@ -13913,7 +14031,8 @@ export namespace Prisma {
   export const ReservaOrderByRelevanceFieldEnum: {
     id: 'id',
     fotografoId: 'fotografoId',
-    clienteId: 'clienteId'
+    clienteId: 'clienteId',
+    photoServiceId: 'photoServiceId'
   };
 
   export type ReservaOrderByRelevanceFieldEnum = (typeof ReservaOrderByRelevanceFieldEnum)[keyof typeof ReservaOrderByRelevanceFieldEnum]
@@ -14475,6 +14594,7 @@ export namespace Prisma {
     categoryId?: StringFilter<"PhotoService"> | string
     category?: XOR<CategoryScalarRelationFilter, CategoryWhereInput>
     fotografos?: FotografoServicioListRelationFilter
+    reservas?: ReservaListRelationFilter
   }
 
   export type PhotoServiceOrderByWithRelationInput = {
@@ -14487,6 +14607,7 @@ export namespace Prisma {
     categoryId?: SortOrder
     category?: CategoryOrderByWithRelationInput
     fotografos?: FotografoServicioOrderByRelationAggregateInput
+    reservas?: ReservaOrderByRelationAggregateInput
     _relevance?: PhotoServiceOrderByRelevanceInput
   }
 
@@ -14503,6 +14624,7 @@ export namespace Prisma {
     categoryId?: StringFilter<"PhotoService"> | string
     category?: XOR<CategoryScalarRelationFilter, CategoryWhereInput>
     fotografos?: FotografoServicioListRelationFilter
+    reservas?: ReservaListRelationFilter
   }, "id" | "name">
 
   export type PhotoServiceOrderByWithAggregationInput = {
@@ -14655,11 +14777,14 @@ export namespace Prisma {
     horaInicio?: DateTimeFilter<"Reserva"> | Date | string
     horaFin?: DateTimeFilter<"Reserva"> | Date | string
     fotografoId?: StringFilter<"Reserva"> | string
-    estado?: BoolFilter<"Reserva"> | boolean
-    createdAt?: DateTimeFilter<"Reserva"> | Date | string
     clienteId?: StringFilter<"Reserva"> | string
+    photoServiceId?: StringNullableFilter<"Reserva"> | string | null
+    estado?: BoolFilter<"Reserva"> | boolean
+    precio?: FloatNullableFilter<"Reserva"> | number | null
+    createdAt?: DateTimeFilter<"Reserva"> | Date | string
     fotografo?: XOR<FotografoScalarRelationFilter, FotografoWhereInput>
     cliente?: XOR<ClienteScalarRelationFilter, ClienteWhereInput>
+    photoService?: XOR<PhotoServiceNullableScalarRelationFilter, PhotoServiceWhereInput> | null
   }
 
   export type ReservaOrderByWithRelationInput = {
@@ -14668,11 +14793,14 @@ export namespace Prisma {
     horaInicio?: SortOrder
     horaFin?: SortOrder
     fotografoId?: SortOrder
-    estado?: SortOrder
-    createdAt?: SortOrder
     clienteId?: SortOrder
+    photoServiceId?: SortOrderInput | SortOrder
+    estado?: SortOrder
+    precio?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
     fotografo?: FotografoOrderByWithRelationInput
     cliente?: ClienteOrderByWithRelationInput
+    photoService?: PhotoServiceOrderByWithRelationInput
     _relevance?: ReservaOrderByRelevanceInput
   }
 
@@ -14685,11 +14813,14 @@ export namespace Prisma {
     horaInicio?: DateTimeFilter<"Reserva"> | Date | string
     horaFin?: DateTimeFilter<"Reserva"> | Date | string
     fotografoId?: StringFilter<"Reserva"> | string
-    estado?: BoolFilter<"Reserva"> | boolean
-    createdAt?: DateTimeFilter<"Reserva"> | Date | string
     clienteId?: StringFilter<"Reserva"> | string
+    photoServiceId?: StringNullableFilter<"Reserva"> | string | null
+    estado?: BoolFilter<"Reserva"> | boolean
+    precio?: FloatNullableFilter<"Reserva"> | number | null
+    createdAt?: DateTimeFilter<"Reserva"> | Date | string
     fotografo?: XOR<FotografoScalarRelationFilter, FotografoWhereInput>
     cliente?: XOR<ClienteScalarRelationFilter, ClienteWhereInput>
+    photoService?: XOR<PhotoServiceNullableScalarRelationFilter, PhotoServiceWhereInput> | null
   }, "id">
 
   export type ReservaOrderByWithAggregationInput = {
@@ -14698,12 +14829,16 @@ export namespace Prisma {
     horaInicio?: SortOrder
     horaFin?: SortOrder
     fotografoId?: SortOrder
-    estado?: SortOrder
-    createdAt?: SortOrder
     clienteId?: SortOrder
+    photoServiceId?: SortOrderInput | SortOrder
+    estado?: SortOrder
+    precio?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
     _count?: ReservaCountOrderByAggregateInput
+    _avg?: ReservaAvgOrderByAggregateInput
     _max?: ReservaMaxOrderByAggregateInput
     _min?: ReservaMinOrderByAggregateInput
+    _sum?: ReservaSumOrderByAggregateInput
   }
 
   export type ReservaScalarWhereWithAggregatesInput = {
@@ -14715,9 +14850,11 @@ export namespace Prisma {
     horaInicio?: DateTimeWithAggregatesFilter<"Reserva"> | Date | string
     horaFin?: DateTimeWithAggregatesFilter<"Reserva"> | Date | string
     fotografoId?: StringWithAggregatesFilter<"Reserva"> | string
-    estado?: BoolWithAggregatesFilter<"Reserva"> | boolean
-    createdAt?: DateTimeWithAggregatesFilter<"Reserva"> | Date | string
     clienteId?: StringWithAggregatesFilter<"Reserva"> | string
+    photoServiceId?: StringNullableWithAggregatesFilter<"Reserva"> | string | null
+    estado?: BoolWithAggregatesFilter<"Reserva"> | boolean
+    precio?: FloatNullableWithAggregatesFilter<"Reserva"> | number | null
+    createdAt?: DateTimeWithAggregatesFilter<"Reserva"> | Date | string
   }
 
   export type RolCreateInput = {
@@ -15254,6 +15391,7 @@ export namespace Prisma {
     activo?: boolean
     category: CategoryCreateNestedOneWithoutServicesInput
     fotografos?: FotografoServicioCreateNestedManyWithoutServicioInput
+    reservas?: ReservaCreateNestedManyWithoutPhotoServiceInput
   }
 
   export type PhotoServiceUncheckedCreateInput = {
@@ -15265,6 +15403,7 @@ export namespace Prisma {
     activo?: boolean
     categoryId: string
     fotografos?: FotografoServicioUncheckedCreateNestedManyWithoutServicioInput
+    reservas?: ReservaUncheckedCreateNestedManyWithoutPhotoServiceInput
   }
 
   export type PhotoServiceUpdateInput = {
@@ -15276,6 +15415,7 @@ export namespace Prisma {
     activo?: BoolFieldUpdateOperationsInput | boolean
     category?: CategoryUpdateOneRequiredWithoutServicesNestedInput
     fotografos?: FotografoServicioUpdateManyWithoutServicioNestedInput
+    reservas?: ReservaUpdateManyWithoutPhotoServiceNestedInput
   }
 
   export type PhotoServiceUncheckedUpdateInput = {
@@ -15287,6 +15427,7 @@ export namespace Prisma {
     activo?: BoolFieldUpdateOperationsInput | boolean
     categoryId?: StringFieldUpdateOperationsInput | string
     fotografos?: FotografoServicioUncheckedUpdateManyWithoutServicioNestedInput
+    reservas?: ReservaUncheckedUpdateManyWithoutPhotoServiceNestedInput
   }
 
   export type PhotoServiceCreateManyInput = {
@@ -15427,9 +15568,11 @@ export namespace Prisma {
     horaInicio: Date | string
     horaFin: Date | string
     estado?: boolean
+    precio?: number | null
     createdAt?: Date | string
     fotografo: FotografoCreateNestedOneWithoutReservasInput
     cliente: ClienteCreateNestedOneWithoutReservasInput
+    photoService?: PhotoServiceCreateNestedOneWithoutReservasInput
   }
 
   export type ReservaUncheckedCreateInput = {
@@ -15438,9 +15581,11 @@ export namespace Prisma {
     horaInicio: Date | string
     horaFin: Date | string
     fotografoId: string
-    estado?: boolean
-    createdAt?: Date | string
     clienteId: string
+    photoServiceId?: string | null
+    estado?: boolean
+    precio?: number | null
+    createdAt?: Date | string
   }
 
   export type ReservaUpdateInput = {
@@ -15449,9 +15594,11 @@ export namespace Prisma {
     horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
     horaFin?: DateTimeFieldUpdateOperationsInput | Date | string
     estado?: BoolFieldUpdateOperationsInput | boolean
+    precio?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     fotografo?: FotografoUpdateOneRequiredWithoutReservasNestedInput
     cliente?: ClienteUpdateOneRequiredWithoutReservasNestedInput
+    photoService?: PhotoServiceUpdateOneWithoutReservasNestedInput
   }
 
   export type ReservaUncheckedUpdateInput = {
@@ -15460,9 +15607,11 @@ export namespace Prisma {
     horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
     horaFin?: DateTimeFieldUpdateOperationsInput | Date | string
     fotografoId?: StringFieldUpdateOperationsInput | string
-    estado?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     clienteId?: StringFieldUpdateOperationsInput | string
+    photoServiceId?: NullableStringFieldUpdateOperationsInput | string | null
+    estado?: BoolFieldUpdateOperationsInput | boolean
+    precio?: NullableFloatFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ReservaCreateManyInput = {
@@ -15471,9 +15620,11 @@ export namespace Prisma {
     horaInicio: Date | string
     horaFin: Date | string
     fotografoId: string
-    estado?: boolean
-    createdAt?: Date | string
     clienteId: string
+    photoServiceId?: string | null
+    estado?: boolean
+    precio?: number | null
+    createdAt?: Date | string
   }
 
   export type ReservaUpdateManyMutationInput = {
@@ -15482,6 +15633,7 @@ export namespace Prisma {
     horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
     horaFin?: DateTimeFieldUpdateOperationsInput | Date | string
     estado?: BoolFieldUpdateOperationsInput | boolean
+    precio?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -15491,9 +15643,11 @@ export namespace Prisma {
     horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
     horaFin?: DateTimeFieldUpdateOperationsInput | Date | string
     fotografoId?: StringFieldUpdateOperationsInput | string
-    estado?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     clienteId?: StringFieldUpdateOperationsInput | string
+    photoServiceId?: NullableStringFieldUpdateOperationsInput | string | null
+    estado?: BoolFieldUpdateOperationsInput | boolean
+    precio?: NullableFloatFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -16166,9 +16320,25 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
+  export type FloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
   export type ClienteScalarRelationFilter = {
     is?: ClienteWhereInput
     isNot?: ClienteWhereInput
+  }
+
+  export type PhotoServiceNullableScalarRelationFilter = {
+    is?: PhotoServiceWhereInput | null
+    isNot?: PhotoServiceWhereInput | null
   }
 
   export type ReservaOrderByRelevanceInput = {
@@ -16183,9 +16353,15 @@ export namespace Prisma {
     horaInicio?: SortOrder
     horaFin?: SortOrder
     fotografoId?: SortOrder
-    estado?: SortOrder
-    createdAt?: SortOrder
     clienteId?: SortOrder
+    photoServiceId?: SortOrder
+    estado?: SortOrder
+    precio?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ReservaAvgOrderByAggregateInput = {
+    precio?: SortOrder
   }
 
   export type ReservaMaxOrderByAggregateInput = {
@@ -16194,9 +16370,11 @@ export namespace Prisma {
     horaInicio?: SortOrder
     horaFin?: SortOrder
     fotografoId?: SortOrder
-    estado?: SortOrder
-    createdAt?: SortOrder
     clienteId?: SortOrder
+    photoServiceId?: SortOrder
+    estado?: SortOrder
+    precio?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type ReservaMinOrderByAggregateInput = {
@@ -16205,9 +16383,31 @@ export namespace Prisma {
     horaInicio?: SortOrder
     horaFin?: SortOrder
     fotografoId?: SortOrder
-    estado?: SortOrder
-    createdAt?: SortOrder
     clienteId?: SortOrder
+    photoServiceId?: SortOrder
+    estado?: SortOrder
+    precio?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ReservaSumOrderByAggregateInput = {
+    precio?: SortOrder
+  }
+
+  export type FloatNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedFloatNullableFilter<$PrismaModel>
+    _min?: NestedFloatNullableFilter<$PrismaModel>
+    _max?: NestedFloatNullableFilter<$PrismaModel>
   }
 
   export type RolPermisoCreateNestedManyWithoutRolInput = {
@@ -16719,11 +16919,25 @@ export namespace Prisma {
     connect?: FotografoServicioWhereUniqueInput | FotografoServicioWhereUniqueInput[]
   }
 
+  export type ReservaCreateNestedManyWithoutPhotoServiceInput = {
+    create?: XOR<ReservaCreateWithoutPhotoServiceInput, ReservaUncheckedCreateWithoutPhotoServiceInput> | ReservaCreateWithoutPhotoServiceInput[] | ReservaUncheckedCreateWithoutPhotoServiceInput[]
+    connectOrCreate?: ReservaCreateOrConnectWithoutPhotoServiceInput | ReservaCreateOrConnectWithoutPhotoServiceInput[]
+    createMany?: ReservaCreateManyPhotoServiceInputEnvelope
+    connect?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
+  }
+
   export type FotografoServicioUncheckedCreateNestedManyWithoutServicioInput = {
     create?: XOR<FotografoServicioCreateWithoutServicioInput, FotografoServicioUncheckedCreateWithoutServicioInput> | FotografoServicioCreateWithoutServicioInput[] | FotografoServicioUncheckedCreateWithoutServicioInput[]
     connectOrCreate?: FotografoServicioCreateOrConnectWithoutServicioInput | FotografoServicioCreateOrConnectWithoutServicioInput[]
     createMany?: FotografoServicioCreateManyServicioInputEnvelope
     connect?: FotografoServicioWhereUniqueInput | FotografoServicioWhereUniqueInput[]
+  }
+
+  export type ReservaUncheckedCreateNestedManyWithoutPhotoServiceInput = {
+    create?: XOR<ReservaCreateWithoutPhotoServiceInput, ReservaUncheckedCreateWithoutPhotoServiceInput> | ReservaCreateWithoutPhotoServiceInput[] | ReservaUncheckedCreateWithoutPhotoServiceInput[]
+    connectOrCreate?: ReservaCreateOrConnectWithoutPhotoServiceInput | ReservaCreateOrConnectWithoutPhotoServiceInput[]
+    createMany?: ReservaCreateManyPhotoServiceInputEnvelope
+    connect?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
   }
 
   export type FloatFieldUpdateOperationsInput = {
@@ -16756,6 +16970,20 @@ export namespace Prisma {
     deleteMany?: FotografoServicioScalarWhereInput | FotografoServicioScalarWhereInput[]
   }
 
+  export type ReservaUpdateManyWithoutPhotoServiceNestedInput = {
+    create?: XOR<ReservaCreateWithoutPhotoServiceInput, ReservaUncheckedCreateWithoutPhotoServiceInput> | ReservaCreateWithoutPhotoServiceInput[] | ReservaUncheckedCreateWithoutPhotoServiceInput[]
+    connectOrCreate?: ReservaCreateOrConnectWithoutPhotoServiceInput | ReservaCreateOrConnectWithoutPhotoServiceInput[]
+    upsert?: ReservaUpsertWithWhereUniqueWithoutPhotoServiceInput | ReservaUpsertWithWhereUniqueWithoutPhotoServiceInput[]
+    createMany?: ReservaCreateManyPhotoServiceInputEnvelope
+    set?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
+    disconnect?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
+    delete?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
+    connect?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
+    update?: ReservaUpdateWithWhereUniqueWithoutPhotoServiceInput | ReservaUpdateWithWhereUniqueWithoutPhotoServiceInput[]
+    updateMany?: ReservaUpdateManyWithWhereWithoutPhotoServiceInput | ReservaUpdateManyWithWhereWithoutPhotoServiceInput[]
+    deleteMany?: ReservaScalarWhereInput | ReservaScalarWhereInput[]
+  }
+
   export type FotografoServicioUncheckedUpdateManyWithoutServicioNestedInput = {
     create?: XOR<FotografoServicioCreateWithoutServicioInput, FotografoServicioUncheckedCreateWithoutServicioInput> | FotografoServicioCreateWithoutServicioInput[] | FotografoServicioUncheckedCreateWithoutServicioInput[]
     connectOrCreate?: FotografoServicioCreateOrConnectWithoutServicioInput | FotografoServicioCreateOrConnectWithoutServicioInput[]
@@ -16768,6 +16996,20 @@ export namespace Prisma {
     update?: FotografoServicioUpdateWithWhereUniqueWithoutServicioInput | FotografoServicioUpdateWithWhereUniqueWithoutServicioInput[]
     updateMany?: FotografoServicioUpdateManyWithWhereWithoutServicioInput | FotografoServicioUpdateManyWithWhereWithoutServicioInput[]
     deleteMany?: FotografoServicioScalarWhereInput | FotografoServicioScalarWhereInput[]
+  }
+
+  export type ReservaUncheckedUpdateManyWithoutPhotoServiceNestedInput = {
+    create?: XOR<ReservaCreateWithoutPhotoServiceInput, ReservaUncheckedCreateWithoutPhotoServiceInput> | ReservaCreateWithoutPhotoServiceInput[] | ReservaUncheckedCreateWithoutPhotoServiceInput[]
+    connectOrCreate?: ReservaCreateOrConnectWithoutPhotoServiceInput | ReservaCreateOrConnectWithoutPhotoServiceInput[]
+    upsert?: ReservaUpsertWithWhereUniqueWithoutPhotoServiceInput | ReservaUpsertWithWhereUniqueWithoutPhotoServiceInput[]
+    createMany?: ReservaCreateManyPhotoServiceInputEnvelope
+    set?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
+    disconnect?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
+    delete?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
+    connect?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
+    update?: ReservaUpdateWithWhereUniqueWithoutPhotoServiceInput | ReservaUpdateWithWhereUniqueWithoutPhotoServiceInput[]
+    updateMany?: ReservaUpdateManyWithWhereWithoutPhotoServiceInput | ReservaUpdateManyWithWhereWithoutPhotoServiceInput[]
+    deleteMany?: ReservaScalarWhereInput | ReservaScalarWhereInput[]
   }
 
   export type FotografoCreateNestedOneWithoutServiciosInput = {
@@ -16836,6 +17078,20 @@ export namespace Prisma {
     connect?: ClienteWhereUniqueInput
   }
 
+  export type PhotoServiceCreateNestedOneWithoutReservasInput = {
+    create?: XOR<PhotoServiceCreateWithoutReservasInput, PhotoServiceUncheckedCreateWithoutReservasInput>
+    connectOrCreate?: PhotoServiceCreateOrConnectWithoutReservasInput
+    connect?: PhotoServiceWhereUniqueInput
+  }
+
+  export type NullableFloatFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
   export type FotografoUpdateOneRequiredWithoutReservasNestedInput = {
     create?: XOR<FotografoCreateWithoutReservasInput, FotografoUncheckedCreateWithoutReservasInput>
     connectOrCreate?: FotografoCreateOrConnectWithoutReservasInput
@@ -16850,6 +17106,16 @@ export namespace Prisma {
     upsert?: ClienteUpsertWithoutReservasInput
     connect?: ClienteWhereUniqueInput
     update?: XOR<XOR<ClienteUpdateToOneWithWhereWithoutReservasInput, ClienteUpdateWithoutReservasInput>, ClienteUncheckedUpdateWithoutReservasInput>
+  }
+
+  export type PhotoServiceUpdateOneWithoutReservasNestedInput = {
+    create?: XOR<PhotoServiceCreateWithoutReservasInput, PhotoServiceUncheckedCreateWithoutReservasInput>
+    connectOrCreate?: PhotoServiceCreateOrConnectWithoutReservasInput
+    upsert?: PhotoServiceUpsertWithoutReservasInput
+    disconnect?: PhotoServiceWhereInput | boolean
+    delete?: PhotoServiceWhereInput | boolean
+    connect?: PhotoServiceWhereUniqueInput
+    update?: XOR<XOR<PhotoServiceUpdateToOneWithWhereWithoutReservasInput, PhotoServiceUpdateWithoutReservasInput>, PhotoServiceUncheckedUpdateWithoutReservasInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -17055,6 +17321,22 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedDateTimeNullableFilter<$PrismaModel>
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedFloatNullableFilter<$PrismaModel>
+    _min?: NestedFloatNullableFilter<$PrismaModel>
+    _max?: NestedFloatNullableFilter<$PrismaModel>
   }
 
   export type RolPermisoCreateWithoutRolInput = {
@@ -17522,8 +17804,10 @@ export namespace Prisma {
     horaInicio: Date | string
     horaFin: Date | string
     estado?: boolean
+    precio?: number | null
     createdAt?: Date | string
     fotografo: FotografoCreateNestedOneWithoutReservasInput
+    photoService?: PhotoServiceCreateNestedOneWithoutReservasInput
   }
 
   export type ReservaUncheckedCreateWithoutClienteInput = {
@@ -17532,7 +17816,9 @@ export namespace Prisma {
     horaInicio: Date | string
     horaFin: Date | string
     fotografoId: string
+    photoServiceId?: string | null
     estado?: boolean
+    precio?: number | null
     createdAt?: Date | string
   }
 
@@ -17571,9 +17857,11 @@ export namespace Prisma {
     horaInicio?: DateTimeFilter<"Reserva"> | Date | string
     horaFin?: DateTimeFilter<"Reserva"> | Date | string
     fotografoId?: StringFilter<"Reserva"> | string
-    estado?: BoolFilter<"Reserva"> | boolean
-    createdAt?: DateTimeFilter<"Reserva"> | Date | string
     clienteId?: StringFilter<"Reserva"> | string
+    photoServiceId?: StringNullableFilter<"Reserva"> | string | null
+    estado?: BoolFilter<"Reserva"> | boolean
+    precio?: FloatNullableFilter<"Reserva"> | number | null
+    createdAt?: DateTimeFilter<"Reserva"> | Date | string
   }
 
   export type PhotoServiceCreateWithoutCategoryInput = {
@@ -17584,6 +17872,7 @@ export namespace Prisma {
     precio?: number
     activo?: boolean
     fotografos?: FotografoServicioCreateNestedManyWithoutServicioInput
+    reservas?: ReservaCreateNestedManyWithoutPhotoServiceInput
   }
 
   export type PhotoServiceUncheckedCreateWithoutCategoryInput = {
@@ -17594,6 +17883,7 @@ export namespace Prisma {
     precio?: number
     activo?: boolean
     fotografos?: FotografoServicioUncheckedCreateNestedManyWithoutServicioInput
+    reservas?: ReservaUncheckedCreateNestedManyWithoutPhotoServiceInput
   }
 
   export type PhotoServiceCreateOrConnectWithoutCategoryInput = {
@@ -17670,8 +17960,10 @@ export namespace Prisma {
     horaInicio: Date | string
     horaFin: Date | string
     estado?: boolean
+    precio?: number | null
     createdAt?: Date | string
     cliente: ClienteCreateNestedOneWithoutReservasInput
+    photoService?: PhotoServiceCreateNestedOneWithoutReservasInput
   }
 
   export type ReservaUncheckedCreateWithoutFotografoInput = {
@@ -17679,9 +17971,11 @@ export namespace Prisma {
     fecha: Date | string
     horaInicio: Date | string
     horaFin: Date | string
-    estado?: boolean
-    createdAt?: Date | string
     clienteId: string
+    photoServiceId?: string | null
+    estado?: boolean
+    precio?: number | null
+    createdAt?: Date | string
   }
 
   export type ReservaCreateOrConnectWithoutFotografoInput = {
@@ -17927,6 +18221,40 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type ReservaCreateWithoutPhotoServiceInput = {
+    id?: string
+    fecha: Date | string
+    horaInicio: Date | string
+    horaFin: Date | string
+    estado?: boolean
+    precio?: number | null
+    createdAt?: Date | string
+    fotografo: FotografoCreateNestedOneWithoutReservasInput
+    cliente: ClienteCreateNestedOneWithoutReservasInput
+  }
+
+  export type ReservaUncheckedCreateWithoutPhotoServiceInput = {
+    id?: string
+    fecha: Date | string
+    horaInicio: Date | string
+    horaFin: Date | string
+    fotografoId: string
+    clienteId: string
+    estado?: boolean
+    precio?: number | null
+    createdAt?: Date | string
+  }
+
+  export type ReservaCreateOrConnectWithoutPhotoServiceInput = {
+    where: ReservaWhereUniqueInput
+    create: XOR<ReservaCreateWithoutPhotoServiceInput, ReservaUncheckedCreateWithoutPhotoServiceInput>
+  }
+
+  export type ReservaCreateManyPhotoServiceInputEnvelope = {
+    data: ReservaCreateManyPhotoServiceInput | ReservaCreateManyPhotoServiceInput[]
+    skipDuplicates?: boolean
+  }
+
   export type CategoryUpsertWithoutServicesInput = {
     update: XOR<CategoryUpdateWithoutServicesInput, CategoryUncheckedUpdateWithoutServicesInput>
     create: XOR<CategoryCreateWithoutServicesInput, CategoryUncheckedCreateWithoutServicesInput>
@@ -17964,6 +18292,22 @@ export namespace Prisma {
   export type FotografoServicioUpdateManyWithWhereWithoutServicioInput = {
     where: FotografoServicioScalarWhereInput
     data: XOR<FotografoServicioUpdateManyMutationInput, FotografoServicioUncheckedUpdateManyWithoutServicioInput>
+  }
+
+  export type ReservaUpsertWithWhereUniqueWithoutPhotoServiceInput = {
+    where: ReservaWhereUniqueInput
+    update: XOR<ReservaUpdateWithoutPhotoServiceInput, ReservaUncheckedUpdateWithoutPhotoServiceInput>
+    create: XOR<ReservaCreateWithoutPhotoServiceInput, ReservaUncheckedCreateWithoutPhotoServiceInput>
+  }
+
+  export type ReservaUpdateWithWhereUniqueWithoutPhotoServiceInput = {
+    where: ReservaWhereUniqueInput
+    data: XOR<ReservaUpdateWithoutPhotoServiceInput, ReservaUncheckedUpdateWithoutPhotoServiceInput>
+  }
+
+  export type ReservaUpdateManyWithWhereWithoutPhotoServiceInput = {
+    where: ReservaScalarWhereInput
+    data: XOR<ReservaUpdateManyMutationInput, ReservaUncheckedUpdateManyWithoutPhotoServiceInput>
   }
 
   export type FotografoCreateWithoutServiciosInput = {
@@ -18007,6 +18351,7 @@ export namespace Prisma {
     precio?: number
     activo?: boolean
     category: CategoryCreateNestedOneWithoutServicesInput
+    reservas?: ReservaCreateNestedManyWithoutPhotoServiceInput
   }
 
   export type PhotoServiceUncheckedCreateWithoutFotografosInput = {
@@ -18017,6 +18362,7 @@ export namespace Prisma {
     precio?: number
     activo?: boolean
     categoryId: string
+    reservas?: ReservaUncheckedCreateNestedManyWithoutPhotoServiceInput
   }
 
   export type PhotoServiceCreateOrConnectWithoutFotografosInput = {
@@ -18082,6 +18428,7 @@ export namespace Prisma {
     precio?: FloatFieldUpdateOperationsInput | number
     activo?: BoolFieldUpdateOperationsInput | boolean
     category?: CategoryUpdateOneRequiredWithoutServicesNestedInput
+    reservas?: ReservaUpdateManyWithoutPhotoServiceNestedInput
   }
 
   export type PhotoServiceUncheckedUpdateWithoutFotografosInput = {
@@ -18092,6 +18439,7 @@ export namespace Prisma {
     precio?: FloatFieldUpdateOperationsInput | number
     activo?: BoolFieldUpdateOperationsInput | boolean
     categoryId?: StringFieldUpdateOperationsInput | string
+    reservas?: ReservaUncheckedUpdateManyWithoutPhotoServiceNestedInput
   }
 
   export type FotografoCreateWithoutUnavailabilitiesInput = {
@@ -18222,6 +18570,33 @@ export namespace Prisma {
     create: XOR<ClienteCreateWithoutReservasInput, ClienteUncheckedCreateWithoutReservasInput>
   }
 
+  export type PhotoServiceCreateWithoutReservasInput = {
+    id?: string
+    name: string
+    img: string
+    description: string
+    precio?: number
+    activo?: boolean
+    category: CategoryCreateNestedOneWithoutServicesInput
+    fotografos?: FotografoServicioCreateNestedManyWithoutServicioInput
+  }
+
+  export type PhotoServiceUncheckedCreateWithoutReservasInput = {
+    id?: string
+    name: string
+    img: string
+    description: string
+    precio?: number
+    activo?: boolean
+    categoryId: string
+    fotografos?: FotografoServicioUncheckedCreateNestedManyWithoutServicioInput
+  }
+
+  export type PhotoServiceCreateOrConnectWithoutReservasInput = {
+    where: PhotoServiceWhereUniqueInput
+    create: XOR<PhotoServiceCreateWithoutReservasInput, PhotoServiceUncheckedCreateWithoutReservasInput>
+  }
+
   export type FotografoUpsertWithoutReservasInput = {
     update: XOR<FotografoUpdateWithoutReservasInput, FotografoUncheckedUpdateWithoutReservasInput>
     create: XOR<FotografoCreateWithoutReservasInput, FotografoUncheckedCreateWithoutReservasInput>
@@ -18288,6 +18663,39 @@ export namespace Prisma {
     telefono?: StringFieldUpdateOperationsInput | string
     createAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PhotoServiceUpsertWithoutReservasInput = {
+    update: XOR<PhotoServiceUpdateWithoutReservasInput, PhotoServiceUncheckedUpdateWithoutReservasInput>
+    create: XOR<PhotoServiceCreateWithoutReservasInput, PhotoServiceUncheckedCreateWithoutReservasInput>
+    where?: PhotoServiceWhereInput
+  }
+
+  export type PhotoServiceUpdateToOneWithWhereWithoutReservasInput = {
+    where?: PhotoServiceWhereInput
+    data: XOR<PhotoServiceUpdateWithoutReservasInput, PhotoServiceUncheckedUpdateWithoutReservasInput>
+  }
+
+  export type PhotoServiceUpdateWithoutReservasInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    img?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    precio?: FloatFieldUpdateOperationsInput | number
+    activo?: BoolFieldUpdateOperationsInput | boolean
+    category?: CategoryUpdateOneRequiredWithoutServicesNestedInput
+    fotografos?: FotografoServicioUpdateManyWithoutServicioNestedInput
+  }
+
+  export type PhotoServiceUncheckedUpdateWithoutReservasInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    img?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    precio?: FloatFieldUpdateOperationsInput | number
+    activo?: BoolFieldUpdateOperationsInput | boolean
+    categoryId?: StringFieldUpdateOperationsInput | string
+    fotografos?: FotografoServicioUncheckedUpdateManyWithoutServicioNestedInput
   }
 
   export type RolPermisoCreateManyRolInput = {
@@ -18390,7 +18798,9 @@ export namespace Prisma {
     horaInicio: Date | string
     horaFin: Date | string
     fotografoId: string
+    photoServiceId?: string | null
     estado?: boolean
+    precio?: number | null
     createdAt?: Date | string
   }
 
@@ -18400,8 +18810,10 @@ export namespace Prisma {
     horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
     horaFin?: DateTimeFieldUpdateOperationsInput | Date | string
     estado?: BoolFieldUpdateOperationsInput | boolean
+    precio?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     fotografo?: FotografoUpdateOneRequiredWithoutReservasNestedInput
+    photoService?: PhotoServiceUpdateOneWithoutReservasNestedInput
   }
 
   export type ReservaUncheckedUpdateWithoutClienteInput = {
@@ -18410,7 +18822,9 @@ export namespace Prisma {
     horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
     horaFin?: DateTimeFieldUpdateOperationsInput | Date | string
     fotografoId?: StringFieldUpdateOperationsInput | string
+    photoServiceId?: NullableStringFieldUpdateOperationsInput | string | null
     estado?: BoolFieldUpdateOperationsInput | boolean
+    precio?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -18420,7 +18834,9 @@ export namespace Prisma {
     horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
     horaFin?: DateTimeFieldUpdateOperationsInput | Date | string
     fotografoId?: StringFieldUpdateOperationsInput | string
+    photoServiceId?: NullableStringFieldUpdateOperationsInput | string | null
     estado?: BoolFieldUpdateOperationsInput | boolean
+    precio?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -18441,6 +18857,7 @@ export namespace Prisma {
     precio?: FloatFieldUpdateOperationsInput | number
     activo?: BoolFieldUpdateOperationsInput | boolean
     fotografos?: FotografoServicioUpdateManyWithoutServicioNestedInput
+    reservas?: ReservaUpdateManyWithoutPhotoServiceNestedInput
   }
 
   export type PhotoServiceUncheckedUpdateWithoutCategoryInput = {
@@ -18451,6 +18868,7 @@ export namespace Prisma {
     precio?: FloatFieldUpdateOperationsInput | number
     activo?: BoolFieldUpdateOperationsInput | boolean
     fotografos?: FotografoServicioUncheckedUpdateManyWithoutServicioNestedInput
+    reservas?: ReservaUncheckedUpdateManyWithoutPhotoServiceNestedInput
   }
 
   export type PhotoServiceUncheckedUpdateManyWithoutCategoryInput = {
@@ -18467,9 +18885,11 @@ export namespace Prisma {
     fecha: Date | string
     horaInicio: Date | string
     horaFin: Date | string
-    estado?: boolean
-    createdAt?: Date | string
     clienteId: string
+    photoServiceId?: string | null
+    estado?: boolean
+    precio?: number | null
+    createdAt?: Date | string
   }
 
   export type GaleriaCreateManyFotografoInput = {
@@ -18497,8 +18917,10 @@ export namespace Prisma {
     horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
     horaFin?: DateTimeFieldUpdateOperationsInput | Date | string
     estado?: BoolFieldUpdateOperationsInput | boolean
+    precio?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     cliente?: ClienteUpdateOneRequiredWithoutReservasNestedInput
+    photoService?: PhotoServiceUpdateOneWithoutReservasNestedInput
   }
 
   export type ReservaUncheckedUpdateWithoutFotografoInput = {
@@ -18506,9 +18928,11 @@ export namespace Prisma {
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
     horaFin?: DateTimeFieldUpdateOperationsInput | Date | string
-    estado?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     clienteId?: StringFieldUpdateOperationsInput | string
+    photoServiceId?: NullableStringFieldUpdateOperationsInput | string | null
+    estado?: BoolFieldUpdateOperationsInput | boolean
+    precio?: NullableFloatFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ReservaUncheckedUpdateManyWithoutFotografoInput = {
@@ -18516,9 +18940,11 @@ export namespace Prisma {
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
     horaFin?: DateTimeFieldUpdateOperationsInput | Date | string
-    estado?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     clienteId?: StringFieldUpdateOperationsInput | string
+    photoServiceId?: NullableStringFieldUpdateOperationsInput | string | null
+    estado?: BoolFieldUpdateOperationsInput | boolean
+    precio?: NullableFloatFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type GaleriaUpdateWithoutFotografoInput = {
@@ -18582,6 +19008,18 @@ export namespace Prisma {
     fotografoId: string
   }
 
+  export type ReservaCreateManyPhotoServiceInput = {
+    id?: string
+    fecha: Date | string
+    horaInicio: Date | string
+    horaFin: Date | string
+    fotografoId: string
+    clienteId: string
+    estado?: boolean
+    precio?: number | null
+    createdAt?: Date | string
+  }
+
   export type FotografoServicioUpdateWithoutServicioInput = {
     fotografo?: FotografoUpdateOneRequiredWithoutServiciosNestedInput
   }
@@ -18592,6 +19030,42 @@ export namespace Prisma {
 
   export type FotografoServicioUncheckedUpdateManyWithoutServicioInput = {
     fotografoId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ReservaUpdateWithoutPhotoServiceInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fecha?: DateTimeFieldUpdateOperationsInput | Date | string
+    horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
+    horaFin?: DateTimeFieldUpdateOperationsInput | Date | string
+    estado?: BoolFieldUpdateOperationsInput | boolean
+    precio?: NullableFloatFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    fotografo?: FotografoUpdateOneRequiredWithoutReservasNestedInput
+    cliente?: ClienteUpdateOneRequiredWithoutReservasNestedInput
+  }
+
+  export type ReservaUncheckedUpdateWithoutPhotoServiceInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fecha?: DateTimeFieldUpdateOperationsInput | Date | string
+    horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
+    horaFin?: DateTimeFieldUpdateOperationsInput | Date | string
+    fotografoId?: StringFieldUpdateOperationsInput | string
+    clienteId?: StringFieldUpdateOperationsInput | string
+    estado?: BoolFieldUpdateOperationsInput | boolean
+    precio?: NullableFloatFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ReservaUncheckedUpdateManyWithoutPhotoServiceInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fecha?: DateTimeFieldUpdateOperationsInput | Date | string
+    horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
+    horaFin?: DateTimeFieldUpdateOperationsInput | Date | string
+    fotografoId?: StringFieldUpdateOperationsInput | string
+    clienteId?: StringFieldUpdateOperationsInput | string
+    estado?: BoolFieldUpdateOperationsInput | boolean
+    precio?: NullableFloatFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

@@ -3,6 +3,7 @@
 import { prisma } from "@/lib/prisma";
 import { randomUUID } from "crypto";
 import { PhotoService } from "./type";
+import { Fotografo } from "../fotografos/type";
 
 // Obtener todos los servicios con el nombre de la categoría
 export async function getPhotoServices(): Promise<PhotoService[]> {
@@ -62,6 +63,98 @@ export async function getPhotoServiceById(id: string): Promise<PhotoService | nu
     return null;
   }
 }
+
+
+export async function getServiciosPorFotografos(
+  fotografoIds: string[]
+): Promise<PhotoService[]> {
+  console.log("🚀 ~ fotografoIds:", fotografoIds)
+  // Paso 1: obtener las relaciones FotografoServicio
+  const relaciones = await prisma.fotografoServicio.findMany({
+    where: { fotografoId: { in: fotografoIds } },
+    select: { servicioId: true },
+  });
+
+  // Paso 2: extraer IDs únicos de servicio
+  const serviceIds = Array.from(
+    new Set(relaciones.map((r) => r.servicioId))
+  );
+  if (serviceIds.length === 0) return [];
+
+  // Paso 3: cargar los PhotoService correspondientes
+  const servicios = await prisma.photoService.findMany({
+    where: {
+      id: { in: serviceIds },
+      activo: true,
+    },
+    select: {
+      id: true,
+      name: true,
+      img: true,
+      description: true,
+      precio: true,
+      activo: true,
+      categoryId: true,
+      category: { select: { name: true } },
+      fotografos: { select: { fotografoId: true } },
+    },
+  });
+  console.log("🚀 ~ servicios:", servicios)
+
+  // Paso 4: mapear al tipo plano que espera el cliente
+  return servicios.map((s) => ({
+    id: s.id,
+    name: s.name,
+    img: s.img,
+    description: s.description,
+    precio: s.precio,
+    activo: s.activo,
+    categoryId: s.categoryId,
+    categoriaNombre: s.category.name,             // ← extraemos el nombre
+    fotografos: s.fotografos.map((fs) => fs.fotografoId),
+  }));
+}
+
+export async function getFotografosPorServicio(
+  serviceId: string
+): Promise<Fotografo[]> {
+  // Buscar las relaciones FotografoServicio para este servicio
+  const relaciones = await prisma.fotografoServicio.findMany({
+    where: { servicioId: serviceId },
+    select: { fotografoId: true }
+  });
+
+  const fotografoIds = relaciones.map((r) => r.fotografoId);
+  if (fotografoIds.length === 0) return [];
+
+  // Cargar los datos de los fotógrafos
+  const fotografos = await prisma.fotografo.findMany({
+    where: { id: { in: fotografoIds } },
+    select: {
+      id: true,
+      nombre: true,
+      telefono: true,
+      bio: true,
+      url: true,
+      disponible: true,
+      usuarioId: true
+    }
+  });
+
+  // Mapear al tipo Fotografo (si tu type difiere, ajusta las propiedades)
+  return fotografos.map((f) => ({
+    id: f.id,
+    nombre: f.nombre,
+    telefono: f.telefono || "",
+    Foto : "", // Asumiendo que no tienes una propiedad Foto en Fotografo
+    bio: f.bio || "",
+    url: f.url || "",
+    disponible: f.disponible,
+    usuarioId: f.usuarioId
+  }));
+}
+
+
 
 
 export async function postPhotoService({
