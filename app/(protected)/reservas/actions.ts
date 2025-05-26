@@ -58,7 +58,7 @@ export async function isSlotAvailableByDate(params: {
     where: {
       AND: [
         { horaInicio: { lt: end } },
-        { horaFin:    { gt: start } }
+        { horaFin: { gt: start } }
       ]
     }
   });
@@ -107,6 +107,48 @@ export async function isSlotAvailableByHourString(params: {
 /**
  * Crear una nueva reserva (valida slot antes)
  */
+
+/**
+ * Verifica que el fotógrafo esté disponible en la fecha dada,
+ * es decir, no tenga una indisponibilidad activa (recurrente o puntual) que incluya la fecha.
+ */
+
+
+export async function isPhotographerAvailable(
+  fotografoId: string,
+  date: Date
+): Promise<boolean> {
+  // Normaliza la fecha a día completo
+  const dateOnly = new Date(
+    date.getFullYear(),
+    date.getMonth(),
+    date.getDate()
+  );
+
+  // Si existe alguna indisponibilidad activa que coincida, no está disponible
+  const conflict = await prisma.unavailability.findFirst({
+    where: {
+      fotografoId,
+      activo: true,
+      OR: [
+        // Reglas semanales
+        { recurring: true, weekday: dateOnly.getDay() },
+        // Bloqueos puntuales
+        {
+          recurring: false,
+          startDate: { lte: dateOnly },
+          endDate: { gte: dateOnly },
+        },
+      ],
+    },
+  });
+
+  return conflict === null;
+}
+
+/**
+ * Crea una reserva si la franja está libre y el fotógrafo disponible.
+ */
 export async function createReserva(data: {
   fecha: Date;
   horaInicio: Date;
@@ -115,6 +157,7 @@ export async function createReserva(data: {
 }): Promise<Reserva> {
   const { fecha, horaInicio, fotografoId, clienteId } = data;
 
+  // Ajuste de tiempos según tu lógica de negocio
   const realHoraInicio = new Date(horaInicio);
   realHoraInicio.setMinutes(realHoraInicio.getMinutes() - 30);
 
@@ -122,15 +165,22 @@ export async function createReserva(data: {
   horaFin.setHours(horaFin.getHours() + 1);
   horaFin.setMinutes(horaFin.getMinutes() + 30);
 
-  const isAvailable = await isSlotAvailableByDate({ fecha, horaInicio });
-
-  if (!isAvailable) {
+  // 1) Verificar que la franja no esté ocupada
+  const isSlotFree = await isSlotAvailableByDate({ fecha, horaInicio });
+  if (!isSlotFree) {
     throw new Error("El horario ya está ocupado");
   }
 
+  // 2) Verificar que el fotógrafo esté disponible
+  const available = await isPhotographerAvailable(fotografoId, fecha);
+  if (!available) {
+    throw new Error("El fotógrafo no está disponible en esa fecha");
+  }
+
+  // 3) Crear la reserva
   const created = await prisma.reserva.create({
     data: {
-      fecha,
+      fecha: realHoraInicio,
       horaInicio: realHoraInicio,
       horaFin,
       fotografoId,
@@ -147,6 +197,7 @@ export async function createReserva(data: {
 }
 
 
+
 /**
  * Actualizar una reserva existente
  */
@@ -157,7 +208,7 @@ export async function updateReserva(data: {
   estado?: boolean;
 }): Promise<Reserva> {
   const updateData: any = {};
-  if (data.fecha)      updateData.fecha = data.fecha;
+  if (data.fecha) updateData.fecha = data.fecha;
   if (data.horaInicio) updateData.horaInicio = data.horaInicio;
   if (data.estado !== undefined) updateData.estado = data.estado;
 

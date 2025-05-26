@@ -22,8 +22,6 @@ const initialData: Unavailability = {
   weekday: undefined,
   startDate: undefined,
   endDate: undefined,
-  startTime: "08:00",
-  endTime: "17:00",
   activo: true,
 };
 

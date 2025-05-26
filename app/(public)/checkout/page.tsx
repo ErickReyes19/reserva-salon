@@ -15,20 +15,8 @@ import { InvalidParameters } from "./components/datos-erroneos"
 import { LoadingState } from "./components/validando-reserva"
 import { SlotUnavailable } from "./components/reserva-no-disponible"
 import { ProgressSteps } from "./components/barra-progreso"
-import { isSlotAvailableByHourNumber } from "@/app/(protected)/reservas/actions"
-
-
-// Helper function to validate email format
-const isValidEmail = (email: string): boolean => {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-  return emailRegex.test(email)
-}
-
-// Helper function to validate phone format (simple version)
-const isValidPhone = (phone: string): boolean => {
-  const phoneRegex = /^\d{8,10}$/
-  return phoneRegex.test(phone.replace(/\D/g, ""))
-}
+import { isPhotographerAvailable, isSlotAvailableByHourNumber } from "@/app/(protected)/reservas/actions"
+import { FotografoNoDisponible } from "./components/fotografo-no-disponoble"
 
 export default function CheckoutWizardPage() {
   const params = useSearchParams()
@@ -36,6 +24,7 @@ export default function CheckoutWizardPage() {
   const [currentStep, setCurrentStep] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
   const [isSlotAvailable, setIsSlotAvailable] = useState<boolean | null>(null)
+  const [isPhotoAvailable, setIsPhotoAvailable] = useState<boolean | null>(null)
   const [invalidParams, setInvalidParams] = useState<string[]>([])
 
   const dateIso = params.get("date") || ""
@@ -46,109 +35,90 @@ export default function CheckoutWizardPage() {
   const fotografo = params.get("fotografoName") || ""
   const fotografoId = params.get("fotografoId") || ""
 
-  // Parse hour to number
   const hourNumber = hour ? Number(hour) : null
 
-  // Create date object if dateIso is valid
+  // Formateo de fecha
   let date: Date | null = null
   let formattedDate = ""
   let formattedDay = ""
   let formattedMonth = ""
-
   try {
     if (dateIso) {
-      date = new Date(dateIso)
-      // Check if date is valid
-      if (!isNaN(date.getTime())) {
-        formattedDate = format(date, "EEEE, d 'de' MMMM yyyy", { locale: es })
-        formattedDay = format(date, "dd", { locale: es })
-        formattedMonth = format(date, "MMM", { locale: es })
-      } else {
-        date = null
+      const d = new Date(dateIso)
+      if (!isNaN(d.getTime())) {
+        date = d
+        formattedDate = format(d, "EEEE, d 'de' MMMM yyyy", { locale: es })
+        formattedDay = format(d, "dd", { locale: es })
+        formattedMonth = format(d, "MMM", { locale: es })
       }
     }
-  } catch (error) {
-    console.error("Error parsing date:", error)
+  } catch {
     date = null
   }
 
   useEffect(() => {
-    // Validate all required parameters
-    const missingParams: string[] = []
+    const missing: string[] = []
+    if (!date) missing.push("Fecha")
+    if (hourNumber === null || isNaN(hourNumber)) missing.push("Hora")
+    if (!name) missing.push("Nombre")
+    if (!email) missing.push("Email")
+    if (!phone) missing.push("Teléfono")
+    if (!fotografo) missing.push("Fotógrafo")
+    if (!fotografoId) missing.push("ID del fotógrafo")
+    setInvalidParams(missing)
 
-    if (!dateIso || !date) missingParams.push("Fecha")
-    if (!hour || hourNumber === null || isNaN(hourNumber) || hourNumber < 0 || hourNumber > 23)
-      missingParams.push("Hora")
-    if (!name) missingParams.push("Nombre")
-    if (!email || !isValidEmail(email)) missingParams.push("Email")
-    if (!phone || !isValidPhone(phone)) missingParams.push("Teléfono")
-    if (!fotografo) missingParams.push("Fotógrafo")
-    if (!fotografoId) missingParams.push("ID del fotógrafo")
-
-    setInvalidParams(missingParams)
-
-    // If all parameters are valid, check slot availability
-    if (missingParams.length === 0) {
-      checkSlotAvailability()
+    if (missing.length === 0 && date && hourNumber !== null) {
+      (async () => {
+        setIsLoading(true)
+        // Validar slot
+        const slotFree = await isSlotAvailableByHourNumber({ fecha: date, horaInicioNumber: hourNumber })
+        setIsSlotAvailable(slotFree)
+        // Si slot libre, validar fotógrafo
+        if (slotFree) {
+          const available = await isPhotographerAvailable(fotografoId, date)
+          setIsPhotoAvailable(available)
+        }
+        setIsLoading(false)
+      })()
     } else {
       setIsLoading(false)
     }
   }, [dateIso, hour, name, email, phone, fotografo, fotografoId])
 
-  const checkSlotAvailability = async () => {
-    setIsLoading(true)
-
-    try {
-      if (date && hourNumber !== null) {
-        const available = await isSlotAvailableByHourNumber({
-          fecha: date,
-          horaInicioNumber: hourNumber,
-        })
-        setIsSlotAvailable(available)
-      }
-    } catch (error) {
-      console.error("Error checking slot availability:", error)
-      setIsSlotAvailable(false)
-    } finally {
-      setIsLoading(false)
-    }
-  }
-
-  const nextStep = () => {
-    if (currentStep < 2) {
-      setCurrentStep(currentStep + 1)
-    }
-  }
-
-  const prevStep = () => {
-    if (currentStep > 0) {
-      setCurrentStep(currentStep - 1)
-    }
-  }
-
-  const goToHome = () => {
-    router.push("/")
-  }
+  const nextStep = () => setCurrentStep(s => Math.min(s + 1, 2))
+  const prevStep = () => setCurrentStep(s => Math.max(s - 1, 0))
+  const goHome = () => router.push("/")
 
   const steps = [
-    {
-      title: "Detalle de la reserva",
-      icon: <CalendarCheck className="h-6 w-6" />,
-    },
-    {
-      title: "Información de pago",
-      icon: <CreditCard className="h-6 w-6" />,
-    },
-    {
-      title: "Confirmación",
-      icon: <CheckCircle className="h-6 w-6" />,
-    },
+    { title: "Detalle de la reserva", icon: <CalendarCheck className="h-6 w-6" /> },
+    { title: "Información de pago", icon: <CreditCard className="h-6 w-6" /> },
+    { title: "Confirmación", icon: <CheckCircle className="h-6 w-6" /> },
   ]
 
-  const renderStepContent = () => {
-    switch (currentStep) {
-      case 0:
-        return (
+  // Renderizado según estado
+  if (invalidParams.length) {
+    return <InvalidParameters missingParams={invalidParams} onBack={() => router.push("/")} />
+  }
+  if (isLoading) return <LoadingState />
+  if (!isSlotAvailable) {
+    return <SlotUnavailable date={formattedDate} hour={hour} fotografo={fotografo} onBack={() => router.push("/")} />
+  }
+  if (isSlotAvailable && isPhotoAvailable === false) {
+    return <FotografoNoDisponible dateFormatted={formattedDate} hora={hour} fotografoName={fotografo} onBack={() => router.push("/")} />
+  }
+
+  return (
+    <div className="container mx-auto py-12 px-4">
+      <h1 className="text-3xl font-bold mb-10 text-center">Proceso de Reserva</h1>
+      <ProgressSteps steps={steps} currentStep={currentStep} />
+      <motion.div
+        key={currentStep}
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        exit={{ opacity: 0, x: -20 }}
+        transition={{ duration: 0.3 }}
+      >
+        {currentStep === 0 && (
           <ReservationDetails
             formattedDate={formattedDate}
             formattedDay={formattedDay}
@@ -160,61 +130,21 @@ export default function CheckoutWizardPage() {
             fotografo={fotografo}
             onNext={nextStep}
           />
-        )
-      case 1:
-        return <PaymentForm email={email} fotografoId={fotografoId} hora={hourNumber!} nombre={name} telefono={phone} fecha={date!} onNext={nextStep} onPrev={prevStep} />
-      case 2:
-        return <Confirmation email={email} onGoHome={goToHome} />
-      default:
-        return null
-    }
-  }
-
-  // Render different components based on state
-  const renderContent = () => {
-    // If there are invalid parameters, show the invalid parameters component
-    if (invalidParams.length > 0) {
-      return <InvalidParameters missingParams={invalidParams} onBack={() => router.push("/booking")} />
-    }
-
-    // If still loading, show loading component
-    if (isLoading) {
-      return <LoadingState />
-    }
-
-    // If slot is not available, show unavailable component
-    if (isSlotAvailable === !true) {
-      return (
-        <SlotUnavailable
-          date={formattedDate}
-          hour={hour}
-          fotografo={fotografo}
-          onBack={() => router.push("/booking")}
-        />
-      )
-    }
-
-    // Otherwise show the normal checkout flow
-    return (
-      <>
-        <ProgressSteps steps={steps} currentStep={currentStep} />
-        <motion.div
-          key={currentStep}
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -20 }}
-          transition={{ duration: 0.3 }}
-        >
-          {renderStepContent()}
-        </motion.div>
-      </>
-    )
-  }
-
-  return (
-    <div className="container mx-auto py-12 px-4">
-      <h1 className="text-3xl font-bold mb-10 text-center">Proceso de Reserva</h1>
-      {renderContent()}
+        )}
+        {currentStep === 1 && date && (
+          <PaymentForm
+            email={email}
+            fotografoId={fotografoId}
+            hora={hourNumber!}
+            nombre={name}
+            telefono={phone}
+            fecha={date}
+            onNext={nextStep}
+            onPrev={prevStep}
+          />
+        )}
+        {currentStep === 2 && <Confirmation email={email} onGoHome={goHome} />}
+      </motion.div>
     </div>
   )
 }

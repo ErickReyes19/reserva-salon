@@ -121,7 +121,7 @@ export const columns: ColumnDef<Fotografo>[] = [
               <DropdownMenuItem>Galeria</DropdownMenuItem>
             </Link>
             <Link href={`/fotografos/${fotografos.id}/disponibilidad`}>
-              <DropdownMenuItem>Galeria</DropdownMenuItem>
+              <DropdownMenuItem>Disponibilidades</DropdownMenuItem>
             </Link>
           </DropdownMenuContent>
         </DropdownMenu>

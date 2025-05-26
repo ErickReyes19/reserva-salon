@@ -34,34 +34,45 @@ export async function getFotografos(): Promise<Fotografo[]> {
   }
 }
 // Obtener todos los fotógrafos
-export async function getFotografosDisponibles(): Promise<Fotografo[]> {
-  try {
-    const fotografos = await prisma.fotografo.findMany({
-      where: {
-        disponible: true
-      },
-      include: {
-        usuario: true,
-      },
-    });
+export async function getFotografosDisponibles(
+  reservationDate: Date
+): Promise<Fotografo[]> {
+  const weekday = reservationDate.getDay(); // 0-6
 
-    return fotografos.map((f) => ({
-      id: f.id,
-      usuarioId: f.usuarioId,
-      nombre: f.nombre,
-      telefono: f.telefono ?? "",
-      bio: f.bio ?? "",
-      url: f.url ?? "",
-      Foto: f.Foto,
-      disponible: f.disponible,
-      usuarioNombre: f.usuario?.nombre ?? "",
-    }));
-  } catch (error) {
-    console.error("Error al obtener los fotógrafos:", error);
-    return [];
-  }
+  const fotografos = await prisma.fotografo.findMany({
+    where: {
+      disponible: true,
+      unavailabilities: {
+        none: {
+          activo: true,
+          OR: [
+            // No trabaja ese día de la semana
+            { recurring: true, weekday },
+            // No disponible en ese rango puntual
+            {
+              recurring: false,
+              startDate: { lte: reservationDate },
+              endDate:   { gte: reservationDate },
+            },
+          ],
+        },
+      },
+    },
+    include: { usuario: true },
+  });
+
+  return fotografos.map((f) => ({
+    id:             f.id,
+    usuarioId:      f.usuarioId,
+    nombre:         f.nombre,
+    telefono:       f.telefono ?? "",
+    bio:            f.bio ?? "",
+    url:            f.url ?? "",
+    Foto:           f.Foto,
+    disponible:     f.disponible,
+    usuarioNombre:  f.usuario?.nombre ?? "",
+  }));
 }
-
 // Obtener fotógrafo por ID
 export async function getFotografoById(id: string): Promise<Fotografo | null> {
   try {

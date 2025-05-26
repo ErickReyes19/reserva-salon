@@ -1,11 +1,8 @@
-// app/fotografos/[id]/disponibilidad/components/DisponibilidadForm.tsx
 "use client";
 
 import { useRouter, useParams } from "next/navigation";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { randomUUID } from "crypto";
 import { useToast } from "@/hooks/use-toast";
 
 import { UnavailabilitySchema } from "../schema";
@@ -31,6 +28,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { z } from "zod";
 
 export function DisponibilidadForm({
   isUpdate,
@@ -50,13 +48,6 @@ export function DisponibilidadForm({
   });
 
   const recurring = form.watch("recurring");
-
-  // Verificación de validez antes del submit
-  const { formState } = form;
-
-  // //forma de saber si un form esta valido o no
-  const isValid = formState.errors;
-  console.log("🚀 ~ isValid:", isValid)
 
   async function onSubmit(values: z.infer<typeof UnavailabilitySchema>) {
     try {
@@ -151,7 +142,6 @@ export function DisponibilidadForm({
                       type="date"
                       value={field.value?.slice(0, 10) ?? ""}
                       onChange={(e) =>
-                        // convierte "YYYY-MM-DD" ⇒ "YYYY-MM-DDT00:00:00.000Z"
                         field.onChange(`${e.target.value}T00:00:00.000Z`)
                       }
                     />
@@ -174,38 +164,6 @@ export function DisponibilidadForm({
                         field.onChange(`${e.target.value}T00:00:00.000Z`)
                       }
                     />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </>
-        )}
-
-        {/* Horarios: solo si no es recurrente */}
-        {!recurring && (
-          <>
-            <FormField
-              control={form.control}
-              name="startTime"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Hora inicio</FormLabel>
-                  <FormControl>
-                    <Input type="time" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="endTime"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Hora fin</FormLabel>
-                  <FormControl>
-                    <Input type="time" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

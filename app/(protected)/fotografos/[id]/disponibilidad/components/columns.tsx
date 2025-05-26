@@ -57,40 +57,6 @@ export const columns: ColumnDef<Unavailability>[] = [
     },
   },
   {
-    accessorKey: "startTime",
-    header: ({ column }) => (
-      <Button
-        variant="ghost"
-        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        className="text-left"
-      >
-        Hora inicio
-        <ArrowUpDown className="ml-2 h-4 w-4" />
-      </Button>
-    ),
-    cell: ({ getValue }) => {
-      const t = (getValue() as string).slice(11, 16);
-      return <span>{t}</span>;
-    },
-  },
-  {
-    accessorKey: "endTime",
-    header: ({ column }) => (
-      <Button
-        variant="ghost"
-        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        className="text-left"
-      >
-        Hora fin
-        <ArrowUpDown className="ml-2 h-4 w-4" />
-      </Button>
-    ),
-    cell: ({ getValue }) => {
-      const t = (getValue() as string).slice(11, 16);
-      return <span>{t}</span>;
-    },
-  },
-  {
     accessorKey: "activo",
     header: "Estado",
     cell: ({ getValue }) => {

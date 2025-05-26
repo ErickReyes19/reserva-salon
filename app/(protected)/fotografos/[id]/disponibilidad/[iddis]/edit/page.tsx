@@ -24,23 +24,22 @@ export default async function EditDisponibilidadPage({
   if (!permisos?.includes("editar_disponibilidad")) {
     return <NoAcceso />;
   }
-
+  
   const rule = await getUnavailabilityById(iddis);
   if (!rule || rule.fotografoId !== fotografoId) {
     redirect(`/fotografos/${fotografoId}/disponibilidad`);
   }
-
+  
   const initialData = {
     id:              rule.id,
     fotografoId:     rule.fotografoId,
     recurring:       rule.recurring,
     weekday:         rule.weekday,
-    startDate:       rule.startDate?.slice(0, 10) ?? "",
-    endDate:         rule.endDate?.slice(0, 10) ?? "",
-    startTime:       rule.startTime?.slice(11, 16) ,
-    endTime:         rule.endTime?.slice(11, 16) ,
+    startDate:       rule.startDate?.slice(0, 10) ?? undefined,
+    endDate:         rule.endDate?.slice(0, 10) ?? undefined,
     activo:          rule.activo,
   };
+  console.log("🚀 ~ initialData:", initialData)
 
   return (
     <div className="container mx-auto py-4">

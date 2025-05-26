@@ -121,14 +121,13 @@ model Unavailability {
   weekday      Int?       // 0 = domingo … 6 = sábado (solo si recurring = true)
   startDate    DateTime?  // solo si recurring = false
   endDate      DateTime?  // solo si recurring = false
-  startTime    DateTime?  // hora de inicio (solo si recurring = false)
-  endTime      DateTime?  // hora de fin (solo si recurring = false)
   activo       Boolean    @default(true)
 
   fotografo    Fotografo  @relation(fields: [fotografoId], references: [id])
 
   @@index([fotografoId])
 }
+
 
 
 
