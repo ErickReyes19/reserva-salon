@@ -6,6 +6,7 @@ import { redirect } from "next/navigation";
 import { getPhotoServiceById } from "../../actions";
 import { getCategoriasActivas } from "@/app/(protected)/categorias/actions";
 import { ServicioFormulario } from "../../components/Form";
+import { getFotografos } from "@/app/(protected)/fotografos/actions";
 
 
 export default async function Edit({ params }: { params: { id: string } }) {
@@ -19,9 +20,9 @@ export default async function Edit({ params }: { params: { id: string } }) {
   if (!servicio) {
     redirect("/servicios");
   }
-
+  
   const categorias = await getCategoriasActivas();
-
+  const fotografos = await getFotografos();
   // Mapear initialData para el formulario con los datos que necesitas
   const initialData = {
     id: servicio.id,
@@ -31,7 +32,10 @@ export default async function Edit({ params }: { params: { id: string } }) {
     categoryId: servicio.categoryId ?? "",
     categoriaNombre: servicio.categoriaNombre ?? "",
     activo: servicio.activo ?? true,
+    precio: servicio.precio ?? 0,
+    fotografos: servicio.fotografos ?? [], // Asegúrate de que este campo sea un array de IDs
   };
+  console.log("🚀 ~ Edit ~ initialData:", initialData)
 
   return (
     <div>
@@ -41,6 +45,7 @@ export default async function Edit({ params }: { params: { id: string } }) {
         screenName="Editar Servicio"
       />
       <ServicioFormulario
+        fotografos={fotografos}
         isUpdate={true}
         initialData={initialData}
         categorias={categorias}

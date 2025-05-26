@@ -1,29 +1,58 @@
-// components/service-grid.tsx
-import Image from "next/image";
-import { PhotoService } from "../../types";
-import AnimatedCard from "../animated-card";
+import type { PhotoService } from "../../types"
+import { Card, CardContent } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Users } from "lucide-react"
+import Image from "next/image"
 
-export default function ServiceGrid({ services }: { services: PhotoService[] }) {
+interface ServiceGridProps {
+  services: PhotoService[]
+}
+
+export default function ServiceGrid({ services }: ServiceGridProps) {
+  const formatPrice = (precio: number) => {
+    return new Intl.NumberFormat("es-HN", {
+      style: "currency",
+      currency: "HNL",
+      minimumFractionDigits: 2,
+    }).format(precio)
+  }
+
   return (
-    <div className="hidden md:grid grid-cols-1 md:grid-cols-3 gap-8">
-      {services.map((svc, i) => (
-        <AnimatedCard key={svc.id} delay={i}>
-          <div className="overflow-hidden rounded-lg shadow-lg h-full flex flex-col">
-            <div className="relative h-48 w-full">
-              <Image
-                src={svc.img || "/placeholder.svg"}
-                alt={svc.name}
-                fill
-                className="object-cover transition-transform duration-500 hover:scale-105"
-              />
-            </div>
-            <div className="p-4 flex-1">
-              <h3 className="text-lg font-semibold mb-2">{svc.name}</h3>
-              <p className="text-gray-600 line-clamp-3">{svc.description}</p>
-            </div>
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 ">
+      {services.map((service) => (
+        <Card key={service.id} className="group hover:shadow-lg transition-all duration-300 overflow-hidden">
+          <div className="relative aspect-[4/3] overflow-hidden">
+            <Image
+              src={service.img || "/placeholder.svg?height=300&width=400"}
+              alt={service.name}
+              fill
+              className="object-cover group-hover:scale-105 transition-transform duration-300"
+            />
+            <Badge className="absolute top-3 left-3 bg-blue-600 hover:bg-blue-700">{service.category}</Badge>
           </div>
-        </AnimatedCard>
+
+          <CardContent className="p-6 ">
+            <div className="space-y-3">
+              <div>
+                <h3 className="font-bold text-xl text-gray-900 group-hover:text-blue-600 transition-colors">
+                  {service.name}
+                </h3>
+                <p className="text-gray-600 mt-2 line-clamp-2">{service.description}</p>
+              </div>
+
+              <div className="flex items-center justify-between">
+                <div className="text-2xl font-bold text-blue-600">{formatPrice(service.precio)}</div>
+                {service.fotografos && service.fotografos.length > 0 && (
+                  <div className="flex items-center text-sm text-gray-500">
+                    <Users className="w-4 h-4 mr-1" />
+                    <span className="truncate">{service.fotografos.join(", ")}</span>
+                  </div>
+                )}
+              </div>
+            </div>
+          </CardContent>
+        </Card>
       ))}
     </div>
-  );
+  )
 }

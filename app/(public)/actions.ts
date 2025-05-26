@@ -25,9 +25,20 @@ export async function getReservasEvent(): Promise<ReservaEvent[]> {
 export async function getCategoriesWithServices(): Promise<CategoryWithServices[]> {
   try {
     const categories = await prisma.category.findMany({
-      include: { services: true },
-      where: { activo: true }
-    })
+      where: { activo: true },
+      include: {
+        services: {
+          include: {
+            // Incluimos la relación a través de la tabla intermedia
+            fotografos: {
+              include: {
+                fotografo: true, // Aquí obtenemos el objeto Fotografo
+              },
+            },
+          },
+        },
+      },
+    });
 
     return categories.map((cat) => ({
       id: cat.id,
@@ -37,12 +48,16 @@ export async function getCategoriesWithServices(): Promise<CategoryWithServices[
         name: svc.name,
         img: svc.img,
         description: svc.description,
+        precio: svc.precio,
         category: cat.name,
+        fotografos: svc.fotografos.map(fs => fs.fotografo.nombre), // aquí extraemos solo el nombre
       })),
-    }))
+    }));
   } catch (error) {
-    console.error("Error al obtener categorías con servicios:", error)
-    return []
+    console.error("Error al obtener categorías con servicios:", error);
+    return [];
   }
 }
+
+
 

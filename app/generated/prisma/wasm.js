@@ -179,15 +179,6 @@ exports.Prisma.CategoryScalarFieldEnum = {
   activo: 'activo'
 };
 
-exports.Prisma.PhotoServiceScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  img: 'img',
-  description: 'description',
-  activo: 'activo',
-  categoryId: 'categoryId'
-};
-
 exports.Prisma.FotografoScalarFieldEnum = {
   id: 'id',
   usuarioId: 'usuarioId',
@@ -199,6 +190,21 @@ exports.Prisma.FotografoScalarFieldEnum = {
   disponible: 'disponible'
 };
 
+exports.Prisma.PhotoServiceScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  img: 'img',
+  description: 'description',
+  precio: 'precio',
+  activo: 'activo',
+  categoryId: 'categoryId'
+};
+
+exports.Prisma.FotografoServicioScalarFieldEnum = {
+  fotografoId: 'fotografoId',
+  servicioId: 'servicioId'
+};
+
 exports.Prisma.UnavailabilityScalarFieldEnum = {
   id: 'id',
   fotografoId: 'fotografoId',
@@ -206,8 +212,6 @@ exports.Prisma.UnavailabilityScalarFieldEnum = {
   weekday: 'weekday',
   startDate: 'startDate',
   endDate: 'endDate',
-  startTime: 'startTime',
-  endTime: 'endTime',
   activo: 'activo'
 };
 
@@ -272,14 +276,6 @@ exports.Prisma.CategoryOrderByRelevanceFieldEnum = {
   name: 'name'
 };
 
-exports.Prisma.PhotoServiceOrderByRelevanceFieldEnum = {
-  id: 'id',
-  name: 'name',
-  img: 'img',
-  description: 'description',
-  categoryId: 'categoryId'
-};
-
 exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
@@ -293,6 +289,19 @@ exports.Prisma.FotografoOrderByRelevanceFieldEnum = {
   bio: 'bio',
   url: 'url',
   Foto: 'Foto'
+};
+
+exports.Prisma.PhotoServiceOrderByRelevanceFieldEnum = {
+  id: 'id',
+  name: 'name',
+  img: 'img',
+  description: 'description',
+  categoryId: 'categoryId'
+};
+
+exports.Prisma.FotografoServicioOrderByRelevanceFieldEnum = {
+  fotografoId: 'fotografoId',
+  servicioId: 'servicioId'
 };
 
 exports.Prisma.UnavailabilityOrderByRelevanceFieldEnum = {
@@ -315,8 +324,9 @@ exports.Prisma.ModelName = {
   Galeria: 'Galeria',
   Cliente: 'Cliente',
   Category: 'Category',
-  PhotoService: 'PhotoService',
   Fotografo: 'Fotografo',
+  PhotoService: 'PhotoService',
+  FotografoServicio: 'FotografoServicio',
   Unavailability: 'Unavailability',
   Reserva: 'Reserva'
 };

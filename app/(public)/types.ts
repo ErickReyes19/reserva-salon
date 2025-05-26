@@ -10,6 +10,8 @@ export interface PhotoService {
   img: string
   description: string
   category: string
+  precio: number
+  fotografos: string[]
 }
 
 /** Categoría con sus servicios */

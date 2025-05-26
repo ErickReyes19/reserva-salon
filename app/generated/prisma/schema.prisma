@@ -87,42 +87,58 @@ model Category {
   services PhotoService[]
 }
 
-model PhotoService {
-  id          String   @id @default(uuid())
-  name        String   @unique
-  img         String
-  description String
-  activo      Boolean
-  categoryId  String
-  category    Category @relation(fields: [categoryId], references: [id])
-}
-
 model Fotografo {
-  id               String           @id @default(uuid())
-  usuarioId        String           @unique
-  nombre           String           @unique
+  id               String              @id @default(uuid())
+  usuarioId        String              @unique
+  nombre           String              @unique
   telefono         String?
-  bio              String?          @db.Text
+  bio              String?             @db.Text
   url              String?
   Foto             String
   disponible       Boolean
-  usuario          Usuario          @relation("FotografoUsuario", fields: [usuarioId], references: [id])
-  reservas         Reserva[]        @relation("ReservasFotografo")
-  galeria          Galeria[]        @relation("GaleriaFotografo")
+  usuario          Usuario             @relation("FotografoUsuario", fields: [usuarioId], references: [id])
+  reservas         Reserva[]           @relation("ReservasFotografo")
+  galeria          Galeria[]           @relation("GaleriaFotografo")
   unavailabilities Unavailability[]
+  servicios        FotografoServicio[] // Relación con PhotoService a través de la tabla intermedia
+}
+
+model PhotoService {
+  id          String              @id @default(uuid())
+  name        String              @unique
+  img         String
+  description String
+  precio      Float               @default(0)
+  activo      Boolean             @default(true)
+  categoryId  String
+  category    Category            @relation(fields: [categoryId], references: [id])
+  fotografos  FotografoServicio[] // Relación con Fotografo a través de la tabla intermedia
+}
+
+model FotografoServicio {
+  fotografoId String
+  servicioId  String
+
+  fotografo Fotografo    @relation(fields: [fotografoId], references: [id])
+  servicio  PhotoService @relation(fields: [servicioId], references: [id])
+
+  @@id([fotografoId, servicioId]) // Clave primaria compuesta para evitar duplicados
+  // Opcional: índice para facilitar búsquedas rápidas
+  @@index([servicioId])
 }
 
 model Unavailability {
   id          String    @id @default(uuid())
   fotografoId String
-  recurring   Boolean // true = se repite semanalmente, false = es puntual
-  weekday     Int? // 0 = domingo, 6 = sábado — sólo si recurring = true
+  recurring   Boolean // true = regla semanal, false = bloqueo puntual
+  weekday     Int? // 0 = domingo … 6 = sábado (solo si recurring = true)
   startDate   DateTime? // solo si recurring = false
   endDate     DateTime? // solo si recurring = false
-  startTime   DateTime // hora de inicio (ignora fecha)
-  endTime     DateTime // hora de fin (ignora fecha)
+  activo      Boolean   @default(true)
 
   fotografo Fotografo @relation(fields: [fotografoId], references: [id])
+
+  @@index([fotografoId])
 }
 
 model Reserva {

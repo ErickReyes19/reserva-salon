@@ -30,20 +30,23 @@ import { PhotoService, PhotoServiceSchema } from "../schema";
 import { Category } from "../../categorias/types";
 import { z } from "zod";
 import { useEffect, useState } from "react";
+import { FotografoSelector } from "./forotrafos-select";
+import { Fotografo } from "../../fotografos/type";
 
 export function ServicioFormulario({
   isUpdate,
   initialData,
   categorias,
+  fotografos,
 }: {
   isUpdate: boolean;
   initialData: PhotoService;
   categorias: Category[];
+  fotografos: Fotografo[]; // Asegúrate que este prop se envíe desde el padre
 }) {
   const { toast } = useToast();
   const router = useRouter();
   const [preview, setPreview] = useState<string | null>(null);
-
   const [file, setFile] = useState<File | null>(null);
 
   useEffect(() => {
@@ -71,7 +74,7 @@ export function ServicioFormulario({
     }
 
     const data = await res.json();
-    return data.url; // La url retornada, ej: /uploads/uuid.ext
+    return data.url; // La URL retornada, ej: /uploads/uuid.ext
   }
 
   async function onSubmit(data: z.infer<typeof PhotoServiceSchema>) {
@@ -82,7 +85,11 @@ export function ServicioFormulario({
         imgUrl = await uploadFile(file);
       }
 
-      const serviceData = { ...data, img: imgUrl };
+      const serviceData = {
+        ...data,
+        img: imgUrl,
+        precio: Number(data.precio) // <-- conversion a número
+      };
 
       if (isUpdate) {
         await putPhotoService({ servicio: serviceData });
@@ -134,6 +141,37 @@ export function ServicioFormulario({
 
           <FormField
             control={form.control}
+            name="precio"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Precio</FormLabel>
+                <FormControl>
+                  <Input
+                    type="number"
+                    step="0.01"
+                    min="0"
+                    {...field}
+                    onChange={(e) => field.onChange(parseFloat(e.target.value))}
+                    value={field.value ?? ""}
+                  />
+                </FormControl>
+                <FormDescription>
+                  Ingrese el precio del servicio en lempiras.
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+
+          <FotografoSelector
+            control={form.control}
+            name="fotografos"
+            fotografos={fotografos}
+          />
+
+          <FormField
+            control={form.control}
             name="img"
             render={({ field }) => (
               <FormItem>
@@ -147,18 +185,13 @@ export function ServicioFormulario({
                       if (e.target.files && e.target.files.length > 0) {
                         const selectedFile = e.target.files[0];
                         setFile(selectedFile); // guarda el file
-
-                        // Actualiza campo img con un string temporal para pasar la validación Zod
-                        field.onChange("placeholder");
-
-                        // Genera URL temporal para preview
+                        field.onChange("placeholder"); // Zod necesita que no esté vacío
                         const previewUrl = URL.createObjectURL(selectedFile);
                         setPreview(previewUrl);
                       }
                     }}
                   />
                 </FormControl>
-
                 {preview && (
                   <img
                     src={preview}
@@ -166,7 +199,6 @@ export function ServicioFormulario({
                     className="mt-2 max-h-48 rounded object-contain"
                   />
                 )}
-
                 <FormDescription>
                   Sube una imagen para representar el servicio.
                 </FormDescription>
@@ -174,10 +206,6 @@ export function ServicioFormulario({
               </FormItem>
             )}
           />
-
-
-
-
         </div>
 
         <FormField
@@ -187,7 +215,10 @@ export function ServicioFormulario({
             <FormItem>
               <FormLabel>Descripción</FormLabel>
               <FormControl>
-                <Textarea placeholder="Describe brevemente el servicio" {...field} />
+                <Textarea
+                  placeholder="Describe brevemente el servicio"
+                  {...field}
+                />
               </FormControl>
               <FormDescription>
                 Esta descripción se mostrará al usuario.
@@ -213,7 +244,10 @@ export function ServicioFormulario({
                   </SelectTrigger>
                   <SelectContent>
                     {categorias.map((categoria) => (
-                      <SelectItem key={categoria.id} value={categoria.id || ""}>
+                      <SelectItem
+                        key={categoria.id}
+                        value={categoria.id || ""}
+                      >
                         {categoria.name}
                       </SelectItem>
                     ))}

@@ -9,4 +9,15 @@ export type Fotografo = {
   disponible?: boolean;
 
   usuarioNombre?: string;
+
+  servicios?: {
+    id: string;
+    name: string;
+    precio: number;
+    img: string;
+    description: string;
+    categoryId: string;
+    activo?: boolean;
+    categoriaNombre?: string;
+  }[];
 };

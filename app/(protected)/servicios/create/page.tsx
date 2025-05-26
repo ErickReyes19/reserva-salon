@@ -4,6 +4,7 @@ import NoAcceso from "@/components/noAccess";
 import { PlusCircle } from "lucide-react";
 import { getCategoriasActivas } from "../../categorias/actions";
 import { ServicioFormulario } from "../components/Form";
+import { getFotografos } from "../../fotografos/actions";
 
 export default async function Create() {
 
@@ -21,8 +22,10 @@ export default async function Create() {
     categoryId: "",
     categoriaNombre: "",
     activo: true,
+    precio: 0,
   };
   const categorias = await getCategoriasActivas();
+  const fotografos = await getFotografos();
 
   return (
     <div>
@@ -31,7 +34,7 @@ export default async function Create() {
         description="En este apartado podrás crear un nuevo usuario"
         screenName="Usuarios"
       />
-      <ServicioFormulario isUpdate={false}  initialData={initialData} categorias={categorias} />
+      <ServicioFormulario fotografos={fotografos} isUpdate={false}  initialData={initialData} categorias={categorias} />
     </div>
   );
 }
