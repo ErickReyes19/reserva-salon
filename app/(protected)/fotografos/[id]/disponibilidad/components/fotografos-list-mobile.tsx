@@ -44,7 +44,7 @@ export default function DisponibilidadListMobile({
     <div className="space-y-4">
       <Link href="./create">
         <Button className="w-full flex items-center justify-center gap-2">
-          <Plus /> Agrasdsaegar Disponsibilidad
+          <Plus /> Agregar Disponibilidad
         </Button>
       </Link>
 
@@ -71,10 +71,9 @@ export default function DisponibilidadListMobile({
             className="flex items-center justify-between p-3 border rounded-lg shadow"
           >
             <div className="min-w-0">
-              {/* <p className="font-medium truncate">{label}</p> */}
+              <p className="font-medium truncate">{label}</p>
               <p className="text-sm">
-                <Badge
-                >
+                <Badge>
                   {status}
                 </Badge>
               </p>

@@ -8,7 +8,7 @@ import { columns } from "./components/columns";
 import { DataTable } from "./components/data-table";
 import { getUnavailabilitiesByFotografoId } from "./actions";
 import { Unavailability } from "./type";
-import DisponibilidadListMobile from "./components/fotografos-disponibilidad-list-mobile";
+import DisponibilidadListMobile from "./components/fotografos-list-mobile";
 
 interface PageProps {
   params: { id: string };
