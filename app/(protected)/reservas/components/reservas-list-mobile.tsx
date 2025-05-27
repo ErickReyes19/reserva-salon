@@ -18,8 +18,7 @@ export default function ReservaListMobile({ reservas }: ReservaListMobileProps) 
 
   const filtered = reservas.filter((res) =>
     res.clienteNombre?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    res.fotografoNombre?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    res.estado.toLowerCase().includes(searchTerm.toLowerCase())
+    res.fotografoNombre?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -67,7 +66,7 @@ export default function ReservaListMobile({ reservas }: ReservaListMobileProps) 
               </div>
               {/* Estado */}
               <div className="flex items-center gap-2">
-                {res.estado === 'activo' ? (
+                {res.estado === true ? (
                   <CheckCircle className="h-4 w-4 text-green-500" />
                 ) : (
                   <XCircle className="h-4 w-4 text-red-500" />
