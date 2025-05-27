@@ -10,12 +10,15 @@ import AvailableHoursSection from "./available-hours-section"
 import ReservationModal from "./reservation-modal"
 import type { PhotoService } from "@/app/(protected)/servicios/type"
 import { getServiciosPorFotografos } from "@/app/(protected)/servicios/actions"
+import { useReservationStore } from "@/lib/store/useReservationStore"
+import { se } from "date-fns/locale"
 
 interface Props {
   eventos?: ReservaEvent[]
 }
 
 export default function CalendarioReservas({ eventos = [] }: Props) {
+  const setReservation = useReservationStore((s) => s.setReservation)
   const router = useRouter()
   const [selectedDate, setSelectedDate] = useState<Date>(startOfToday())
   const [viewDate, setViewDate] = useState<Date>(startOfToday())
@@ -26,6 +29,8 @@ export default function CalendarioReservas({ eventos = [] }: Props) {
   const [fotografos, setFotografos] = useState<Fotografo[]>([])
   const [services, setServices] = useState<PhotoService[]>([])
   const [selectedService, setSelectedService] = useState<string>("")
+  const [selectedPrice, setSelectedPrice] = useState<string>("")
+  const [selectedServiceName, setSelectedServiceName] = useState<string>("")
   const [selectedFotografo, setSelectedFotografo] = useState<string>("")
   const [isLoading, setIsLoading] = useState(false)
   const [isServicesLoading, setIsServicesLoading] = useState(false)
@@ -82,8 +87,11 @@ export default function CalendarioReservas({ eventos = [] }: Props) {
   }
 
   // Al seleccionar un servicio, filtrar fotógrafos que lo ofrecen
-  const handleServiceChange = (serviceId: string) => {
+  const handleServiceChange = (serviceId: string, price: string, serviceName: string) => {
     setSelectedService(serviceId)
+    setSelectedPrice(price)
+    setSelectedServiceName(serviceName)
+
     setSelectedFotografo("") // Reset fotógrafo cuando cambia servicio
 
     if (serviceId) {
@@ -98,18 +106,21 @@ export default function CalendarioReservas({ eventos = [] }: Props) {
 
   const handleConfirm = (name: string, email: string, phone: string) => {
     setIsLoading(true)
-    const selected = fotografos.find((f) => f.id === selectedFotografo)
-    const params = new URLSearchParams({
-      date: selectedDate.toISOString(),
-      hour: String(selectedHour),
+    const photographer = fotografos.find((f) => f.id === selectedFotografo)
+    setReservation({
+      date: selectedDate,
+      hour: selectedHour,
+      photographerId: selectedFotografo,
+      photographerName: photographer?.nombre || "",
+      serviceId: selectedService,
+      price: Number(selectedPrice),
+      serviceName: selectedServiceName,
       name,
       email,
       phone,
-      fotografoId: selectedFotografo,
-      fotografoName: selected?.nombre || "",
-      serviceId: selectedService,
     })
-    router.push(`/checkout?${params.toString()}`)
+
+    router.push(`/checkout`)
   }
 
   const calendarEvents = useMemo(

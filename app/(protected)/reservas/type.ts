@@ -8,7 +8,8 @@ export type Reserva = {
   photoServiceId?: string;
   estado: boolean;
   precio?: number;  // nuevo campo
-
+  
+  photoServiceNombre?: string;
   fotografoNombre?: string;
   clienteNombre?: string;
   nombreSesion?: string;

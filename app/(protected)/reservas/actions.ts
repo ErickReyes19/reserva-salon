@@ -14,6 +14,7 @@ function mapReserva(r: any): Reserva {
     fotografoId: r.fotografoId,
     clienteId: r.clienteId,
     photoServiceId: r.photoServiceId,
+    photoServiceNombre: r.photoService?.name,
     estado: r.estado,
     precio: r.precio,
     fotografoNombre: r.fotografo?.nombre,
@@ -28,7 +29,7 @@ function mapReserva(r: any): Reserva {
  */
 export async function getReservas(): Promise<Reserva[]> {
   const reservas = await prisma.reserva.findMany({
-    include: { fotografo: true, cliente: true },
+    include: { fotografo: true, cliente: true, photoService: true },
   });
   return reservas.map(mapReserva);
 }

@@ -3,7 +3,6 @@
 
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
-import { useSearchParams } from "next/navigation"
 import { format } from "date-fns"
 import { es } from "date-fns/locale"
 import { CheckCircle, CreditCard, CalendarCheck } from "lucide-react"
@@ -14,12 +13,12 @@ import { Confirmation } from "./components/confirmacion"
 import { InvalidParameters } from "./components/datos-erroneos"
 import { LoadingState } from "./components/validando-reserva"
 import { SlotUnavailable } from "./components/reserva-no-disponible"
-import { ProgressSteps } from "./components/barra-progreso"
 import { isPhotographerAvailable, isSlotAvailableByHourNumber } from "@/app/(protected)/reservas/actions"
 import { FotografoNoDisponible } from "./components/fotografo-no-disponoble"
+import { ProgressSteps } from "./components/barra-progreso"
+import { useReservationStore } from "@/lib/store/useReservationStore"
 
 export default function CheckoutWizardPage() {
-  const params = useSearchParams()
   const router = useRouter()
   const [currentStep, setCurrentStep] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
@@ -27,55 +26,52 @@ export default function CheckoutWizardPage() {
   const [isPhotoAvailable, setIsPhotoAvailable] = useState<boolean | null>(null)
   const [invalidParams, setInvalidParams] = useState<string[]>([])
 
-  const dateIso = params.get("date") || ""
-  const hour = params.get("hour") || ""
-  const name = params.get("name") || ""
-  const email = params.get("email") || ""
-  const phone = params.get("phone") || ""
-  const fotografo = params.get("fotografoName") || ""
-  const fotografoId = params.get("fotografoId") || ""
-
-  const hourNumber = hour ? Number(hour) : null
+  // Leer datos desde Zustand
+  const {
+    date,
+    hour,
+    photographerId,
+    photographerName,
+    serviceId,
+    price,
+    name,
+    email,
+    phone,
+    serviceName,
+    reset,
+  } = useReservationStore()
 
   // Formateo de fecha
-  let date: Date | null = null
   let formattedDate = ""
   let formattedDay = ""
   let formattedMonth = ""
-  try {
-    if (dateIso) {
-      const d = new Date(dateIso)
-      if (!isNaN(d.getTime())) {
-        date = d
-        formattedDate = format(d, "EEEE, d 'de' MMMM yyyy", { locale: es })
-        formattedDay = format(d, "dd", { locale: es })
-        formattedMonth = format(d, "MMM", { locale: es })
-      }
-    }
-  } catch {
-    date = null
+  if (date) {
+    formattedDate = format(date, "EEEE, d 'de' MMMM yyyy", { locale: es })
+    formattedDay = format(date, "dd", { locale: es })
+    formattedMonth = format(date, "MMM", { locale: es })
   }
 
   useEffect(() => {
     const missing: string[] = []
     if (!date) missing.push("Fecha")
-    if (hourNumber === null || isNaN(hourNumber)) missing.push("Hora")
+    if (hour === null || isNaN(hour)) missing.push("Hora")
     if (!name) missing.push("Nombre")
     if (!email) missing.push("Email")
     if (!phone) missing.push("Teléfono")
-    if (!fotografo) missing.push("Fotógrafo")
-    if (!fotografoId) missing.push("ID del fotógrafo")
+    if (!photographerName) missing.push("Fotógrafo")
+    if (!photographerId) missing.push("ID del fotógrafo")
+    if (!serviceId) missing.push("Servicio")
     setInvalidParams(missing)
 
-    if (missing.length === 0 && date && hourNumber !== null) {
-      (async () => {
+    if (missing.length === 0 && date && hour !== null) {
+      ; (async () => {
         setIsLoading(true)
-        // Validar slot
-        const slotFree = await isSlotAvailableByHourNumber({ fecha: date, horaInicioNumber: hourNumber })
+        // validar slot
+        const slotFree = await isSlotAvailableByHourNumber({ fecha: date, horaInicioNumber: hour })
         setIsSlotAvailable(slotFree)
-        // Si slot libre, validar fotógrafo
         if (slotFree) {
-          const available = await isPhotographerAvailable(fotografoId, date)
+          // validar fotógrafo
+          const available = await isPhotographerAvailable(photographerId, date)
           setIsPhotoAvailable(available)
         }
         setIsLoading(false)
@@ -83,11 +79,14 @@ export default function CheckoutWizardPage() {
     } else {
       setIsLoading(false)
     }
-  }, [dateIso, hour, name, email, phone, fotografo, fotografoId])
+  }, [date, hour, name, email, phone, photographerName, photographerId, serviceId])
 
-  const nextStep = () => setCurrentStep(s => Math.min(s + 1, 2))
-  const prevStep = () => setCurrentStep(s => Math.max(s - 1, 0))
-  const goHome = () => router.push("/")
+  const nextStep = () => setCurrentStep((s) => Math.min(s + 1, 2))
+  const prevStep = () => setCurrentStep((s) => Math.max(s - 1, 0))
+  const goHome = () => {
+    reset()
+    router.push("/")
+  }
 
   const steps = [
     { title: "Detalle de la reserva", icon: <CalendarCheck className="h-6 w-6" /> },
@@ -95,16 +94,16 @@ export default function CheckoutWizardPage() {
     { title: "Confirmación", icon: <CheckCircle className="h-6 w-6" /> },
   ]
 
-  // Renderizado según estado
+  // Estados de error/validación
   if (invalidParams.length) {
-    return <InvalidParameters missingParams={invalidParams} onBack={() => router.push("/")} />
+    return <InvalidParameters missingParams={invalidParams} onBack={() => goHome()} />
   }
   if (isLoading) return <LoadingState />
   if (!isSlotAvailable) {
-    return <SlotUnavailable date={formattedDate} hour={hour} fotografo={fotografo} onBack={() => router.push("/")} />
+    return <SlotUnavailable date={formattedDate} hour={hour!.toString()} fotografo={photographerName} onBack={() => goHome()} />
   }
   if (isSlotAvailable && isPhotoAvailable === false) {
-    return <FotografoNoDisponible dateFormatted={formattedDate} hora={hour} fotografoName={fotografo} onBack={() => router.push("/")} />
+    return <FotografoNoDisponible dateFormatted={formattedDate} hora={hour!.toString()} fotografoName={photographerName} onBack={() => goHome()} />
   }
 
   return (
@@ -120,22 +119,26 @@ export default function CheckoutWizardPage() {
       >
         {currentStep === 0 && (
           <ReservationDetails
+            price={price}
+            serviceName={serviceName}
             formattedDate={formattedDate}
             formattedDay={formattedDay}
             formattedMonth={formattedMonth}
-            hour={hour}
+            hour={hour!.toString()}
             name={name}
             email={email}
             phone={phone}
-            fotografo={fotografo}
+            fotografo={photographerName}
             onNext={nextStep}
           />
         )}
         {currentStep === 1 && date && (
           <PaymentForm
+            price={price}
+            serviceId={serviceId}
             email={email}
-            fotografoId={fotografoId}
-            hora={hourNumber!}
+            fotografoId={photographerId}
+            hora={hour!}
             nombre={name}
             telefono={phone}
             fecha={date}

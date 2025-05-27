@@ -12,6 +12,7 @@ export const ReservaSchema = z.object({
   precio: z.number().optional(),
 
   fotografoNombre: z.string().optional(),
+  photoServiceNombre: z.string().optional(),
   clienteNombre: z.string().optional(),
   nombreSesion: z.string().optional(),
 });

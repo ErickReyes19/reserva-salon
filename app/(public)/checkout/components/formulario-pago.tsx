@@ -36,6 +36,8 @@ interface PaymentFormProps {
   nombre: string
   email: string
   telefono: string
+  serviceId: string
+  price: number
   fecha: Date
   hora: number
   fotografoId: string
@@ -48,6 +50,8 @@ export function PaymentForm({
   email,
   telefono,
   fecha,
+  serviceId,
+  price,
   hora,
   fotografoId,
 }: PaymentFormProps) {
@@ -88,6 +92,8 @@ export function PaymentForm({
         horaInicio,   // este Date corresponderá exactamente a “YYYY-MM-DDThh:00:00.000Z”
         fotografoId,
         clienteId: cliente.id!,
+        photoServiceId: serviceId,
+        precio: price, 
       })
 
       // 4) Avanza al paso de confirmación
