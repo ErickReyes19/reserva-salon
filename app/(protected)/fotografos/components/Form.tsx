@@ -159,19 +159,6 @@ export function FotografoFormulario({ isUpdate, initialData, usuarios }: Fotogra
             )}
           />
 
-          <FormField
-            control={form.control}
-            name="usuarioNombre"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Nombre de usuario</FormLabel>
-                <FormControl>
-                  <Input placeholder="Nombre de usuario" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
 
           <FormField
             control={form.control}

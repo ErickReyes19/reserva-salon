@@ -42,7 +42,7 @@ export default function DisponibilidadListMobile({
 
   return (
     <div className="space-y-4">
-      <Link href="./create">
+      <Link href="disponibilidad/create">
         <Button className="w-full flex items-center justify-center gap-2">
           <Plus /> Agregar Disponibilidad
         </Button>
@@ -80,7 +80,7 @@ export default function DisponibilidadListMobile({
             </div>
 
             <div>
-              <Link href={`./${rule.id}/edit`}>
+              <Link href={`disponibilidad/${rule.id}/edit`}>
                 <Button variant="ghost" size="icon" className="h-8 w-8">
                   <Pencil className="h-4 w-4" />
                 </Button>

@@ -16,7 +16,7 @@ export default function AboutSection() {
           <div className="w-full md:w-1/2 relative mb-10 md:mb-0">
             <div className="relative h-[300px] md:h-[500px] rounded-2xl overflow-hidden shadow-2xl">
               <Image
-                src={"/placeholder.svg"}
+                src={"/fotogrupo.jpg"}
                 alt="Interior del estudio"
                 fill
                 className="object-cover"
@@ -46,7 +46,7 @@ export default function AboutSection() {
 
             <div className="space-y-4 md:space-y-6 text-gray-600">
               <p className="text-sm md:text-base">
-                En <span className="font-semibold text-purple-700">FotoStudio</span>, nos apasiona capturar la esencia
+                En <span className="font-semibold text-purple-700">ElStudio</span>, nos apasiona capturar la esencia
                 de cada momento. Desde 2010, hemos estado transformando instantes fugaces en recuerdos eternos a través
                 de nuestro lente.
               </p>

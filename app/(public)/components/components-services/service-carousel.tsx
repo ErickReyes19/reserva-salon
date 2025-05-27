@@ -17,9 +17,9 @@ export default function ServiceCarousel({ services }: ServiceCarouselProps) {
   const itemsPerView = 1
 
   const formatPrice = (precio: number) => {
-    return new Intl.NumberFormat("es-AR", {
+    return new Intl.NumberFormat("es-HN", {
       style: "currency",
-      currency: "ARS",
+      currency: "HNL",
       minimumFractionDigits: 2,
     }).format(precio)
   }

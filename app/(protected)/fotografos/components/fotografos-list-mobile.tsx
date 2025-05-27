@@ -3,7 +3,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { GalleryVertical, Image, Pencil, Plus, Search } from "lucide-react";
+import { CheckCircle, GalleryVertical, Image, Pencil, Plus, Search } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import { Fotografo } from "../type";
@@ -53,7 +53,7 @@ export default function FotografoListMobile({ fotografos }: FotografoListMobileP
                   fotografo.disponible ? "bg-green-500" : "bg-red-500"
                 }`}
               ></span>
-              <h3 className="text-sm font-medium truncate">{fotografo.usuarioNombre}</h3>
+              <h3 className="text-sm font-medium truncate">{fotografo.nombre}</h3>
             </div>
             <p className="text-xs mt-1 truncate">Teléfono: {fotografo.telefono}</p>
             <p className="text-xs mt-1 truncate">Bio: {fotografo.bio}</p>
@@ -67,6 +67,11 @@ export default function FotografoListMobile({ fotografos }: FotografoListMobileP
             <Link href={`/fotografos/${fotografo.id}/galeria`}>
               <Button variant="ghost" size="icon" className="h-8 w-8">
                 <Image className="h-4 w-4" />
+              </Button>
+            </Link>
+            <Link href={`/fotografos/${fotografo.id}/disponibilidad`}>
+              <Button variant="ghost" size="icon" className="h-8 w-8">
+                <CheckCircle className="h-4 w-4" />
               </Button>
             </Link>
           </div>

@@ -173,18 +173,21 @@ export function DisponibilidadForm({
         )}
 
         {/* Activo */}
-        <FormField
-          control={form.control}
-          name="activo"
-          render={({ field }) => (
-            <FormItem className="flex items-center space-x-3">
-              <FormControl>
-                <Checkbox checked={field.value} onCheckedChange={field.onChange} />
-              </FormControl>
-              <FormLabel>Activo</FormLabel>
-            </FormItem>
-          )}
-        />
+        {isUpdate && (
+          <FormField
+            control={form.control}
+            name="recurring"
+            render={({ field }) => (
+              <FormItem className="flex items-center space-x-3">
+                <FormControl>
+                  <Switch checked={field.value} onCheckedChange={field.onChange} />
+                </FormControl>
+                <FormLabel>Activo</FormLabel>
+              </FormItem>
+            )}
+          />
+        )}
+
         <FormMessage />
 
         <div className="flex justify-end">
@@ -194,8 +197,8 @@ export function DisponibilidadForm({
                 ? "Actualizando..."
                 : "Creando..."
               : isUpdate
-              ? "Actualizar"
-              : "Crear"}
+                ? "Actualizar"
+                : "Crear"}
           </Button>
         </div>
       </form>

@@ -8,7 +8,7 @@ export default function Footer() {
           <div>
             <div className="flex items-center space-x-2 mb-6">
               <Camera className="h-6 w-6 text-purple-400" />
-              <span className="font-bold text-xl">FotoStudio</span>
+              <span className="font-bold text-xl">ElStudio</span>
             </div>
             <p className="text-gray-400 mb-6">
               Capturando momentos, creando recuerdos. Nuestro estudio fotográfico profesional está dedicado a la
@@ -78,14 +78,14 @@ export default function Footer() {
               </li>
               <li className="flex items-center">
                 <Mail className="h-5 w-5 mr-2 text-purple-400" />
-                <span>info@fotostudio.com</span>
+                <span>info@ElStudio.com</span>
               </li>
             </ul>
           </div>
         </div>
 
         <div className="border-t border-gray-800 pt-8 text-center text-gray-500">
-          <p>© {new Date().getFullYear()} FotoStudio. Todos los derechos reservados.</p>
+          <p>© {new Date().getFullYear()} ElStudio. Todos los derechos reservados.</p>
         </div>
       </div>
     </footer>

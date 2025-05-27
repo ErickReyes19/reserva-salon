@@ -90,7 +90,7 @@ export default function BookingSection() {
                     <Mail className="h-6 w-6 text-purple-300 pt-1 flex-shrink-0" />
                     <div>
                       <h4 className="font-semibold text-purple-200">Email</h4>
-                      <p className="text-white/80">info@fotostudio.com</p>
+                      <p className="text-white/80">info@ElStudio.com</p>
                     </div>
                   </div>
 
