@@ -18,8 +18,7 @@ export default function ReservaListMobile({ reservas }: ReservaListMobileProps) 
 
   const filtered = reservas.filter((res) =>
     res.clienteNombre?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    res.fotografoNombre?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    res.estado.toLowerCase().includes(searchTerm.toLowerCase())
+    res.fotografoNombre?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
