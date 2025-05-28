@@ -83,7 +83,7 @@ export default function CheckoutWizardPage() {
 
   const nextStep = () => setCurrentStep((s) => Math.min(s + 1, 2))
   const prevStep = () => setCurrentStep((s) => Math.max(s - 1, 0))
-  const goHome = () => {
+  const goHome = async () => {
     router.push("/")
     reset()
   }
@@ -95,7 +95,7 @@ export default function CheckoutWizardPage() {
   ]
 
   // Estados de error/validación
-  if (invalidParams.length) {
+if (currentStep === 0 && invalidParams.length) {
     return <InvalidParameters missingParams={invalidParams} onBack={() => goHome()} />
   }
   if (isLoading) return <LoadingState />
