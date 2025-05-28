@@ -84,8 +84,8 @@ export default function CheckoutWizardPage() {
   const nextStep = () => setCurrentStep((s) => Math.min(s + 1, 2))
   const prevStep = () => setCurrentStep((s) => Math.max(s - 1, 0))
   const goHome = () => {
-    reset()
     router.push("/")
+    reset()
   }
 
   const steps = [
