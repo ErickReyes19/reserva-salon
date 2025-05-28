@@ -81,8 +81,10 @@ export function FotografoFormulario({ isUpdate, initialData, usuarios }: Fotogra
       if (!formData.id) formData.id = randomUUID();
 
       if (isUpdate) {
+        console.log("Actualizando fotógrafo:", formData);
         await putFotografo({ fotografo: formData });
       } else {
+        console.log("creó fotógrafo:", formData);
         await postFotografo({ fotografo: formData });
       }
 

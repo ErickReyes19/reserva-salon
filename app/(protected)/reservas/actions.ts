@@ -20,6 +20,7 @@ function mapReserva(r: any): Reserva {
     fotografoNombre: r.fotografo?.nombre,
     clienteNombre: r.cliente?.nombre,
     nombreSesion: r.nombreSesion,
+    fotografoEmail: r.fotografo.usuario?.email, // Traemos el email del usuario del fotógrafo
   };
 }
 
@@ -201,7 +202,13 @@ export async function createReserva(data: {
       precio,
       ...(nombreSesion ? { nombreSesion } : {}),
     },
-    include: { fotografo: true, cliente: true },
+    include: {
+      fotografo: {
+        include: {
+          usuario: true,       // <— traemos también el usuario del fotógrafo
+        },
+      }, cliente: true
+    },
   });
 
   return mapReserva(created);

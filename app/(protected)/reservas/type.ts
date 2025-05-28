@@ -10,6 +10,7 @@ export type Reserva = {
   precio?: number;  // nuevo campo
   
   photoServiceNombre?: string;
+  fotografoEmail?: string;
   fotografoNombre?: string;
   clienteNombre?: string;
   nombreSesion?: string;

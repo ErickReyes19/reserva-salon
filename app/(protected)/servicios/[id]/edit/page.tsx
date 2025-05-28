@@ -35,7 +35,6 @@ export default async function Edit({ params }: { params: { id: string } }) {
     precio: servicio.precio ?? 0,
     fotografos: servicio.fotografos ?? [], // Asegúrate de que este campo sea un array de IDs
   };
-  console.log("🚀 ~ Edit ~ initialData:", initialData)
 
   return (
     <div>

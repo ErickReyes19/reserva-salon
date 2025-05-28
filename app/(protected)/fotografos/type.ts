@@ -3,6 +3,7 @@ export type Fotografo = {
   usuarioId: string;
   telefono: string;
   nombre: string;
+  email: string;
   bio: string;
   url: string;
   Foto: string;

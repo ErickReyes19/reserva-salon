@@ -6,6 +6,7 @@ interface ReservationState {
   hour: number | null
   photographerId: string
   photographerName: string
+  photographerEmail: string
   serviceName: string
   serviceId: string
   price: number
@@ -26,6 +27,7 @@ export const useReservationStore = create<ReservationState>((set) => ({
   hour: null,
   photographerId: '',
   photographerName: '',
+  photographerEmail: '',
   serviceId: '',
   serviceName: '',
   price: 0,
@@ -48,6 +50,7 @@ export const useReservationStore = create<ReservationState>((set) => ({
       photographerId: '',
       serviceName: '',
       photographerName: '',
+      photographerEmail: '',
       serviceId: '',
       price: 0,
       name: '',

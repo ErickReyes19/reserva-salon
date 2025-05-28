@@ -39,7 +39,6 @@ export default async function EditDisponibilidadPage({
     endDate:         rule.endDate?.slice(0, 10) ?? undefined,
     activo:          rule.activo,
   };
-  console.log("🚀 ~ initialData:", initialData)
 
   return (
     <div className="container mx-auto py-4">

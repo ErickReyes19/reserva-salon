@@ -49,6 +49,7 @@
     "motion": "^12.12.1",
     "next": "14.2.22",
     "next-cloudinary": "^6.16.0",
+    "nodemailer": "^7.0.3",
     "react": "^18",
     "react-day-picker": "^8.10.1",
     "react-dom": "^18",
@@ -63,6 +64,7 @@
   "devDependencies": {
     "@prisma/nextjs-monorepo-workaround-plugin": "^6.8.2",
     "@types/node": "^20",
+    "@types/nodemailer": "^6.4.17",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",

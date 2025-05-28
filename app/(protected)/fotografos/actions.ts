@@ -22,6 +22,7 @@ export async function getFotografos(): Promise<Fotografo[]> {
       usuarioId: f.usuarioId,
       nombre: f.nombre,
       telefono: f.telefono ?? "",
+      email: f.usuario.email ?? "",
       bio: f.bio ?? "",
       url: f.url ?? "",
       Foto: f.Foto,
@@ -52,7 +53,7 @@ export async function getFotografosDisponibles(
             {
               recurring: false,
               startDate: { lte: reservationDate },
-              endDate:   { gte: reservationDate },
+              endDate: { gte: reservationDate },
             },
           ],
         },
@@ -62,15 +63,16 @@ export async function getFotografosDisponibles(
   });
 
   return fotografos.map((f) => ({
-    id:             f.id,
-    usuarioId:      f.usuarioId,
-    nombre:         f.nombre,
-    telefono:       f.telefono ?? "",
-    bio:            f.bio ?? "",
-    url:            f.url ?? "",
-    Foto:           f.Foto,
-    disponible:     f.disponible,
-    usuarioNombre:  f.usuario?.nombre ?? "",
+    id: f.id,
+    usuarioId: f.usuarioId,
+    nombre: f.nombre,
+    email: f.usuario.email ?? "",
+    telefono: f.telefono ?? "",
+    bio: f.bio ?? "",
+    url: f.url ?? "",
+    Foto: f.Foto,
+    disponible: f.disponible,
+    usuarioNombre: f.usuario?.nombre ?? "",
   }));
 }
 // Obtener fotógrafo por ID
@@ -88,6 +90,7 @@ export async function getFotografoById(id: string): Promise<Fotografo | null> {
       usuarioId: f.usuarioId,
       nombre: f.nombre,
       telefono: f.telefono ?? "",
+      email: f.usuario.email ?? "",
       bio: f.bio ?? "",
       url: f.url ?? "",
       Foto: f.Foto,
@@ -125,6 +128,7 @@ export async function postFotografo({
       id: created.id,
       usuarioId: created.usuarioId,
       telefono: created.telefono ?? "",
+      email: created.usuario.email ?? "",
       bio: created.bio ?? "",
       url: created.url ?? "",
       nombre: created.nombre,
@@ -147,12 +151,13 @@ export async function putFotografo({
     const updated = await prisma.fotografo.update({
       where: { id: fotografo.id },
       data: {
+        usuarioId: fotografo.usuarioId,
         telefono: fotografo.telefono,
         bio: fotografo.bio,
         url: fotografo.url,
         Foto: fotografo.Foto,
         disponible: fotografo.disponible,
-        nombre : fotografo.nombre
+        nombre: fotografo.nombre
       },
       include: { usuario: true },
     });
@@ -161,6 +166,7 @@ export async function putFotografo({
       id: updated.id,
       usuarioId: updated.usuarioId,
       telefono: updated.telefono ?? "",
+      email: updated.usuario.email ?? "",
       bio: updated.bio ?? "",
       nombre: updated.nombre,
       url: updated.url ?? "",

@@ -68,7 +68,6 @@ export async function getPhotoServiceById(id: string): Promise<PhotoService | nu
 export async function getServiciosPorFotografos(
   fotografoIds: string[]
 ): Promise<PhotoService[]> {
-  console.log("🚀 ~ fotografoIds:", fotografoIds)
   // Paso 1: obtener las relaciones FotografoServicio
   const relaciones = await prisma.fotografoServicio.findMany({
     where: { fotografoId: { in: fotografoIds } },
@@ -99,8 +98,7 @@ export async function getServiciosPorFotografos(
       fotografos: { select: { fotografoId: true } },
     },
   });
-  console.log("🚀 ~ servicios:", servicios)
-
+ 
   // Paso 4: mapear al tipo plano que espera el cliente
   return servicios.map((s) => ({
     id: s.id,

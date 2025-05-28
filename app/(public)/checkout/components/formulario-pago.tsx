@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input"
 import { CreditCard, ArrowLeft } from "lucide-react"
 import { postCliente } from "@/app/(protected)/clientes/actions"
 import { createReserva } from "@/app/(protected)/reservas/actions"
+import { createReservaAndNotify } from "@/app/(protected)/reservas/orchestrator"
 
 const paymentSchema = z.object({
   cardNumber: z
@@ -37,6 +38,9 @@ interface PaymentFormProps {
   email: string
   telefono: string
   serviceId: string
+  serviceName: string
+  photographerName: string
+  fotografoEmail: string
   price: number
   fecha: Date
   hora: number
@@ -51,6 +55,9 @@ export function PaymentForm({
   telefono,
   fecha,
   serviceId,
+  serviceName,
+  photographerName,
+  fotografoEmail,
   price,
   hora,
   fotografoId,
@@ -66,7 +73,7 @@ export function PaymentForm({
   const onSubmit = async (data: PaymentFormData) => {
     try {
       // 1) Simula el pago
-      const paymentSuccess = true // cambia a false para probar fallo
+      const paymentSuccess = true
       if (!paymentSuccess) {
         alert("Error en el pago. Intenta de nuevo.")
         return
@@ -78,25 +85,31 @@ export function PaymentForm({
       })
       if (!cliente) throw new Error("No se pudo crear el cliente")
 
-      // 3) Crea la reserva (horaInicio = fecha + hora)
-      // 2) Crea la reserva con hora exacta sin sumar offsets extra
-      const year = fecha.getUTCFullYear()
-      const month = fecha.getUTCMonth()    // 0 = enero
-      const day = fecha.getUTCDate()
-
-      // Creamos la fecha-hora directamente en UTC:
+      // 3) Prepara fecha-hora UTC
+      const year   = fecha.getUTCFullYear()
+      const month  = fecha.getUTCMonth()   // 0 = enero
+      const day    = fecha.getUTCDate()
       const horaInicio = new Date(Date.UTC(year, month, day, hora, 0, 0))
 
-      await createReserva({
-        fecha,        // si lo guardas como fecha “sin hora” podrías también normalizarlo a UTC
-        horaInicio,   // este Date corresponderá exactamente a “YYYY-MM-DDThh:00:00.000Z”
-        fotografoId,
-        clienteId: cliente.id!,
-        photoServiceId: serviceId,
-        precio: price, 
+      // 4) Crea reserva + envía emails al cliente y fotógrafo
+      await createReservaAndNotify({
+        reservaData: {
+          fecha,               // si guardas fecha “suave” sin hora
+          horaInicio,          // Date UTC exacto
+          fotografoId,
+          clienteId: cliente.id!,
+          photoServiceId: serviceId,
+          precio: price,
+        },
+        // datos de destinatarios:
+        clienteEmail: email,
+        clienteNombre: nombre,
+        fotografoEmail: fotografoEmail,   // <— necesitas añadirlo al store o fetch previo
+        fotografoNombre: photographerName,
+        serviceName,                         // si lo tienes en props/store
       })
 
-      // 4) Avanza al paso de confirmación
+      // 5) Avanza al paso de confirmación
       onNext()
     } catch (err: any) {
       console.error(err)

@@ -112,6 +112,7 @@ export default function CalendarioReservas({ eventos = [] }: Props) {
       hour: selectedHour,
       photographerId: selectedFotografo,
       photographerName: photographer?.nombre || "",
+      photographerEmail: photographer?.email || "",
       serviceId: selectedService,
       price: Number(selectedPrice),
       serviceName: selectedServiceName,

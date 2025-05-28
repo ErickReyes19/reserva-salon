@@ -32,6 +32,7 @@ export default function CheckoutWizardPage() {
     hour,
     photographerId,
     photographerName,
+    photographerEmail,
     serviceId,
     price,
     name,
@@ -95,7 +96,7 @@ export default function CheckoutWizardPage() {
   ]
 
   // Estados de error/validación
-if (currentStep === 0 && invalidParams.length) {
+  if (currentStep === 0 && invalidParams.length) {
     return <InvalidParameters missingParams={invalidParams} onBack={() => goHome()} />
   }
   if (isLoading) return <LoadingState />
@@ -134,6 +135,9 @@ if (currentStep === 0 && invalidParams.length) {
         )}
         {currentStep === 1 && date && (
           <PaymentForm
+            fotografoEmail={photographerEmail}
+            photographerName={photographerName}
+            serviceName={serviceName}
             price={price}
             serviceId={serviceId}
             email={email}
