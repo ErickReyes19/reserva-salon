@@ -10,6 +10,7 @@ export const FotografoSchema = z.object({
   disponible: z.boolean().optional(),
   usuarioId: z.string().min(1, "La categoría es requerida"),
 
+  email: z.string().optional(),
   usuarioNombre: z.string().optional(),
 });
 
