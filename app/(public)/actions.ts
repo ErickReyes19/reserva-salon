@@ -1,19 +1,29 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
+import { startOfDay } from "date-fns";
+
 import type { CategoryWithServices, PhotoService, ReservaEvent } from "./types";
 
 export async function getReservasEvent(): Promise<ReservaEvent[]> {
   try {
-    const reservas = await prisma.reserva.findMany();
+    const hoy = startOfDay(new Date()); // Comienza a las 00:00 de hoy
 
+    const reservas = await prisma.reserva.findMany({
+      where: {
+        fecha: {
+          gte: hoy,
+        },
+      },
+    });
+   
     const eventos: ReservaEvent[] = reservas.map((r) => ({
       id: r.id,
       fecha: r.fecha.toISOString(),
       horaInicio: r.horaInicio.toISOString(),
       horaFin: r.horaFin.toISOString(),
     }));
-    
+
     return eventos;
   } catch (error) {
     console.error("Error al obtener las reservas:", error);
