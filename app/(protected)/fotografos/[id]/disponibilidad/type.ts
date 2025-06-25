@@ -8,4 +8,12 @@ export type Unavailability = {
   startDate?: string;           // ISO datetime (si recurring=false)
   endDate?: string;             // ISO datetime (si recurring=false)
   activo: boolean;              // si la regla está activa
+  exceptions?: AvailabilityException[];
 };
+
+export type AvailabilityException = {
+  id?: string;
+  date: string; // ISO date
+  disponible: boolean;
+};
+

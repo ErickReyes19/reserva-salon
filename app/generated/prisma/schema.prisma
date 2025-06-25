@@ -97,10 +97,22 @@ model Fotografo {
   Foto             String
   disponible       Boolean
   usuario          Usuario             @relation("FotografoUsuario", fields: [usuarioId], references: [id])
-  reservas         Reserva[]           @relation("ReservasFotografo")
+  reservas         ReservaFotografo[]
   galeria          Galeria[]           @relation("GaleriaFotografo")
   unavailabilities Unavailability[]
-  servicios        FotografoServicio[] // Relación con PhotoService a través de la tabla intermedia
+  servicios        FotografoServicio[]
+}
+
+model FotografoServicio {
+  fotografoId String
+  servicioId  String
+
+  fotografo Fotografo    @relation(fields: [fotografoId], references: [id])
+  servicio  PhotoService @relation(fields: [servicioId], references: [id])
+
+  @@id([fotografoId, servicioId]) // Clave primaria compuesta para evitar duplicados
+  // Opcional: índice para facilitar búsquedas rápidas
+  @@index([servicioId])
 }
 
 model PhotoService {
@@ -116,18 +128,6 @@ model PhotoService {
   reservas    Reserva[]
 }
 
-model FotografoServicio {
-  fotografoId String
-  servicioId  String
-
-  fotografo Fotografo    @relation(fields: [fotografoId], references: [id])
-  servicio  PhotoService @relation(fields: [servicioId], references: [id])
-
-  @@id([fotografoId, servicioId]) // Clave primaria compuesta para evitar duplicados
-  // Opcional: índice para facilitar búsquedas rápidas
-  @@index([servicioId])
-}
-
 model Unavailability {
   id          String    @id @default(uuid())
   fotografoId String
@@ -137,9 +137,21 @@ model Unavailability {
   endDate     DateTime? // solo si recurring = false
   activo      Boolean   @default(true)
 
-  fotografo Fotografo @relation(fields: [fotografoId], references: [id])
+  fotografo  Fotografo               @relation(fields: [fotografoId], references: [id])
+  exceptions AvailabilityException[]
 
   @@index([fotografoId])
+}
+
+model AvailabilityException {
+  id               String   @id @default(uuid())
+  unavailabilityId String
+  date             DateTime // Día específico que es excepción a la regla
+  disponible       Boolean // true = sí trabaja ese día, false = no trabaja (por si quieres bloquear un día puntual aunque normalmente sí trabaje)
+
+  unavailability Unavailability @relation(fields: [unavailabilityId], references: [id])
+
+  @@index([unavailabilityId])
 }
 
 model Reserva {
@@ -147,17 +159,29 @@ model Reserva {
   fecha          DateTime
   horaInicio     DateTime
   horaFin        DateTime
-  fotografoId    String
   clienteId      String
-  photoServiceId String? // ← ya amarra con el servicio
+  photoServiceId String?
   estado         Boolean  @default(true)
+  precio         Float?
   createdAt      DateTime @default(now())
 
-  fotografo    Fotografo     @relation("ReservasFotografo", fields: [fotografoId], references: [id])
-  cliente      Cliente       @relation("ReservasCliente", fields: [clienteId], references: [id])
-  photoService PhotoService? @relation(fields: [photoServiceId], references: [id])
+  // Relación muchos a muchos con Fotografon
+  fotografos   ReservaFotografo[]
+  cliente      Cliente            @relation("ReservasCliente", fields: [clienteId], references: [id])
+  photoService PhotoService?      @relation(fields: [photoServiceId], references: [id])
 
-  @@index([fotografoId], map: "Reserva_fotografoId_fkey")
   @@index([clienteId], map: "Reserva_clienteId_fkey")
   @@index([photoServiceId], map: "Reserva_photoServiceId_fkey")
+}
+
+// Tabla intermedia para la relación muchos a muchos
+model ReservaFotografo {
+  reservaId   String
+  fotografoId String
+
+  reserva   Reserva   @relation(fields: [reservaId], references: [id])
+  fotografo Fotografo @relation(fields: [fotografoId], references: [id])
+
+  @@id([reservaId, fotografoId])
+  @@index([fotografoId])
 }

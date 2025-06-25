@@ -39,30 +39,48 @@ export async function getFotografosDisponibles(
   reservationDate: Date
 ): Promise<Fotografo[]> {
   const weekday = reservationDate.getDay(); // 0-6
+  const dateISO = reservationDate.toISOString().slice(0, 10);
 
+  // Trae todos los fotógrafos disponibles con sus indisponibilidades y excepciones
   const fotografos = await prisma.fotografo.findMany({
-    where: {
-      disponible: true,
+    where: { disponible: true },
+    include: {
+      usuario: true,
       unavailabilities: {
-        none: {
-          activo: true,
-          OR: [
-            // No trabaja ese día de la semana
-            { recurring: true, weekday },
-            // No disponible en ese rango puntual
-            {
-              recurring: false,
-              startDate: { lte: reservationDate },
-              endDate: { gte: reservationDate },
-            },
-          ],
-        },
+        where: { activo: true },
+        include: { exceptions: true },
       },
     },
-    include: { usuario: true },
   });
 
-  return fotografos.map((f) => ({
+  // Filtra en JS según la lógica de excepciones
+  const disponibles = fotografos.filter((f) => {
+    // Si alguna excepción positiva existe para ese día, el fotógrafo está disponible
+    const tieneExcepcionPositiva = f.unavailabilities.some((u) =>
+      u.exceptions.some((ex) =>
+        ex.date.toISOString().slice(0, 10) === dateISO && ex.disponible === true
+      )
+    );
+    if (tieneExcepcionPositiva) return true;
+
+    // Si no hay excepción positiva, revisa si tiene alguna indisponibilidad que aplique
+    const tieneIndisponibilidad = f.unavailabilities.some((u) => {
+      if (u.recurring && u.weekday === weekday) return true;
+      if (
+        !u.recurring &&
+        u.startDate &&
+        u.endDate &&
+        reservationDate >= u.startDate &&
+        reservationDate <= u.endDate
+      ) {
+        return true;
+      }
+      return false;
+    });
+    return !tieneIndisponibilidad;
+  });
+
+  return disponibles.map((f) => ({
     id: f.id,
     usuarioId: f.usuarioId,
     nombre: f.nombre,

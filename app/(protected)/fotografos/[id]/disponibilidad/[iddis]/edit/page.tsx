@@ -38,6 +38,11 @@ export default async function EditDisponibilidadPage({
     startDate:       rule.startDate?.slice(0, 10) ?? undefined,
     endDate:         rule.endDate?.slice(0, 10) ?? undefined,
     activo:          rule.activo,
+    exceptions:      rule.exceptions?.map((e) => ({
+      id:         e.id,
+      date:       e.date.toString().slice(0, 10),
+      disponible: e.disponible,
+    })) ?? [],
   };
 
   return (

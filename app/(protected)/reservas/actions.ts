@@ -30,7 +30,7 @@ function mapReserva(r: any): Reserva {
  */
 export async function getReservas(): Promise<Reserva[]> {
   const reservas = await prisma.reserva.findMany({
-    include: { fotografo: true, cliente: true, photoService: true },
+    include: { fotografos: true, cliente: true, photoService: true },
   });
   return reservas.map(mapReserva);
 }
@@ -41,7 +41,7 @@ export async function getReservas(): Promise<Reserva[]> {
 export async function getReservaById(id: string): Promise<Reserva | null> {
   const r = await prisma.reserva.findUnique({
     where: { id },
-    include: { fotografo: true, cliente: true },
+    include: { fotografos: true, cliente: true },
   });
   return r ? mapReserva(r) : null;
 }

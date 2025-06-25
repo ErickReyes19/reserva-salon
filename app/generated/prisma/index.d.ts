@@ -54,25 +54,35 @@ export type Category = $Result.DefaultSelection<Prisma.$CategoryPayload>
  */
 export type Fotografo = $Result.DefaultSelection<Prisma.$FotografoPayload>
 /**
- * Model PhotoService
- * 
- */
-export type PhotoService = $Result.DefaultSelection<Prisma.$PhotoServicePayload>
-/**
  * Model FotografoServicio
  * 
  */
 export type FotografoServicio = $Result.DefaultSelection<Prisma.$FotografoServicioPayload>
+/**
+ * Model PhotoService
+ * 
+ */
+export type PhotoService = $Result.DefaultSelection<Prisma.$PhotoServicePayload>
 /**
  * Model Unavailability
  * 
  */
 export type Unavailability = $Result.DefaultSelection<Prisma.$UnavailabilityPayload>
 /**
+ * Model AvailabilityException
+ * 
+ */
+export type AvailabilityException = $Result.DefaultSelection<Prisma.$AvailabilityExceptionPayload>
+/**
  * Model Reserva
  * 
  */
 export type Reserva = $Result.DefaultSelection<Prisma.$ReservaPayload>
+/**
+ * Model ReservaFotografo
+ * 
+ */
+export type ReservaFotografo = $Result.DefaultSelection<Prisma.$ReservaFotografoPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -280,16 +290,6 @@ export class PrismaClient<
   get fotografo(): Prisma.FotografoDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.photoService`: Exposes CRUD operations for the **PhotoService** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more PhotoServices
-    * const photoServices = await prisma.photoService.findMany()
-    * ```
-    */
-  get photoService(): Prisma.PhotoServiceDelegate<ExtArgs, ClientOptions>;
-
-  /**
    * `prisma.fotografoServicio`: Exposes CRUD operations for the **FotografoServicio** model.
     * Example usage:
     * ```ts
@@ -298,6 +298,16 @@ export class PrismaClient<
     * ```
     */
   get fotografoServicio(): Prisma.FotografoServicioDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.photoService`: Exposes CRUD operations for the **PhotoService** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more PhotoServices
+    * const photoServices = await prisma.photoService.findMany()
+    * ```
+    */
+  get photoService(): Prisma.PhotoServiceDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.unavailability`: Exposes CRUD operations for the **Unavailability** model.
@@ -310,6 +320,16 @@ export class PrismaClient<
   get unavailability(): Prisma.UnavailabilityDelegate<ExtArgs, ClientOptions>;
 
   /**
+   * `prisma.availabilityException`: Exposes CRUD operations for the **AvailabilityException** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AvailabilityExceptions
+    * const availabilityExceptions = await prisma.availabilityException.findMany()
+    * ```
+    */
+  get availabilityException(): Prisma.AvailabilityExceptionDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.reserva`: Exposes CRUD operations for the **Reserva** model.
     * Example usage:
     * ```ts
@@ -318,6 +338,16 @@ export class PrismaClient<
     * ```
     */
   get reserva(): Prisma.ReservaDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.reservaFotografo`: Exposes CRUD operations for the **ReservaFotografo** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ReservaFotografos
+    * const reservaFotografos = await prisma.reservaFotografo.findMany()
+    * ```
+    */
+  get reservaFotografo(): Prisma.ReservaFotografoDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -766,10 +796,12 @@ export namespace Prisma {
     Cliente: 'Cliente',
     Category: 'Category',
     Fotografo: 'Fotografo',
-    PhotoService: 'PhotoService',
     FotografoServicio: 'FotografoServicio',
+    PhotoService: 'PhotoService',
     Unavailability: 'Unavailability',
-    Reserva: 'Reserva'
+    AvailabilityException: 'AvailabilityException',
+    Reserva: 'Reserva',
+    ReservaFotografo: 'ReservaFotografo'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -788,7 +820,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "rol" | "permiso" | "rolPermiso" | "usuario" | "galeria" | "cliente" | "category" | "fotografo" | "photoService" | "fotografoServicio" | "unavailability" | "reserva"
+      modelProps: "rol" | "permiso" | "rolPermiso" | "usuario" | "galeria" | "cliente" | "category" | "fotografo" | "fotografoServicio" | "photoService" | "unavailability" | "availabilityException" | "reserva" | "reservaFotografo"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1320,72 +1352,6 @@ export namespace Prisma {
           }
         }
       }
-      PhotoService: {
-        payload: Prisma.$PhotoServicePayload<ExtArgs>
-        fields: Prisma.PhotoServiceFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.PhotoServiceFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PhotoServicePayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.PhotoServiceFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PhotoServicePayload>
-          }
-          findFirst: {
-            args: Prisma.PhotoServiceFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PhotoServicePayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.PhotoServiceFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PhotoServicePayload>
-          }
-          findMany: {
-            args: Prisma.PhotoServiceFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PhotoServicePayload>[]
-          }
-          create: {
-            args: Prisma.PhotoServiceCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PhotoServicePayload>
-          }
-          createMany: {
-            args: Prisma.PhotoServiceCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          delete: {
-            args: Prisma.PhotoServiceDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PhotoServicePayload>
-          }
-          update: {
-            args: Prisma.PhotoServiceUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PhotoServicePayload>
-          }
-          deleteMany: {
-            args: Prisma.PhotoServiceDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.PhotoServiceUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          upsert: {
-            args: Prisma.PhotoServiceUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PhotoServicePayload>
-          }
-          aggregate: {
-            args: Prisma.PhotoServiceAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregatePhotoService>
-          }
-          groupBy: {
-            args: Prisma.PhotoServiceGroupByArgs<ExtArgs>
-            result: $Utils.Optional<PhotoServiceGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.PhotoServiceCountArgs<ExtArgs>
-            result: $Utils.Optional<PhotoServiceCountAggregateOutputType> | number
-          }
-        }
-      }
       FotografoServicio: {
         payload: Prisma.$FotografoServicioPayload<ExtArgs>
         fields: Prisma.FotografoServicioFieldRefs
@@ -1449,6 +1415,72 @@ export namespace Prisma {
           count: {
             args: Prisma.FotografoServicioCountArgs<ExtArgs>
             result: $Utils.Optional<FotografoServicioCountAggregateOutputType> | number
+          }
+        }
+      }
+      PhotoService: {
+        payload: Prisma.$PhotoServicePayload<ExtArgs>
+        fields: Prisma.PhotoServiceFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PhotoServiceFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhotoServicePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PhotoServiceFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhotoServicePayload>
+          }
+          findFirst: {
+            args: Prisma.PhotoServiceFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhotoServicePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PhotoServiceFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhotoServicePayload>
+          }
+          findMany: {
+            args: Prisma.PhotoServiceFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhotoServicePayload>[]
+          }
+          create: {
+            args: Prisma.PhotoServiceCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhotoServicePayload>
+          }
+          createMany: {
+            args: Prisma.PhotoServiceCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.PhotoServiceDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhotoServicePayload>
+          }
+          update: {
+            args: Prisma.PhotoServiceUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhotoServicePayload>
+          }
+          deleteMany: {
+            args: Prisma.PhotoServiceDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PhotoServiceUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.PhotoServiceUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhotoServicePayload>
+          }
+          aggregate: {
+            args: Prisma.PhotoServiceAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePhotoService>
+          }
+          groupBy: {
+            args: Prisma.PhotoServiceGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PhotoServiceGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PhotoServiceCountArgs<ExtArgs>
+            result: $Utils.Optional<PhotoServiceCountAggregateOutputType> | number
           }
         }
       }
@@ -1518,6 +1550,72 @@ export namespace Prisma {
           }
         }
       }
+      AvailabilityException: {
+        payload: Prisma.$AvailabilityExceptionPayload<ExtArgs>
+        fields: Prisma.AvailabilityExceptionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AvailabilityExceptionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AvailabilityExceptionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AvailabilityExceptionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AvailabilityExceptionPayload>
+          }
+          findFirst: {
+            args: Prisma.AvailabilityExceptionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AvailabilityExceptionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AvailabilityExceptionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AvailabilityExceptionPayload>
+          }
+          findMany: {
+            args: Prisma.AvailabilityExceptionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AvailabilityExceptionPayload>[]
+          }
+          create: {
+            args: Prisma.AvailabilityExceptionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AvailabilityExceptionPayload>
+          }
+          createMany: {
+            args: Prisma.AvailabilityExceptionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.AvailabilityExceptionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AvailabilityExceptionPayload>
+          }
+          update: {
+            args: Prisma.AvailabilityExceptionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AvailabilityExceptionPayload>
+          }
+          deleteMany: {
+            args: Prisma.AvailabilityExceptionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AvailabilityExceptionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.AvailabilityExceptionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AvailabilityExceptionPayload>
+          }
+          aggregate: {
+            args: Prisma.AvailabilityExceptionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAvailabilityException>
+          }
+          groupBy: {
+            args: Prisma.AvailabilityExceptionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AvailabilityExceptionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AvailabilityExceptionCountArgs<ExtArgs>
+            result: $Utils.Optional<AvailabilityExceptionCountAggregateOutputType> | number
+          }
+        }
+      }
       Reserva: {
         payload: Prisma.$ReservaPayload<ExtArgs>
         fields: Prisma.ReservaFieldRefs
@@ -1581,6 +1679,72 @@ export namespace Prisma {
           count: {
             args: Prisma.ReservaCountArgs<ExtArgs>
             result: $Utils.Optional<ReservaCountAggregateOutputType> | number
+          }
+        }
+      }
+      ReservaFotografo: {
+        payload: Prisma.$ReservaFotografoPayload<ExtArgs>
+        fields: Prisma.ReservaFotografoFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ReservaFotografoFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReservaFotografoPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ReservaFotografoFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReservaFotografoPayload>
+          }
+          findFirst: {
+            args: Prisma.ReservaFotografoFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReservaFotografoPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ReservaFotografoFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReservaFotografoPayload>
+          }
+          findMany: {
+            args: Prisma.ReservaFotografoFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReservaFotografoPayload>[]
+          }
+          create: {
+            args: Prisma.ReservaFotografoCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReservaFotografoPayload>
+          }
+          createMany: {
+            args: Prisma.ReservaFotografoCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.ReservaFotografoDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReservaFotografoPayload>
+          }
+          update: {
+            args: Prisma.ReservaFotografoUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReservaFotografoPayload>
+          }
+          deleteMany: {
+            args: Prisma.ReservaFotografoDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ReservaFotografoUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.ReservaFotografoUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReservaFotografoPayload>
+          }
+          aggregate: {
+            args: Prisma.ReservaFotografoAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateReservaFotografo>
+          }
+          groupBy: {
+            args: Prisma.ReservaFotografoGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ReservaFotografoGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ReservaFotografoCountArgs<ExtArgs>
+            result: $Utils.Optional<ReservaFotografoCountAggregateOutputType> | number
           }
         }
       }
@@ -1676,10 +1840,12 @@ export namespace Prisma {
     cliente?: ClienteOmit
     category?: CategoryOmit
     fotografo?: FotografoOmit
-    photoService?: PhotoServiceOmit
     fotografoServicio?: FotografoServicioOmit
+    photoService?: PhotoServiceOmit
     unavailability?: UnavailabilityOmit
+    availabilityException?: AvailabilityExceptionOmit
     reserva?: ReservaOmit
+    reservaFotografo?: ReservaFotografoOmit
   }
 
   /* Types for Logging */
@@ -1935,7 +2101,7 @@ export namespace Prisma {
    * FotografoCountOutputType without action
    */
   export type FotografoCountOutputTypeCountReservasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ReservaWhereInput
+    where?: ReservaFotografoWhereInput
   }
 
   /**
@@ -1997,6 +2163,68 @@ export namespace Prisma {
    */
   export type PhotoServiceCountOutputTypeCountReservasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ReservaWhereInput
+  }
+
+
+  /**
+   * Count Type UnavailabilityCountOutputType
+   */
+
+  export type UnavailabilityCountOutputType = {
+    exceptions: number
+  }
+
+  export type UnavailabilityCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    exceptions?: boolean | UnavailabilityCountOutputTypeCountExceptionsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * UnavailabilityCountOutputType without action
+   */
+  export type UnavailabilityCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UnavailabilityCountOutputType
+     */
+    select?: UnavailabilityCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * UnavailabilityCountOutputType without action
+   */
+  export type UnavailabilityCountOutputTypeCountExceptionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AvailabilityExceptionWhereInput
+  }
+
+
+  /**
+   * Count Type ReservaCountOutputType
+   */
+
+  export type ReservaCountOutputType = {
+    fotografos: number
+  }
+
+  export type ReservaCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    fotografos?: boolean | ReservaCountOutputTypeCountFotografosArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ReservaCountOutputType without action
+   */
+  export type ReservaCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReservaCountOutputType
+     */
+    select?: ReservaCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ReservaCountOutputType without action
+   */
+  export type ReservaCountOutputTypeCountFotografosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ReservaFotografoWhereInput
   }
 
 
@@ -8922,7 +9150,7 @@ export namespace Prisma {
     name: "Fotografo"
     objects: {
       usuario: Prisma.$UsuarioPayload<ExtArgs>
-      reservas: Prisma.$ReservaPayload<ExtArgs>[]
+      reservas: Prisma.$ReservaFotografoPayload<ExtArgs>[]
       galeria: Prisma.$GaleriaPayload<ExtArgs>[]
       unavailabilities: Prisma.$UnavailabilityPayload<ExtArgs>[]
       servicios: Prisma.$FotografoServicioPayload<ExtArgs>[]
@@ -9277,7 +9505,7 @@ export namespace Prisma {
   export interface Prisma__FotografoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     usuario<T extends UsuarioDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UsuarioDefaultArgs<ExtArgs>>): Prisma__UsuarioClient<$Result.GetResult<Prisma.$UsuarioPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    reservas<T extends Fotografo$reservasArgs<ExtArgs> = {}>(args?: Subset<T, Fotografo$reservasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReservaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    reservas<T extends Fotografo$reservasArgs<ExtArgs> = {}>(args?: Subset<T, Fotografo$reservasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReservaFotografoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     galeria<T extends Fotografo$galeriaArgs<ExtArgs> = {}>(args?: Subset<T, Fotografo$galeriaArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GaleriaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     unavailabilities<T extends Fotografo$unavailabilitiesArgs<ExtArgs> = {}>(args?: Subset<T, Fotografo$unavailabilitiesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UnavailabilityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     servicios<T extends Fotografo$serviciosArgs<ExtArgs> = {}>(args?: Subset<T, Fotografo$serviciosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FotografoServicioPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -9665,23 +9893,23 @@ export namespace Prisma {
    */
   export type Fotografo$reservasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Reserva
+     * Select specific fields to fetch from the ReservaFotografo
      */
-    select?: ReservaSelect<ExtArgs> | null
+    select?: ReservaFotografoSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Reserva
+     * Omit specific fields from the ReservaFotografo
      */
-    omit?: ReservaOmit<ExtArgs> | null
+    omit?: ReservaFotografoOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ReservaInclude<ExtArgs> | null
-    where?: ReservaWhereInput
-    orderBy?: ReservaOrderByWithRelationInput | ReservaOrderByWithRelationInput[]
-    cursor?: ReservaWhereUniqueInput
+    include?: ReservaFotografoInclude<ExtArgs> | null
+    where?: ReservaFotografoWhereInput
+    orderBy?: ReservaFotografoOrderByWithRelationInput | ReservaFotografoOrderByWithRelationInput[]
+    cursor?: ReservaFotografoWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: ReservaScalarFieldEnum | ReservaScalarFieldEnum[]
+    distinct?: ReservaFotografoScalarFieldEnum | ReservaFotografoScalarFieldEnum[]
   }
 
   /**
@@ -9772,6 +10000,906 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: FotografoInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model FotografoServicio
+   */
+
+  export type AggregateFotografoServicio = {
+    _count: FotografoServicioCountAggregateOutputType | null
+    _min: FotografoServicioMinAggregateOutputType | null
+    _max: FotografoServicioMaxAggregateOutputType | null
+  }
+
+  export type FotografoServicioMinAggregateOutputType = {
+    fotografoId: string | null
+    servicioId: string | null
+  }
+
+  export type FotografoServicioMaxAggregateOutputType = {
+    fotografoId: string | null
+    servicioId: string | null
+  }
+
+  export type FotografoServicioCountAggregateOutputType = {
+    fotografoId: number
+    servicioId: number
+    _all: number
+  }
+
+
+  export type FotografoServicioMinAggregateInputType = {
+    fotografoId?: true
+    servicioId?: true
+  }
+
+  export type FotografoServicioMaxAggregateInputType = {
+    fotografoId?: true
+    servicioId?: true
+  }
+
+  export type FotografoServicioCountAggregateInputType = {
+    fotografoId?: true
+    servicioId?: true
+    _all?: true
+  }
+
+  export type FotografoServicioAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FotografoServicio to aggregate.
+     */
+    where?: FotografoServicioWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FotografoServicios to fetch.
+     */
+    orderBy?: FotografoServicioOrderByWithRelationInput | FotografoServicioOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FotografoServicioWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FotografoServicios from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FotografoServicios.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned FotografoServicios
+    **/
+    _count?: true | FotografoServicioCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FotografoServicioMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FotografoServicioMaxAggregateInputType
+  }
+
+  export type GetFotografoServicioAggregateType<T extends FotografoServicioAggregateArgs> = {
+        [P in keyof T & keyof AggregateFotografoServicio]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFotografoServicio[P]>
+      : GetScalarType<T[P], AggregateFotografoServicio[P]>
+  }
+
+
+
+
+  export type FotografoServicioGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FotografoServicioWhereInput
+    orderBy?: FotografoServicioOrderByWithAggregationInput | FotografoServicioOrderByWithAggregationInput[]
+    by: FotografoServicioScalarFieldEnum[] | FotografoServicioScalarFieldEnum
+    having?: FotografoServicioScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FotografoServicioCountAggregateInputType | true
+    _min?: FotografoServicioMinAggregateInputType
+    _max?: FotografoServicioMaxAggregateInputType
+  }
+
+  export type FotografoServicioGroupByOutputType = {
+    fotografoId: string
+    servicioId: string
+    _count: FotografoServicioCountAggregateOutputType | null
+    _min: FotografoServicioMinAggregateOutputType | null
+    _max: FotografoServicioMaxAggregateOutputType | null
+  }
+
+  type GetFotografoServicioGroupByPayload<T extends FotografoServicioGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FotografoServicioGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FotografoServicioGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FotografoServicioGroupByOutputType[P]>
+            : GetScalarType<T[P], FotografoServicioGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FotografoServicioSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    fotografoId?: boolean
+    servicioId?: boolean
+    fotografo?: boolean | FotografoDefaultArgs<ExtArgs>
+    servicio?: boolean | PhotoServiceDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["fotografoServicio"]>
+
+
+
+  export type FotografoServicioSelectScalar = {
+    fotografoId?: boolean
+    servicioId?: boolean
+  }
+
+  export type FotografoServicioOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"fotografoId" | "servicioId", ExtArgs["result"]["fotografoServicio"]>
+  export type FotografoServicioInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    fotografo?: boolean | FotografoDefaultArgs<ExtArgs>
+    servicio?: boolean | PhotoServiceDefaultArgs<ExtArgs>
+  }
+
+  export type $FotografoServicioPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "FotografoServicio"
+    objects: {
+      fotografo: Prisma.$FotografoPayload<ExtArgs>
+      servicio: Prisma.$PhotoServicePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      fotografoId: string
+      servicioId: string
+    }, ExtArgs["result"]["fotografoServicio"]>
+    composites: {}
+  }
+
+  type FotografoServicioGetPayload<S extends boolean | null | undefined | FotografoServicioDefaultArgs> = $Result.GetResult<Prisma.$FotografoServicioPayload, S>
+
+  type FotografoServicioCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FotografoServicioFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FotografoServicioCountAggregateInputType | true
+    }
+
+  export interface FotografoServicioDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FotografoServicio'], meta: { name: 'FotografoServicio' } }
+    /**
+     * Find zero or one FotografoServicio that matches the filter.
+     * @param {FotografoServicioFindUniqueArgs} args - Arguments to find a FotografoServicio
+     * @example
+     * // Get one FotografoServicio
+     * const fotografoServicio = await prisma.fotografoServicio.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FotografoServicioFindUniqueArgs>(args: SelectSubset<T, FotografoServicioFindUniqueArgs<ExtArgs>>): Prisma__FotografoServicioClient<$Result.GetResult<Prisma.$FotografoServicioPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one FotografoServicio that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FotografoServicioFindUniqueOrThrowArgs} args - Arguments to find a FotografoServicio
+     * @example
+     * // Get one FotografoServicio
+     * const fotografoServicio = await prisma.fotografoServicio.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FotografoServicioFindUniqueOrThrowArgs>(args: SelectSubset<T, FotografoServicioFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FotografoServicioClient<$Result.GetResult<Prisma.$FotografoServicioPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FotografoServicio that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FotografoServicioFindFirstArgs} args - Arguments to find a FotografoServicio
+     * @example
+     * // Get one FotografoServicio
+     * const fotografoServicio = await prisma.fotografoServicio.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FotografoServicioFindFirstArgs>(args?: SelectSubset<T, FotografoServicioFindFirstArgs<ExtArgs>>): Prisma__FotografoServicioClient<$Result.GetResult<Prisma.$FotografoServicioPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FotografoServicio that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FotografoServicioFindFirstOrThrowArgs} args - Arguments to find a FotografoServicio
+     * @example
+     * // Get one FotografoServicio
+     * const fotografoServicio = await prisma.fotografoServicio.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FotografoServicioFindFirstOrThrowArgs>(args?: SelectSubset<T, FotografoServicioFindFirstOrThrowArgs<ExtArgs>>): Prisma__FotografoServicioClient<$Result.GetResult<Prisma.$FotografoServicioPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more FotografoServicios that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FotografoServicioFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all FotografoServicios
+     * const fotografoServicios = await prisma.fotografoServicio.findMany()
+     * 
+     * // Get first 10 FotografoServicios
+     * const fotografoServicios = await prisma.fotografoServicio.findMany({ take: 10 })
+     * 
+     * // Only select the `fotografoId`
+     * const fotografoServicioWithFotografoIdOnly = await prisma.fotografoServicio.findMany({ select: { fotografoId: true } })
+     * 
+     */
+    findMany<T extends FotografoServicioFindManyArgs>(args?: SelectSubset<T, FotografoServicioFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FotografoServicioPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a FotografoServicio.
+     * @param {FotografoServicioCreateArgs} args - Arguments to create a FotografoServicio.
+     * @example
+     * // Create one FotografoServicio
+     * const FotografoServicio = await prisma.fotografoServicio.create({
+     *   data: {
+     *     // ... data to create a FotografoServicio
+     *   }
+     * })
+     * 
+     */
+    create<T extends FotografoServicioCreateArgs>(args: SelectSubset<T, FotografoServicioCreateArgs<ExtArgs>>): Prisma__FotografoServicioClient<$Result.GetResult<Prisma.$FotografoServicioPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many FotografoServicios.
+     * @param {FotografoServicioCreateManyArgs} args - Arguments to create many FotografoServicios.
+     * @example
+     * // Create many FotografoServicios
+     * const fotografoServicio = await prisma.fotografoServicio.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FotografoServicioCreateManyArgs>(args?: SelectSubset<T, FotografoServicioCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a FotografoServicio.
+     * @param {FotografoServicioDeleteArgs} args - Arguments to delete one FotografoServicio.
+     * @example
+     * // Delete one FotografoServicio
+     * const FotografoServicio = await prisma.fotografoServicio.delete({
+     *   where: {
+     *     // ... filter to delete one FotografoServicio
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FotografoServicioDeleteArgs>(args: SelectSubset<T, FotografoServicioDeleteArgs<ExtArgs>>): Prisma__FotografoServicioClient<$Result.GetResult<Prisma.$FotografoServicioPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one FotografoServicio.
+     * @param {FotografoServicioUpdateArgs} args - Arguments to update one FotografoServicio.
+     * @example
+     * // Update one FotografoServicio
+     * const fotografoServicio = await prisma.fotografoServicio.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FotografoServicioUpdateArgs>(args: SelectSubset<T, FotografoServicioUpdateArgs<ExtArgs>>): Prisma__FotografoServicioClient<$Result.GetResult<Prisma.$FotografoServicioPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more FotografoServicios.
+     * @param {FotografoServicioDeleteManyArgs} args - Arguments to filter FotografoServicios to delete.
+     * @example
+     * // Delete a few FotografoServicios
+     * const { count } = await prisma.fotografoServicio.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FotografoServicioDeleteManyArgs>(args?: SelectSubset<T, FotografoServicioDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FotografoServicios.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FotografoServicioUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many FotografoServicios
+     * const fotografoServicio = await prisma.fotografoServicio.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FotografoServicioUpdateManyArgs>(args: SelectSubset<T, FotografoServicioUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one FotografoServicio.
+     * @param {FotografoServicioUpsertArgs} args - Arguments to update or create a FotografoServicio.
+     * @example
+     * // Update or create a FotografoServicio
+     * const fotografoServicio = await prisma.fotografoServicio.upsert({
+     *   create: {
+     *     // ... data to create a FotografoServicio
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the FotografoServicio we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FotografoServicioUpsertArgs>(args: SelectSubset<T, FotografoServicioUpsertArgs<ExtArgs>>): Prisma__FotografoServicioClient<$Result.GetResult<Prisma.$FotografoServicioPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of FotografoServicios.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FotografoServicioCountArgs} args - Arguments to filter FotografoServicios to count.
+     * @example
+     * // Count the number of FotografoServicios
+     * const count = await prisma.fotografoServicio.count({
+     *   where: {
+     *     // ... the filter for the FotografoServicios we want to count
+     *   }
+     * })
+    **/
+    count<T extends FotografoServicioCountArgs>(
+      args?: Subset<T, FotografoServicioCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FotografoServicioCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a FotografoServicio.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FotografoServicioAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FotografoServicioAggregateArgs>(args: Subset<T, FotografoServicioAggregateArgs>): Prisma.PrismaPromise<GetFotografoServicioAggregateType<T>>
+
+    /**
+     * Group by FotografoServicio.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FotografoServicioGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FotografoServicioGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FotografoServicioGroupByArgs['orderBy'] }
+        : { orderBy?: FotografoServicioGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FotografoServicioGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFotografoServicioGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the FotografoServicio model
+   */
+  readonly fields: FotografoServicioFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for FotografoServicio.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FotografoServicioClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    fotografo<T extends FotografoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FotografoDefaultArgs<ExtArgs>>): Prisma__FotografoClient<$Result.GetResult<Prisma.$FotografoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    servicio<T extends PhotoServiceDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PhotoServiceDefaultArgs<ExtArgs>>): Prisma__PhotoServiceClient<$Result.GetResult<Prisma.$PhotoServicePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the FotografoServicio model
+   */
+  interface FotografoServicioFieldRefs {
+    readonly fotografoId: FieldRef<"FotografoServicio", 'String'>
+    readonly servicioId: FieldRef<"FotografoServicio", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * FotografoServicio findUnique
+   */
+  export type FotografoServicioFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FotografoServicio
+     */
+    select?: FotografoServicioSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FotografoServicio
+     */
+    omit?: FotografoServicioOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FotografoServicioInclude<ExtArgs> | null
+    /**
+     * Filter, which FotografoServicio to fetch.
+     */
+    where: FotografoServicioWhereUniqueInput
+  }
+
+  /**
+   * FotografoServicio findUniqueOrThrow
+   */
+  export type FotografoServicioFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FotografoServicio
+     */
+    select?: FotografoServicioSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FotografoServicio
+     */
+    omit?: FotografoServicioOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FotografoServicioInclude<ExtArgs> | null
+    /**
+     * Filter, which FotografoServicio to fetch.
+     */
+    where: FotografoServicioWhereUniqueInput
+  }
+
+  /**
+   * FotografoServicio findFirst
+   */
+  export type FotografoServicioFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FotografoServicio
+     */
+    select?: FotografoServicioSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FotografoServicio
+     */
+    omit?: FotografoServicioOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FotografoServicioInclude<ExtArgs> | null
+    /**
+     * Filter, which FotografoServicio to fetch.
+     */
+    where?: FotografoServicioWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FotografoServicios to fetch.
+     */
+    orderBy?: FotografoServicioOrderByWithRelationInput | FotografoServicioOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FotografoServicios.
+     */
+    cursor?: FotografoServicioWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FotografoServicios from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FotografoServicios.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FotografoServicios.
+     */
+    distinct?: FotografoServicioScalarFieldEnum | FotografoServicioScalarFieldEnum[]
+  }
+
+  /**
+   * FotografoServicio findFirstOrThrow
+   */
+  export type FotografoServicioFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FotografoServicio
+     */
+    select?: FotografoServicioSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FotografoServicio
+     */
+    omit?: FotografoServicioOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FotografoServicioInclude<ExtArgs> | null
+    /**
+     * Filter, which FotografoServicio to fetch.
+     */
+    where?: FotografoServicioWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FotografoServicios to fetch.
+     */
+    orderBy?: FotografoServicioOrderByWithRelationInput | FotografoServicioOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FotografoServicios.
+     */
+    cursor?: FotografoServicioWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FotografoServicios from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FotografoServicios.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FotografoServicios.
+     */
+    distinct?: FotografoServicioScalarFieldEnum | FotografoServicioScalarFieldEnum[]
+  }
+
+  /**
+   * FotografoServicio findMany
+   */
+  export type FotografoServicioFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FotografoServicio
+     */
+    select?: FotografoServicioSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FotografoServicio
+     */
+    omit?: FotografoServicioOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FotografoServicioInclude<ExtArgs> | null
+    /**
+     * Filter, which FotografoServicios to fetch.
+     */
+    where?: FotografoServicioWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FotografoServicios to fetch.
+     */
+    orderBy?: FotografoServicioOrderByWithRelationInput | FotografoServicioOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing FotografoServicios.
+     */
+    cursor?: FotografoServicioWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FotografoServicios from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FotografoServicios.
+     */
+    skip?: number
+    distinct?: FotografoServicioScalarFieldEnum | FotografoServicioScalarFieldEnum[]
+  }
+
+  /**
+   * FotografoServicio create
+   */
+  export type FotografoServicioCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FotografoServicio
+     */
+    select?: FotografoServicioSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FotografoServicio
+     */
+    omit?: FotografoServicioOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FotografoServicioInclude<ExtArgs> | null
+    /**
+     * The data needed to create a FotografoServicio.
+     */
+    data: XOR<FotografoServicioCreateInput, FotografoServicioUncheckedCreateInput>
+  }
+
+  /**
+   * FotografoServicio createMany
+   */
+  export type FotografoServicioCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many FotografoServicios.
+     */
+    data: FotografoServicioCreateManyInput | FotografoServicioCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * FotografoServicio update
+   */
+  export type FotografoServicioUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FotografoServicio
+     */
+    select?: FotografoServicioSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FotografoServicio
+     */
+    omit?: FotografoServicioOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FotografoServicioInclude<ExtArgs> | null
+    /**
+     * The data needed to update a FotografoServicio.
+     */
+    data: XOR<FotografoServicioUpdateInput, FotografoServicioUncheckedUpdateInput>
+    /**
+     * Choose, which FotografoServicio to update.
+     */
+    where: FotografoServicioWhereUniqueInput
+  }
+
+  /**
+   * FotografoServicio updateMany
+   */
+  export type FotografoServicioUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update FotografoServicios.
+     */
+    data: XOR<FotografoServicioUpdateManyMutationInput, FotografoServicioUncheckedUpdateManyInput>
+    /**
+     * Filter which FotografoServicios to update
+     */
+    where?: FotografoServicioWhereInput
+    /**
+     * Limit how many FotografoServicios to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * FotografoServicio upsert
+   */
+  export type FotografoServicioUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FotografoServicio
+     */
+    select?: FotografoServicioSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FotografoServicio
+     */
+    omit?: FotografoServicioOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FotografoServicioInclude<ExtArgs> | null
+    /**
+     * The filter to search for the FotografoServicio to update in case it exists.
+     */
+    where: FotografoServicioWhereUniqueInput
+    /**
+     * In case the FotografoServicio found by the `where` argument doesn't exist, create a new FotografoServicio with this data.
+     */
+    create: XOR<FotografoServicioCreateInput, FotografoServicioUncheckedCreateInput>
+    /**
+     * In case the FotografoServicio was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FotografoServicioUpdateInput, FotografoServicioUncheckedUpdateInput>
+  }
+
+  /**
+   * FotografoServicio delete
+   */
+  export type FotografoServicioDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FotografoServicio
+     */
+    select?: FotografoServicioSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FotografoServicio
+     */
+    omit?: FotografoServicioOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FotografoServicioInclude<ExtArgs> | null
+    /**
+     * Filter which FotografoServicio to delete.
+     */
+    where: FotografoServicioWhereUniqueInput
+  }
+
+  /**
+   * FotografoServicio deleteMany
+   */
+  export type FotografoServicioDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FotografoServicios to delete
+     */
+    where?: FotografoServicioWhereInput
+    /**
+     * Limit how many FotografoServicios to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * FotografoServicio without action
+   */
+  export type FotografoServicioDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FotografoServicio
+     */
+    select?: FotografoServicioSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FotografoServicio
+     */
+    omit?: FotografoServicioOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FotografoServicioInclude<ExtArgs> | null
   }
 
 
@@ -10819,906 +11947,6 @@ export namespace Prisma {
 
 
   /**
-   * Model FotografoServicio
-   */
-
-  export type AggregateFotografoServicio = {
-    _count: FotografoServicioCountAggregateOutputType | null
-    _min: FotografoServicioMinAggregateOutputType | null
-    _max: FotografoServicioMaxAggregateOutputType | null
-  }
-
-  export type FotografoServicioMinAggregateOutputType = {
-    fotografoId: string | null
-    servicioId: string | null
-  }
-
-  export type FotografoServicioMaxAggregateOutputType = {
-    fotografoId: string | null
-    servicioId: string | null
-  }
-
-  export type FotografoServicioCountAggregateOutputType = {
-    fotografoId: number
-    servicioId: number
-    _all: number
-  }
-
-
-  export type FotografoServicioMinAggregateInputType = {
-    fotografoId?: true
-    servicioId?: true
-  }
-
-  export type FotografoServicioMaxAggregateInputType = {
-    fotografoId?: true
-    servicioId?: true
-  }
-
-  export type FotografoServicioCountAggregateInputType = {
-    fotografoId?: true
-    servicioId?: true
-    _all?: true
-  }
-
-  export type FotografoServicioAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which FotografoServicio to aggregate.
-     */
-    where?: FotografoServicioWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of FotografoServicios to fetch.
-     */
-    orderBy?: FotografoServicioOrderByWithRelationInput | FotografoServicioOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: FotografoServicioWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` FotografoServicios from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` FotografoServicios.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned FotografoServicios
-    **/
-    _count?: true | FotografoServicioCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: FotografoServicioMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: FotografoServicioMaxAggregateInputType
-  }
-
-  export type GetFotografoServicioAggregateType<T extends FotografoServicioAggregateArgs> = {
-        [P in keyof T & keyof AggregateFotografoServicio]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateFotografoServicio[P]>
-      : GetScalarType<T[P], AggregateFotografoServicio[P]>
-  }
-
-
-
-
-  export type FotografoServicioGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: FotografoServicioWhereInput
-    orderBy?: FotografoServicioOrderByWithAggregationInput | FotografoServicioOrderByWithAggregationInput[]
-    by: FotografoServicioScalarFieldEnum[] | FotografoServicioScalarFieldEnum
-    having?: FotografoServicioScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: FotografoServicioCountAggregateInputType | true
-    _min?: FotografoServicioMinAggregateInputType
-    _max?: FotografoServicioMaxAggregateInputType
-  }
-
-  export type FotografoServicioGroupByOutputType = {
-    fotografoId: string
-    servicioId: string
-    _count: FotografoServicioCountAggregateOutputType | null
-    _min: FotografoServicioMinAggregateOutputType | null
-    _max: FotografoServicioMaxAggregateOutputType | null
-  }
-
-  type GetFotografoServicioGroupByPayload<T extends FotografoServicioGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<FotografoServicioGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof FotografoServicioGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], FotografoServicioGroupByOutputType[P]>
-            : GetScalarType<T[P], FotografoServicioGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type FotografoServicioSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    fotografoId?: boolean
-    servicioId?: boolean
-    fotografo?: boolean | FotografoDefaultArgs<ExtArgs>
-    servicio?: boolean | PhotoServiceDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["fotografoServicio"]>
-
-
-
-  export type FotografoServicioSelectScalar = {
-    fotografoId?: boolean
-    servicioId?: boolean
-  }
-
-  export type FotografoServicioOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"fotografoId" | "servicioId", ExtArgs["result"]["fotografoServicio"]>
-  export type FotografoServicioInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    fotografo?: boolean | FotografoDefaultArgs<ExtArgs>
-    servicio?: boolean | PhotoServiceDefaultArgs<ExtArgs>
-  }
-
-  export type $FotografoServicioPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "FotografoServicio"
-    objects: {
-      fotografo: Prisma.$FotografoPayload<ExtArgs>
-      servicio: Prisma.$PhotoServicePayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      fotografoId: string
-      servicioId: string
-    }, ExtArgs["result"]["fotografoServicio"]>
-    composites: {}
-  }
-
-  type FotografoServicioGetPayload<S extends boolean | null | undefined | FotografoServicioDefaultArgs> = $Result.GetResult<Prisma.$FotografoServicioPayload, S>
-
-  type FotografoServicioCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<FotografoServicioFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: FotografoServicioCountAggregateInputType | true
-    }
-
-  export interface FotografoServicioDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FotografoServicio'], meta: { name: 'FotografoServicio' } }
-    /**
-     * Find zero or one FotografoServicio that matches the filter.
-     * @param {FotografoServicioFindUniqueArgs} args - Arguments to find a FotografoServicio
-     * @example
-     * // Get one FotografoServicio
-     * const fotografoServicio = await prisma.fotografoServicio.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends FotografoServicioFindUniqueArgs>(args: SelectSubset<T, FotografoServicioFindUniqueArgs<ExtArgs>>): Prisma__FotografoServicioClient<$Result.GetResult<Prisma.$FotografoServicioPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one FotografoServicio that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {FotografoServicioFindUniqueOrThrowArgs} args - Arguments to find a FotografoServicio
-     * @example
-     * // Get one FotografoServicio
-     * const fotografoServicio = await prisma.fotografoServicio.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends FotografoServicioFindUniqueOrThrowArgs>(args: SelectSubset<T, FotografoServicioFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FotografoServicioClient<$Result.GetResult<Prisma.$FotografoServicioPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first FotografoServicio that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {FotografoServicioFindFirstArgs} args - Arguments to find a FotografoServicio
-     * @example
-     * // Get one FotografoServicio
-     * const fotografoServicio = await prisma.fotografoServicio.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends FotografoServicioFindFirstArgs>(args?: SelectSubset<T, FotografoServicioFindFirstArgs<ExtArgs>>): Prisma__FotografoServicioClient<$Result.GetResult<Prisma.$FotografoServicioPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first FotografoServicio that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {FotografoServicioFindFirstOrThrowArgs} args - Arguments to find a FotografoServicio
-     * @example
-     * // Get one FotografoServicio
-     * const fotografoServicio = await prisma.fotografoServicio.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends FotografoServicioFindFirstOrThrowArgs>(args?: SelectSubset<T, FotografoServicioFindFirstOrThrowArgs<ExtArgs>>): Prisma__FotografoServicioClient<$Result.GetResult<Prisma.$FotografoServicioPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more FotografoServicios that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {FotografoServicioFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all FotografoServicios
-     * const fotografoServicios = await prisma.fotografoServicio.findMany()
-     * 
-     * // Get first 10 FotografoServicios
-     * const fotografoServicios = await prisma.fotografoServicio.findMany({ take: 10 })
-     * 
-     * // Only select the `fotografoId`
-     * const fotografoServicioWithFotografoIdOnly = await prisma.fotografoServicio.findMany({ select: { fotografoId: true } })
-     * 
-     */
-    findMany<T extends FotografoServicioFindManyArgs>(args?: SelectSubset<T, FotografoServicioFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FotografoServicioPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a FotografoServicio.
-     * @param {FotografoServicioCreateArgs} args - Arguments to create a FotografoServicio.
-     * @example
-     * // Create one FotografoServicio
-     * const FotografoServicio = await prisma.fotografoServicio.create({
-     *   data: {
-     *     // ... data to create a FotografoServicio
-     *   }
-     * })
-     * 
-     */
-    create<T extends FotografoServicioCreateArgs>(args: SelectSubset<T, FotografoServicioCreateArgs<ExtArgs>>): Prisma__FotografoServicioClient<$Result.GetResult<Prisma.$FotografoServicioPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many FotografoServicios.
-     * @param {FotografoServicioCreateManyArgs} args - Arguments to create many FotografoServicios.
-     * @example
-     * // Create many FotografoServicios
-     * const fotografoServicio = await prisma.fotografoServicio.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends FotografoServicioCreateManyArgs>(args?: SelectSubset<T, FotografoServicioCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Delete a FotografoServicio.
-     * @param {FotografoServicioDeleteArgs} args - Arguments to delete one FotografoServicio.
-     * @example
-     * // Delete one FotografoServicio
-     * const FotografoServicio = await prisma.fotografoServicio.delete({
-     *   where: {
-     *     // ... filter to delete one FotografoServicio
-     *   }
-     * })
-     * 
-     */
-    delete<T extends FotografoServicioDeleteArgs>(args: SelectSubset<T, FotografoServicioDeleteArgs<ExtArgs>>): Prisma__FotografoServicioClient<$Result.GetResult<Prisma.$FotografoServicioPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one FotografoServicio.
-     * @param {FotografoServicioUpdateArgs} args - Arguments to update one FotografoServicio.
-     * @example
-     * // Update one FotografoServicio
-     * const fotografoServicio = await prisma.fotografoServicio.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends FotografoServicioUpdateArgs>(args: SelectSubset<T, FotografoServicioUpdateArgs<ExtArgs>>): Prisma__FotografoServicioClient<$Result.GetResult<Prisma.$FotografoServicioPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more FotografoServicios.
-     * @param {FotografoServicioDeleteManyArgs} args - Arguments to filter FotografoServicios to delete.
-     * @example
-     * // Delete a few FotografoServicios
-     * const { count } = await prisma.fotografoServicio.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends FotografoServicioDeleteManyArgs>(args?: SelectSubset<T, FotografoServicioDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more FotografoServicios.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {FotografoServicioUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many FotografoServicios
-     * const fotografoServicio = await prisma.fotografoServicio.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends FotografoServicioUpdateManyArgs>(args: SelectSubset<T, FotografoServicioUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create or update one FotografoServicio.
-     * @param {FotografoServicioUpsertArgs} args - Arguments to update or create a FotografoServicio.
-     * @example
-     * // Update or create a FotografoServicio
-     * const fotografoServicio = await prisma.fotografoServicio.upsert({
-     *   create: {
-     *     // ... data to create a FotografoServicio
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the FotografoServicio we want to update
-     *   }
-     * })
-     */
-    upsert<T extends FotografoServicioUpsertArgs>(args: SelectSubset<T, FotografoServicioUpsertArgs<ExtArgs>>): Prisma__FotografoServicioClient<$Result.GetResult<Prisma.$FotografoServicioPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of FotografoServicios.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {FotografoServicioCountArgs} args - Arguments to filter FotografoServicios to count.
-     * @example
-     * // Count the number of FotografoServicios
-     * const count = await prisma.fotografoServicio.count({
-     *   where: {
-     *     // ... the filter for the FotografoServicios we want to count
-     *   }
-     * })
-    **/
-    count<T extends FotografoServicioCountArgs>(
-      args?: Subset<T, FotografoServicioCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], FotografoServicioCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a FotografoServicio.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {FotografoServicioAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends FotografoServicioAggregateArgs>(args: Subset<T, FotografoServicioAggregateArgs>): Prisma.PrismaPromise<GetFotografoServicioAggregateType<T>>
-
-    /**
-     * Group by FotografoServicio.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {FotografoServicioGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends FotografoServicioGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: FotografoServicioGroupByArgs['orderBy'] }
-        : { orderBy?: FotografoServicioGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, FotografoServicioGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFotografoServicioGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the FotografoServicio model
-   */
-  readonly fields: FotografoServicioFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for FotografoServicio.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__FotografoServicioClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    fotografo<T extends FotografoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FotografoDefaultArgs<ExtArgs>>): Prisma__FotografoClient<$Result.GetResult<Prisma.$FotografoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    servicio<T extends PhotoServiceDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PhotoServiceDefaultArgs<ExtArgs>>): Prisma__PhotoServiceClient<$Result.GetResult<Prisma.$PhotoServicePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the FotografoServicio model
-   */
-  interface FotografoServicioFieldRefs {
-    readonly fotografoId: FieldRef<"FotografoServicio", 'String'>
-    readonly servicioId: FieldRef<"FotografoServicio", 'String'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * FotografoServicio findUnique
-   */
-  export type FotografoServicioFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the FotografoServicio
-     */
-    select?: FotografoServicioSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the FotografoServicio
-     */
-    omit?: FotografoServicioOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FotografoServicioInclude<ExtArgs> | null
-    /**
-     * Filter, which FotografoServicio to fetch.
-     */
-    where: FotografoServicioWhereUniqueInput
-  }
-
-  /**
-   * FotografoServicio findUniqueOrThrow
-   */
-  export type FotografoServicioFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the FotografoServicio
-     */
-    select?: FotografoServicioSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the FotografoServicio
-     */
-    omit?: FotografoServicioOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FotografoServicioInclude<ExtArgs> | null
-    /**
-     * Filter, which FotografoServicio to fetch.
-     */
-    where: FotografoServicioWhereUniqueInput
-  }
-
-  /**
-   * FotografoServicio findFirst
-   */
-  export type FotografoServicioFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the FotografoServicio
-     */
-    select?: FotografoServicioSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the FotografoServicio
-     */
-    omit?: FotografoServicioOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FotografoServicioInclude<ExtArgs> | null
-    /**
-     * Filter, which FotografoServicio to fetch.
-     */
-    where?: FotografoServicioWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of FotografoServicios to fetch.
-     */
-    orderBy?: FotografoServicioOrderByWithRelationInput | FotografoServicioOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for FotografoServicios.
-     */
-    cursor?: FotografoServicioWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` FotografoServicios from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` FotografoServicios.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of FotografoServicios.
-     */
-    distinct?: FotografoServicioScalarFieldEnum | FotografoServicioScalarFieldEnum[]
-  }
-
-  /**
-   * FotografoServicio findFirstOrThrow
-   */
-  export type FotografoServicioFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the FotografoServicio
-     */
-    select?: FotografoServicioSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the FotografoServicio
-     */
-    omit?: FotografoServicioOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FotografoServicioInclude<ExtArgs> | null
-    /**
-     * Filter, which FotografoServicio to fetch.
-     */
-    where?: FotografoServicioWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of FotografoServicios to fetch.
-     */
-    orderBy?: FotografoServicioOrderByWithRelationInput | FotografoServicioOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for FotografoServicios.
-     */
-    cursor?: FotografoServicioWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` FotografoServicios from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` FotografoServicios.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of FotografoServicios.
-     */
-    distinct?: FotografoServicioScalarFieldEnum | FotografoServicioScalarFieldEnum[]
-  }
-
-  /**
-   * FotografoServicio findMany
-   */
-  export type FotografoServicioFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the FotografoServicio
-     */
-    select?: FotografoServicioSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the FotografoServicio
-     */
-    omit?: FotografoServicioOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FotografoServicioInclude<ExtArgs> | null
-    /**
-     * Filter, which FotografoServicios to fetch.
-     */
-    where?: FotografoServicioWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of FotografoServicios to fetch.
-     */
-    orderBy?: FotografoServicioOrderByWithRelationInput | FotografoServicioOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing FotografoServicios.
-     */
-    cursor?: FotografoServicioWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` FotografoServicios from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` FotografoServicios.
-     */
-    skip?: number
-    distinct?: FotografoServicioScalarFieldEnum | FotografoServicioScalarFieldEnum[]
-  }
-
-  /**
-   * FotografoServicio create
-   */
-  export type FotografoServicioCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the FotografoServicio
-     */
-    select?: FotografoServicioSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the FotografoServicio
-     */
-    omit?: FotografoServicioOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FotografoServicioInclude<ExtArgs> | null
-    /**
-     * The data needed to create a FotografoServicio.
-     */
-    data: XOR<FotografoServicioCreateInput, FotografoServicioUncheckedCreateInput>
-  }
-
-  /**
-   * FotografoServicio createMany
-   */
-  export type FotografoServicioCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many FotografoServicios.
-     */
-    data: FotografoServicioCreateManyInput | FotografoServicioCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * FotografoServicio update
-   */
-  export type FotografoServicioUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the FotografoServicio
-     */
-    select?: FotografoServicioSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the FotografoServicio
-     */
-    omit?: FotografoServicioOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FotografoServicioInclude<ExtArgs> | null
-    /**
-     * The data needed to update a FotografoServicio.
-     */
-    data: XOR<FotografoServicioUpdateInput, FotografoServicioUncheckedUpdateInput>
-    /**
-     * Choose, which FotografoServicio to update.
-     */
-    where: FotografoServicioWhereUniqueInput
-  }
-
-  /**
-   * FotografoServicio updateMany
-   */
-  export type FotografoServicioUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update FotografoServicios.
-     */
-    data: XOR<FotografoServicioUpdateManyMutationInput, FotografoServicioUncheckedUpdateManyInput>
-    /**
-     * Filter which FotografoServicios to update
-     */
-    where?: FotografoServicioWhereInput
-    /**
-     * Limit how many FotografoServicios to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * FotografoServicio upsert
-   */
-  export type FotografoServicioUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the FotografoServicio
-     */
-    select?: FotografoServicioSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the FotografoServicio
-     */
-    omit?: FotografoServicioOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FotografoServicioInclude<ExtArgs> | null
-    /**
-     * The filter to search for the FotografoServicio to update in case it exists.
-     */
-    where: FotografoServicioWhereUniqueInput
-    /**
-     * In case the FotografoServicio found by the `where` argument doesn't exist, create a new FotografoServicio with this data.
-     */
-    create: XOR<FotografoServicioCreateInput, FotografoServicioUncheckedCreateInput>
-    /**
-     * In case the FotografoServicio was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<FotografoServicioUpdateInput, FotografoServicioUncheckedUpdateInput>
-  }
-
-  /**
-   * FotografoServicio delete
-   */
-  export type FotografoServicioDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the FotografoServicio
-     */
-    select?: FotografoServicioSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the FotografoServicio
-     */
-    omit?: FotografoServicioOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FotografoServicioInclude<ExtArgs> | null
-    /**
-     * Filter which FotografoServicio to delete.
-     */
-    where: FotografoServicioWhereUniqueInput
-  }
-
-  /**
-   * FotografoServicio deleteMany
-   */
-  export type FotografoServicioDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which FotografoServicios to delete
-     */
-    where?: FotografoServicioWhereInput
-    /**
-     * Limit how many FotografoServicios to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * FotografoServicio without action
-   */
-  export type FotografoServicioDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the FotografoServicio
-     */
-    select?: FotografoServicioSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the FotografoServicio
-     */
-    omit?: FotografoServicioOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FotografoServicioInclude<ExtArgs> | null
-  }
-
-
-  /**
    * Model Unavailability
    */
 
@@ -11933,6 +12161,8 @@ export namespace Prisma {
     endDate?: boolean
     activo?: boolean
     fotografo?: boolean | FotografoDefaultArgs<ExtArgs>
+    exceptions?: boolean | Unavailability$exceptionsArgs<ExtArgs>
+    _count?: boolean | UnavailabilityCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["unavailability"]>
 
 
@@ -11950,12 +12180,15 @@ export namespace Prisma {
   export type UnavailabilityOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fotografoId" | "recurring" | "weekday" | "startDate" | "endDate" | "activo", ExtArgs["result"]["unavailability"]>
   export type UnavailabilityInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     fotografo?: boolean | FotografoDefaultArgs<ExtArgs>
+    exceptions?: boolean | Unavailability$exceptionsArgs<ExtArgs>
+    _count?: boolean | UnavailabilityCountOutputTypeDefaultArgs<ExtArgs>
   }
 
   export type $UnavailabilityPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Unavailability"
     objects: {
       fotografo: Prisma.$FotografoPayload<ExtArgs>
+      exceptions: Prisma.$AvailabilityExceptionPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -12306,6 +12539,7 @@ export namespace Prisma {
   export interface Prisma__UnavailabilityClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     fotografo<T extends FotografoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FotografoDefaultArgs<ExtArgs>>): Prisma__FotografoClient<$Result.GetResult<Prisma.$FotografoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    exceptions<T extends Unavailability$exceptionsArgs<ExtArgs> = {}>(args?: Subset<T, Unavailability$exceptionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AvailabilityExceptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -12685,6 +12919,30 @@ export namespace Prisma {
   }
 
   /**
+   * Unavailability.exceptions
+   */
+  export type Unavailability$exceptionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AvailabilityException
+     */
+    select?: AvailabilityExceptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AvailabilityException
+     */
+    omit?: AvailabilityExceptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AvailabilityExceptionInclude<ExtArgs> | null
+    where?: AvailabilityExceptionWhereInput
+    orderBy?: AvailabilityExceptionOrderByWithRelationInput | AvailabilityExceptionOrderByWithRelationInput[]
+    cursor?: AvailabilityExceptionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AvailabilityExceptionScalarFieldEnum | AvailabilityExceptionScalarFieldEnum[]
+  }
+
+  /**
    * Unavailability without action
    */
   export type UnavailabilityDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -12700,6 +12958,924 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: UnavailabilityInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model AvailabilityException
+   */
+
+  export type AggregateAvailabilityException = {
+    _count: AvailabilityExceptionCountAggregateOutputType | null
+    _min: AvailabilityExceptionMinAggregateOutputType | null
+    _max: AvailabilityExceptionMaxAggregateOutputType | null
+  }
+
+  export type AvailabilityExceptionMinAggregateOutputType = {
+    id: string | null
+    unavailabilityId: string | null
+    date: Date | null
+    disponible: boolean | null
+  }
+
+  export type AvailabilityExceptionMaxAggregateOutputType = {
+    id: string | null
+    unavailabilityId: string | null
+    date: Date | null
+    disponible: boolean | null
+  }
+
+  export type AvailabilityExceptionCountAggregateOutputType = {
+    id: number
+    unavailabilityId: number
+    date: number
+    disponible: number
+    _all: number
+  }
+
+
+  export type AvailabilityExceptionMinAggregateInputType = {
+    id?: true
+    unavailabilityId?: true
+    date?: true
+    disponible?: true
+  }
+
+  export type AvailabilityExceptionMaxAggregateInputType = {
+    id?: true
+    unavailabilityId?: true
+    date?: true
+    disponible?: true
+  }
+
+  export type AvailabilityExceptionCountAggregateInputType = {
+    id?: true
+    unavailabilityId?: true
+    date?: true
+    disponible?: true
+    _all?: true
+  }
+
+  export type AvailabilityExceptionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AvailabilityException to aggregate.
+     */
+    where?: AvailabilityExceptionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AvailabilityExceptions to fetch.
+     */
+    orderBy?: AvailabilityExceptionOrderByWithRelationInput | AvailabilityExceptionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AvailabilityExceptionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AvailabilityExceptions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AvailabilityExceptions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AvailabilityExceptions
+    **/
+    _count?: true | AvailabilityExceptionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AvailabilityExceptionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AvailabilityExceptionMaxAggregateInputType
+  }
+
+  export type GetAvailabilityExceptionAggregateType<T extends AvailabilityExceptionAggregateArgs> = {
+        [P in keyof T & keyof AggregateAvailabilityException]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAvailabilityException[P]>
+      : GetScalarType<T[P], AggregateAvailabilityException[P]>
+  }
+
+
+
+
+  export type AvailabilityExceptionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AvailabilityExceptionWhereInput
+    orderBy?: AvailabilityExceptionOrderByWithAggregationInput | AvailabilityExceptionOrderByWithAggregationInput[]
+    by: AvailabilityExceptionScalarFieldEnum[] | AvailabilityExceptionScalarFieldEnum
+    having?: AvailabilityExceptionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AvailabilityExceptionCountAggregateInputType | true
+    _min?: AvailabilityExceptionMinAggregateInputType
+    _max?: AvailabilityExceptionMaxAggregateInputType
+  }
+
+  export type AvailabilityExceptionGroupByOutputType = {
+    id: string
+    unavailabilityId: string
+    date: Date
+    disponible: boolean
+    _count: AvailabilityExceptionCountAggregateOutputType | null
+    _min: AvailabilityExceptionMinAggregateOutputType | null
+    _max: AvailabilityExceptionMaxAggregateOutputType | null
+  }
+
+  type GetAvailabilityExceptionGroupByPayload<T extends AvailabilityExceptionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AvailabilityExceptionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AvailabilityExceptionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AvailabilityExceptionGroupByOutputType[P]>
+            : GetScalarType<T[P], AvailabilityExceptionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AvailabilityExceptionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    unavailabilityId?: boolean
+    date?: boolean
+    disponible?: boolean
+    unavailability?: boolean | UnavailabilityDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["availabilityException"]>
+
+
+
+  export type AvailabilityExceptionSelectScalar = {
+    id?: boolean
+    unavailabilityId?: boolean
+    date?: boolean
+    disponible?: boolean
+  }
+
+  export type AvailabilityExceptionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "unavailabilityId" | "date" | "disponible", ExtArgs["result"]["availabilityException"]>
+  export type AvailabilityExceptionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    unavailability?: boolean | UnavailabilityDefaultArgs<ExtArgs>
+  }
+
+  export type $AvailabilityExceptionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AvailabilityException"
+    objects: {
+      unavailability: Prisma.$UnavailabilityPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      unavailabilityId: string
+      date: Date
+      disponible: boolean
+    }, ExtArgs["result"]["availabilityException"]>
+    composites: {}
+  }
+
+  type AvailabilityExceptionGetPayload<S extends boolean | null | undefined | AvailabilityExceptionDefaultArgs> = $Result.GetResult<Prisma.$AvailabilityExceptionPayload, S>
+
+  type AvailabilityExceptionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AvailabilityExceptionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AvailabilityExceptionCountAggregateInputType | true
+    }
+
+  export interface AvailabilityExceptionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AvailabilityException'], meta: { name: 'AvailabilityException' } }
+    /**
+     * Find zero or one AvailabilityException that matches the filter.
+     * @param {AvailabilityExceptionFindUniqueArgs} args - Arguments to find a AvailabilityException
+     * @example
+     * // Get one AvailabilityException
+     * const availabilityException = await prisma.availabilityException.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AvailabilityExceptionFindUniqueArgs>(args: SelectSubset<T, AvailabilityExceptionFindUniqueArgs<ExtArgs>>): Prisma__AvailabilityExceptionClient<$Result.GetResult<Prisma.$AvailabilityExceptionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AvailabilityException that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AvailabilityExceptionFindUniqueOrThrowArgs} args - Arguments to find a AvailabilityException
+     * @example
+     * // Get one AvailabilityException
+     * const availabilityException = await prisma.availabilityException.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AvailabilityExceptionFindUniqueOrThrowArgs>(args: SelectSubset<T, AvailabilityExceptionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AvailabilityExceptionClient<$Result.GetResult<Prisma.$AvailabilityExceptionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AvailabilityException that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AvailabilityExceptionFindFirstArgs} args - Arguments to find a AvailabilityException
+     * @example
+     * // Get one AvailabilityException
+     * const availabilityException = await prisma.availabilityException.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AvailabilityExceptionFindFirstArgs>(args?: SelectSubset<T, AvailabilityExceptionFindFirstArgs<ExtArgs>>): Prisma__AvailabilityExceptionClient<$Result.GetResult<Prisma.$AvailabilityExceptionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AvailabilityException that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AvailabilityExceptionFindFirstOrThrowArgs} args - Arguments to find a AvailabilityException
+     * @example
+     * // Get one AvailabilityException
+     * const availabilityException = await prisma.availabilityException.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AvailabilityExceptionFindFirstOrThrowArgs>(args?: SelectSubset<T, AvailabilityExceptionFindFirstOrThrowArgs<ExtArgs>>): Prisma__AvailabilityExceptionClient<$Result.GetResult<Prisma.$AvailabilityExceptionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AvailabilityExceptions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AvailabilityExceptionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AvailabilityExceptions
+     * const availabilityExceptions = await prisma.availabilityException.findMany()
+     * 
+     * // Get first 10 AvailabilityExceptions
+     * const availabilityExceptions = await prisma.availabilityException.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const availabilityExceptionWithIdOnly = await prisma.availabilityException.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AvailabilityExceptionFindManyArgs>(args?: SelectSubset<T, AvailabilityExceptionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AvailabilityExceptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AvailabilityException.
+     * @param {AvailabilityExceptionCreateArgs} args - Arguments to create a AvailabilityException.
+     * @example
+     * // Create one AvailabilityException
+     * const AvailabilityException = await prisma.availabilityException.create({
+     *   data: {
+     *     // ... data to create a AvailabilityException
+     *   }
+     * })
+     * 
+     */
+    create<T extends AvailabilityExceptionCreateArgs>(args: SelectSubset<T, AvailabilityExceptionCreateArgs<ExtArgs>>): Prisma__AvailabilityExceptionClient<$Result.GetResult<Prisma.$AvailabilityExceptionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AvailabilityExceptions.
+     * @param {AvailabilityExceptionCreateManyArgs} args - Arguments to create many AvailabilityExceptions.
+     * @example
+     * // Create many AvailabilityExceptions
+     * const availabilityException = await prisma.availabilityException.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AvailabilityExceptionCreateManyArgs>(args?: SelectSubset<T, AvailabilityExceptionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a AvailabilityException.
+     * @param {AvailabilityExceptionDeleteArgs} args - Arguments to delete one AvailabilityException.
+     * @example
+     * // Delete one AvailabilityException
+     * const AvailabilityException = await prisma.availabilityException.delete({
+     *   where: {
+     *     // ... filter to delete one AvailabilityException
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AvailabilityExceptionDeleteArgs>(args: SelectSubset<T, AvailabilityExceptionDeleteArgs<ExtArgs>>): Prisma__AvailabilityExceptionClient<$Result.GetResult<Prisma.$AvailabilityExceptionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AvailabilityException.
+     * @param {AvailabilityExceptionUpdateArgs} args - Arguments to update one AvailabilityException.
+     * @example
+     * // Update one AvailabilityException
+     * const availabilityException = await prisma.availabilityException.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AvailabilityExceptionUpdateArgs>(args: SelectSubset<T, AvailabilityExceptionUpdateArgs<ExtArgs>>): Prisma__AvailabilityExceptionClient<$Result.GetResult<Prisma.$AvailabilityExceptionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AvailabilityExceptions.
+     * @param {AvailabilityExceptionDeleteManyArgs} args - Arguments to filter AvailabilityExceptions to delete.
+     * @example
+     * // Delete a few AvailabilityExceptions
+     * const { count } = await prisma.availabilityException.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AvailabilityExceptionDeleteManyArgs>(args?: SelectSubset<T, AvailabilityExceptionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AvailabilityExceptions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AvailabilityExceptionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AvailabilityExceptions
+     * const availabilityException = await prisma.availabilityException.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AvailabilityExceptionUpdateManyArgs>(args: SelectSubset<T, AvailabilityExceptionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one AvailabilityException.
+     * @param {AvailabilityExceptionUpsertArgs} args - Arguments to update or create a AvailabilityException.
+     * @example
+     * // Update or create a AvailabilityException
+     * const availabilityException = await prisma.availabilityException.upsert({
+     *   create: {
+     *     // ... data to create a AvailabilityException
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AvailabilityException we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AvailabilityExceptionUpsertArgs>(args: SelectSubset<T, AvailabilityExceptionUpsertArgs<ExtArgs>>): Prisma__AvailabilityExceptionClient<$Result.GetResult<Prisma.$AvailabilityExceptionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AvailabilityExceptions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AvailabilityExceptionCountArgs} args - Arguments to filter AvailabilityExceptions to count.
+     * @example
+     * // Count the number of AvailabilityExceptions
+     * const count = await prisma.availabilityException.count({
+     *   where: {
+     *     // ... the filter for the AvailabilityExceptions we want to count
+     *   }
+     * })
+    **/
+    count<T extends AvailabilityExceptionCountArgs>(
+      args?: Subset<T, AvailabilityExceptionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AvailabilityExceptionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AvailabilityException.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AvailabilityExceptionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AvailabilityExceptionAggregateArgs>(args: Subset<T, AvailabilityExceptionAggregateArgs>): Prisma.PrismaPromise<GetAvailabilityExceptionAggregateType<T>>
+
+    /**
+     * Group by AvailabilityException.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AvailabilityExceptionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AvailabilityExceptionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AvailabilityExceptionGroupByArgs['orderBy'] }
+        : { orderBy?: AvailabilityExceptionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AvailabilityExceptionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAvailabilityExceptionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AvailabilityException model
+   */
+  readonly fields: AvailabilityExceptionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AvailabilityException.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AvailabilityExceptionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    unavailability<T extends UnavailabilityDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UnavailabilityDefaultArgs<ExtArgs>>): Prisma__UnavailabilityClient<$Result.GetResult<Prisma.$UnavailabilityPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AvailabilityException model
+   */
+  interface AvailabilityExceptionFieldRefs {
+    readonly id: FieldRef<"AvailabilityException", 'String'>
+    readonly unavailabilityId: FieldRef<"AvailabilityException", 'String'>
+    readonly date: FieldRef<"AvailabilityException", 'DateTime'>
+    readonly disponible: FieldRef<"AvailabilityException", 'Boolean'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AvailabilityException findUnique
+   */
+  export type AvailabilityExceptionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AvailabilityException
+     */
+    select?: AvailabilityExceptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AvailabilityException
+     */
+    omit?: AvailabilityExceptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AvailabilityExceptionInclude<ExtArgs> | null
+    /**
+     * Filter, which AvailabilityException to fetch.
+     */
+    where: AvailabilityExceptionWhereUniqueInput
+  }
+
+  /**
+   * AvailabilityException findUniqueOrThrow
+   */
+  export type AvailabilityExceptionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AvailabilityException
+     */
+    select?: AvailabilityExceptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AvailabilityException
+     */
+    omit?: AvailabilityExceptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AvailabilityExceptionInclude<ExtArgs> | null
+    /**
+     * Filter, which AvailabilityException to fetch.
+     */
+    where: AvailabilityExceptionWhereUniqueInput
+  }
+
+  /**
+   * AvailabilityException findFirst
+   */
+  export type AvailabilityExceptionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AvailabilityException
+     */
+    select?: AvailabilityExceptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AvailabilityException
+     */
+    omit?: AvailabilityExceptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AvailabilityExceptionInclude<ExtArgs> | null
+    /**
+     * Filter, which AvailabilityException to fetch.
+     */
+    where?: AvailabilityExceptionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AvailabilityExceptions to fetch.
+     */
+    orderBy?: AvailabilityExceptionOrderByWithRelationInput | AvailabilityExceptionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AvailabilityExceptions.
+     */
+    cursor?: AvailabilityExceptionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AvailabilityExceptions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AvailabilityExceptions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AvailabilityExceptions.
+     */
+    distinct?: AvailabilityExceptionScalarFieldEnum | AvailabilityExceptionScalarFieldEnum[]
+  }
+
+  /**
+   * AvailabilityException findFirstOrThrow
+   */
+  export type AvailabilityExceptionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AvailabilityException
+     */
+    select?: AvailabilityExceptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AvailabilityException
+     */
+    omit?: AvailabilityExceptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AvailabilityExceptionInclude<ExtArgs> | null
+    /**
+     * Filter, which AvailabilityException to fetch.
+     */
+    where?: AvailabilityExceptionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AvailabilityExceptions to fetch.
+     */
+    orderBy?: AvailabilityExceptionOrderByWithRelationInput | AvailabilityExceptionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AvailabilityExceptions.
+     */
+    cursor?: AvailabilityExceptionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AvailabilityExceptions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AvailabilityExceptions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AvailabilityExceptions.
+     */
+    distinct?: AvailabilityExceptionScalarFieldEnum | AvailabilityExceptionScalarFieldEnum[]
+  }
+
+  /**
+   * AvailabilityException findMany
+   */
+  export type AvailabilityExceptionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AvailabilityException
+     */
+    select?: AvailabilityExceptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AvailabilityException
+     */
+    omit?: AvailabilityExceptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AvailabilityExceptionInclude<ExtArgs> | null
+    /**
+     * Filter, which AvailabilityExceptions to fetch.
+     */
+    where?: AvailabilityExceptionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AvailabilityExceptions to fetch.
+     */
+    orderBy?: AvailabilityExceptionOrderByWithRelationInput | AvailabilityExceptionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AvailabilityExceptions.
+     */
+    cursor?: AvailabilityExceptionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AvailabilityExceptions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AvailabilityExceptions.
+     */
+    skip?: number
+    distinct?: AvailabilityExceptionScalarFieldEnum | AvailabilityExceptionScalarFieldEnum[]
+  }
+
+  /**
+   * AvailabilityException create
+   */
+  export type AvailabilityExceptionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AvailabilityException
+     */
+    select?: AvailabilityExceptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AvailabilityException
+     */
+    omit?: AvailabilityExceptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AvailabilityExceptionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a AvailabilityException.
+     */
+    data: XOR<AvailabilityExceptionCreateInput, AvailabilityExceptionUncheckedCreateInput>
+  }
+
+  /**
+   * AvailabilityException createMany
+   */
+  export type AvailabilityExceptionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AvailabilityExceptions.
+     */
+    data: AvailabilityExceptionCreateManyInput | AvailabilityExceptionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AvailabilityException update
+   */
+  export type AvailabilityExceptionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AvailabilityException
+     */
+    select?: AvailabilityExceptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AvailabilityException
+     */
+    omit?: AvailabilityExceptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AvailabilityExceptionInclude<ExtArgs> | null
+    /**
+     * The data needed to update a AvailabilityException.
+     */
+    data: XOR<AvailabilityExceptionUpdateInput, AvailabilityExceptionUncheckedUpdateInput>
+    /**
+     * Choose, which AvailabilityException to update.
+     */
+    where: AvailabilityExceptionWhereUniqueInput
+  }
+
+  /**
+   * AvailabilityException updateMany
+   */
+  export type AvailabilityExceptionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AvailabilityExceptions.
+     */
+    data: XOR<AvailabilityExceptionUpdateManyMutationInput, AvailabilityExceptionUncheckedUpdateManyInput>
+    /**
+     * Filter which AvailabilityExceptions to update
+     */
+    where?: AvailabilityExceptionWhereInput
+    /**
+     * Limit how many AvailabilityExceptions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AvailabilityException upsert
+   */
+  export type AvailabilityExceptionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AvailabilityException
+     */
+    select?: AvailabilityExceptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AvailabilityException
+     */
+    omit?: AvailabilityExceptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AvailabilityExceptionInclude<ExtArgs> | null
+    /**
+     * The filter to search for the AvailabilityException to update in case it exists.
+     */
+    where: AvailabilityExceptionWhereUniqueInput
+    /**
+     * In case the AvailabilityException found by the `where` argument doesn't exist, create a new AvailabilityException with this data.
+     */
+    create: XOR<AvailabilityExceptionCreateInput, AvailabilityExceptionUncheckedCreateInput>
+    /**
+     * In case the AvailabilityException was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AvailabilityExceptionUpdateInput, AvailabilityExceptionUncheckedUpdateInput>
+  }
+
+  /**
+   * AvailabilityException delete
+   */
+  export type AvailabilityExceptionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AvailabilityException
+     */
+    select?: AvailabilityExceptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AvailabilityException
+     */
+    omit?: AvailabilityExceptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AvailabilityExceptionInclude<ExtArgs> | null
+    /**
+     * Filter which AvailabilityException to delete.
+     */
+    where: AvailabilityExceptionWhereUniqueInput
+  }
+
+  /**
+   * AvailabilityException deleteMany
+   */
+  export type AvailabilityExceptionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AvailabilityExceptions to delete
+     */
+    where?: AvailabilityExceptionWhereInput
+    /**
+     * Limit how many AvailabilityExceptions to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AvailabilityException without action
+   */
+  export type AvailabilityExceptionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AvailabilityException
+     */
+    select?: AvailabilityExceptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AvailabilityException
+     */
+    omit?: AvailabilityExceptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AvailabilityExceptionInclude<ExtArgs> | null
   }
 
 
@@ -12728,7 +13904,6 @@ export namespace Prisma {
     fecha: Date | null
     horaInicio: Date | null
     horaFin: Date | null
-    fotografoId: string | null
     clienteId: string | null
     photoServiceId: string | null
     estado: boolean | null
@@ -12741,7 +13916,6 @@ export namespace Prisma {
     fecha: Date | null
     horaInicio: Date | null
     horaFin: Date | null
-    fotografoId: string | null
     clienteId: string | null
     photoServiceId: string | null
     estado: boolean | null
@@ -12754,7 +13928,6 @@ export namespace Prisma {
     fecha: number
     horaInicio: number
     horaFin: number
-    fotografoId: number
     clienteId: number
     photoServiceId: number
     estado: number
@@ -12777,7 +13950,6 @@ export namespace Prisma {
     fecha?: true
     horaInicio?: true
     horaFin?: true
-    fotografoId?: true
     clienteId?: true
     photoServiceId?: true
     estado?: true
@@ -12790,7 +13962,6 @@ export namespace Prisma {
     fecha?: true
     horaInicio?: true
     horaFin?: true
-    fotografoId?: true
     clienteId?: true
     photoServiceId?: true
     estado?: true
@@ -12803,7 +13974,6 @@ export namespace Prisma {
     fecha?: true
     horaInicio?: true
     horaFin?: true
-    fotografoId?: true
     clienteId?: true
     photoServiceId?: true
     estado?: true
@@ -12903,7 +14073,6 @@ export namespace Prisma {
     fecha: Date
     horaInicio: Date
     horaFin: Date
-    fotografoId: string
     clienteId: string
     photoServiceId: string | null
     estado: boolean
@@ -12935,15 +14104,15 @@ export namespace Prisma {
     fecha?: boolean
     horaInicio?: boolean
     horaFin?: boolean
-    fotografoId?: boolean
     clienteId?: boolean
     photoServiceId?: boolean
     estado?: boolean
     precio?: boolean
     createdAt?: boolean
-    fotografo?: boolean | FotografoDefaultArgs<ExtArgs>
+    fotografos?: boolean | Reserva$fotografosArgs<ExtArgs>
     cliente?: boolean | ClienteDefaultArgs<ExtArgs>
     photoService?: boolean | Reserva$photoServiceArgs<ExtArgs>
+    _count?: boolean | ReservaCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["reserva"]>
 
 
@@ -12953,7 +14122,6 @@ export namespace Prisma {
     fecha?: boolean
     horaInicio?: boolean
     horaFin?: boolean
-    fotografoId?: boolean
     clienteId?: boolean
     photoServiceId?: boolean
     estado?: boolean
@@ -12961,17 +14129,18 @@ export namespace Prisma {
     createdAt?: boolean
   }
 
-  export type ReservaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fecha" | "horaInicio" | "horaFin" | "fotografoId" | "clienteId" | "photoServiceId" | "estado" | "precio" | "createdAt", ExtArgs["result"]["reserva"]>
+  export type ReservaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fecha" | "horaInicio" | "horaFin" | "clienteId" | "photoServiceId" | "estado" | "precio" | "createdAt", ExtArgs["result"]["reserva"]>
   export type ReservaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    fotografo?: boolean | FotografoDefaultArgs<ExtArgs>
+    fotografos?: boolean | Reserva$fotografosArgs<ExtArgs>
     cliente?: boolean | ClienteDefaultArgs<ExtArgs>
     photoService?: boolean | Reserva$photoServiceArgs<ExtArgs>
+    _count?: boolean | ReservaCountOutputTypeDefaultArgs<ExtArgs>
   }
 
   export type $ReservaPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Reserva"
     objects: {
-      fotografo: Prisma.$FotografoPayload<ExtArgs>
+      fotografos: Prisma.$ReservaFotografoPayload<ExtArgs>[]
       cliente: Prisma.$ClientePayload<ExtArgs>
       photoService: Prisma.$PhotoServicePayload<ExtArgs> | null
     }
@@ -12980,7 +14149,6 @@ export namespace Prisma {
       fecha: Date
       horaInicio: Date
       horaFin: Date
-      fotografoId: string
       clienteId: string
       photoServiceId: string | null
       estado: boolean
@@ -13326,7 +14494,7 @@ export namespace Prisma {
    */
   export interface Prisma__ReservaClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    fotografo<T extends FotografoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FotografoDefaultArgs<ExtArgs>>): Prisma__FotografoClient<$Result.GetResult<Prisma.$FotografoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    fotografos<T extends Reserva$fotografosArgs<ExtArgs> = {}>(args?: Subset<T, Reserva$fotografosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReservaFotografoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     cliente<T extends ClienteDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ClienteDefaultArgs<ExtArgs>>): Prisma__ClienteClient<$Result.GetResult<Prisma.$ClientePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     photoService<T extends Reserva$photoServiceArgs<ExtArgs> = {}>(args?: Subset<T, Reserva$photoServiceArgs<ExtArgs>>): Prisma__PhotoServiceClient<$Result.GetResult<Prisma.$PhotoServicePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
@@ -13362,7 +14530,6 @@ export namespace Prisma {
     readonly fecha: FieldRef<"Reserva", 'DateTime'>
     readonly horaInicio: FieldRef<"Reserva", 'DateTime'>
     readonly horaFin: FieldRef<"Reserva", 'DateTime'>
-    readonly fotografoId: FieldRef<"Reserva", 'String'>
     readonly clienteId: FieldRef<"Reserva", 'String'>
     readonly photoServiceId: FieldRef<"Reserva", 'String'>
     readonly estado: FieldRef<"Reserva", 'Boolean'>
@@ -13711,6 +14878,30 @@ export namespace Prisma {
   }
 
   /**
+   * Reserva.fotografos
+   */
+  export type Reserva$fotografosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReservaFotografo
+     */
+    select?: ReservaFotografoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReservaFotografo
+     */
+    omit?: ReservaFotografoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReservaFotografoInclude<ExtArgs> | null
+    where?: ReservaFotografoWhereInput
+    orderBy?: ReservaFotografoOrderByWithRelationInput | ReservaFotografoOrderByWithRelationInput[]
+    cursor?: ReservaFotografoWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ReservaFotografoScalarFieldEnum | ReservaFotografoScalarFieldEnum[]
+  }
+
+  /**
    * Reserva.photoService
    */
   export type Reserva$photoServiceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -13745,6 +14936,906 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: ReservaInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ReservaFotografo
+   */
+
+  export type AggregateReservaFotografo = {
+    _count: ReservaFotografoCountAggregateOutputType | null
+    _min: ReservaFotografoMinAggregateOutputType | null
+    _max: ReservaFotografoMaxAggregateOutputType | null
+  }
+
+  export type ReservaFotografoMinAggregateOutputType = {
+    reservaId: string | null
+    fotografoId: string | null
+  }
+
+  export type ReservaFotografoMaxAggregateOutputType = {
+    reservaId: string | null
+    fotografoId: string | null
+  }
+
+  export type ReservaFotografoCountAggregateOutputType = {
+    reservaId: number
+    fotografoId: number
+    _all: number
+  }
+
+
+  export type ReservaFotografoMinAggregateInputType = {
+    reservaId?: true
+    fotografoId?: true
+  }
+
+  export type ReservaFotografoMaxAggregateInputType = {
+    reservaId?: true
+    fotografoId?: true
+  }
+
+  export type ReservaFotografoCountAggregateInputType = {
+    reservaId?: true
+    fotografoId?: true
+    _all?: true
+  }
+
+  export type ReservaFotografoAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ReservaFotografo to aggregate.
+     */
+    where?: ReservaFotografoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ReservaFotografos to fetch.
+     */
+    orderBy?: ReservaFotografoOrderByWithRelationInput | ReservaFotografoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ReservaFotografoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ReservaFotografos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ReservaFotografos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ReservaFotografos
+    **/
+    _count?: true | ReservaFotografoCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ReservaFotografoMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ReservaFotografoMaxAggregateInputType
+  }
+
+  export type GetReservaFotografoAggregateType<T extends ReservaFotografoAggregateArgs> = {
+        [P in keyof T & keyof AggregateReservaFotografo]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateReservaFotografo[P]>
+      : GetScalarType<T[P], AggregateReservaFotografo[P]>
+  }
+
+
+
+
+  export type ReservaFotografoGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ReservaFotografoWhereInput
+    orderBy?: ReservaFotografoOrderByWithAggregationInput | ReservaFotografoOrderByWithAggregationInput[]
+    by: ReservaFotografoScalarFieldEnum[] | ReservaFotografoScalarFieldEnum
+    having?: ReservaFotografoScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ReservaFotografoCountAggregateInputType | true
+    _min?: ReservaFotografoMinAggregateInputType
+    _max?: ReservaFotografoMaxAggregateInputType
+  }
+
+  export type ReservaFotografoGroupByOutputType = {
+    reservaId: string
+    fotografoId: string
+    _count: ReservaFotografoCountAggregateOutputType | null
+    _min: ReservaFotografoMinAggregateOutputType | null
+    _max: ReservaFotografoMaxAggregateOutputType | null
+  }
+
+  type GetReservaFotografoGroupByPayload<T extends ReservaFotografoGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ReservaFotografoGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ReservaFotografoGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ReservaFotografoGroupByOutputType[P]>
+            : GetScalarType<T[P], ReservaFotografoGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ReservaFotografoSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    reservaId?: boolean
+    fotografoId?: boolean
+    reserva?: boolean | ReservaDefaultArgs<ExtArgs>
+    fotografo?: boolean | FotografoDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["reservaFotografo"]>
+
+
+
+  export type ReservaFotografoSelectScalar = {
+    reservaId?: boolean
+    fotografoId?: boolean
+  }
+
+  export type ReservaFotografoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"reservaId" | "fotografoId", ExtArgs["result"]["reservaFotografo"]>
+  export type ReservaFotografoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    reserva?: boolean | ReservaDefaultArgs<ExtArgs>
+    fotografo?: boolean | FotografoDefaultArgs<ExtArgs>
+  }
+
+  export type $ReservaFotografoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ReservaFotografo"
+    objects: {
+      reserva: Prisma.$ReservaPayload<ExtArgs>
+      fotografo: Prisma.$FotografoPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      reservaId: string
+      fotografoId: string
+    }, ExtArgs["result"]["reservaFotografo"]>
+    composites: {}
+  }
+
+  type ReservaFotografoGetPayload<S extends boolean | null | undefined | ReservaFotografoDefaultArgs> = $Result.GetResult<Prisma.$ReservaFotografoPayload, S>
+
+  type ReservaFotografoCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ReservaFotografoFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ReservaFotografoCountAggregateInputType | true
+    }
+
+  export interface ReservaFotografoDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ReservaFotografo'], meta: { name: 'ReservaFotografo' } }
+    /**
+     * Find zero or one ReservaFotografo that matches the filter.
+     * @param {ReservaFotografoFindUniqueArgs} args - Arguments to find a ReservaFotografo
+     * @example
+     * // Get one ReservaFotografo
+     * const reservaFotografo = await prisma.reservaFotografo.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ReservaFotografoFindUniqueArgs>(args: SelectSubset<T, ReservaFotografoFindUniqueArgs<ExtArgs>>): Prisma__ReservaFotografoClient<$Result.GetResult<Prisma.$ReservaFotografoPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ReservaFotografo that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ReservaFotografoFindUniqueOrThrowArgs} args - Arguments to find a ReservaFotografo
+     * @example
+     * // Get one ReservaFotografo
+     * const reservaFotografo = await prisma.reservaFotografo.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ReservaFotografoFindUniqueOrThrowArgs>(args: SelectSubset<T, ReservaFotografoFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ReservaFotografoClient<$Result.GetResult<Prisma.$ReservaFotografoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ReservaFotografo that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReservaFotografoFindFirstArgs} args - Arguments to find a ReservaFotografo
+     * @example
+     * // Get one ReservaFotografo
+     * const reservaFotografo = await prisma.reservaFotografo.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ReservaFotografoFindFirstArgs>(args?: SelectSubset<T, ReservaFotografoFindFirstArgs<ExtArgs>>): Prisma__ReservaFotografoClient<$Result.GetResult<Prisma.$ReservaFotografoPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ReservaFotografo that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReservaFotografoFindFirstOrThrowArgs} args - Arguments to find a ReservaFotografo
+     * @example
+     * // Get one ReservaFotografo
+     * const reservaFotografo = await prisma.reservaFotografo.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ReservaFotografoFindFirstOrThrowArgs>(args?: SelectSubset<T, ReservaFotografoFindFirstOrThrowArgs<ExtArgs>>): Prisma__ReservaFotografoClient<$Result.GetResult<Prisma.$ReservaFotografoPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ReservaFotografos that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReservaFotografoFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ReservaFotografos
+     * const reservaFotografos = await prisma.reservaFotografo.findMany()
+     * 
+     * // Get first 10 ReservaFotografos
+     * const reservaFotografos = await prisma.reservaFotografo.findMany({ take: 10 })
+     * 
+     * // Only select the `reservaId`
+     * const reservaFotografoWithReservaIdOnly = await prisma.reservaFotografo.findMany({ select: { reservaId: true } })
+     * 
+     */
+    findMany<T extends ReservaFotografoFindManyArgs>(args?: SelectSubset<T, ReservaFotografoFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReservaFotografoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ReservaFotografo.
+     * @param {ReservaFotografoCreateArgs} args - Arguments to create a ReservaFotografo.
+     * @example
+     * // Create one ReservaFotografo
+     * const ReservaFotografo = await prisma.reservaFotografo.create({
+     *   data: {
+     *     // ... data to create a ReservaFotografo
+     *   }
+     * })
+     * 
+     */
+    create<T extends ReservaFotografoCreateArgs>(args: SelectSubset<T, ReservaFotografoCreateArgs<ExtArgs>>): Prisma__ReservaFotografoClient<$Result.GetResult<Prisma.$ReservaFotografoPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ReservaFotografos.
+     * @param {ReservaFotografoCreateManyArgs} args - Arguments to create many ReservaFotografos.
+     * @example
+     * // Create many ReservaFotografos
+     * const reservaFotografo = await prisma.reservaFotografo.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ReservaFotografoCreateManyArgs>(args?: SelectSubset<T, ReservaFotografoCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a ReservaFotografo.
+     * @param {ReservaFotografoDeleteArgs} args - Arguments to delete one ReservaFotografo.
+     * @example
+     * // Delete one ReservaFotografo
+     * const ReservaFotografo = await prisma.reservaFotografo.delete({
+     *   where: {
+     *     // ... filter to delete one ReservaFotografo
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ReservaFotografoDeleteArgs>(args: SelectSubset<T, ReservaFotografoDeleteArgs<ExtArgs>>): Prisma__ReservaFotografoClient<$Result.GetResult<Prisma.$ReservaFotografoPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ReservaFotografo.
+     * @param {ReservaFotografoUpdateArgs} args - Arguments to update one ReservaFotografo.
+     * @example
+     * // Update one ReservaFotografo
+     * const reservaFotografo = await prisma.reservaFotografo.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ReservaFotografoUpdateArgs>(args: SelectSubset<T, ReservaFotografoUpdateArgs<ExtArgs>>): Prisma__ReservaFotografoClient<$Result.GetResult<Prisma.$ReservaFotografoPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ReservaFotografos.
+     * @param {ReservaFotografoDeleteManyArgs} args - Arguments to filter ReservaFotografos to delete.
+     * @example
+     * // Delete a few ReservaFotografos
+     * const { count } = await prisma.reservaFotografo.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ReservaFotografoDeleteManyArgs>(args?: SelectSubset<T, ReservaFotografoDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ReservaFotografos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReservaFotografoUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ReservaFotografos
+     * const reservaFotografo = await prisma.reservaFotografo.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ReservaFotografoUpdateManyArgs>(args: SelectSubset<T, ReservaFotografoUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one ReservaFotografo.
+     * @param {ReservaFotografoUpsertArgs} args - Arguments to update or create a ReservaFotografo.
+     * @example
+     * // Update or create a ReservaFotografo
+     * const reservaFotografo = await prisma.reservaFotografo.upsert({
+     *   create: {
+     *     // ... data to create a ReservaFotografo
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ReservaFotografo we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ReservaFotografoUpsertArgs>(args: SelectSubset<T, ReservaFotografoUpsertArgs<ExtArgs>>): Prisma__ReservaFotografoClient<$Result.GetResult<Prisma.$ReservaFotografoPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ReservaFotografos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReservaFotografoCountArgs} args - Arguments to filter ReservaFotografos to count.
+     * @example
+     * // Count the number of ReservaFotografos
+     * const count = await prisma.reservaFotografo.count({
+     *   where: {
+     *     // ... the filter for the ReservaFotografos we want to count
+     *   }
+     * })
+    **/
+    count<T extends ReservaFotografoCountArgs>(
+      args?: Subset<T, ReservaFotografoCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ReservaFotografoCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ReservaFotografo.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReservaFotografoAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ReservaFotografoAggregateArgs>(args: Subset<T, ReservaFotografoAggregateArgs>): Prisma.PrismaPromise<GetReservaFotografoAggregateType<T>>
+
+    /**
+     * Group by ReservaFotografo.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReservaFotografoGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ReservaFotografoGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ReservaFotografoGroupByArgs['orderBy'] }
+        : { orderBy?: ReservaFotografoGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ReservaFotografoGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetReservaFotografoGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ReservaFotografo model
+   */
+  readonly fields: ReservaFotografoFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ReservaFotografo.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ReservaFotografoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    reserva<T extends ReservaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ReservaDefaultArgs<ExtArgs>>): Prisma__ReservaClient<$Result.GetResult<Prisma.$ReservaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    fotografo<T extends FotografoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FotografoDefaultArgs<ExtArgs>>): Prisma__FotografoClient<$Result.GetResult<Prisma.$FotografoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ReservaFotografo model
+   */
+  interface ReservaFotografoFieldRefs {
+    readonly reservaId: FieldRef<"ReservaFotografo", 'String'>
+    readonly fotografoId: FieldRef<"ReservaFotografo", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ReservaFotografo findUnique
+   */
+  export type ReservaFotografoFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReservaFotografo
+     */
+    select?: ReservaFotografoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReservaFotografo
+     */
+    omit?: ReservaFotografoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReservaFotografoInclude<ExtArgs> | null
+    /**
+     * Filter, which ReservaFotografo to fetch.
+     */
+    where: ReservaFotografoWhereUniqueInput
+  }
+
+  /**
+   * ReservaFotografo findUniqueOrThrow
+   */
+  export type ReservaFotografoFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReservaFotografo
+     */
+    select?: ReservaFotografoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReservaFotografo
+     */
+    omit?: ReservaFotografoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReservaFotografoInclude<ExtArgs> | null
+    /**
+     * Filter, which ReservaFotografo to fetch.
+     */
+    where: ReservaFotografoWhereUniqueInput
+  }
+
+  /**
+   * ReservaFotografo findFirst
+   */
+  export type ReservaFotografoFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReservaFotografo
+     */
+    select?: ReservaFotografoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReservaFotografo
+     */
+    omit?: ReservaFotografoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReservaFotografoInclude<ExtArgs> | null
+    /**
+     * Filter, which ReservaFotografo to fetch.
+     */
+    where?: ReservaFotografoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ReservaFotografos to fetch.
+     */
+    orderBy?: ReservaFotografoOrderByWithRelationInput | ReservaFotografoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ReservaFotografos.
+     */
+    cursor?: ReservaFotografoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ReservaFotografos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ReservaFotografos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ReservaFotografos.
+     */
+    distinct?: ReservaFotografoScalarFieldEnum | ReservaFotografoScalarFieldEnum[]
+  }
+
+  /**
+   * ReservaFotografo findFirstOrThrow
+   */
+  export type ReservaFotografoFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReservaFotografo
+     */
+    select?: ReservaFotografoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReservaFotografo
+     */
+    omit?: ReservaFotografoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReservaFotografoInclude<ExtArgs> | null
+    /**
+     * Filter, which ReservaFotografo to fetch.
+     */
+    where?: ReservaFotografoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ReservaFotografos to fetch.
+     */
+    orderBy?: ReservaFotografoOrderByWithRelationInput | ReservaFotografoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ReservaFotografos.
+     */
+    cursor?: ReservaFotografoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ReservaFotografos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ReservaFotografos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ReservaFotografos.
+     */
+    distinct?: ReservaFotografoScalarFieldEnum | ReservaFotografoScalarFieldEnum[]
+  }
+
+  /**
+   * ReservaFotografo findMany
+   */
+  export type ReservaFotografoFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReservaFotografo
+     */
+    select?: ReservaFotografoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReservaFotografo
+     */
+    omit?: ReservaFotografoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReservaFotografoInclude<ExtArgs> | null
+    /**
+     * Filter, which ReservaFotografos to fetch.
+     */
+    where?: ReservaFotografoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ReservaFotografos to fetch.
+     */
+    orderBy?: ReservaFotografoOrderByWithRelationInput | ReservaFotografoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ReservaFotografos.
+     */
+    cursor?: ReservaFotografoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ReservaFotografos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ReservaFotografos.
+     */
+    skip?: number
+    distinct?: ReservaFotografoScalarFieldEnum | ReservaFotografoScalarFieldEnum[]
+  }
+
+  /**
+   * ReservaFotografo create
+   */
+  export type ReservaFotografoCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReservaFotografo
+     */
+    select?: ReservaFotografoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReservaFotografo
+     */
+    omit?: ReservaFotografoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReservaFotografoInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ReservaFotografo.
+     */
+    data: XOR<ReservaFotografoCreateInput, ReservaFotografoUncheckedCreateInput>
+  }
+
+  /**
+   * ReservaFotografo createMany
+   */
+  export type ReservaFotografoCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ReservaFotografos.
+     */
+    data: ReservaFotografoCreateManyInput | ReservaFotografoCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ReservaFotografo update
+   */
+  export type ReservaFotografoUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReservaFotografo
+     */
+    select?: ReservaFotografoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReservaFotografo
+     */
+    omit?: ReservaFotografoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReservaFotografoInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ReservaFotografo.
+     */
+    data: XOR<ReservaFotografoUpdateInput, ReservaFotografoUncheckedUpdateInput>
+    /**
+     * Choose, which ReservaFotografo to update.
+     */
+    where: ReservaFotografoWhereUniqueInput
+  }
+
+  /**
+   * ReservaFotografo updateMany
+   */
+  export type ReservaFotografoUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ReservaFotografos.
+     */
+    data: XOR<ReservaFotografoUpdateManyMutationInput, ReservaFotografoUncheckedUpdateManyInput>
+    /**
+     * Filter which ReservaFotografos to update
+     */
+    where?: ReservaFotografoWhereInput
+    /**
+     * Limit how many ReservaFotografos to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ReservaFotografo upsert
+   */
+  export type ReservaFotografoUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReservaFotografo
+     */
+    select?: ReservaFotografoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReservaFotografo
+     */
+    omit?: ReservaFotografoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReservaFotografoInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ReservaFotografo to update in case it exists.
+     */
+    where: ReservaFotografoWhereUniqueInput
+    /**
+     * In case the ReservaFotografo found by the `where` argument doesn't exist, create a new ReservaFotografo with this data.
+     */
+    create: XOR<ReservaFotografoCreateInput, ReservaFotografoUncheckedCreateInput>
+    /**
+     * In case the ReservaFotografo was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ReservaFotografoUpdateInput, ReservaFotografoUncheckedUpdateInput>
+  }
+
+  /**
+   * ReservaFotografo delete
+   */
+  export type ReservaFotografoDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReservaFotografo
+     */
+    select?: ReservaFotografoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReservaFotografo
+     */
+    omit?: ReservaFotografoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReservaFotografoInclude<ExtArgs> | null
+    /**
+     * Filter which ReservaFotografo to delete.
+     */
+    where: ReservaFotografoWhereUniqueInput
+  }
+
+  /**
+   * ReservaFotografo deleteMany
+   */
+  export type ReservaFotografoDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ReservaFotografos to delete
+     */
+    where?: ReservaFotografoWhereInput
+    /**
+     * Limit how many ReservaFotografos to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ReservaFotografo without action
+   */
+  export type ReservaFotografoDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReservaFotografo
+     */
+    select?: ReservaFotografoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReservaFotografo
+     */
+    omit?: ReservaFotografoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReservaFotografoInclude<ExtArgs> | null
   }
 
 
@@ -13856,6 +15947,14 @@ export namespace Prisma {
   export type FotografoScalarFieldEnum = (typeof FotografoScalarFieldEnum)[keyof typeof FotografoScalarFieldEnum]
 
 
+  export const FotografoServicioScalarFieldEnum: {
+    fotografoId: 'fotografoId',
+    servicioId: 'servicioId'
+  };
+
+  export type FotografoServicioScalarFieldEnum = (typeof FotografoServicioScalarFieldEnum)[keyof typeof FotografoServicioScalarFieldEnum]
+
+
   export const PhotoServiceScalarFieldEnum: {
     id: 'id',
     name: 'name',
@@ -13867,14 +15966,6 @@ export namespace Prisma {
   };
 
   export type PhotoServiceScalarFieldEnum = (typeof PhotoServiceScalarFieldEnum)[keyof typeof PhotoServiceScalarFieldEnum]
-
-
-  export const FotografoServicioScalarFieldEnum: {
-    fotografoId: 'fotografoId',
-    servicioId: 'servicioId'
-  };
-
-  export type FotografoServicioScalarFieldEnum = (typeof FotografoServicioScalarFieldEnum)[keyof typeof FotografoServicioScalarFieldEnum]
 
 
   export const UnavailabilityScalarFieldEnum: {
@@ -13890,12 +15981,21 @@ export namespace Prisma {
   export type UnavailabilityScalarFieldEnum = (typeof UnavailabilityScalarFieldEnum)[keyof typeof UnavailabilityScalarFieldEnum]
 
 
+  export const AvailabilityExceptionScalarFieldEnum: {
+    id: 'id',
+    unavailabilityId: 'unavailabilityId',
+    date: 'date',
+    disponible: 'disponible'
+  };
+
+  export type AvailabilityExceptionScalarFieldEnum = (typeof AvailabilityExceptionScalarFieldEnum)[keyof typeof AvailabilityExceptionScalarFieldEnum]
+
+
   export const ReservaScalarFieldEnum: {
     id: 'id',
     fecha: 'fecha',
     horaInicio: 'horaInicio',
     horaFin: 'horaFin',
-    fotografoId: 'fotografoId',
     clienteId: 'clienteId',
     photoServiceId: 'photoServiceId',
     estado: 'estado',
@@ -13904,6 +16004,14 @@ export namespace Prisma {
   };
 
   export type ReservaScalarFieldEnum = (typeof ReservaScalarFieldEnum)[keyof typeof ReservaScalarFieldEnum]
+
+
+  export const ReservaFotografoScalarFieldEnum: {
+    reservaId: 'reservaId',
+    fotografoId: 'fotografoId'
+  };
+
+  export type ReservaFotografoScalarFieldEnum = (typeof ReservaFotografoScalarFieldEnum)[keyof typeof ReservaFotografoScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -14001,6 +16109,14 @@ export namespace Prisma {
   export type FotografoOrderByRelevanceFieldEnum = (typeof FotografoOrderByRelevanceFieldEnum)[keyof typeof FotografoOrderByRelevanceFieldEnum]
 
 
+  export const FotografoServicioOrderByRelevanceFieldEnum: {
+    fotografoId: 'fotografoId',
+    servicioId: 'servicioId'
+  };
+
+  export type FotografoServicioOrderByRelevanceFieldEnum = (typeof FotografoServicioOrderByRelevanceFieldEnum)[keyof typeof FotografoServicioOrderByRelevanceFieldEnum]
+
+
   export const PhotoServiceOrderByRelevanceFieldEnum: {
     id: 'id',
     name: 'name',
@@ -14012,14 +16128,6 @@ export namespace Prisma {
   export type PhotoServiceOrderByRelevanceFieldEnum = (typeof PhotoServiceOrderByRelevanceFieldEnum)[keyof typeof PhotoServiceOrderByRelevanceFieldEnum]
 
 
-  export const FotografoServicioOrderByRelevanceFieldEnum: {
-    fotografoId: 'fotografoId',
-    servicioId: 'servicioId'
-  };
-
-  export type FotografoServicioOrderByRelevanceFieldEnum = (typeof FotografoServicioOrderByRelevanceFieldEnum)[keyof typeof FotografoServicioOrderByRelevanceFieldEnum]
-
-
   export const UnavailabilityOrderByRelevanceFieldEnum: {
     id: 'id',
     fotografoId: 'fotografoId'
@@ -14028,14 +16136,29 @@ export namespace Prisma {
   export type UnavailabilityOrderByRelevanceFieldEnum = (typeof UnavailabilityOrderByRelevanceFieldEnum)[keyof typeof UnavailabilityOrderByRelevanceFieldEnum]
 
 
+  export const AvailabilityExceptionOrderByRelevanceFieldEnum: {
+    id: 'id',
+    unavailabilityId: 'unavailabilityId'
+  };
+
+  export type AvailabilityExceptionOrderByRelevanceFieldEnum = (typeof AvailabilityExceptionOrderByRelevanceFieldEnum)[keyof typeof AvailabilityExceptionOrderByRelevanceFieldEnum]
+
+
   export const ReservaOrderByRelevanceFieldEnum: {
     id: 'id',
-    fotografoId: 'fotografoId',
     clienteId: 'clienteId',
     photoServiceId: 'photoServiceId'
   };
 
   export type ReservaOrderByRelevanceFieldEnum = (typeof ReservaOrderByRelevanceFieldEnum)[keyof typeof ReservaOrderByRelevanceFieldEnum]
+
+
+  export const ReservaFotografoOrderByRelevanceFieldEnum: {
+    reservaId: 'reservaId',
+    fotografoId: 'fotografoId'
+  };
+
+  export type ReservaFotografoOrderByRelevanceFieldEnum = (typeof ReservaFotografoOrderByRelevanceFieldEnum)[keyof typeof ReservaFotografoOrderByRelevanceFieldEnum]
 
 
   /**
@@ -14511,7 +16634,7 @@ export namespace Prisma {
     Foto?: StringFilter<"Fotografo"> | string
     disponible?: BoolFilter<"Fotografo"> | boolean
     usuario?: XOR<UsuarioScalarRelationFilter, UsuarioWhereInput>
-    reservas?: ReservaListRelationFilter
+    reservas?: ReservaFotografoListRelationFilter
     galeria?: GaleriaListRelationFilter
     unavailabilities?: UnavailabilityListRelationFilter
     servicios?: FotografoServicioListRelationFilter
@@ -14527,7 +16650,7 @@ export namespace Prisma {
     Foto?: SortOrder
     disponible?: SortOrder
     usuario?: UsuarioOrderByWithRelationInput
-    reservas?: ReservaOrderByRelationAggregateInput
+    reservas?: ReservaFotografoOrderByRelationAggregateInput
     galeria?: GaleriaOrderByRelationAggregateInput
     unavailabilities?: UnavailabilityOrderByRelationAggregateInput
     servicios?: FotografoServicioOrderByRelationAggregateInput
@@ -14547,7 +16670,7 @@ export namespace Prisma {
     Foto?: StringFilter<"Fotografo"> | string
     disponible?: BoolFilter<"Fotografo"> | boolean
     usuario?: XOR<UsuarioScalarRelationFilter, UsuarioWhereInput>
-    reservas?: ReservaListRelationFilter
+    reservas?: ReservaFotografoListRelationFilter
     galeria?: GaleriaListRelationFilter
     unavailabilities?: UnavailabilityListRelationFilter
     servicios?: FotografoServicioListRelationFilter
@@ -14579,6 +16702,51 @@ export namespace Prisma {
     url?: StringNullableWithAggregatesFilter<"Fotografo"> | string | null
     Foto?: StringWithAggregatesFilter<"Fotografo"> | string
     disponible?: BoolWithAggregatesFilter<"Fotografo"> | boolean
+  }
+
+  export type FotografoServicioWhereInput = {
+    AND?: FotografoServicioWhereInput | FotografoServicioWhereInput[]
+    OR?: FotografoServicioWhereInput[]
+    NOT?: FotografoServicioWhereInput | FotografoServicioWhereInput[]
+    fotografoId?: StringFilter<"FotografoServicio"> | string
+    servicioId?: StringFilter<"FotografoServicio"> | string
+    fotografo?: XOR<FotografoScalarRelationFilter, FotografoWhereInput>
+    servicio?: XOR<PhotoServiceScalarRelationFilter, PhotoServiceWhereInput>
+  }
+
+  export type FotografoServicioOrderByWithRelationInput = {
+    fotografoId?: SortOrder
+    servicioId?: SortOrder
+    fotografo?: FotografoOrderByWithRelationInput
+    servicio?: PhotoServiceOrderByWithRelationInput
+    _relevance?: FotografoServicioOrderByRelevanceInput
+  }
+
+  export type FotografoServicioWhereUniqueInput = Prisma.AtLeast<{
+    fotografoId_servicioId?: FotografoServicioFotografoIdServicioIdCompoundUniqueInput
+    AND?: FotografoServicioWhereInput | FotografoServicioWhereInput[]
+    OR?: FotografoServicioWhereInput[]
+    NOT?: FotografoServicioWhereInput | FotografoServicioWhereInput[]
+    fotografoId?: StringFilter<"FotografoServicio"> | string
+    servicioId?: StringFilter<"FotografoServicio"> | string
+    fotografo?: XOR<FotografoScalarRelationFilter, FotografoWhereInput>
+    servicio?: XOR<PhotoServiceScalarRelationFilter, PhotoServiceWhereInput>
+  }, "fotografoId_servicioId">
+
+  export type FotografoServicioOrderByWithAggregationInput = {
+    fotografoId?: SortOrder
+    servicioId?: SortOrder
+    _count?: FotografoServicioCountOrderByAggregateInput
+    _max?: FotografoServicioMaxOrderByAggregateInput
+    _min?: FotografoServicioMinOrderByAggregateInput
+  }
+
+  export type FotografoServicioScalarWhereWithAggregatesInput = {
+    AND?: FotografoServicioScalarWhereWithAggregatesInput | FotografoServicioScalarWhereWithAggregatesInput[]
+    OR?: FotografoServicioScalarWhereWithAggregatesInput[]
+    NOT?: FotografoServicioScalarWhereWithAggregatesInput | FotografoServicioScalarWhereWithAggregatesInput[]
+    fotografoId?: StringWithAggregatesFilter<"FotografoServicio"> | string
+    servicioId?: StringWithAggregatesFilter<"FotografoServicio"> | string
   }
 
   export type PhotoServiceWhereInput = {
@@ -14655,51 +16823,6 @@ export namespace Prisma {
     categoryId?: StringWithAggregatesFilter<"PhotoService"> | string
   }
 
-  export type FotografoServicioWhereInput = {
-    AND?: FotografoServicioWhereInput | FotografoServicioWhereInput[]
-    OR?: FotografoServicioWhereInput[]
-    NOT?: FotografoServicioWhereInput | FotografoServicioWhereInput[]
-    fotografoId?: StringFilter<"FotografoServicio"> | string
-    servicioId?: StringFilter<"FotografoServicio"> | string
-    fotografo?: XOR<FotografoScalarRelationFilter, FotografoWhereInput>
-    servicio?: XOR<PhotoServiceScalarRelationFilter, PhotoServiceWhereInput>
-  }
-
-  export type FotografoServicioOrderByWithRelationInput = {
-    fotografoId?: SortOrder
-    servicioId?: SortOrder
-    fotografo?: FotografoOrderByWithRelationInput
-    servicio?: PhotoServiceOrderByWithRelationInput
-    _relevance?: FotografoServicioOrderByRelevanceInput
-  }
-
-  export type FotografoServicioWhereUniqueInput = Prisma.AtLeast<{
-    fotografoId_servicioId?: FotografoServicioFotografoIdServicioIdCompoundUniqueInput
-    AND?: FotografoServicioWhereInput | FotografoServicioWhereInput[]
-    OR?: FotografoServicioWhereInput[]
-    NOT?: FotografoServicioWhereInput | FotografoServicioWhereInput[]
-    fotografoId?: StringFilter<"FotografoServicio"> | string
-    servicioId?: StringFilter<"FotografoServicio"> | string
-    fotografo?: XOR<FotografoScalarRelationFilter, FotografoWhereInput>
-    servicio?: XOR<PhotoServiceScalarRelationFilter, PhotoServiceWhereInput>
-  }, "fotografoId_servicioId">
-
-  export type FotografoServicioOrderByWithAggregationInput = {
-    fotografoId?: SortOrder
-    servicioId?: SortOrder
-    _count?: FotografoServicioCountOrderByAggregateInput
-    _max?: FotografoServicioMaxOrderByAggregateInput
-    _min?: FotografoServicioMinOrderByAggregateInput
-  }
-
-  export type FotografoServicioScalarWhereWithAggregatesInput = {
-    AND?: FotografoServicioScalarWhereWithAggregatesInput | FotografoServicioScalarWhereWithAggregatesInput[]
-    OR?: FotografoServicioScalarWhereWithAggregatesInput[]
-    NOT?: FotografoServicioScalarWhereWithAggregatesInput | FotografoServicioScalarWhereWithAggregatesInput[]
-    fotografoId?: StringWithAggregatesFilter<"FotografoServicio"> | string
-    servicioId?: StringWithAggregatesFilter<"FotografoServicio"> | string
-  }
-
   export type UnavailabilityWhereInput = {
     AND?: UnavailabilityWhereInput | UnavailabilityWhereInput[]
     OR?: UnavailabilityWhereInput[]
@@ -14712,6 +16835,7 @@ export namespace Prisma {
     endDate?: DateTimeNullableFilter<"Unavailability"> | Date | string | null
     activo?: BoolFilter<"Unavailability"> | boolean
     fotografo?: XOR<FotografoScalarRelationFilter, FotografoWhereInput>
+    exceptions?: AvailabilityExceptionListRelationFilter
   }
 
   export type UnavailabilityOrderByWithRelationInput = {
@@ -14723,6 +16847,7 @@ export namespace Prisma {
     endDate?: SortOrderInput | SortOrder
     activo?: SortOrder
     fotografo?: FotografoOrderByWithRelationInput
+    exceptions?: AvailabilityExceptionOrderByRelationAggregateInput
     _relevance?: UnavailabilityOrderByRelevanceInput
   }
 
@@ -14738,6 +16863,7 @@ export namespace Prisma {
     endDate?: DateTimeNullableFilter<"Unavailability"> | Date | string | null
     activo?: BoolFilter<"Unavailability"> | boolean
     fotografo?: XOR<FotografoScalarRelationFilter, FotografoWhereInput>
+    exceptions?: AvailabilityExceptionListRelationFilter
   }, "id">
 
   export type UnavailabilityOrderByWithAggregationInput = {
@@ -14768,6 +16894,57 @@ export namespace Prisma {
     activo?: BoolWithAggregatesFilter<"Unavailability"> | boolean
   }
 
+  export type AvailabilityExceptionWhereInput = {
+    AND?: AvailabilityExceptionWhereInput | AvailabilityExceptionWhereInput[]
+    OR?: AvailabilityExceptionWhereInput[]
+    NOT?: AvailabilityExceptionWhereInput | AvailabilityExceptionWhereInput[]
+    id?: StringFilter<"AvailabilityException"> | string
+    unavailabilityId?: StringFilter<"AvailabilityException"> | string
+    date?: DateTimeFilter<"AvailabilityException"> | Date | string
+    disponible?: BoolFilter<"AvailabilityException"> | boolean
+    unavailability?: XOR<UnavailabilityScalarRelationFilter, UnavailabilityWhereInput>
+  }
+
+  export type AvailabilityExceptionOrderByWithRelationInput = {
+    id?: SortOrder
+    unavailabilityId?: SortOrder
+    date?: SortOrder
+    disponible?: SortOrder
+    unavailability?: UnavailabilityOrderByWithRelationInput
+    _relevance?: AvailabilityExceptionOrderByRelevanceInput
+  }
+
+  export type AvailabilityExceptionWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AvailabilityExceptionWhereInput | AvailabilityExceptionWhereInput[]
+    OR?: AvailabilityExceptionWhereInput[]
+    NOT?: AvailabilityExceptionWhereInput | AvailabilityExceptionWhereInput[]
+    unavailabilityId?: StringFilter<"AvailabilityException"> | string
+    date?: DateTimeFilter<"AvailabilityException"> | Date | string
+    disponible?: BoolFilter<"AvailabilityException"> | boolean
+    unavailability?: XOR<UnavailabilityScalarRelationFilter, UnavailabilityWhereInput>
+  }, "id">
+
+  export type AvailabilityExceptionOrderByWithAggregationInput = {
+    id?: SortOrder
+    unavailabilityId?: SortOrder
+    date?: SortOrder
+    disponible?: SortOrder
+    _count?: AvailabilityExceptionCountOrderByAggregateInput
+    _max?: AvailabilityExceptionMaxOrderByAggregateInput
+    _min?: AvailabilityExceptionMinOrderByAggregateInput
+  }
+
+  export type AvailabilityExceptionScalarWhereWithAggregatesInput = {
+    AND?: AvailabilityExceptionScalarWhereWithAggregatesInput | AvailabilityExceptionScalarWhereWithAggregatesInput[]
+    OR?: AvailabilityExceptionScalarWhereWithAggregatesInput[]
+    NOT?: AvailabilityExceptionScalarWhereWithAggregatesInput | AvailabilityExceptionScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AvailabilityException"> | string
+    unavailabilityId?: StringWithAggregatesFilter<"AvailabilityException"> | string
+    date?: DateTimeWithAggregatesFilter<"AvailabilityException"> | Date | string
+    disponible?: BoolWithAggregatesFilter<"AvailabilityException"> | boolean
+  }
+
   export type ReservaWhereInput = {
     AND?: ReservaWhereInput | ReservaWhereInput[]
     OR?: ReservaWhereInput[]
@@ -14776,13 +16953,12 @@ export namespace Prisma {
     fecha?: DateTimeFilter<"Reserva"> | Date | string
     horaInicio?: DateTimeFilter<"Reserva"> | Date | string
     horaFin?: DateTimeFilter<"Reserva"> | Date | string
-    fotografoId?: StringFilter<"Reserva"> | string
     clienteId?: StringFilter<"Reserva"> | string
     photoServiceId?: StringNullableFilter<"Reserva"> | string | null
     estado?: BoolFilter<"Reserva"> | boolean
     precio?: FloatNullableFilter<"Reserva"> | number | null
     createdAt?: DateTimeFilter<"Reserva"> | Date | string
-    fotografo?: XOR<FotografoScalarRelationFilter, FotografoWhereInput>
+    fotografos?: ReservaFotografoListRelationFilter
     cliente?: XOR<ClienteScalarRelationFilter, ClienteWhereInput>
     photoService?: XOR<PhotoServiceNullableScalarRelationFilter, PhotoServiceWhereInput> | null
   }
@@ -14792,13 +16968,12 @@ export namespace Prisma {
     fecha?: SortOrder
     horaInicio?: SortOrder
     horaFin?: SortOrder
-    fotografoId?: SortOrder
     clienteId?: SortOrder
     photoServiceId?: SortOrderInput | SortOrder
     estado?: SortOrder
     precio?: SortOrderInput | SortOrder
     createdAt?: SortOrder
-    fotografo?: FotografoOrderByWithRelationInput
+    fotografos?: ReservaFotografoOrderByRelationAggregateInput
     cliente?: ClienteOrderByWithRelationInput
     photoService?: PhotoServiceOrderByWithRelationInput
     _relevance?: ReservaOrderByRelevanceInput
@@ -14812,13 +16987,12 @@ export namespace Prisma {
     fecha?: DateTimeFilter<"Reserva"> | Date | string
     horaInicio?: DateTimeFilter<"Reserva"> | Date | string
     horaFin?: DateTimeFilter<"Reserva"> | Date | string
-    fotografoId?: StringFilter<"Reserva"> | string
     clienteId?: StringFilter<"Reserva"> | string
     photoServiceId?: StringNullableFilter<"Reserva"> | string | null
     estado?: BoolFilter<"Reserva"> | boolean
     precio?: FloatNullableFilter<"Reserva"> | number | null
     createdAt?: DateTimeFilter<"Reserva"> | Date | string
-    fotografo?: XOR<FotografoScalarRelationFilter, FotografoWhereInput>
+    fotografos?: ReservaFotografoListRelationFilter
     cliente?: XOR<ClienteScalarRelationFilter, ClienteWhereInput>
     photoService?: XOR<PhotoServiceNullableScalarRelationFilter, PhotoServiceWhereInput> | null
   }, "id">
@@ -14828,7 +17002,6 @@ export namespace Prisma {
     fecha?: SortOrder
     horaInicio?: SortOrder
     horaFin?: SortOrder
-    fotografoId?: SortOrder
     clienteId?: SortOrder
     photoServiceId?: SortOrderInput | SortOrder
     estado?: SortOrder
@@ -14849,12 +17022,56 @@ export namespace Prisma {
     fecha?: DateTimeWithAggregatesFilter<"Reserva"> | Date | string
     horaInicio?: DateTimeWithAggregatesFilter<"Reserva"> | Date | string
     horaFin?: DateTimeWithAggregatesFilter<"Reserva"> | Date | string
-    fotografoId?: StringWithAggregatesFilter<"Reserva"> | string
     clienteId?: StringWithAggregatesFilter<"Reserva"> | string
     photoServiceId?: StringNullableWithAggregatesFilter<"Reserva"> | string | null
     estado?: BoolWithAggregatesFilter<"Reserva"> | boolean
     precio?: FloatNullableWithAggregatesFilter<"Reserva"> | number | null
     createdAt?: DateTimeWithAggregatesFilter<"Reserva"> | Date | string
+  }
+
+  export type ReservaFotografoWhereInput = {
+    AND?: ReservaFotografoWhereInput | ReservaFotografoWhereInput[]
+    OR?: ReservaFotografoWhereInput[]
+    NOT?: ReservaFotografoWhereInput | ReservaFotografoWhereInput[]
+    reservaId?: StringFilter<"ReservaFotografo"> | string
+    fotografoId?: StringFilter<"ReservaFotografo"> | string
+    reserva?: XOR<ReservaScalarRelationFilter, ReservaWhereInput>
+    fotografo?: XOR<FotografoScalarRelationFilter, FotografoWhereInput>
+  }
+
+  export type ReservaFotografoOrderByWithRelationInput = {
+    reservaId?: SortOrder
+    fotografoId?: SortOrder
+    reserva?: ReservaOrderByWithRelationInput
+    fotografo?: FotografoOrderByWithRelationInput
+    _relevance?: ReservaFotografoOrderByRelevanceInput
+  }
+
+  export type ReservaFotografoWhereUniqueInput = Prisma.AtLeast<{
+    reservaId_fotografoId?: ReservaFotografoReservaIdFotografoIdCompoundUniqueInput
+    AND?: ReservaFotografoWhereInput | ReservaFotografoWhereInput[]
+    OR?: ReservaFotografoWhereInput[]
+    NOT?: ReservaFotografoWhereInput | ReservaFotografoWhereInput[]
+    reservaId?: StringFilter<"ReservaFotografo"> | string
+    fotografoId?: StringFilter<"ReservaFotografo"> | string
+    reserva?: XOR<ReservaScalarRelationFilter, ReservaWhereInput>
+    fotografo?: XOR<FotografoScalarRelationFilter, FotografoWhereInput>
+  }, "reservaId_fotografoId">
+
+  export type ReservaFotografoOrderByWithAggregationInput = {
+    reservaId?: SortOrder
+    fotografoId?: SortOrder
+    _count?: ReservaFotografoCountOrderByAggregateInput
+    _max?: ReservaFotografoMaxOrderByAggregateInput
+    _min?: ReservaFotografoMinOrderByAggregateInput
+  }
+
+  export type ReservaFotografoScalarWhereWithAggregatesInput = {
+    AND?: ReservaFotografoScalarWhereWithAggregatesInput | ReservaFotografoScalarWhereWithAggregatesInput[]
+    OR?: ReservaFotografoScalarWhereWithAggregatesInput[]
+    NOT?: ReservaFotografoScalarWhereWithAggregatesInput | ReservaFotografoScalarWhereWithAggregatesInput[]
+    reservaId?: StringWithAggregatesFilter<"ReservaFotografo"> | string
+    fotografoId?: StringWithAggregatesFilter<"ReservaFotografo"> | string
   }
 
   export type RolCreateInput = {
@@ -15299,7 +17516,7 @@ export namespace Prisma {
     Foto: string
     disponible: boolean
     usuario: UsuarioCreateNestedOneWithoutFotografoInput
-    reservas?: ReservaCreateNestedManyWithoutFotografoInput
+    reservas?: ReservaFotografoCreateNestedManyWithoutFotografoInput
     galeria?: GaleriaCreateNestedManyWithoutFotografoInput
     unavailabilities?: UnavailabilityCreateNestedManyWithoutFotografoInput
     servicios?: FotografoServicioCreateNestedManyWithoutFotografoInput
@@ -15314,7 +17531,7 @@ export namespace Prisma {
     url?: string | null
     Foto: string
     disponible: boolean
-    reservas?: ReservaUncheckedCreateNestedManyWithoutFotografoInput
+    reservas?: ReservaFotografoUncheckedCreateNestedManyWithoutFotografoInput
     galeria?: GaleriaUncheckedCreateNestedManyWithoutFotografoInput
     unavailabilities?: UnavailabilityUncheckedCreateNestedManyWithoutFotografoInput
     servicios?: FotografoServicioUncheckedCreateNestedManyWithoutFotografoInput
@@ -15329,7 +17546,7 @@ export namespace Prisma {
     Foto?: StringFieldUpdateOperationsInput | string
     disponible?: BoolFieldUpdateOperationsInput | boolean
     usuario?: UsuarioUpdateOneRequiredWithoutFotografoNestedInput
-    reservas?: ReservaUpdateManyWithoutFotografoNestedInput
+    reservas?: ReservaFotografoUpdateManyWithoutFotografoNestedInput
     galeria?: GaleriaUpdateManyWithoutFotografoNestedInput
     unavailabilities?: UnavailabilityUpdateManyWithoutFotografoNestedInput
     servicios?: FotografoServicioUpdateManyWithoutFotografoNestedInput
@@ -15344,7 +17561,7 @@ export namespace Prisma {
     url?: NullableStringFieldUpdateOperationsInput | string | null
     Foto?: StringFieldUpdateOperationsInput | string
     disponible?: BoolFieldUpdateOperationsInput | boolean
-    reservas?: ReservaUncheckedUpdateManyWithoutFotografoNestedInput
+    reservas?: ReservaFotografoUncheckedUpdateManyWithoutFotografoNestedInput
     galeria?: GaleriaUncheckedUpdateManyWithoutFotografoNestedInput
     unavailabilities?: UnavailabilityUncheckedUpdateManyWithoutFotografoNestedInput
     servicios?: FotografoServicioUncheckedUpdateManyWithoutFotografoNestedInput
@@ -15380,6 +17597,40 @@ export namespace Prisma {
     url?: NullableStringFieldUpdateOperationsInput | string | null
     Foto?: StringFieldUpdateOperationsInput | string
     disponible?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type FotografoServicioCreateInput = {
+    fotografo: FotografoCreateNestedOneWithoutServiciosInput
+    servicio: PhotoServiceCreateNestedOneWithoutFotografosInput
+  }
+
+  export type FotografoServicioUncheckedCreateInput = {
+    fotografoId: string
+    servicioId: string
+  }
+
+  export type FotografoServicioUpdateInput = {
+    fotografo?: FotografoUpdateOneRequiredWithoutServiciosNestedInput
+    servicio?: PhotoServiceUpdateOneRequiredWithoutFotografosNestedInput
+  }
+
+  export type FotografoServicioUncheckedUpdateInput = {
+    fotografoId?: StringFieldUpdateOperationsInput | string
+    servicioId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type FotografoServicioCreateManyInput = {
+    fotografoId: string
+    servicioId: string
+  }
+
+  export type FotografoServicioUpdateManyMutationInput = {
+
+  }
+
+  export type FotografoServicioUncheckedUpdateManyInput = {
+    fotografoId?: StringFieldUpdateOperationsInput | string
+    servicioId?: StringFieldUpdateOperationsInput | string
   }
 
   export type PhotoServiceCreateInput = {
@@ -15459,40 +17710,6 @@ export namespace Prisma {
     categoryId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type FotografoServicioCreateInput = {
-    fotografo: FotografoCreateNestedOneWithoutServiciosInput
-    servicio: PhotoServiceCreateNestedOneWithoutFotografosInput
-  }
-
-  export type FotografoServicioUncheckedCreateInput = {
-    fotografoId: string
-    servicioId: string
-  }
-
-  export type FotografoServicioUpdateInput = {
-    fotografo?: FotografoUpdateOneRequiredWithoutServiciosNestedInput
-    servicio?: PhotoServiceUpdateOneRequiredWithoutFotografosNestedInput
-  }
-
-  export type FotografoServicioUncheckedUpdateInput = {
-    fotografoId?: StringFieldUpdateOperationsInput | string
-    servicioId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type FotografoServicioCreateManyInput = {
-    fotografoId: string
-    servicioId: string
-  }
-
-  export type FotografoServicioUpdateManyMutationInput = {
-
-  }
-
-  export type FotografoServicioUncheckedUpdateManyInput = {
-    fotografoId?: StringFieldUpdateOperationsInput | string
-    servicioId?: StringFieldUpdateOperationsInput | string
-  }
-
   export type UnavailabilityCreateInput = {
     id?: string
     recurring: boolean
@@ -15501,6 +17718,7 @@ export namespace Prisma {
     endDate?: Date | string | null
     activo?: boolean
     fotografo: FotografoCreateNestedOneWithoutUnavailabilitiesInput
+    exceptions?: AvailabilityExceptionCreateNestedManyWithoutUnavailabilityInput
   }
 
   export type UnavailabilityUncheckedCreateInput = {
@@ -15511,6 +17729,7 @@ export namespace Prisma {
     startDate?: Date | string | null
     endDate?: Date | string | null
     activo?: boolean
+    exceptions?: AvailabilityExceptionUncheckedCreateNestedManyWithoutUnavailabilityInput
   }
 
   export type UnavailabilityUpdateInput = {
@@ -15521,6 +17740,7 @@ export namespace Prisma {
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     activo?: BoolFieldUpdateOperationsInput | boolean
     fotografo?: FotografoUpdateOneRequiredWithoutUnavailabilitiesNestedInput
+    exceptions?: AvailabilityExceptionUpdateManyWithoutUnavailabilityNestedInput
   }
 
   export type UnavailabilityUncheckedUpdateInput = {
@@ -15531,6 +17751,7 @@ export namespace Prisma {
     startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     activo?: BoolFieldUpdateOperationsInput | boolean
+    exceptions?: AvailabilityExceptionUncheckedUpdateManyWithoutUnavailabilityNestedInput
   }
 
   export type UnavailabilityCreateManyInput = {
@@ -15562,6 +17783,54 @@ export namespace Prisma {
     activo?: BoolFieldUpdateOperationsInput | boolean
   }
 
+  export type AvailabilityExceptionCreateInput = {
+    id?: string
+    date: Date | string
+    disponible: boolean
+    unavailability: UnavailabilityCreateNestedOneWithoutExceptionsInput
+  }
+
+  export type AvailabilityExceptionUncheckedCreateInput = {
+    id?: string
+    unavailabilityId: string
+    date: Date | string
+    disponible: boolean
+  }
+
+  export type AvailabilityExceptionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    disponible?: BoolFieldUpdateOperationsInput | boolean
+    unavailability?: UnavailabilityUpdateOneRequiredWithoutExceptionsNestedInput
+  }
+
+  export type AvailabilityExceptionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    unavailabilityId?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    disponible?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type AvailabilityExceptionCreateManyInput = {
+    id?: string
+    unavailabilityId: string
+    date: Date | string
+    disponible: boolean
+  }
+
+  export type AvailabilityExceptionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    disponible?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type AvailabilityExceptionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    unavailabilityId?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    disponible?: BoolFieldUpdateOperationsInput | boolean
+  }
+
   export type ReservaCreateInput = {
     id?: string
     fecha: Date | string
@@ -15570,7 +17839,7 @@ export namespace Prisma {
     estado?: boolean
     precio?: number | null
     createdAt?: Date | string
-    fotografo: FotografoCreateNestedOneWithoutReservasInput
+    fotografos?: ReservaFotografoCreateNestedManyWithoutReservaInput
     cliente: ClienteCreateNestedOneWithoutReservasInput
     photoService?: PhotoServiceCreateNestedOneWithoutReservasInput
   }
@@ -15580,12 +17849,12 @@ export namespace Prisma {
     fecha: Date | string
     horaInicio: Date | string
     horaFin: Date | string
-    fotografoId: string
     clienteId: string
     photoServiceId?: string | null
     estado?: boolean
     precio?: number | null
     createdAt?: Date | string
+    fotografos?: ReservaFotografoUncheckedCreateNestedManyWithoutReservaInput
   }
 
   export type ReservaUpdateInput = {
@@ -15596,7 +17865,7 @@ export namespace Prisma {
     estado?: BoolFieldUpdateOperationsInput | boolean
     precio?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    fotografo?: FotografoUpdateOneRequiredWithoutReservasNestedInput
+    fotografos?: ReservaFotografoUpdateManyWithoutReservaNestedInput
     cliente?: ClienteUpdateOneRequiredWithoutReservasNestedInput
     photoService?: PhotoServiceUpdateOneWithoutReservasNestedInput
   }
@@ -15606,12 +17875,12 @@ export namespace Prisma {
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
     horaFin?: DateTimeFieldUpdateOperationsInput | Date | string
-    fotografoId?: StringFieldUpdateOperationsInput | string
     clienteId?: StringFieldUpdateOperationsInput | string
     photoServiceId?: NullableStringFieldUpdateOperationsInput | string | null
     estado?: BoolFieldUpdateOperationsInput | boolean
     precio?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    fotografos?: ReservaFotografoUncheckedUpdateManyWithoutReservaNestedInput
   }
 
   export type ReservaCreateManyInput = {
@@ -15619,7 +17888,6 @@ export namespace Prisma {
     fecha: Date | string
     horaInicio: Date | string
     horaFin: Date | string
-    fotografoId: string
     clienteId: string
     photoServiceId?: string | null
     estado?: boolean
@@ -15642,12 +17910,45 @@ export namespace Prisma {
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
     horaFin?: DateTimeFieldUpdateOperationsInput | Date | string
-    fotografoId?: StringFieldUpdateOperationsInput | string
     clienteId?: StringFieldUpdateOperationsInput | string
     photoServiceId?: NullableStringFieldUpdateOperationsInput | string | null
     estado?: BoolFieldUpdateOperationsInput | boolean
     precio?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ReservaFotografoCreateInput = {
+    reserva: ReservaCreateNestedOneWithoutFotografosInput
+    fotografo: FotografoCreateNestedOneWithoutReservasInput
+  }
+
+  export type ReservaFotografoUncheckedCreateInput = {
+    reservaId: string
+    fotografoId: string
+  }
+
+  export type ReservaFotografoUpdateInput = {
+    reserva?: ReservaUpdateOneRequiredWithoutFotografosNestedInput
+    fotografo?: FotografoUpdateOneRequiredWithoutReservasNestedInput
+  }
+
+  export type ReservaFotografoUncheckedUpdateInput = {
+    reservaId?: StringFieldUpdateOperationsInput | string
+    fotografoId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ReservaFotografoCreateManyInput = {
+    reservaId: string
+    fotografoId: string
+  }
+
+  export type ReservaFotografoUpdateManyMutationInput = {
+
+  }
+
+  export type ReservaFotografoUncheckedUpdateManyInput = {
+    reservaId?: StringFieldUpdateOperationsInput | string
+    fotografoId?: StringFieldUpdateOperationsInput | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -16025,6 +18326,12 @@ export namespace Prisma {
     isNot?: UsuarioWhereInput
   }
 
+  export type ReservaFotografoListRelationFilter = {
+    every?: ReservaFotografoWhereInput
+    some?: ReservaFotografoWhereInput
+    none?: ReservaFotografoWhereInput
+  }
+
   export type GaleriaListRelationFilter = {
     every?: GaleriaWhereInput
     some?: GaleriaWhereInput
@@ -16046,6 +18353,10 @@ export namespace Prisma {
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
+  }
+
+  export type ReservaFotografoOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type GaleriaOrderByRelationAggregateInput = {
@@ -16115,6 +18426,37 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type PhotoServiceScalarRelationFilter = {
+    is?: PhotoServiceWhereInput
+    isNot?: PhotoServiceWhereInput
+  }
+
+  export type FotografoServicioOrderByRelevanceInput = {
+    fields: FotografoServicioOrderByRelevanceFieldEnum | FotografoServicioOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type FotografoServicioFotografoIdServicioIdCompoundUniqueInput = {
+    fotografoId: string
+    servicioId: string
+  }
+
+  export type FotografoServicioCountOrderByAggregateInput = {
+    fotografoId?: SortOrder
+    servicioId?: SortOrder
+  }
+
+  export type FotografoServicioMaxOrderByAggregateInput = {
+    fotografoId?: SortOrder
+    servicioId?: SortOrder
+  }
+
+  export type FotografoServicioMinOrderByAggregateInput = {
+    fotografoId?: SortOrder
+    servicioId?: SortOrder
   }
 
   export type FloatFilter<$PrismaModel = never> = {
@@ -16193,37 +18535,6 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
-  export type PhotoServiceScalarRelationFilter = {
-    is?: PhotoServiceWhereInput
-    isNot?: PhotoServiceWhereInput
-  }
-
-  export type FotografoServicioOrderByRelevanceInput = {
-    fields: FotografoServicioOrderByRelevanceFieldEnum | FotografoServicioOrderByRelevanceFieldEnum[]
-    sort: SortOrder
-    search: string
-  }
-
-  export type FotografoServicioFotografoIdServicioIdCompoundUniqueInput = {
-    fotografoId: string
-    servicioId: string
-  }
-
-  export type FotografoServicioCountOrderByAggregateInput = {
-    fotografoId?: SortOrder
-    servicioId?: SortOrder
-  }
-
-  export type FotografoServicioMaxOrderByAggregateInput = {
-    fotografoId?: SortOrder
-    servicioId?: SortOrder
-  }
-
-  export type FotografoServicioMinOrderByAggregateInput = {
-    fotografoId?: SortOrder
-    servicioId?: SortOrder
-  }
-
   export type IntNullableFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
     in?: number[] | null
@@ -16244,6 +18555,16 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type AvailabilityExceptionListRelationFilter = {
+    every?: AvailabilityExceptionWhereInput
+    some?: AvailabilityExceptionWhereInput
+    none?: AvailabilityExceptionWhereInput
+  }
+
+  export type AvailabilityExceptionOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type UnavailabilityOrderByRelevanceInput = {
@@ -16320,6 +18641,38 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
+  export type UnavailabilityScalarRelationFilter = {
+    is?: UnavailabilityWhereInput
+    isNot?: UnavailabilityWhereInput
+  }
+
+  export type AvailabilityExceptionOrderByRelevanceInput = {
+    fields: AvailabilityExceptionOrderByRelevanceFieldEnum | AvailabilityExceptionOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type AvailabilityExceptionCountOrderByAggregateInput = {
+    id?: SortOrder
+    unavailabilityId?: SortOrder
+    date?: SortOrder
+    disponible?: SortOrder
+  }
+
+  export type AvailabilityExceptionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    unavailabilityId?: SortOrder
+    date?: SortOrder
+    disponible?: SortOrder
+  }
+
+  export type AvailabilityExceptionMinOrderByAggregateInput = {
+    id?: SortOrder
+    unavailabilityId?: SortOrder
+    date?: SortOrder
+    disponible?: SortOrder
+  }
+
   export type FloatNullableFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel> | null
     in?: number[] | null
@@ -16352,7 +18705,6 @@ export namespace Prisma {
     fecha?: SortOrder
     horaInicio?: SortOrder
     horaFin?: SortOrder
-    fotografoId?: SortOrder
     clienteId?: SortOrder
     photoServiceId?: SortOrder
     estado?: SortOrder
@@ -16369,7 +18721,6 @@ export namespace Prisma {
     fecha?: SortOrder
     horaInicio?: SortOrder
     horaFin?: SortOrder
-    fotografoId?: SortOrder
     clienteId?: SortOrder
     photoServiceId?: SortOrder
     estado?: SortOrder
@@ -16382,7 +18733,6 @@ export namespace Prisma {
     fecha?: SortOrder
     horaInicio?: SortOrder
     horaFin?: SortOrder
-    fotografoId?: SortOrder
     clienteId?: SortOrder
     photoServiceId?: SortOrder
     estado?: SortOrder
@@ -16408,6 +18758,37 @@ export namespace Prisma {
     _sum?: NestedFloatNullableFilter<$PrismaModel>
     _min?: NestedFloatNullableFilter<$PrismaModel>
     _max?: NestedFloatNullableFilter<$PrismaModel>
+  }
+
+  export type ReservaScalarRelationFilter = {
+    is?: ReservaWhereInput
+    isNot?: ReservaWhereInput
+  }
+
+  export type ReservaFotografoOrderByRelevanceInput = {
+    fields: ReservaFotografoOrderByRelevanceFieldEnum | ReservaFotografoOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type ReservaFotografoReservaIdFotografoIdCompoundUniqueInput = {
+    reservaId: string
+    fotografoId: string
+  }
+
+  export type ReservaFotografoCountOrderByAggregateInput = {
+    reservaId?: SortOrder
+    fotografoId?: SortOrder
+  }
+
+  export type ReservaFotografoMaxOrderByAggregateInput = {
+    reservaId?: SortOrder
+    fotografoId?: SortOrder
+  }
+
+  export type ReservaFotografoMinOrderByAggregateInput = {
+    reservaId?: SortOrder
+    fotografoId?: SortOrder
   }
 
   export type RolPermisoCreateNestedManyWithoutRolInput = {
@@ -16726,11 +19107,11 @@ export namespace Prisma {
     connect?: UsuarioWhereUniqueInput
   }
 
-  export type ReservaCreateNestedManyWithoutFotografoInput = {
-    create?: XOR<ReservaCreateWithoutFotografoInput, ReservaUncheckedCreateWithoutFotografoInput> | ReservaCreateWithoutFotografoInput[] | ReservaUncheckedCreateWithoutFotografoInput[]
-    connectOrCreate?: ReservaCreateOrConnectWithoutFotografoInput | ReservaCreateOrConnectWithoutFotografoInput[]
-    createMany?: ReservaCreateManyFotografoInputEnvelope
-    connect?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
+  export type ReservaFotografoCreateNestedManyWithoutFotografoInput = {
+    create?: XOR<ReservaFotografoCreateWithoutFotografoInput, ReservaFotografoUncheckedCreateWithoutFotografoInput> | ReservaFotografoCreateWithoutFotografoInput[] | ReservaFotografoUncheckedCreateWithoutFotografoInput[]
+    connectOrCreate?: ReservaFotografoCreateOrConnectWithoutFotografoInput | ReservaFotografoCreateOrConnectWithoutFotografoInput[]
+    createMany?: ReservaFotografoCreateManyFotografoInputEnvelope
+    connect?: ReservaFotografoWhereUniqueInput | ReservaFotografoWhereUniqueInput[]
   }
 
   export type GaleriaCreateNestedManyWithoutFotografoInput = {
@@ -16754,11 +19135,11 @@ export namespace Prisma {
     connect?: FotografoServicioWhereUniqueInput | FotografoServicioWhereUniqueInput[]
   }
 
-  export type ReservaUncheckedCreateNestedManyWithoutFotografoInput = {
-    create?: XOR<ReservaCreateWithoutFotografoInput, ReservaUncheckedCreateWithoutFotografoInput> | ReservaCreateWithoutFotografoInput[] | ReservaUncheckedCreateWithoutFotografoInput[]
-    connectOrCreate?: ReservaCreateOrConnectWithoutFotografoInput | ReservaCreateOrConnectWithoutFotografoInput[]
-    createMany?: ReservaCreateManyFotografoInputEnvelope
-    connect?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
+  export type ReservaFotografoUncheckedCreateNestedManyWithoutFotografoInput = {
+    create?: XOR<ReservaFotografoCreateWithoutFotografoInput, ReservaFotografoUncheckedCreateWithoutFotografoInput> | ReservaFotografoCreateWithoutFotografoInput[] | ReservaFotografoUncheckedCreateWithoutFotografoInput[]
+    connectOrCreate?: ReservaFotografoCreateOrConnectWithoutFotografoInput | ReservaFotografoCreateOrConnectWithoutFotografoInput[]
+    createMany?: ReservaFotografoCreateManyFotografoInputEnvelope
+    connect?: ReservaFotografoWhereUniqueInput | ReservaFotografoWhereUniqueInput[]
   }
 
   export type GaleriaUncheckedCreateNestedManyWithoutFotografoInput = {
@@ -16794,18 +19175,18 @@ export namespace Prisma {
     update?: XOR<XOR<UsuarioUpdateToOneWithWhereWithoutFotografoInput, UsuarioUpdateWithoutFotografoInput>, UsuarioUncheckedUpdateWithoutFotografoInput>
   }
 
-  export type ReservaUpdateManyWithoutFotografoNestedInput = {
-    create?: XOR<ReservaCreateWithoutFotografoInput, ReservaUncheckedCreateWithoutFotografoInput> | ReservaCreateWithoutFotografoInput[] | ReservaUncheckedCreateWithoutFotografoInput[]
-    connectOrCreate?: ReservaCreateOrConnectWithoutFotografoInput | ReservaCreateOrConnectWithoutFotografoInput[]
-    upsert?: ReservaUpsertWithWhereUniqueWithoutFotografoInput | ReservaUpsertWithWhereUniqueWithoutFotografoInput[]
-    createMany?: ReservaCreateManyFotografoInputEnvelope
-    set?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
-    disconnect?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
-    delete?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
-    connect?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
-    update?: ReservaUpdateWithWhereUniqueWithoutFotografoInput | ReservaUpdateWithWhereUniqueWithoutFotografoInput[]
-    updateMany?: ReservaUpdateManyWithWhereWithoutFotografoInput | ReservaUpdateManyWithWhereWithoutFotografoInput[]
-    deleteMany?: ReservaScalarWhereInput | ReservaScalarWhereInput[]
+  export type ReservaFotografoUpdateManyWithoutFotografoNestedInput = {
+    create?: XOR<ReservaFotografoCreateWithoutFotografoInput, ReservaFotografoUncheckedCreateWithoutFotografoInput> | ReservaFotografoCreateWithoutFotografoInput[] | ReservaFotografoUncheckedCreateWithoutFotografoInput[]
+    connectOrCreate?: ReservaFotografoCreateOrConnectWithoutFotografoInput | ReservaFotografoCreateOrConnectWithoutFotografoInput[]
+    upsert?: ReservaFotografoUpsertWithWhereUniqueWithoutFotografoInput | ReservaFotografoUpsertWithWhereUniqueWithoutFotografoInput[]
+    createMany?: ReservaFotografoCreateManyFotografoInputEnvelope
+    set?: ReservaFotografoWhereUniqueInput | ReservaFotografoWhereUniqueInput[]
+    disconnect?: ReservaFotografoWhereUniqueInput | ReservaFotografoWhereUniqueInput[]
+    delete?: ReservaFotografoWhereUniqueInput | ReservaFotografoWhereUniqueInput[]
+    connect?: ReservaFotografoWhereUniqueInput | ReservaFotografoWhereUniqueInput[]
+    update?: ReservaFotografoUpdateWithWhereUniqueWithoutFotografoInput | ReservaFotografoUpdateWithWhereUniqueWithoutFotografoInput[]
+    updateMany?: ReservaFotografoUpdateManyWithWhereWithoutFotografoInput | ReservaFotografoUpdateManyWithWhereWithoutFotografoInput[]
+    deleteMany?: ReservaFotografoScalarWhereInput | ReservaFotografoScalarWhereInput[]
   }
 
   export type GaleriaUpdateManyWithoutFotografoNestedInput = {
@@ -16850,18 +19231,18 @@ export namespace Prisma {
     deleteMany?: FotografoServicioScalarWhereInput | FotografoServicioScalarWhereInput[]
   }
 
-  export type ReservaUncheckedUpdateManyWithoutFotografoNestedInput = {
-    create?: XOR<ReservaCreateWithoutFotografoInput, ReservaUncheckedCreateWithoutFotografoInput> | ReservaCreateWithoutFotografoInput[] | ReservaUncheckedCreateWithoutFotografoInput[]
-    connectOrCreate?: ReservaCreateOrConnectWithoutFotografoInput | ReservaCreateOrConnectWithoutFotografoInput[]
-    upsert?: ReservaUpsertWithWhereUniqueWithoutFotografoInput | ReservaUpsertWithWhereUniqueWithoutFotografoInput[]
-    createMany?: ReservaCreateManyFotografoInputEnvelope
-    set?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
-    disconnect?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
-    delete?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
-    connect?: ReservaWhereUniqueInput | ReservaWhereUniqueInput[]
-    update?: ReservaUpdateWithWhereUniqueWithoutFotografoInput | ReservaUpdateWithWhereUniqueWithoutFotografoInput[]
-    updateMany?: ReservaUpdateManyWithWhereWithoutFotografoInput | ReservaUpdateManyWithWhereWithoutFotografoInput[]
-    deleteMany?: ReservaScalarWhereInput | ReservaScalarWhereInput[]
+  export type ReservaFotografoUncheckedUpdateManyWithoutFotografoNestedInput = {
+    create?: XOR<ReservaFotografoCreateWithoutFotografoInput, ReservaFotografoUncheckedCreateWithoutFotografoInput> | ReservaFotografoCreateWithoutFotografoInput[] | ReservaFotografoUncheckedCreateWithoutFotografoInput[]
+    connectOrCreate?: ReservaFotografoCreateOrConnectWithoutFotografoInput | ReservaFotografoCreateOrConnectWithoutFotografoInput[]
+    upsert?: ReservaFotografoUpsertWithWhereUniqueWithoutFotografoInput | ReservaFotografoUpsertWithWhereUniqueWithoutFotografoInput[]
+    createMany?: ReservaFotografoCreateManyFotografoInputEnvelope
+    set?: ReservaFotografoWhereUniqueInput | ReservaFotografoWhereUniqueInput[]
+    disconnect?: ReservaFotografoWhereUniqueInput | ReservaFotografoWhereUniqueInput[]
+    delete?: ReservaFotografoWhereUniqueInput | ReservaFotografoWhereUniqueInput[]
+    connect?: ReservaFotografoWhereUniqueInput | ReservaFotografoWhereUniqueInput[]
+    update?: ReservaFotografoUpdateWithWhereUniqueWithoutFotografoInput | ReservaFotografoUpdateWithWhereUniqueWithoutFotografoInput[]
+    updateMany?: ReservaFotografoUpdateManyWithWhereWithoutFotografoInput | ReservaFotografoUpdateManyWithWhereWithoutFotografoInput[]
+    deleteMany?: ReservaFotografoScalarWhereInput | ReservaFotografoScalarWhereInput[]
   }
 
   export type GaleriaUncheckedUpdateManyWithoutFotografoNestedInput = {
@@ -16904,6 +19285,34 @@ export namespace Prisma {
     update?: FotografoServicioUpdateWithWhereUniqueWithoutFotografoInput | FotografoServicioUpdateWithWhereUniqueWithoutFotografoInput[]
     updateMany?: FotografoServicioUpdateManyWithWhereWithoutFotografoInput | FotografoServicioUpdateManyWithWhereWithoutFotografoInput[]
     deleteMany?: FotografoServicioScalarWhereInput | FotografoServicioScalarWhereInput[]
+  }
+
+  export type FotografoCreateNestedOneWithoutServiciosInput = {
+    create?: XOR<FotografoCreateWithoutServiciosInput, FotografoUncheckedCreateWithoutServiciosInput>
+    connectOrCreate?: FotografoCreateOrConnectWithoutServiciosInput
+    connect?: FotografoWhereUniqueInput
+  }
+
+  export type PhotoServiceCreateNestedOneWithoutFotografosInput = {
+    create?: XOR<PhotoServiceCreateWithoutFotografosInput, PhotoServiceUncheckedCreateWithoutFotografosInput>
+    connectOrCreate?: PhotoServiceCreateOrConnectWithoutFotografosInput
+    connect?: PhotoServiceWhereUniqueInput
+  }
+
+  export type FotografoUpdateOneRequiredWithoutServiciosNestedInput = {
+    create?: XOR<FotografoCreateWithoutServiciosInput, FotografoUncheckedCreateWithoutServiciosInput>
+    connectOrCreate?: FotografoCreateOrConnectWithoutServiciosInput
+    upsert?: FotografoUpsertWithoutServiciosInput
+    connect?: FotografoWhereUniqueInput
+    update?: XOR<XOR<FotografoUpdateToOneWithWhereWithoutServiciosInput, FotografoUpdateWithoutServiciosInput>, FotografoUncheckedUpdateWithoutServiciosInput>
+  }
+
+  export type PhotoServiceUpdateOneRequiredWithoutFotografosNestedInput = {
+    create?: XOR<PhotoServiceCreateWithoutFotografosInput, PhotoServiceUncheckedCreateWithoutFotografosInput>
+    connectOrCreate?: PhotoServiceCreateOrConnectWithoutFotografosInput
+    upsert?: PhotoServiceUpsertWithoutFotografosInput
+    connect?: PhotoServiceWhereUniqueInput
+    update?: XOR<XOR<PhotoServiceUpdateToOneWithWhereWithoutFotografosInput, PhotoServiceUpdateWithoutFotografosInput>, PhotoServiceUncheckedUpdateWithoutFotografosInput>
   }
 
   export type CategoryCreateNestedOneWithoutServicesInput = {
@@ -17012,38 +19421,24 @@ export namespace Prisma {
     deleteMany?: ReservaScalarWhereInput | ReservaScalarWhereInput[]
   }
 
-  export type FotografoCreateNestedOneWithoutServiciosInput = {
-    create?: XOR<FotografoCreateWithoutServiciosInput, FotografoUncheckedCreateWithoutServiciosInput>
-    connectOrCreate?: FotografoCreateOrConnectWithoutServiciosInput
-    connect?: FotografoWhereUniqueInput
-  }
-
-  export type PhotoServiceCreateNestedOneWithoutFotografosInput = {
-    create?: XOR<PhotoServiceCreateWithoutFotografosInput, PhotoServiceUncheckedCreateWithoutFotografosInput>
-    connectOrCreate?: PhotoServiceCreateOrConnectWithoutFotografosInput
-    connect?: PhotoServiceWhereUniqueInput
-  }
-
-  export type FotografoUpdateOneRequiredWithoutServiciosNestedInput = {
-    create?: XOR<FotografoCreateWithoutServiciosInput, FotografoUncheckedCreateWithoutServiciosInput>
-    connectOrCreate?: FotografoCreateOrConnectWithoutServiciosInput
-    upsert?: FotografoUpsertWithoutServiciosInput
-    connect?: FotografoWhereUniqueInput
-    update?: XOR<XOR<FotografoUpdateToOneWithWhereWithoutServiciosInput, FotografoUpdateWithoutServiciosInput>, FotografoUncheckedUpdateWithoutServiciosInput>
-  }
-
-  export type PhotoServiceUpdateOneRequiredWithoutFotografosNestedInput = {
-    create?: XOR<PhotoServiceCreateWithoutFotografosInput, PhotoServiceUncheckedCreateWithoutFotografosInput>
-    connectOrCreate?: PhotoServiceCreateOrConnectWithoutFotografosInput
-    upsert?: PhotoServiceUpsertWithoutFotografosInput
-    connect?: PhotoServiceWhereUniqueInput
-    update?: XOR<XOR<PhotoServiceUpdateToOneWithWhereWithoutFotografosInput, PhotoServiceUpdateWithoutFotografosInput>, PhotoServiceUncheckedUpdateWithoutFotografosInput>
-  }
-
   export type FotografoCreateNestedOneWithoutUnavailabilitiesInput = {
     create?: XOR<FotografoCreateWithoutUnavailabilitiesInput, FotografoUncheckedCreateWithoutUnavailabilitiesInput>
     connectOrCreate?: FotografoCreateOrConnectWithoutUnavailabilitiesInput
     connect?: FotografoWhereUniqueInput
+  }
+
+  export type AvailabilityExceptionCreateNestedManyWithoutUnavailabilityInput = {
+    create?: XOR<AvailabilityExceptionCreateWithoutUnavailabilityInput, AvailabilityExceptionUncheckedCreateWithoutUnavailabilityInput> | AvailabilityExceptionCreateWithoutUnavailabilityInput[] | AvailabilityExceptionUncheckedCreateWithoutUnavailabilityInput[]
+    connectOrCreate?: AvailabilityExceptionCreateOrConnectWithoutUnavailabilityInput | AvailabilityExceptionCreateOrConnectWithoutUnavailabilityInput[]
+    createMany?: AvailabilityExceptionCreateManyUnavailabilityInputEnvelope
+    connect?: AvailabilityExceptionWhereUniqueInput | AvailabilityExceptionWhereUniqueInput[]
+  }
+
+  export type AvailabilityExceptionUncheckedCreateNestedManyWithoutUnavailabilityInput = {
+    create?: XOR<AvailabilityExceptionCreateWithoutUnavailabilityInput, AvailabilityExceptionUncheckedCreateWithoutUnavailabilityInput> | AvailabilityExceptionCreateWithoutUnavailabilityInput[] | AvailabilityExceptionUncheckedCreateWithoutUnavailabilityInput[]
+    connectOrCreate?: AvailabilityExceptionCreateOrConnectWithoutUnavailabilityInput | AvailabilityExceptionCreateOrConnectWithoutUnavailabilityInput[]
+    createMany?: AvailabilityExceptionCreateManyUnavailabilityInputEnvelope
+    connect?: AvailabilityExceptionWhereUniqueInput | AvailabilityExceptionWhereUniqueInput[]
   }
 
   export type NullableIntFieldUpdateOperationsInput = {
@@ -17066,10 +19461,53 @@ export namespace Prisma {
     update?: XOR<XOR<FotografoUpdateToOneWithWhereWithoutUnavailabilitiesInput, FotografoUpdateWithoutUnavailabilitiesInput>, FotografoUncheckedUpdateWithoutUnavailabilitiesInput>
   }
 
-  export type FotografoCreateNestedOneWithoutReservasInput = {
-    create?: XOR<FotografoCreateWithoutReservasInput, FotografoUncheckedCreateWithoutReservasInput>
-    connectOrCreate?: FotografoCreateOrConnectWithoutReservasInput
-    connect?: FotografoWhereUniqueInput
+  export type AvailabilityExceptionUpdateManyWithoutUnavailabilityNestedInput = {
+    create?: XOR<AvailabilityExceptionCreateWithoutUnavailabilityInput, AvailabilityExceptionUncheckedCreateWithoutUnavailabilityInput> | AvailabilityExceptionCreateWithoutUnavailabilityInput[] | AvailabilityExceptionUncheckedCreateWithoutUnavailabilityInput[]
+    connectOrCreate?: AvailabilityExceptionCreateOrConnectWithoutUnavailabilityInput | AvailabilityExceptionCreateOrConnectWithoutUnavailabilityInput[]
+    upsert?: AvailabilityExceptionUpsertWithWhereUniqueWithoutUnavailabilityInput | AvailabilityExceptionUpsertWithWhereUniqueWithoutUnavailabilityInput[]
+    createMany?: AvailabilityExceptionCreateManyUnavailabilityInputEnvelope
+    set?: AvailabilityExceptionWhereUniqueInput | AvailabilityExceptionWhereUniqueInput[]
+    disconnect?: AvailabilityExceptionWhereUniqueInput | AvailabilityExceptionWhereUniqueInput[]
+    delete?: AvailabilityExceptionWhereUniqueInput | AvailabilityExceptionWhereUniqueInput[]
+    connect?: AvailabilityExceptionWhereUniqueInput | AvailabilityExceptionWhereUniqueInput[]
+    update?: AvailabilityExceptionUpdateWithWhereUniqueWithoutUnavailabilityInput | AvailabilityExceptionUpdateWithWhereUniqueWithoutUnavailabilityInput[]
+    updateMany?: AvailabilityExceptionUpdateManyWithWhereWithoutUnavailabilityInput | AvailabilityExceptionUpdateManyWithWhereWithoutUnavailabilityInput[]
+    deleteMany?: AvailabilityExceptionScalarWhereInput | AvailabilityExceptionScalarWhereInput[]
+  }
+
+  export type AvailabilityExceptionUncheckedUpdateManyWithoutUnavailabilityNestedInput = {
+    create?: XOR<AvailabilityExceptionCreateWithoutUnavailabilityInput, AvailabilityExceptionUncheckedCreateWithoutUnavailabilityInput> | AvailabilityExceptionCreateWithoutUnavailabilityInput[] | AvailabilityExceptionUncheckedCreateWithoutUnavailabilityInput[]
+    connectOrCreate?: AvailabilityExceptionCreateOrConnectWithoutUnavailabilityInput | AvailabilityExceptionCreateOrConnectWithoutUnavailabilityInput[]
+    upsert?: AvailabilityExceptionUpsertWithWhereUniqueWithoutUnavailabilityInput | AvailabilityExceptionUpsertWithWhereUniqueWithoutUnavailabilityInput[]
+    createMany?: AvailabilityExceptionCreateManyUnavailabilityInputEnvelope
+    set?: AvailabilityExceptionWhereUniqueInput | AvailabilityExceptionWhereUniqueInput[]
+    disconnect?: AvailabilityExceptionWhereUniqueInput | AvailabilityExceptionWhereUniqueInput[]
+    delete?: AvailabilityExceptionWhereUniqueInput | AvailabilityExceptionWhereUniqueInput[]
+    connect?: AvailabilityExceptionWhereUniqueInput | AvailabilityExceptionWhereUniqueInput[]
+    update?: AvailabilityExceptionUpdateWithWhereUniqueWithoutUnavailabilityInput | AvailabilityExceptionUpdateWithWhereUniqueWithoutUnavailabilityInput[]
+    updateMany?: AvailabilityExceptionUpdateManyWithWhereWithoutUnavailabilityInput | AvailabilityExceptionUpdateManyWithWhereWithoutUnavailabilityInput[]
+    deleteMany?: AvailabilityExceptionScalarWhereInput | AvailabilityExceptionScalarWhereInput[]
+  }
+
+  export type UnavailabilityCreateNestedOneWithoutExceptionsInput = {
+    create?: XOR<UnavailabilityCreateWithoutExceptionsInput, UnavailabilityUncheckedCreateWithoutExceptionsInput>
+    connectOrCreate?: UnavailabilityCreateOrConnectWithoutExceptionsInput
+    connect?: UnavailabilityWhereUniqueInput
+  }
+
+  export type UnavailabilityUpdateOneRequiredWithoutExceptionsNestedInput = {
+    create?: XOR<UnavailabilityCreateWithoutExceptionsInput, UnavailabilityUncheckedCreateWithoutExceptionsInput>
+    connectOrCreate?: UnavailabilityCreateOrConnectWithoutExceptionsInput
+    upsert?: UnavailabilityUpsertWithoutExceptionsInput
+    connect?: UnavailabilityWhereUniqueInput
+    update?: XOR<XOR<UnavailabilityUpdateToOneWithWhereWithoutExceptionsInput, UnavailabilityUpdateWithoutExceptionsInput>, UnavailabilityUncheckedUpdateWithoutExceptionsInput>
+  }
+
+  export type ReservaFotografoCreateNestedManyWithoutReservaInput = {
+    create?: XOR<ReservaFotografoCreateWithoutReservaInput, ReservaFotografoUncheckedCreateWithoutReservaInput> | ReservaFotografoCreateWithoutReservaInput[] | ReservaFotografoUncheckedCreateWithoutReservaInput[]
+    connectOrCreate?: ReservaFotografoCreateOrConnectWithoutReservaInput | ReservaFotografoCreateOrConnectWithoutReservaInput[]
+    createMany?: ReservaFotografoCreateManyReservaInputEnvelope
+    connect?: ReservaFotografoWhereUniqueInput | ReservaFotografoWhereUniqueInput[]
   }
 
   export type ClienteCreateNestedOneWithoutReservasInput = {
@@ -17084,6 +19522,13 @@ export namespace Prisma {
     connect?: PhotoServiceWhereUniqueInput
   }
 
+  export type ReservaFotografoUncheckedCreateNestedManyWithoutReservaInput = {
+    create?: XOR<ReservaFotografoCreateWithoutReservaInput, ReservaFotografoUncheckedCreateWithoutReservaInput> | ReservaFotografoCreateWithoutReservaInput[] | ReservaFotografoUncheckedCreateWithoutReservaInput[]
+    connectOrCreate?: ReservaFotografoCreateOrConnectWithoutReservaInput | ReservaFotografoCreateOrConnectWithoutReservaInput[]
+    createMany?: ReservaFotografoCreateManyReservaInputEnvelope
+    connect?: ReservaFotografoWhereUniqueInput | ReservaFotografoWhereUniqueInput[]
+  }
+
   export type NullableFloatFieldUpdateOperationsInput = {
     set?: number | null
     increment?: number
@@ -17092,12 +19537,18 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type FotografoUpdateOneRequiredWithoutReservasNestedInput = {
-    create?: XOR<FotografoCreateWithoutReservasInput, FotografoUncheckedCreateWithoutReservasInput>
-    connectOrCreate?: FotografoCreateOrConnectWithoutReservasInput
-    upsert?: FotografoUpsertWithoutReservasInput
-    connect?: FotografoWhereUniqueInput
-    update?: XOR<XOR<FotografoUpdateToOneWithWhereWithoutReservasInput, FotografoUpdateWithoutReservasInput>, FotografoUncheckedUpdateWithoutReservasInput>
+  export type ReservaFotografoUpdateManyWithoutReservaNestedInput = {
+    create?: XOR<ReservaFotografoCreateWithoutReservaInput, ReservaFotografoUncheckedCreateWithoutReservaInput> | ReservaFotografoCreateWithoutReservaInput[] | ReservaFotografoUncheckedCreateWithoutReservaInput[]
+    connectOrCreate?: ReservaFotografoCreateOrConnectWithoutReservaInput | ReservaFotografoCreateOrConnectWithoutReservaInput[]
+    upsert?: ReservaFotografoUpsertWithWhereUniqueWithoutReservaInput | ReservaFotografoUpsertWithWhereUniqueWithoutReservaInput[]
+    createMany?: ReservaFotografoCreateManyReservaInputEnvelope
+    set?: ReservaFotografoWhereUniqueInput | ReservaFotografoWhereUniqueInput[]
+    disconnect?: ReservaFotografoWhereUniqueInput | ReservaFotografoWhereUniqueInput[]
+    delete?: ReservaFotografoWhereUniqueInput | ReservaFotografoWhereUniqueInput[]
+    connect?: ReservaFotografoWhereUniqueInput | ReservaFotografoWhereUniqueInput[]
+    update?: ReservaFotografoUpdateWithWhereUniqueWithoutReservaInput | ReservaFotografoUpdateWithWhereUniqueWithoutReservaInput[]
+    updateMany?: ReservaFotografoUpdateManyWithWhereWithoutReservaInput | ReservaFotografoUpdateManyWithWhereWithoutReservaInput[]
+    deleteMany?: ReservaFotografoScalarWhereInput | ReservaFotografoScalarWhereInput[]
   }
 
   export type ClienteUpdateOneRequiredWithoutReservasNestedInput = {
@@ -17116,6 +19567,48 @@ export namespace Prisma {
     delete?: PhotoServiceWhereInput | boolean
     connect?: PhotoServiceWhereUniqueInput
     update?: XOR<XOR<PhotoServiceUpdateToOneWithWhereWithoutReservasInput, PhotoServiceUpdateWithoutReservasInput>, PhotoServiceUncheckedUpdateWithoutReservasInput>
+  }
+
+  export type ReservaFotografoUncheckedUpdateManyWithoutReservaNestedInput = {
+    create?: XOR<ReservaFotografoCreateWithoutReservaInput, ReservaFotografoUncheckedCreateWithoutReservaInput> | ReservaFotografoCreateWithoutReservaInput[] | ReservaFotografoUncheckedCreateWithoutReservaInput[]
+    connectOrCreate?: ReservaFotografoCreateOrConnectWithoutReservaInput | ReservaFotografoCreateOrConnectWithoutReservaInput[]
+    upsert?: ReservaFotografoUpsertWithWhereUniqueWithoutReservaInput | ReservaFotografoUpsertWithWhereUniqueWithoutReservaInput[]
+    createMany?: ReservaFotografoCreateManyReservaInputEnvelope
+    set?: ReservaFotografoWhereUniqueInput | ReservaFotografoWhereUniqueInput[]
+    disconnect?: ReservaFotografoWhereUniqueInput | ReservaFotografoWhereUniqueInput[]
+    delete?: ReservaFotografoWhereUniqueInput | ReservaFotografoWhereUniqueInput[]
+    connect?: ReservaFotografoWhereUniqueInput | ReservaFotografoWhereUniqueInput[]
+    update?: ReservaFotografoUpdateWithWhereUniqueWithoutReservaInput | ReservaFotografoUpdateWithWhereUniqueWithoutReservaInput[]
+    updateMany?: ReservaFotografoUpdateManyWithWhereWithoutReservaInput | ReservaFotografoUpdateManyWithWhereWithoutReservaInput[]
+    deleteMany?: ReservaFotografoScalarWhereInput | ReservaFotografoScalarWhereInput[]
+  }
+
+  export type ReservaCreateNestedOneWithoutFotografosInput = {
+    create?: XOR<ReservaCreateWithoutFotografosInput, ReservaUncheckedCreateWithoutFotografosInput>
+    connectOrCreate?: ReservaCreateOrConnectWithoutFotografosInput
+    connect?: ReservaWhereUniqueInput
+  }
+
+  export type FotografoCreateNestedOneWithoutReservasInput = {
+    create?: XOR<FotografoCreateWithoutReservasInput, FotografoUncheckedCreateWithoutReservasInput>
+    connectOrCreate?: FotografoCreateOrConnectWithoutReservasInput
+    connect?: FotografoWhereUniqueInput
+  }
+
+  export type ReservaUpdateOneRequiredWithoutFotografosNestedInput = {
+    create?: XOR<ReservaCreateWithoutFotografosInput, ReservaUncheckedCreateWithoutFotografosInput>
+    connectOrCreate?: ReservaCreateOrConnectWithoutFotografosInput
+    upsert?: ReservaUpsertWithoutFotografosInput
+    connect?: ReservaWhereUniqueInput
+    update?: XOR<XOR<ReservaUpdateToOneWithWhereWithoutFotografosInput, ReservaUpdateWithoutFotografosInput>, ReservaUncheckedUpdateWithoutFotografosInput>
+  }
+
+  export type FotografoUpdateOneRequiredWithoutReservasNestedInput = {
+    create?: XOR<FotografoCreateWithoutReservasInput, FotografoUncheckedCreateWithoutReservasInput>
+    connectOrCreate?: FotografoCreateOrConnectWithoutReservasInput
+    upsert?: FotografoUpsertWithoutReservasInput
+    connect?: FotografoWhereUniqueInput
+    update?: XOR<XOR<FotografoUpdateToOneWithWhereWithoutReservasInput, FotografoUpdateWithoutReservasInput>, FotografoUncheckedUpdateWithoutReservasInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -17631,7 +20124,7 @@ export namespace Prisma {
     url?: string | null
     Foto: string
     disponible: boolean
-    reservas?: ReservaCreateNestedManyWithoutFotografoInput
+    reservas?: ReservaFotografoCreateNestedManyWithoutFotografoInput
     galeria?: GaleriaCreateNestedManyWithoutFotografoInput
     unavailabilities?: UnavailabilityCreateNestedManyWithoutFotografoInput
     servicios?: FotografoServicioCreateNestedManyWithoutFotografoInput
@@ -17645,7 +20138,7 @@ export namespace Prisma {
     url?: string | null
     Foto: string
     disponible: boolean
-    reservas?: ReservaUncheckedCreateNestedManyWithoutFotografoInput
+    reservas?: ReservaFotografoUncheckedCreateNestedManyWithoutFotografoInput
     galeria?: GaleriaUncheckedCreateNestedManyWithoutFotografoInput
     unavailabilities?: UnavailabilityUncheckedCreateNestedManyWithoutFotografoInput
     servicios?: FotografoServicioUncheckedCreateNestedManyWithoutFotografoInput
@@ -17706,7 +20199,7 @@ export namespace Prisma {
     url?: NullableStringFieldUpdateOperationsInput | string | null
     Foto?: StringFieldUpdateOperationsInput | string
     disponible?: BoolFieldUpdateOperationsInput | boolean
-    reservas?: ReservaUpdateManyWithoutFotografoNestedInput
+    reservas?: ReservaFotografoUpdateManyWithoutFotografoNestedInput
     galeria?: GaleriaUpdateManyWithoutFotografoNestedInput
     unavailabilities?: UnavailabilityUpdateManyWithoutFotografoNestedInput
     servicios?: FotografoServicioUpdateManyWithoutFotografoNestedInput
@@ -17720,7 +20213,7 @@ export namespace Prisma {
     url?: NullableStringFieldUpdateOperationsInput | string | null
     Foto?: StringFieldUpdateOperationsInput | string
     disponible?: BoolFieldUpdateOperationsInput | boolean
-    reservas?: ReservaUncheckedUpdateManyWithoutFotografoNestedInput
+    reservas?: ReservaFotografoUncheckedUpdateManyWithoutFotografoNestedInput
     galeria?: GaleriaUncheckedUpdateManyWithoutFotografoNestedInput
     unavailabilities?: UnavailabilityUncheckedUpdateManyWithoutFotografoNestedInput
     servicios?: FotografoServicioUncheckedUpdateManyWithoutFotografoNestedInput
@@ -17735,7 +20228,7 @@ export namespace Prisma {
     Foto: string
     disponible: boolean
     usuario: UsuarioCreateNestedOneWithoutFotografoInput
-    reservas?: ReservaCreateNestedManyWithoutFotografoInput
+    reservas?: ReservaFotografoCreateNestedManyWithoutFotografoInput
     unavailabilities?: UnavailabilityCreateNestedManyWithoutFotografoInput
     servicios?: FotografoServicioCreateNestedManyWithoutFotografoInput
   }
@@ -17749,7 +20242,7 @@ export namespace Prisma {
     url?: string | null
     Foto: string
     disponible: boolean
-    reservas?: ReservaUncheckedCreateNestedManyWithoutFotografoInput
+    reservas?: ReservaFotografoUncheckedCreateNestedManyWithoutFotografoInput
     unavailabilities?: UnavailabilityUncheckedCreateNestedManyWithoutFotografoInput
     servicios?: FotografoServicioUncheckedCreateNestedManyWithoutFotografoInput
   }
@@ -17779,7 +20272,7 @@ export namespace Prisma {
     Foto?: StringFieldUpdateOperationsInput | string
     disponible?: BoolFieldUpdateOperationsInput | boolean
     usuario?: UsuarioUpdateOneRequiredWithoutFotografoNestedInput
-    reservas?: ReservaUpdateManyWithoutFotografoNestedInput
+    reservas?: ReservaFotografoUpdateManyWithoutFotografoNestedInput
     unavailabilities?: UnavailabilityUpdateManyWithoutFotografoNestedInput
     servicios?: FotografoServicioUpdateManyWithoutFotografoNestedInput
   }
@@ -17793,7 +20286,7 @@ export namespace Prisma {
     url?: NullableStringFieldUpdateOperationsInput | string | null
     Foto?: StringFieldUpdateOperationsInput | string
     disponible?: BoolFieldUpdateOperationsInput | boolean
-    reservas?: ReservaUncheckedUpdateManyWithoutFotografoNestedInput
+    reservas?: ReservaFotografoUncheckedUpdateManyWithoutFotografoNestedInput
     unavailabilities?: UnavailabilityUncheckedUpdateManyWithoutFotografoNestedInput
     servicios?: FotografoServicioUncheckedUpdateManyWithoutFotografoNestedInput
   }
@@ -17806,7 +20299,7 @@ export namespace Prisma {
     estado?: boolean
     precio?: number | null
     createdAt?: Date | string
-    fotografo: FotografoCreateNestedOneWithoutReservasInput
+    fotografos?: ReservaFotografoCreateNestedManyWithoutReservaInput
     photoService?: PhotoServiceCreateNestedOneWithoutReservasInput
   }
 
@@ -17815,11 +20308,11 @@ export namespace Prisma {
     fecha: Date | string
     horaInicio: Date | string
     horaFin: Date | string
-    fotografoId: string
     photoServiceId?: string | null
     estado?: boolean
     precio?: number | null
     createdAt?: Date | string
+    fotografos?: ReservaFotografoUncheckedCreateNestedManyWithoutReservaInput
   }
 
   export type ReservaCreateOrConnectWithoutClienteInput = {
@@ -17856,7 +20349,6 @@ export namespace Prisma {
     fecha?: DateTimeFilter<"Reserva"> | Date | string
     horaInicio?: DateTimeFilter<"Reserva"> | Date | string
     horaFin?: DateTimeFilter<"Reserva"> | Date | string
-    fotografoId?: StringFilter<"Reserva"> | string
     clienteId?: StringFilter<"Reserva"> | string
     photoServiceId?: StringNullableFilter<"Reserva"> | string | null
     estado?: BoolFilter<"Reserva"> | boolean
@@ -17954,37 +20446,21 @@ export namespace Prisma {
     create: XOR<UsuarioCreateWithoutFotografoInput, UsuarioUncheckedCreateWithoutFotografoInput>
   }
 
-  export type ReservaCreateWithoutFotografoInput = {
-    id?: string
-    fecha: Date | string
-    horaInicio: Date | string
-    horaFin: Date | string
-    estado?: boolean
-    precio?: number | null
-    createdAt?: Date | string
-    cliente: ClienteCreateNestedOneWithoutReservasInput
-    photoService?: PhotoServiceCreateNestedOneWithoutReservasInput
+  export type ReservaFotografoCreateWithoutFotografoInput = {
+    reserva: ReservaCreateNestedOneWithoutFotografosInput
   }
 
-  export type ReservaUncheckedCreateWithoutFotografoInput = {
-    id?: string
-    fecha: Date | string
-    horaInicio: Date | string
-    horaFin: Date | string
-    clienteId: string
-    photoServiceId?: string | null
-    estado?: boolean
-    precio?: number | null
-    createdAt?: Date | string
+  export type ReservaFotografoUncheckedCreateWithoutFotografoInput = {
+    reservaId: string
   }
 
-  export type ReservaCreateOrConnectWithoutFotografoInput = {
-    where: ReservaWhereUniqueInput
-    create: XOR<ReservaCreateWithoutFotografoInput, ReservaUncheckedCreateWithoutFotografoInput>
+  export type ReservaFotografoCreateOrConnectWithoutFotografoInput = {
+    where: ReservaFotografoWhereUniqueInput
+    create: XOR<ReservaFotografoCreateWithoutFotografoInput, ReservaFotografoUncheckedCreateWithoutFotografoInput>
   }
 
-  export type ReservaCreateManyFotografoInputEnvelope = {
-    data: ReservaCreateManyFotografoInput | ReservaCreateManyFotografoInput[]
+  export type ReservaFotografoCreateManyFotografoInputEnvelope = {
+    data: ReservaFotografoCreateManyFotografoInput | ReservaFotografoCreateManyFotografoInput[]
     skipDuplicates?: boolean
   }
 
@@ -18017,6 +20493,7 @@ export namespace Prisma {
     startDate?: Date | string | null
     endDate?: Date | string | null
     activo?: boolean
+    exceptions?: AvailabilityExceptionCreateNestedManyWithoutUnavailabilityInput
   }
 
   export type UnavailabilityUncheckedCreateWithoutFotografoInput = {
@@ -18026,6 +20503,7 @@ export namespace Prisma {
     startDate?: Date | string | null
     endDate?: Date | string | null
     activo?: boolean
+    exceptions?: AvailabilityExceptionUncheckedCreateNestedManyWithoutUnavailabilityInput
   }
 
   export type UnavailabilityCreateOrConnectWithoutFotografoInput = {
@@ -18091,20 +20569,28 @@ export namespace Prisma {
     debeCambiar?: BoolFieldUpdateOperationsInput | boolean
   }
 
-  export type ReservaUpsertWithWhereUniqueWithoutFotografoInput = {
-    where: ReservaWhereUniqueInput
-    update: XOR<ReservaUpdateWithoutFotografoInput, ReservaUncheckedUpdateWithoutFotografoInput>
-    create: XOR<ReservaCreateWithoutFotografoInput, ReservaUncheckedCreateWithoutFotografoInput>
+  export type ReservaFotografoUpsertWithWhereUniqueWithoutFotografoInput = {
+    where: ReservaFotografoWhereUniqueInput
+    update: XOR<ReservaFotografoUpdateWithoutFotografoInput, ReservaFotografoUncheckedUpdateWithoutFotografoInput>
+    create: XOR<ReservaFotografoCreateWithoutFotografoInput, ReservaFotografoUncheckedCreateWithoutFotografoInput>
   }
 
-  export type ReservaUpdateWithWhereUniqueWithoutFotografoInput = {
-    where: ReservaWhereUniqueInput
-    data: XOR<ReservaUpdateWithoutFotografoInput, ReservaUncheckedUpdateWithoutFotografoInput>
+  export type ReservaFotografoUpdateWithWhereUniqueWithoutFotografoInput = {
+    where: ReservaFotografoWhereUniqueInput
+    data: XOR<ReservaFotografoUpdateWithoutFotografoInput, ReservaFotografoUncheckedUpdateWithoutFotografoInput>
   }
 
-  export type ReservaUpdateManyWithWhereWithoutFotografoInput = {
-    where: ReservaScalarWhereInput
-    data: XOR<ReservaUpdateManyMutationInput, ReservaUncheckedUpdateManyWithoutFotografoInput>
+  export type ReservaFotografoUpdateManyWithWhereWithoutFotografoInput = {
+    where: ReservaFotografoScalarWhereInput
+    data: XOR<ReservaFotografoUpdateManyMutationInput, ReservaFotografoUncheckedUpdateManyWithoutFotografoInput>
+  }
+
+  export type ReservaFotografoScalarWhereInput = {
+    AND?: ReservaFotografoScalarWhereInput | ReservaFotografoScalarWhereInput[]
+    OR?: ReservaFotografoScalarWhereInput[]
+    NOT?: ReservaFotografoScalarWhereInput | ReservaFotografoScalarWhereInput[]
+    reservaId?: StringFilter<"ReservaFotografo"> | string
+    fotografoId?: StringFilter<"ReservaFotografo"> | string
   }
 
   export type GaleriaUpsertWithWhereUniqueWithoutFotografoInput = {
@@ -18186,6 +20672,138 @@ export namespace Prisma {
     servicioId?: StringFilter<"FotografoServicio"> | string
   }
 
+  export type FotografoCreateWithoutServiciosInput = {
+    id?: string
+    nombre: string
+    telefono?: string | null
+    bio?: string | null
+    url?: string | null
+    Foto: string
+    disponible: boolean
+    usuario: UsuarioCreateNestedOneWithoutFotografoInput
+    reservas?: ReservaFotografoCreateNestedManyWithoutFotografoInput
+    galeria?: GaleriaCreateNestedManyWithoutFotografoInput
+    unavailabilities?: UnavailabilityCreateNestedManyWithoutFotografoInput
+  }
+
+  export type FotografoUncheckedCreateWithoutServiciosInput = {
+    id?: string
+    usuarioId: string
+    nombre: string
+    telefono?: string | null
+    bio?: string | null
+    url?: string | null
+    Foto: string
+    disponible: boolean
+    reservas?: ReservaFotografoUncheckedCreateNestedManyWithoutFotografoInput
+    galeria?: GaleriaUncheckedCreateNestedManyWithoutFotografoInput
+    unavailabilities?: UnavailabilityUncheckedCreateNestedManyWithoutFotografoInput
+  }
+
+  export type FotografoCreateOrConnectWithoutServiciosInput = {
+    where: FotografoWhereUniqueInput
+    create: XOR<FotografoCreateWithoutServiciosInput, FotografoUncheckedCreateWithoutServiciosInput>
+  }
+
+  export type PhotoServiceCreateWithoutFotografosInput = {
+    id?: string
+    name: string
+    img: string
+    description: string
+    precio?: number
+    activo?: boolean
+    category: CategoryCreateNestedOneWithoutServicesInput
+    reservas?: ReservaCreateNestedManyWithoutPhotoServiceInput
+  }
+
+  export type PhotoServiceUncheckedCreateWithoutFotografosInput = {
+    id?: string
+    name: string
+    img: string
+    description: string
+    precio?: number
+    activo?: boolean
+    categoryId: string
+    reservas?: ReservaUncheckedCreateNestedManyWithoutPhotoServiceInput
+  }
+
+  export type PhotoServiceCreateOrConnectWithoutFotografosInput = {
+    where: PhotoServiceWhereUniqueInput
+    create: XOR<PhotoServiceCreateWithoutFotografosInput, PhotoServiceUncheckedCreateWithoutFotografosInput>
+  }
+
+  export type FotografoUpsertWithoutServiciosInput = {
+    update: XOR<FotografoUpdateWithoutServiciosInput, FotografoUncheckedUpdateWithoutServiciosInput>
+    create: XOR<FotografoCreateWithoutServiciosInput, FotografoUncheckedCreateWithoutServiciosInput>
+    where?: FotografoWhereInput
+  }
+
+  export type FotografoUpdateToOneWithWhereWithoutServiciosInput = {
+    where?: FotografoWhereInput
+    data: XOR<FotografoUpdateWithoutServiciosInput, FotografoUncheckedUpdateWithoutServiciosInput>
+  }
+
+  export type FotografoUpdateWithoutServiciosInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nombre?: StringFieldUpdateOperationsInput | string
+    telefono?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    Foto?: StringFieldUpdateOperationsInput | string
+    disponible?: BoolFieldUpdateOperationsInput | boolean
+    usuario?: UsuarioUpdateOneRequiredWithoutFotografoNestedInput
+    reservas?: ReservaFotografoUpdateManyWithoutFotografoNestedInput
+    galeria?: GaleriaUpdateManyWithoutFotografoNestedInput
+    unavailabilities?: UnavailabilityUpdateManyWithoutFotografoNestedInput
+  }
+
+  export type FotografoUncheckedUpdateWithoutServiciosInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    usuarioId?: StringFieldUpdateOperationsInput | string
+    nombre?: StringFieldUpdateOperationsInput | string
+    telefono?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    Foto?: StringFieldUpdateOperationsInput | string
+    disponible?: BoolFieldUpdateOperationsInput | boolean
+    reservas?: ReservaFotografoUncheckedUpdateManyWithoutFotografoNestedInput
+    galeria?: GaleriaUncheckedUpdateManyWithoutFotografoNestedInput
+    unavailabilities?: UnavailabilityUncheckedUpdateManyWithoutFotografoNestedInput
+  }
+
+  export type PhotoServiceUpsertWithoutFotografosInput = {
+    update: XOR<PhotoServiceUpdateWithoutFotografosInput, PhotoServiceUncheckedUpdateWithoutFotografosInput>
+    create: XOR<PhotoServiceCreateWithoutFotografosInput, PhotoServiceUncheckedCreateWithoutFotografosInput>
+    where?: PhotoServiceWhereInput
+  }
+
+  export type PhotoServiceUpdateToOneWithWhereWithoutFotografosInput = {
+    where?: PhotoServiceWhereInput
+    data: XOR<PhotoServiceUpdateWithoutFotografosInput, PhotoServiceUncheckedUpdateWithoutFotografosInput>
+  }
+
+  export type PhotoServiceUpdateWithoutFotografosInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    img?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    precio?: FloatFieldUpdateOperationsInput | number
+    activo?: BoolFieldUpdateOperationsInput | boolean
+    category?: CategoryUpdateOneRequiredWithoutServicesNestedInput
+    reservas?: ReservaUpdateManyWithoutPhotoServiceNestedInput
+  }
+
+  export type PhotoServiceUncheckedUpdateWithoutFotografosInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    img?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    precio?: FloatFieldUpdateOperationsInput | number
+    activo?: BoolFieldUpdateOperationsInput | boolean
+    categoryId?: StringFieldUpdateOperationsInput | string
+    reservas?: ReservaUncheckedUpdateManyWithoutPhotoServiceNestedInput
+  }
+
   export type CategoryCreateWithoutServicesInput = {
     id?: string
     name: string
@@ -18229,7 +20847,7 @@ export namespace Prisma {
     estado?: boolean
     precio?: number | null
     createdAt?: Date | string
-    fotografo: FotografoCreateNestedOneWithoutReservasInput
+    fotografos?: ReservaFotografoCreateNestedManyWithoutReservaInput
     cliente: ClienteCreateNestedOneWithoutReservasInput
   }
 
@@ -18238,11 +20856,11 @@ export namespace Prisma {
     fecha: Date | string
     horaInicio: Date | string
     horaFin: Date | string
-    fotografoId: string
     clienteId: string
     estado?: boolean
     precio?: number | null
     createdAt?: Date | string
+    fotografos?: ReservaFotografoUncheckedCreateNestedManyWithoutReservaInput
   }
 
   export type ReservaCreateOrConnectWithoutPhotoServiceInput = {
@@ -18310,138 +20928,6 @@ export namespace Prisma {
     data: XOR<ReservaUpdateManyMutationInput, ReservaUncheckedUpdateManyWithoutPhotoServiceInput>
   }
 
-  export type FotografoCreateWithoutServiciosInput = {
-    id?: string
-    nombre: string
-    telefono?: string | null
-    bio?: string | null
-    url?: string | null
-    Foto: string
-    disponible: boolean
-    usuario: UsuarioCreateNestedOneWithoutFotografoInput
-    reservas?: ReservaCreateNestedManyWithoutFotografoInput
-    galeria?: GaleriaCreateNestedManyWithoutFotografoInput
-    unavailabilities?: UnavailabilityCreateNestedManyWithoutFotografoInput
-  }
-
-  export type FotografoUncheckedCreateWithoutServiciosInput = {
-    id?: string
-    usuarioId: string
-    nombre: string
-    telefono?: string | null
-    bio?: string | null
-    url?: string | null
-    Foto: string
-    disponible: boolean
-    reservas?: ReservaUncheckedCreateNestedManyWithoutFotografoInput
-    galeria?: GaleriaUncheckedCreateNestedManyWithoutFotografoInput
-    unavailabilities?: UnavailabilityUncheckedCreateNestedManyWithoutFotografoInput
-  }
-
-  export type FotografoCreateOrConnectWithoutServiciosInput = {
-    where: FotografoWhereUniqueInput
-    create: XOR<FotografoCreateWithoutServiciosInput, FotografoUncheckedCreateWithoutServiciosInput>
-  }
-
-  export type PhotoServiceCreateWithoutFotografosInput = {
-    id?: string
-    name: string
-    img: string
-    description: string
-    precio?: number
-    activo?: boolean
-    category: CategoryCreateNestedOneWithoutServicesInput
-    reservas?: ReservaCreateNestedManyWithoutPhotoServiceInput
-  }
-
-  export type PhotoServiceUncheckedCreateWithoutFotografosInput = {
-    id?: string
-    name: string
-    img: string
-    description: string
-    precio?: number
-    activo?: boolean
-    categoryId: string
-    reservas?: ReservaUncheckedCreateNestedManyWithoutPhotoServiceInput
-  }
-
-  export type PhotoServiceCreateOrConnectWithoutFotografosInput = {
-    where: PhotoServiceWhereUniqueInput
-    create: XOR<PhotoServiceCreateWithoutFotografosInput, PhotoServiceUncheckedCreateWithoutFotografosInput>
-  }
-
-  export type FotografoUpsertWithoutServiciosInput = {
-    update: XOR<FotografoUpdateWithoutServiciosInput, FotografoUncheckedUpdateWithoutServiciosInput>
-    create: XOR<FotografoCreateWithoutServiciosInput, FotografoUncheckedCreateWithoutServiciosInput>
-    where?: FotografoWhereInput
-  }
-
-  export type FotografoUpdateToOneWithWhereWithoutServiciosInput = {
-    where?: FotografoWhereInput
-    data: XOR<FotografoUpdateWithoutServiciosInput, FotografoUncheckedUpdateWithoutServiciosInput>
-  }
-
-  export type FotografoUpdateWithoutServiciosInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    nombre?: StringFieldUpdateOperationsInput | string
-    telefono?: NullableStringFieldUpdateOperationsInput | string | null
-    bio?: NullableStringFieldUpdateOperationsInput | string | null
-    url?: NullableStringFieldUpdateOperationsInput | string | null
-    Foto?: StringFieldUpdateOperationsInput | string
-    disponible?: BoolFieldUpdateOperationsInput | boolean
-    usuario?: UsuarioUpdateOneRequiredWithoutFotografoNestedInput
-    reservas?: ReservaUpdateManyWithoutFotografoNestedInput
-    galeria?: GaleriaUpdateManyWithoutFotografoNestedInput
-    unavailabilities?: UnavailabilityUpdateManyWithoutFotografoNestedInput
-  }
-
-  export type FotografoUncheckedUpdateWithoutServiciosInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    usuarioId?: StringFieldUpdateOperationsInput | string
-    nombre?: StringFieldUpdateOperationsInput | string
-    telefono?: NullableStringFieldUpdateOperationsInput | string | null
-    bio?: NullableStringFieldUpdateOperationsInput | string | null
-    url?: NullableStringFieldUpdateOperationsInput | string | null
-    Foto?: StringFieldUpdateOperationsInput | string
-    disponible?: BoolFieldUpdateOperationsInput | boolean
-    reservas?: ReservaUncheckedUpdateManyWithoutFotografoNestedInput
-    galeria?: GaleriaUncheckedUpdateManyWithoutFotografoNestedInput
-    unavailabilities?: UnavailabilityUncheckedUpdateManyWithoutFotografoNestedInput
-  }
-
-  export type PhotoServiceUpsertWithoutFotografosInput = {
-    update: XOR<PhotoServiceUpdateWithoutFotografosInput, PhotoServiceUncheckedUpdateWithoutFotografosInput>
-    create: XOR<PhotoServiceCreateWithoutFotografosInput, PhotoServiceUncheckedCreateWithoutFotografosInput>
-    where?: PhotoServiceWhereInput
-  }
-
-  export type PhotoServiceUpdateToOneWithWhereWithoutFotografosInput = {
-    where?: PhotoServiceWhereInput
-    data: XOR<PhotoServiceUpdateWithoutFotografosInput, PhotoServiceUncheckedUpdateWithoutFotografosInput>
-  }
-
-  export type PhotoServiceUpdateWithoutFotografosInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    img?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    precio?: FloatFieldUpdateOperationsInput | number
-    activo?: BoolFieldUpdateOperationsInput | boolean
-    category?: CategoryUpdateOneRequiredWithoutServicesNestedInput
-    reservas?: ReservaUpdateManyWithoutPhotoServiceNestedInput
-  }
-
-  export type PhotoServiceUncheckedUpdateWithoutFotografosInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    img?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    precio?: FloatFieldUpdateOperationsInput | number
-    activo?: BoolFieldUpdateOperationsInput | boolean
-    categoryId?: StringFieldUpdateOperationsInput | string
-    reservas?: ReservaUncheckedUpdateManyWithoutPhotoServiceNestedInput
-  }
-
   export type FotografoCreateWithoutUnavailabilitiesInput = {
     id?: string
     nombre: string
@@ -18451,7 +20937,7 @@ export namespace Prisma {
     Foto: string
     disponible: boolean
     usuario: UsuarioCreateNestedOneWithoutFotografoInput
-    reservas?: ReservaCreateNestedManyWithoutFotografoInput
+    reservas?: ReservaFotografoCreateNestedManyWithoutFotografoInput
     galeria?: GaleriaCreateNestedManyWithoutFotografoInput
     servicios?: FotografoServicioCreateNestedManyWithoutFotografoInput
   }
@@ -18465,7 +20951,7 @@ export namespace Prisma {
     url?: string | null
     Foto: string
     disponible: boolean
-    reservas?: ReservaUncheckedCreateNestedManyWithoutFotografoInput
+    reservas?: ReservaFotografoUncheckedCreateNestedManyWithoutFotografoInput
     galeria?: GaleriaUncheckedCreateNestedManyWithoutFotografoInput
     servicios?: FotografoServicioUncheckedCreateNestedManyWithoutFotografoInput
   }
@@ -18473,6 +20959,28 @@ export namespace Prisma {
   export type FotografoCreateOrConnectWithoutUnavailabilitiesInput = {
     where: FotografoWhereUniqueInput
     create: XOR<FotografoCreateWithoutUnavailabilitiesInput, FotografoUncheckedCreateWithoutUnavailabilitiesInput>
+  }
+
+  export type AvailabilityExceptionCreateWithoutUnavailabilityInput = {
+    id?: string
+    date: Date | string
+    disponible: boolean
+  }
+
+  export type AvailabilityExceptionUncheckedCreateWithoutUnavailabilityInput = {
+    id?: string
+    date: Date | string
+    disponible: boolean
+  }
+
+  export type AvailabilityExceptionCreateOrConnectWithoutUnavailabilityInput = {
+    where: AvailabilityExceptionWhereUniqueInput
+    create: XOR<AvailabilityExceptionCreateWithoutUnavailabilityInput, AvailabilityExceptionUncheckedCreateWithoutUnavailabilityInput>
+  }
+
+  export type AvailabilityExceptionCreateManyUnavailabilityInputEnvelope = {
+    data: AvailabilityExceptionCreateManyUnavailabilityInput | AvailabilityExceptionCreateManyUnavailabilityInput[]
+    skipDuplicates?: boolean
   }
 
   export type FotografoUpsertWithoutUnavailabilitiesInput = {
@@ -18495,7 +21003,7 @@ export namespace Prisma {
     Foto?: StringFieldUpdateOperationsInput | string
     disponible?: BoolFieldUpdateOperationsInput | boolean
     usuario?: UsuarioUpdateOneRequiredWithoutFotografoNestedInput
-    reservas?: ReservaUpdateManyWithoutFotografoNestedInput
+    reservas?: ReservaFotografoUpdateManyWithoutFotografoNestedInput
     galeria?: GaleriaUpdateManyWithoutFotografoNestedInput
     servicios?: FotografoServicioUpdateManyWithoutFotografoNestedInput
   }
@@ -18509,42 +21017,109 @@ export namespace Prisma {
     url?: NullableStringFieldUpdateOperationsInput | string | null
     Foto?: StringFieldUpdateOperationsInput | string
     disponible?: BoolFieldUpdateOperationsInput | boolean
-    reservas?: ReservaUncheckedUpdateManyWithoutFotografoNestedInput
+    reservas?: ReservaFotografoUncheckedUpdateManyWithoutFotografoNestedInput
     galeria?: GaleriaUncheckedUpdateManyWithoutFotografoNestedInput
     servicios?: FotografoServicioUncheckedUpdateManyWithoutFotografoNestedInput
   }
 
-  export type FotografoCreateWithoutReservasInput = {
-    id?: string
-    nombre: string
-    telefono?: string | null
-    bio?: string | null
-    url?: string | null
-    Foto: string
-    disponible: boolean
-    usuario: UsuarioCreateNestedOneWithoutFotografoInput
-    galeria?: GaleriaCreateNestedManyWithoutFotografoInput
-    unavailabilities?: UnavailabilityCreateNestedManyWithoutFotografoInput
-    servicios?: FotografoServicioCreateNestedManyWithoutFotografoInput
+  export type AvailabilityExceptionUpsertWithWhereUniqueWithoutUnavailabilityInput = {
+    where: AvailabilityExceptionWhereUniqueInput
+    update: XOR<AvailabilityExceptionUpdateWithoutUnavailabilityInput, AvailabilityExceptionUncheckedUpdateWithoutUnavailabilityInput>
+    create: XOR<AvailabilityExceptionCreateWithoutUnavailabilityInput, AvailabilityExceptionUncheckedCreateWithoutUnavailabilityInput>
   }
 
-  export type FotografoUncheckedCreateWithoutReservasInput = {
-    id?: string
-    usuarioId: string
-    nombre: string
-    telefono?: string | null
-    bio?: string | null
-    url?: string | null
-    Foto: string
-    disponible: boolean
-    galeria?: GaleriaUncheckedCreateNestedManyWithoutFotografoInput
-    unavailabilities?: UnavailabilityUncheckedCreateNestedManyWithoutFotografoInput
-    servicios?: FotografoServicioUncheckedCreateNestedManyWithoutFotografoInput
+  export type AvailabilityExceptionUpdateWithWhereUniqueWithoutUnavailabilityInput = {
+    where: AvailabilityExceptionWhereUniqueInput
+    data: XOR<AvailabilityExceptionUpdateWithoutUnavailabilityInput, AvailabilityExceptionUncheckedUpdateWithoutUnavailabilityInput>
   }
 
-  export type FotografoCreateOrConnectWithoutReservasInput = {
-    where: FotografoWhereUniqueInput
-    create: XOR<FotografoCreateWithoutReservasInput, FotografoUncheckedCreateWithoutReservasInput>
+  export type AvailabilityExceptionUpdateManyWithWhereWithoutUnavailabilityInput = {
+    where: AvailabilityExceptionScalarWhereInput
+    data: XOR<AvailabilityExceptionUpdateManyMutationInput, AvailabilityExceptionUncheckedUpdateManyWithoutUnavailabilityInput>
+  }
+
+  export type AvailabilityExceptionScalarWhereInput = {
+    AND?: AvailabilityExceptionScalarWhereInput | AvailabilityExceptionScalarWhereInput[]
+    OR?: AvailabilityExceptionScalarWhereInput[]
+    NOT?: AvailabilityExceptionScalarWhereInput | AvailabilityExceptionScalarWhereInput[]
+    id?: StringFilter<"AvailabilityException"> | string
+    unavailabilityId?: StringFilter<"AvailabilityException"> | string
+    date?: DateTimeFilter<"AvailabilityException"> | Date | string
+    disponible?: BoolFilter<"AvailabilityException"> | boolean
+  }
+
+  export type UnavailabilityCreateWithoutExceptionsInput = {
+    id?: string
+    recurring: boolean
+    weekday?: number | null
+    startDate?: Date | string | null
+    endDate?: Date | string | null
+    activo?: boolean
+    fotografo: FotografoCreateNestedOneWithoutUnavailabilitiesInput
+  }
+
+  export type UnavailabilityUncheckedCreateWithoutExceptionsInput = {
+    id?: string
+    fotografoId: string
+    recurring: boolean
+    weekday?: number | null
+    startDate?: Date | string | null
+    endDate?: Date | string | null
+    activo?: boolean
+  }
+
+  export type UnavailabilityCreateOrConnectWithoutExceptionsInput = {
+    where: UnavailabilityWhereUniqueInput
+    create: XOR<UnavailabilityCreateWithoutExceptionsInput, UnavailabilityUncheckedCreateWithoutExceptionsInput>
+  }
+
+  export type UnavailabilityUpsertWithoutExceptionsInput = {
+    update: XOR<UnavailabilityUpdateWithoutExceptionsInput, UnavailabilityUncheckedUpdateWithoutExceptionsInput>
+    create: XOR<UnavailabilityCreateWithoutExceptionsInput, UnavailabilityUncheckedCreateWithoutExceptionsInput>
+    where?: UnavailabilityWhereInput
+  }
+
+  export type UnavailabilityUpdateToOneWithWhereWithoutExceptionsInput = {
+    where?: UnavailabilityWhereInput
+    data: XOR<UnavailabilityUpdateWithoutExceptionsInput, UnavailabilityUncheckedUpdateWithoutExceptionsInput>
+  }
+
+  export type UnavailabilityUpdateWithoutExceptionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    recurring?: BoolFieldUpdateOperationsInput | boolean
+    weekday?: NullableIntFieldUpdateOperationsInput | number | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    activo?: BoolFieldUpdateOperationsInput | boolean
+    fotografo?: FotografoUpdateOneRequiredWithoutUnavailabilitiesNestedInput
+  }
+
+  export type UnavailabilityUncheckedUpdateWithoutExceptionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fotografoId?: StringFieldUpdateOperationsInput | string
+    recurring?: BoolFieldUpdateOperationsInput | boolean
+    weekday?: NullableIntFieldUpdateOperationsInput | number | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    activo?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type ReservaFotografoCreateWithoutReservaInput = {
+    fotografo: FotografoCreateNestedOneWithoutReservasInput
+  }
+
+  export type ReservaFotografoUncheckedCreateWithoutReservaInput = {
+    fotografoId: string
+  }
+
+  export type ReservaFotografoCreateOrConnectWithoutReservaInput = {
+    where: ReservaFotografoWhereUniqueInput
+    create: XOR<ReservaFotografoCreateWithoutReservaInput, ReservaFotografoUncheckedCreateWithoutReservaInput>
+  }
+
+  export type ReservaFotografoCreateManyReservaInputEnvelope = {
+    data: ReservaFotografoCreateManyReservaInput | ReservaFotografoCreateManyReservaInput[]
+    skipDuplicates?: boolean
   }
 
   export type ClienteCreateWithoutReservasInput = {
@@ -18597,43 +21172,20 @@ export namespace Prisma {
     create: XOR<PhotoServiceCreateWithoutReservasInput, PhotoServiceUncheckedCreateWithoutReservasInput>
   }
 
-  export type FotografoUpsertWithoutReservasInput = {
-    update: XOR<FotografoUpdateWithoutReservasInput, FotografoUncheckedUpdateWithoutReservasInput>
-    create: XOR<FotografoCreateWithoutReservasInput, FotografoUncheckedCreateWithoutReservasInput>
-    where?: FotografoWhereInput
+  export type ReservaFotografoUpsertWithWhereUniqueWithoutReservaInput = {
+    where: ReservaFotografoWhereUniqueInput
+    update: XOR<ReservaFotografoUpdateWithoutReservaInput, ReservaFotografoUncheckedUpdateWithoutReservaInput>
+    create: XOR<ReservaFotografoCreateWithoutReservaInput, ReservaFotografoUncheckedCreateWithoutReservaInput>
   }
 
-  export type FotografoUpdateToOneWithWhereWithoutReservasInput = {
-    where?: FotografoWhereInput
-    data: XOR<FotografoUpdateWithoutReservasInput, FotografoUncheckedUpdateWithoutReservasInput>
+  export type ReservaFotografoUpdateWithWhereUniqueWithoutReservaInput = {
+    where: ReservaFotografoWhereUniqueInput
+    data: XOR<ReservaFotografoUpdateWithoutReservaInput, ReservaFotografoUncheckedUpdateWithoutReservaInput>
   }
 
-  export type FotografoUpdateWithoutReservasInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    nombre?: StringFieldUpdateOperationsInput | string
-    telefono?: NullableStringFieldUpdateOperationsInput | string | null
-    bio?: NullableStringFieldUpdateOperationsInput | string | null
-    url?: NullableStringFieldUpdateOperationsInput | string | null
-    Foto?: StringFieldUpdateOperationsInput | string
-    disponible?: BoolFieldUpdateOperationsInput | boolean
-    usuario?: UsuarioUpdateOneRequiredWithoutFotografoNestedInput
-    galeria?: GaleriaUpdateManyWithoutFotografoNestedInput
-    unavailabilities?: UnavailabilityUpdateManyWithoutFotografoNestedInput
-    servicios?: FotografoServicioUpdateManyWithoutFotografoNestedInput
-  }
-
-  export type FotografoUncheckedUpdateWithoutReservasInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    usuarioId?: StringFieldUpdateOperationsInput | string
-    nombre?: StringFieldUpdateOperationsInput | string
-    telefono?: NullableStringFieldUpdateOperationsInput | string | null
-    bio?: NullableStringFieldUpdateOperationsInput | string | null
-    url?: NullableStringFieldUpdateOperationsInput | string | null
-    Foto?: StringFieldUpdateOperationsInput | string
-    disponible?: BoolFieldUpdateOperationsInput | boolean
-    galeria?: GaleriaUncheckedUpdateManyWithoutFotografoNestedInput
-    unavailabilities?: UnavailabilityUncheckedUpdateManyWithoutFotografoNestedInput
-    servicios?: FotografoServicioUncheckedUpdateManyWithoutFotografoNestedInput
+  export type ReservaFotografoUpdateManyWithWhereWithoutReservaInput = {
+    where: ReservaFotografoScalarWhereInput
+    data: XOR<ReservaFotografoUpdateManyMutationInput, ReservaFotografoUncheckedUpdateManyWithoutReservaInput>
   }
 
   export type ClienteUpsertWithoutReservasInput = {
@@ -18696,6 +21248,142 @@ export namespace Prisma {
     activo?: BoolFieldUpdateOperationsInput | boolean
     categoryId?: StringFieldUpdateOperationsInput | string
     fotografos?: FotografoServicioUncheckedUpdateManyWithoutServicioNestedInput
+  }
+
+  export type ReservaCreateWithoutFotografosInput = {
+    id?: string
+    fecha: Date | string
+    horaInicio: Date | string
+    horaFin: Date | string
+    estado?: boolean
+    precio?: number | null
+    createdAt?: Date | string
+    cliente: ClienteCreateNestedOneWithoutReservasInput
+    photoService?: PhotoServiceCreateNestedOneWithoutReservasInput
+  }
+
+  export type ReservaUncheckedCreateWithoutFotografosInput = {
+    id?: string
+    fecha: Date | string
+    horaInicio: Date | string
+    horaFin: Date | string
+    clienteId: string
+    photoServiceId?: string | null
+    estado?: boolean
+    precio?: number | null
+    createdAt?: Date | string
+  }
+
+  export type ReservaCreateOrConnectWithoutFotografosInput = {
+    where: ReservaWhereUniqueInput
+    create: XOR<ReservaCreateWithoutFotografosInput, ReservaUncheckedCreateWithoutFotografosInput>
+  }
+
+  export type FotografoCreateWithoutReservasInput = {
+    id?: string
+    nombre: string
+    telefono?: string | null
+    bio?: string | null
+    url?: string | null
+    Foto: string
+    disponible: boolean
+    usuario: UsuarioCreateNestedOneWithoutFotografoInput
+    galeria?: GaleriaCreateNestedManyWithoutFotografoInput
+    unavailabilities?: UnavailabilityCreateNestedManyWithoutFotografoInput
+    servicios?: FotografoServicioCreateNestedManyWithoutFotografoInput
+  }
+
+  export type FotografoUncheckedCreateWithoutReservasInput = {
+    id?: string
+    usuarioId: string
+    nombre: string
+    telefono?: string | null
+    bio?: string | null
+    url?: string | null
+    Foto: string
+    disponible: boolean
+    galeria?: GaleriaUncheckedCreateNestedManyWithoutFotografoInput
+    unavailabilities?: UnavailabilityUncheckedCreateNestedManyWithoutFotografoInput
+    servicios?: FotografoServicioUncheckedCreateNestedManyWithoutFotografoInput
+  }
+
+  export type FotografoCreateOrConnectWithoutReservasInput = {
+    where: FotografoWhereUniqueInput
+    create: XOR<FotografoCreateWithoutReservasInput, FotografoUncheckedCreateWithoutReservasInput>
+  }
+
+  export type ReservaUpsertWithoutFotografosInput = {
+    update: XOR<ReservaUpdateWithoutFotografosInput, ReservaUncheckedUpdateWithoutFotografosInput>
+    create: XOR<ReservaCreateWithoutFotografosInput, ReservaUncheckedCreateWithoutFotografosInput>
+    where?: ReservaWhereInput
+  }
+
+  export type ReservaUpdateToOneWithWhereWithoutFotografosInput = {
+    where?: ReservaWhereInput
+    data: XOR<ReservaUpdateWithoutFotografosInput, ReservaUncheckedUpdateWithoutFotografosInput>
+  }
+
+  export type ReservaUpdateWithoutFotografosInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fecha?: DateTimeFieldUpdateOperationsInput | Date | string
+    horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
+    horaFin?: DateTimeFieldUpdateOperationsInput | Date | string
+    estado?: BoolFieldUpdateOperationsInput | boolean
+    precio?: NullableFloatFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    cliente?: ClienteUpdateOneRequiredWithoutReservasNestedInput
+    photoService?: PhotoServiceUpdateOneWithoutReservasNestedInput
+  }
+
+  export type ReservaUncheckedUpdateWithoutFotografosInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fecha?: DateTimeFieldUpdateOperationsInput | Date | string
+    horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
+    horaFin?: DateTimeFieldUpdateOperationsInput | Date | string
+    clienteId?: StringFieldUpdateOperationsInput | string
+    photoServiceId?: NullableStringFieldUpdateOperationsInput | string | null
+    estado?: BoolFieldUpdateOperationsInput | boolean
+    precio?: NullableFloatFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FotografoUpsertWithoutReservasInput = {
+    update: XOR<FotografoUpdateWithoutReservasInput, FotografoUncheckedUpdateWithoutReservasInput>
+    create: XOR<FotografoCreateWithoutReservasInput, FotografoUncheckedCreateWithoutReservasInput>
+    where?: FotografoWhereInput
+  }
+
+  export type FotografoUpdateToOneWithWhereWithoutReservasInput = {
+    where?: FotografoWhereInput
+    data: XOR<FotografoUpdateWithoutReservasInput, FotografoUncheckedUpdateWithoutReservasInput>
+  }
+
+  export type FotografoUpdateWithoutReservasInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nombre?: StringFieldUpdateOperationsInput | string
+    telefono?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    Foto?: StringFieldUpdateOperationsInput | string
+    disponible?: BoolFieldUpdateOperationsInput | boolean
+    usuario?: UsuarioUpdateOneRequiredWithoutFotografoNestedInput
+    galeria?: GaleriaUpdateManyWithoutFotografoNestedInput
+    unavailabilities?: UnavailabilityUpdateManyWithoutFotografoNestedInput
+    servicios?: FotografoServicioUpdateManyWithoutFotografoNestedInput
+  }
+
+  export type FotografoUncheckedUpdateWithoutReservasInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    usuarioId?: StringFieldUpdateOperationsInput | string
+    nombre?: StringFieldUpdateOperationsInput | string
+    telefono?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    Foto?: StringFieldUpdateOperationsInput | string
+    disponible?: BoolFieldUpdateOperationsInput | boolean
+    galeria?: GaleriaUncheckedUpdateManyWithoutFotografoNestedInput
+    unavailabilities?: UnavailabilityUncheckedUpdateManyWithoutFotografoNestedInput
+    servicios?: FotografoServicioUncheckedUpdateManyWithoutFotografoNestedInput
   }
 
   export type RolPermisoCreateManyRolInput = {
@@ -18797,7 +21485,6 @@ export namespace Prisma {
     fecha: Date | string
     horaInicio: Date | string
     horaFin: Date | string
-    fotografoId: string
     photoServiceId?: string | null
     estado?: boolean
     precio?: number | null
@@ -18812,7 +21499,7 @@ export namespace Prisma {
     estado?: BoolFieldUpdateOperationsInput | boolean
     precio?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    fotografo?: FotografoUpdateOneRequiredWithoutReservasNestedInput
+    fotografos?: ReservaFotografoUpdateManyWithoutReservaNestedInput
     photoService?: PhotoServiceUpdateOneWithoutReservasNestedInput
   }
 
@@ -18821,11 +21508,11 @@ export namespace Prisma {
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
     horaFin?: DateTimeFieldUpdateOperationsInput | Date | string
-    fotografoId?: StringFieldUpdateOperationsInput | string
     photoServiceId?: NullableStringFieldUpdateOperationsInput | string | null
     estado?: BoolFieldUpdateOperationsInput | boolean
     precio?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    fotografos?: ReservaFotografoUncheckedUpdateManyWithoutReservaNestedInput
   }
 
   export type ReservaUncheckedUpdateManyWithoutClienteInput = {
@@ -18833,7 +21520,6 @@ export namespace Prisma {
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
     horaFin?: DateTimeFieldUpdateOperationsInput | Date | string
-    fotografoId?: StringFieldUpdateOperationsInput | string
     photoServiceId?: NullableStringFieldUpdateOperationsInput | string | null
     estado?: BoolFieldUpdateOperationsInput | boolean
     precio?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -18880,16 +21566,8 @@ export namespace Prisma {
     activo?: BoolFieldUpdateOperationsInput | boolean
   }
 
-  export type ReservaCreateManyFotografoInput = {
-    id?: string
-    fecha: Date | string
-    horaInicio: Date | string
-    horaFin: Date | string
-    clienteId: string
-    photoServiceId?: string | null
-    estado?: boolean
-    precio?: number | null
-    createdAt?: Date | string
+  export type ReservaFotografoCreateManyFotografoInput = {
+    reservaId: string
   }
 
   export type GaleriaCreateManyFotografoInput = {
@@ -18911,40 +21589,16 @@ export namespace Prisma {
     servicioId: string
   }
 
-  export type ReservaUpdateWithoutFotografoInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    fecha?: DateTimeFieldUpdateOperationsInput | Date | string
-    horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
-    horaFin?: DateTimeFieldUpdateOperationsInput | Date | string
-    estado?: BoolFieldUpdateOperationsInput | boolean
-    precio?: NullableFloatFieldUpdateOperationsInput | number | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    cliente?: ClienteUpdateOneRequiredWithoutReservasNestedInput
-    photoService?: PhotoServiceUpdateOneWithoutReservasNestedInput
+  export type ReservaFotografoUpdateWithoutFotografoInput = {
+    reserva?: ReservaUpdateOneRequiredWithoutFotografosNestedInput
   }
 
-  export type ReservaUncheckedUpdateWithoutFotografoInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    fecha?: DateTimeFieldUpdateOperationsInput | Date | string
-    horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
-    horaFin?: DateTimeFieldUpdateOperationsInput | Date | string
-    clienteId?: StringFieldUpdateOperationsInput | string
-    photoServiceId?: NullableStringFieldUpdateOperationsInput | string | null
-    estado?: BoolFieldUpdateOperationsInput | boolean
-    precio?: NullableFloatFieldUpdateOperationsInput | number | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  export type ReservaFotografoUncheckedUpdateWithoutFotografoInput = {
+    reservaId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type ReservaUncheckedUpdateManyWithoutFotografoInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    fecha?: DateTimeFieldUpdateOperationsInput | Date | string
-    horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
-    horaFin?: DateTimeFieldUpdateOperationsInput | Date | string
-    clienteId?: StringFieldUpdateOperationsInput | string
-    photoServiceId?: NullableStringFieldUpdateOperationsInput | string | null
-    estado?: BoolFieldUpdateOperationsInput | boolean
-    precio?: NullableFloatFieldUpdateOperationsInput | number | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  export type ReservaFotografoUncheckedUpdateManyWithoutFotografoInput = {
+    reservaId?: StringFieldUpdateOperationsInput | string
   }
 
   export type GaleriaUpdateWithoutFotografoInput = {
@@ -18972,6 +21626,7 @@ export namespace Prisma {
     startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     activo?: BoolFieldUpdateOperationsInput | boolean
+    exceptions?: AvailabilityExceptionUpdateManyWithoutUnavailabilityNestedInput
   }
 
   export type UnavailabilityUncheckedUpdateWithoutFotografoInput = {
@@ -18981,6 +21636,7 @@ export namespace Prisma {
     startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     activo?: BoolFieldUpdateOperationsInput | boolean
+    exceptions?: AvailabilityExceptionUncheckedUpdateManyWithoutUnavailabilityNestedInput
   }
 
   export type UnavailabilityUncheckedUpdateManyWithoutFotografoInput = {
@@ -19013,7 +21669,6 @@ export namespace Prisma {
     fecha: Date | string
     horaInicio: Date | string
     horaFin: Date | string
-    fotografoId: string
     clienteId: string
     estado?: boolean
     precio?: number | null
@@ -19040,7 +21695,7 @@ export namespace Prisma {
     estado?: BoolFieldUpdateOperationsInput | boolean
     precio?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    fotografo?: FotografoUpdateOneRequiredWithoutReservasNestedInput
+    fotografos?: ReservaFotografoUpdateManyWithoutReservaNestedInput
     cliente?: ClienteUpdateOneRequiredWithoutReservasNestedInput
   }
 
@@ -19049,11 +21704,11 @@ export namespace Prisma {
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
     horaFin?: DateTimeFieldUpdateOperationsInput | Date | string
-    fotografoId?: StringFieldUpdateOperationsInput | string
     clienteId?: StringFieldUpdateOperationsInput | string
     estado?: BoolFieldUpdateOperationsInput | boolean
     precio?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    fotografos?: ReservaFotografoUncheckedUpdateManyWithoutReservaNestedInput
   }
 
   export type ReservaUncheckedUpdateManyWithoutPhotoServiceInput = {
@@ -19061,11 +21716,50 @@ export namespace Prisma {
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
     horaFin?: DateTimeFieldUpdateOperationsInput | Date | string
-    fotografoId?: StringFieldUpdateOperationsInput | string
     clienteId?: StringFieldUpdateOperationsInput | string
     estado?: BoolFieldUpdateOperationsInput | boolean
     precio?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AvailabilityExceptionCreateManyUnavailabilityInput = {
+    id?: string
+    date: Date | string
+    disponible: boolean
+  }
+
+  export type AvailabilityExceptionUpdateWithoutUnavailabilityInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    disponible?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type AvailabilityExceptionUncheckedUpdateWithoutUnavailabilityInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    disponible?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type AvailabilityExceptionUncheckedUpdateManyWithoutUnavailabilityInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    disponible?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type ReservaFotografoCreateManyReservaInput = {
+    fotografoId: string
+  }
+
+  export type ReservaFotografoUpdateWithoutReservaInput = {
+    fotografo?: FotografoUpdateOneRequiredWithoutReservasNestedInput
+  }
+
+  export type ReservaFotografoUncheckedUpdateWithoutReservaInput = {
+    fotografoId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ReservaFotografoUncheckedUpdateManyWithoutReservaInput = {
+    fotografoId?: StringFieldUpdateOperationsInput | string
   }
 
 

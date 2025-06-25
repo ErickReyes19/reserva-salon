@@ -190,6 +190,11 @@ exports.Prisma.FotografoScalarFieldEnum = {
   disponible: 'disponible'
 };
 
+exports.Prisma.FotografoServicioScalarFieldEnum = {
+  fotografoId: 'fotografoId',
+  servicioId: 'servicioId'
+};
+
 exports.Prisma.PhotoServiceScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -198,11 +203,6 @@ exports.Prisma.PhotoServiceScalarFieldEnum = {
   precio: 'precio',
   activo: 'activo',
   categoryId: 'categoryId'
-};
-
-exports.Prisma.FotografoServicioScalarFieldEnum = {
-  fotografoId: 'fotografoId',
-  servicioId: 'servicioId'
 };
 
 exports.Prisma.UnavailabilityScalarFieldEnum = {
@@ -215,17 +215,28 @@ exports.Prisma.UnavailabilityScalarFieldEnum = {
   activo: 'activo'
 };
 
+exports.Prisma.AvailabilityExceptionScalarFieldEnum = {
+  id: 'id',
+  unavailabilityId: 'unavailabilityId',
+  date: 'date',
+  disponible: 'disponible'
+};
+
 exports.Prisma.ReservaScalarFieldEnum = {
   id: 'id',
   fecha: 'fecha',
   horaInicio: 'horaInicio',
   horaFin: 'horaFin',
-  fotografoId: 'fotografoId',
   clienteId: 'clienteId',
   photoServiceId: 'photoServiceId',
   estado: 'estado',
   precio: 'precio',
   createdAt: 'createdAt'
+};
+
+exports.Prisma.ReservaFotografoScalarFieldEnum = {
+  reservaId: 'reservaId',
+  fotografoId: 'fotografoId'
 };
 
 exports.Prisma.SortOrder = {
@@ -293,6 +304,11 @@ exports.Prisma.FotografoOrderByRelevanceFieldEnum = {
   Foto: 'Foto'
 };
 
+exports.Prisma.FotografoServicioOrderByRelevanceFieldEnum = {
+  fotografoId: 'fotografoId',
+  servicioId: 'servicioId'
+};
+
 exports.Prisma.PhotoServiceOrderByRelevanceFieldEnum = {
   id: 'id',
   name: 'name',
@@ -301,21 +317,25 @@ exports.Prisma.PhotoServiceOrderByRelevanceFieldEnum = {
   categoryId: 'categoryId'
 };
 
-exports.Prisma.FotografoServicioOrderByRelevanceFieldEnum = {
-  fotografoId: 'fotografoId',
-  servicioId: 'servicioId'
-};
-
 exports.Prisma.UnavailabilityOrderByRelevanceFieldEnum = {
   id: 'id',
   fotografoId: 'fotografoId'
 };
 
+exports.Prisma.AvailabilityExceptionOrderByRelevanceFieldEnum = {
+  id: 'id',
+  unavailabilityId: 'unavailabilityId'
+};
+
 exports.Prisma.ReservaOrderByRelevanceFieldEnum = {
   id: 'id',
-  fotografoId: 'fotografoId',
   clienteId: 'clienteId',
   photoServiceId: 'photoServiceId'
+};
+
+exports.Prisma.ReservaFotografoOrderByRelevanceFieldEnum = {
+  reservaId: 'reservaId',
+  fotografoId: 'fotografoId'
 };
 
 
@@ -328,10 +348,12 @@ exports.Prisma.ModelName = {
   Cliente: 'Cliente',
   Category: 'Category',
   Fotografo: 'Fotografo',
-  PhotoService: 'PhotoService',
   FotografoServicio: 'FotografoServicio',
+  PhotoService: 'PhotoService',
   Unavailability: 'Unavailability',
-  Reserva: 'Reserva'
+  AvailabilityException: 'AvailabilityException',
+  Reserva: 'Reserva',
+  ReservaFotografo: 'ReservaFotografo'
 };
 
 /**

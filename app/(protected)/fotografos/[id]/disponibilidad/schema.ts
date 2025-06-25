@@ -1,6 +1,14 @@
 // schema.ts
 import { z } from "zod";
 
+export const ExceptionSchema = z.object({
+  id: z.string().uuid().optional(),
+  date: z.string().refine((val) => !isNaN(Date.parse(val)), {
+    message: "Fecha inválida",
+  }),
+  disponible: z.boolean(),
+});
+
 export const UnavailabilitySchema = z
   .object({
     id:           z.string().uuid().optional(),
@@ -26,6 +34,7 @@ export const UnavailabilitySchema = z
       })
       .optional(),
     activo: z.boolean(),
+    exceptions: z.array(ExceptionSchema).optional(),
   })
   .superRefine((data, ctx) => {
     if (data.recurring) {
@@ -59,3 +68,5 @@ export const UnavailabilitySchema = z
   });
 
 export type Unavailability = z.infer<typeof UnavailabilitySchema>;
+
+

@@ -5,7 +5,7 @@ import { randomUUID } from "crypto";
 import { Unavailability } from "./type";
 
 export async function getUnavailabilities(): Promise<Unavailability[]> {
-  const rules = await prisma.unavailability.findMany({ include: { fotografo: true } });
+  const rules = await prisma.unavailability.findMany({ include: { fotografo: true, exceptions: true } });
   return rules.map((r) => ({
     id:              r.id,
     fotografoId:     r.fotografoId,
@@ -15,6 +15,11 @@ export async function getUnavailabilities(): Promise<Unavailability[]> {
     endDate:         r.endDate?.toISOString(),
     activo:          r.activo,
     fotografoNombre: r.fotografo.nombre,
+    exceptions:      r.exceptions?.map((e) => ({
+      id:         e.id,
+      date:       e.date.toISOString().slice(0, 10),
+      disponible: e.disponible,
+    })) ?? [],
   }));
 }
 
@@ -23,7 +28,10 @@ export async function getUnavailabilityById(
 ): Promise<Unavailability | null> {
   const r = await prisma.unavailability.findUnique({
     where: { id },
-    include: { fotografo: true },
+    include: {
+      fotografo: true,
+      exceptions: true,
+    },
   });
   if (!r) return null;
   return {
@@ -34,6 +42,11 @@ export async function getUnavailabilityById(
     startDate:    r.startDate?.toISOString(),
     endDate:      r.endDate?.toISOString(),
     activo:       r.activo,
+    exceptions:   r.exceptions?.map((e) => ({
+      id:         e.id,
+      date:       e.date.toISOString().slice(0, 10),
+      disponible: e.disponible,
+    })) ?? [],
   };
 }
 
@@ -52,8 +65,14 @@ export async function postUnavailability({
         startDate:   rule.recurring ? null : new Date(rule.startDate!),
         endDate:     rule.recurring ? null : new Date(rule.endDate!),
         activo:      rule.activo,
+        exceptions: {
+          create: rule.exceptions?.map((e) => ({
+            date: new Date(e.date),
+            disponible: e.disponible,
+          })) ?? [],
+        },
       },
-      include: { fotografo: true },
+      include: { fotografo: true, exceptions: true },
     });
 
     return {
@@ -64,6 +83,11 @@ export async function postUnavailability({
       startDate:    created.startDate?.toISOString(),
       endDate:      created.endDate?.toISOString(),
       activo:       created.activo,
+      exceptions:   created.exceptions?.map((e) => ({
+        id:         e.id,
+        date:       e.date.toISOString().slice(0, 10),
+        disponible: e.disponible,
+      })) ?? [],
     };
   } catch (error) {
     console.error("Error al crear la indisponibilidad:", error);
@@ -77,6 +101,11 @@ export async function putUnavailability({
   rule: Unavailability;
 }): Promise<Unavailability | null> {
   try {
+    // Primero, borra todas las excepciones existentes y vuelve a crearlas (simple)
+    await prisma.availabilityException.deleteMany({
+      where: { unavailabilityId: rule.id! },
+    });
+
     const updated = await prisma.unavailability.update({
       where: { id: rule.id! },
       data: {
@@ -85,8 +114,14 @@ export async function putUnavailability({
         startDate: rule.recurring ? null : new Date(rule.startDate!),
         endDate:   rule.recurring ? null : new Date(rule.endDate!),
         activo:    rule.activo,
+        exceptions: {
+          create: rule.exceptions?.map((e) => ({
+            date: new Date(e.date),
+            disponible: e.disponible,
+          })) ?? [],
+        },
       },
-      include: { fotografo: true },
+      include: { fotografo: true, exceptions: true },
     });
 
     return {
@@ -97,6 +132,11 @@ export async function putUnavailability({
       startDate:    updated.startDate?.toISOString(),
       endDate:      updated.endDate?.toISOString(),
       activo:       updated.activo,
+      exceptions:   updated.exceptions?.map((e) => ({
+        id:         e.id,
+        date:       e.date.toISOString().slice(0, 10),
+        disponible: e.disponible,
+      })) ?? [],
     };
   } catch (error) {
     console.error("Error al actualizar la indisponibilidad:", error);
