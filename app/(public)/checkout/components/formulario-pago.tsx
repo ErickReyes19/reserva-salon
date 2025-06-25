@@ -10,6 +10,7 @@ import { CreditCard, ArrowLeft } from "lucide-react"
 import { postCliente } from "@/app/(protected)/clientes/actions"
 import { createReserva } from "@/app/(protected)/reservas/actions"
 import { createReservaAndNotify } from "@/app/(protected)/reservas/orchestrator"
+import { toast } from "sonner";
 
 const paymentSchema = z.object({
   cardNumber: z
@@ -22,6 +23,7 @@ const paymentSchema = z.object({
     .regex(/^(0[1-9]|1[0-2])\/\d{2}$/, "Formato MM/YY"),
   cvv: z
     .string()
+
     .min(3, "Al menos 3 dígitos")
     .max(4, "Máximo 4 dígitos")
     .regex(/^\d+$/, "Solo números"),
@@ -72,50 +74,54 @@ export function PaymentForm({
 
   const onSubmit = async (data: PaymentFormData) => {
     try {
-      // 1) Simula el pago
+
       const paymentSuccess = true
       if (!paymentSuccess) {
-        alert("Error en el pago. Intenta de nuevo.")
-        return
+      toast.error("Error en el pago. Intenta de nuevo.")
+      return
       }
 
-      // 2) Crea el cliente
       const cliente = await postCliente({
-        cliente: { nombre, email, telefono },
+      cliente: { nombre, email, telefono },
       })
-      if (!cliente) throw new Error("No se pudo crear el cliente")
+      if (!cliente) {
+      toast.error("Hubo un error al crear la reserva: El cliente ya existe.")
+      return 
+      }
 
-      // 3) Prepara fecha-hora UTC
-      const year   = fecha.getUTCFullYear()
-      const month  = fecha.getUTCMonth()   // 0 = enero
-      const day    = fecha.getUTCDate()
+      const year = fecha.getUTCFullYear()
+      const month = fecha.getUTCMonth()
+      const day = fecha.getUTCDate()
       const horaInicio = new Date(Date.UTC(year, month, day, hora, 0, 0))
 
-      // 4) Crea reserva + envía emails al cliente y fotógrafo
-      await createReservaAndNotify({
-        reservaData: {
-          fecha,               // si guardas fecha “suave” sin hora
-          horaInicio,          // Date UTC exacto
-          fotografoId,
-          clienteId: cliente.id!,
-          photoServiceId: serviceId,
-          precio: price,
-        },
-        // datos de destinatarios:
-        clienteEmail: email,
-        clienteNombre: nombre,
-        fotografoEmail: fotografoEmail,   // <— necesitas añadirlo al store o fetch previo
-        fotografoNombre: photographerName,
-        serviceName,                         // si lo tienes en props/store
+      const { reserva, emailEnviado } = await createReservaAndNotify({
+      reservaData: {
+        fecha,
+        horaInicio,
+        fotografoId,
+        clienteId: cliente.id!,
+        photoServiceId: serviceId,
+        precio: price,
+      },
+      clienteEmail: email,
+      clienteNombre: nombre,
+      fotografoEmail: fotografoEmail,
+      fotografoNombre: photographerName,
+      serviceName,
       })
 
-      // 5) Avanza al paso de confirmación
+      if (!emailEnviado) {
+      toast.warning("La reserva fue creada exitosamente, pero hubo un error al enviar el correo.")
+      }
+      toast.success("Reserva creada exitosamente. se envió un correo a :" + email + " con los detalles de la reserva.")
+
       onNext()
-    } catch (err: any) {
-      console.error(err)
-      alert(err.message || "Error inesperado")
+    } catch (err) {
+      console.error(err instanceof Error ? err.message : String(err))
+      toast.error(`Hubo un error al crear la reserva: ${err instanceof Error ? err.message : String(err)}`)
     }
   }
+
 
   return (
     <Card className="w-full max-w-md mx-auto">
