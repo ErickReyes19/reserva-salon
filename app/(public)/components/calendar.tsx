@@ -11,7 +11,6 @@ import ReservationModal from "./reservation-modal"
 import type { PhotoService } from "@/app/(protected)/servicios/type"
 import { getServiciosPorFotografos } from "@/app/(protected)/servicios/actions"
 import { useReservationStore } from "@/lib/store/useReservationStore"
-import { se } from "date-fns/locale"
 
 interface Props {
   eventos?: ReservaEvent[]
@@ -46,12 +45,32 @@ export default function CalendarioReservas({ eventos = [] }: Props) {
     }
     const eventsForDay = eventos.filter((e) => e.fecha && isSameDay(e.fecha, selectedDate))
     const occupied = new Set<number>()
+    const finHoras = new Set<number>()
     eventsForDay.forEach((e) => {
       const [sh] = e.horaInicio.split("T")[1].split(":").map(Number)
-      const [eh, em] = e.horaFin.split("T")[1].split(":").map(Number)
-      for (let h = sh; h < (em > 0 ? eh + 1 : eh); h++) occupied.add(h)
+      const [eh] = e.horaFin.split("T")[1].split(":").map(Number)
+      for (let h = sh; h < eh; h++) occupied.add(h)
+      finHoras.add(eh) // Guardamos la hora de fin
     })
-    setAvailableHours(allHours.filter((h) => !occupied.has(h)))
+
+    // Al filtrar las horas disponibles, excluye las que están ocupadas o son horaFin de alguna reserva
+    setAvailableHours(
+      allHours.filter((h) => {
+        // El bloque extendido de la hora candidata
+        const bloqueInicio = h - 1
+        const bloqueFin = h + 2
+
+        // ¿Choca con alguna reserva existente?
+        const choca = eventsForDay.some((e) => {
+          const [reservaInicio] = e.horaInicio.split("T")[1].split(":").map(Number)
+          const [reservaFin] = e.horaFin.split("T")[1].split(":").map(Number)
+          // Solapamiento de bloques
+          return bloqueInicio < reservaFin && bloqueFin > reservaInicio
+        })
+
+        return !choca
+      })
+    )
   }, [selectedDate, eventos, allHours])
 
   // Cuando eligen hora, cargar fotógrafos y servicios y preparar modal

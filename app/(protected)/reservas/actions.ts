@@ -178,11 +178,10 @@ export async function createReserva(data: {
   } = data;
 
   const realHoraInicio = new Date(horaInicio);
-  realHoraInicio.setMinutes(realHoraInicio.getMinutes() - 30);
+  realHoraInicio.setHours(realHoraInicio.getHours() - 1);
 
   const horaFin = new Date(horaInicio);
-  horaFin.setHours(horaFin.getHours() + 1);
-  horaFin.setMinutes(horaFin.getMinutes() + 30);
+  horaFin.setHours(horaFin.getHours() + 2);
 
   const isSlotFree = await isSlotAvailableByDate({ fecha, horaInicio });
   if (!isSlotFree) throw new Error("El horario ya está ocupado");

@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { CreditCard, ArrowLeft } from "lucide-react"
 import { postCliente } from "@/app/(protected)/clientes/actions"
-import { createReserva } from "@/app/(protected)/reservas/actions"
 import { createReservaAndNotify } from "@/app/(protected)/reservas/orchestrator"
 import { toast } from "sonner";
 

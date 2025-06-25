@@ -24,23 +24,21 @@ export async function createReservaAndNotify(payload: {
   const rawStart = reserva.horaInicio
   const rawEnd = reserva.horaFin
 
-  const baseStart = new Date(rawStart.getTime() + 30 * 60_000)
-  const baseEnd   = new Date(rawEnd.getTime()   - 30 * 60_000)
-  const offsetMs = 6 * 60 * 60_000
-  const localStart = new Date(baseStart.getTime() + offsetMs)
-  const localEnd   = new Date(baseEnd.getTime()   + offsetMs)
+  // El rango real seleccionado es 1 hora después del inicio y 1 hora antes del fin
+  const realStart = new Date(rawStart.getTime() + 1 * 60 * 60 * 1000)
+  const realEnd   = new Date(rawEnd.getTime()   - 1 * 60 * 60 * 1000)
 
   // Tu zona horaria, por ejemplo, Honduras:
   const timeZone = 'America/Tegucigalpa'
 
-  const zonedStart = toZonedTime(baseStart, timeZone)
-  const zonedEnd = toZonedTime(baseEnd, timeZone)
-
-  // Sumar 6 horas
-  const zonedStartPlus6 = new Date(zonedStart.getTime() + 6 * 60 * 60 * 1000)
-  const zonedEndPlus6 = new Date(zonedEnd.getTime() + 6 * 60 * 60 * 1000)
+  const zonedStart = toZonedTime(realStart, timeZone)
+  const zonedEnd = toZonedTime(realEnd, timeZone)
 
   const fechaStr     = format(zonedStart, "EEEE, d 'de' MMMM yyyy", { locale: es })
+  // Sumar 6 horas a la hora de inicio y fin
+  const zonedStartPlus6 = new Date(zonedStart.getTime() + 6 * 60 * 60 * 1000)
+  const zonedEndPlus6   = new Date(zonedEnd.getTime()   + 6 * 60 * 60 * 1000)
+
   const horaStartStr = format(zonedStartPlus6, "h a", { locale: es })
   const horaEndStr   = format(zonedEndPlus6,   "h a", { locale: es })
 
