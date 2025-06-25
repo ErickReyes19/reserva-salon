@@ -36,9 +36,13 @@ export async function createReservaAndNotify(payload: {
   const zonedStart = toZonedTime(baseStart, timeZone)
   const zonedEnd = toZonedTime(baseEnd, timeZone)
 
+  // Sumar 6 horas
+  const zonedStartPlus6 = new Date(zonedStart.getTime() + 6 * 60 * 60 * 1000)
+  const zonedEndPlus6 = new Date(zonedEnd.getTime() + 6 * 60 * 60 * 1000)
+
   const fechaStr     = format(zonedStart, "EEEE, d 'de' MMMM yyyy", { locale: es })
-  const horaStartStr = format(zonedStart, "h a", { locale: es })
-  const horaEndStr   = format(zonedEnd,   "h a", { locale: es })
+  const horaStartStr = format(zonedStartPlus6, "h a", { locale: es })
+  const horaEndStr   = format(zonedEndPlus6,   "h a", { locale: es })
 
   const templateData: EmailTemplateData = {
     clienteNombre:   payload.clienteNombre,
