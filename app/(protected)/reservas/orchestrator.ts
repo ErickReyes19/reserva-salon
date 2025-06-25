@@ -4,7 +4,7 @@ import { EmailService, type MailPayload } from "@/app/(public)/checkout/actions"
 import { createReserva } from "./actions"
 import type { Reserva } from "./type"
 import { EmailTemplateData, EmailTemplateGenerator } from "@/lib/email-template"
-import { format } from "date-fns"
+import { format, toZonedTime } from "date-fns-tz"
 import { es } from "date-fns/locale"
 
 const emailService = new EmailService()
@@ -30,9 +30,15 @@ export async function createReservaAndNotify(payload: {
   const localStart = new Date(baseStart.getTime() + offsetMs)
   const localEnd   = new Date(baseEnd.getTime()   + offsetMs)
 
-  const fechaStr     = format(localStart, "EEEE, d 'de' MMMM yyyy", { locale: es })
-  const horaStartStr = format(localStart, "h a", { locale: es })
-  const horaEndStr   = format(localEnd,   "h a", { locale: es })
+  // Tu zona horaria, por ejemplo, Honduras:
+  const timeZone = 'America/Tegucigalpa'
+
+  const zonedStart = toZonedTime(baseStart, timeZone)
+  const zonedEnd = toZonedTime(baseEnd, timeZone)
+
+  const fechaStr     = format(zonedStart, "EEEE, d 'de' MMMM yyyy", { locale: es })
+  const horaStartStr = format(zonedStart, "h a", { locale: es })
+  const horaEndStr   = format(zonedEnd,   "h a", { locale: es })
 
   const templateData: EmailTemplateData = {
     clienteNombre:   payload.clienteNombre,
